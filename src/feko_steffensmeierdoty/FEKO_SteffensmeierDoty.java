@@ -17,6 +17,7 @@ public class FEKO_SteffensmeierDoty {
     public static void main(String[] args) {
         System.out.println("Hello");
         //made a change
+        System.out.println("Hello");
     }
     
 }
