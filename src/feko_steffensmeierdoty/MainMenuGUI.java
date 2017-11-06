@@ -37,6 +37,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -98,6 +99,9 @@ public class MainMenuGUI extends javax.swing.JFrame {
             }
         });
         jLayeredPane1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 450, 290, 60));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/custom_logo.png"))); // NOI18N
+        jLayeredPane1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Calibri Light", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -219,6 +223,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLayeredPane jLayeredPane1;
     // End of variables declaration//GEN-END:variables
 }
