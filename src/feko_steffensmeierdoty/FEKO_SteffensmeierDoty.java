@@ -15,9 +15,8 @@ public class FEKO_SteffensmeierDoty {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println("Hello");
-        //made a change
-        System.out.println("Hello");
+        MainMenuGUI menuGUI = new MainMenuGUI();
+        menuGUI.setVisible(true);
     }
     
 }
