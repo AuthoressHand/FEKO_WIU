@@ -46,6 +46,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(1024, 612));
         setUndecorated(true);
         setPreferredSize(new java.awt.Dimension(1024, 612));
+        setResizable(false);
 
         jLayeredPane1.setMaximumSize(new java.awt.Dimension(1024, 612));
         jLayeredPane1.setMinimumSize(new java.awt.Dimension(1024, 612));
