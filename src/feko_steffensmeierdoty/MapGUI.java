@@ -28,23 +28,39 @@ public class MapGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1024, 612));
-        setMinimumSize(new java.awt.Dimension(1024, 612));
+        setMaximumSize(new java.awt.Dimension(540, 905));
+        setMinimumSize(new java.awt.Dimension(540, 905));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1024, 612));
+        setPreferredSize(new java.awt.Dimension(540, 905));
         setResizable(false);
 
-        jLayeredPane1.setMaximumSize(new java.awt.Dimension(1024, 612));
-        jLayeredPane1.setMinimumSize(new java.awt.Dimension(1024, 612));
+        jLayeredPane1.setMaximumSize(new java.awt.Dimension(540, 905));
+        jLayeredPane1.setMinimumSize(new java.awt.Dimension(540, 905));
+        jLayeredPane1.setPreferredSize(new java.awt.Dimension(540, 905));
         jLayeredPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/game_background.png"))); // NOI18N
+        jLabel1.setMaximumSize(new java.awt.Dimension(540, 720));
+        jLabel1.setMinimumSize(new java.awt.Dimension(540, 720));
+        jLabel1.setPreferredSize(new java.awt.Dimension(540, 720));
+        jLayeredPane1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/top_banner_empty.png"))); // NOI18N
+        jLayeredPane1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 120));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/bottom_banner.png"))); // NOI18N
+        jLayeredPane1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 840, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -91,6 +107,9 @@ public class MapGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLayeredPane jLayeredPane1;
     // End of variables declaration//GEN-END:variables
 }
