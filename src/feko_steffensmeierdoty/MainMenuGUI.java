@@ -27,22 +27,51 @@ public class MainMenuGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLayeredPane1 = new javax.swing.JLayeredPane();
         jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1024, 612));
+        setMinimumSize(new java.awt.Dimension(1024, 612));
+        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1024, 612));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/main_menu_background.png"))); // NOI18N
-        jLabel2.setText("jLabel2");
+        jLayeredPane1.setMaximumSize(new java.awt.Dimension(1024, 612));
+        jLayeredPane1.setMinimumSize(new java.awt.Dimension(1024, 612));
+        jLayeredPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo.png"))); // NOI18N
+        jLayeredPane1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, -1, -1));
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/main_menu_button2.png"))); // NOI18N
+        jButton1.setContentAreaFilled(false);
+        jButton1.setOpaque(false);
+        jLayeredPane1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, 290, 60));
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/main_menu_button2.png"))); // NOI18N
+        jButton2.setContentAreaFilled(false);
+        jLayeredPane1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 450, 290, 60));
+
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/main_menu_button2.png"))); // NOI18N
+        jButton3.setContentAreaFilled(false);
+        jLayeredPane1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, 290, 60));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/main_menu_background.png"))); // NOI18N
+        jLayeredPane1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1024, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2)
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -85,6 +114,11 @@ public class MainMenuGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLayeredPane jLayeredPane1;
     // End of variables declaration//GEN-END:variables
 }
