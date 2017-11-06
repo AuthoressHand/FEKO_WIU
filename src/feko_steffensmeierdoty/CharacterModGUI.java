@@ -31,15 +31,16 @@ public class CharacterModGUI extends javax.swing.JFrame {
         jLayeredPane1 = new javax.swing.JLayeredPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1024, 612));
-        setMinimumSize(new java.awt.Dimension(1024, 612));
+        setMaximumSize(new java.awt.Dimension(540, 905));
+        setMinimumSize(new java.awt.Dimension(540, 905));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1024, 612));
+        setPreferredSize(new java.awt.Dimension(540, 905));
         setResizable(false);
-        setSize(new java.awt.Dimension(512, 459));
+        setSize(new java.awt.Dimension(540, 905));
 
-        jLayeredPane1.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
-        jLayeredPane1.setMinimumSize(new java.awt.Dimension(1024, 612));
+        jLayeredPane1.setMaximumSize(new java.awt.Dimension(540, 905));
+        jLayeredPane1.setMinimumSize(new java.awt.Dimension(540, 905));
+        jLayeredPane1.setPreferredSize(new java.awt.Dimension(540, 905));
         jLayeredPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -50,7 +51,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 612, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
