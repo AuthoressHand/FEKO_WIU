@@ -18,6 +18,7 @@ public class FEKO_SteffensmeierDoty {
         //https://78.media.tumblr.com/2de0a51197fc044de7f5dac68c106528/tumblr_oorz5f07BM1w8kmjqo1_250.png
         MainMenuGUI menuGUI = new MainMenuGUI();
         menuGUI.setVisible(true);
+        menuGUI.setResizable(false);
     }
     
 }
