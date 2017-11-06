@@ -19,6 +19,7 @@ public class FEKO_SteffensmeierDoty {
         //this is a change
         MainMenuGUI menuGUI = new MainMenuGUI();
         menuGUI.setVisible(true);
+        //
     }
     
 }
