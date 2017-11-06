@@ -14,7 +14,7 @@ import javax.swing.ImageIcon;
  * @author rms130
  */
 public class MainMenuGUI extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form MainMenuGUI
      */
