@@ -46,7 +46,6 @@ public class MainMenuGUI extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(1024, 612));
         setMinimumSize(new java.awt.Dimension(1024, 612));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1024, 612));
         setResizable(false);
 
         jLayeredPane1.setMaximumSize(new java.awt.Dimension(1024, 612));
@@ -70,7 +69,6 @@ public class MainMenuGUI extends javax.swing.JFrame {
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
         jButton1.setFocusPainted(false);
-        jButton1.setOpaque(false);
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButton1MouseEntered(evt);

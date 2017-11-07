@@ -29,19 +29,27 @@ public class CharacterModGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(540, 905));
-        setMinimumSize(new java.awt.Dimension(540, 905));
+        setMaximumSize(new java.awt.Dimension(540, 925));
+        setMinimumSize(new java.awt.Dimension(540, 925));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(540, 905));
+        setPreferredSize(new java.awt.Dimension(540, 925));
         setResizable(false);
-        setSize(new java.awt.Dimension(540, 905));
+        setSize(new java.awt.Dimension(540, 925));
 
-        jLayeredPane1.setMaximumSize(new java.awt.Dimension(540, 905));
-        jLayeredPane1.setMinimumSize(new java.awt.Dimension(540, 905));
-        jLayeredPane1.setPreferredSize(new java.awt.Dimension(540, 905));
+        jLayeredPane1.setMaximumSize(new java.awt.Dimension(540, 925));
+        jLayeredPane1.setMinimumSize(new java.awt.Dimension(540, 925));
+        jLayeredPane1.setPreferredSize(new java.awt.Dimension(540, 925));
         jLayeredPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/bottom_banner.png"))); // NOI18N
+        jLayeredPane1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 840, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/top_banner_empty.png"))); // NOI18N
+        jLayeredPane1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 120));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -94,6 +102,8 @@ public class CharacterModGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLayeredPane jLayeredPane1;
     // End of variables declaration//GEN-END:variables
 }
