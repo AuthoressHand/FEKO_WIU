@@ -37,6 +37,7 @@ public class MapGUI extends javax.swing.JFrame {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -53,7 +54,7 @@ public class MapGUI extends javax.swing.JFrame {
         jLayeredPane1.setPreferredSize(new java.awt.Dimension(540, 925));
         jLayeredPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/char.png"))); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/enemy_char.png"))); // NOI18N
         jButton3.setBorderPainted(false);
         jButton3.setContentAreaFilled(false);
         jButton3.setFocusPainted(false);
@@ -65,7 +66,21 @@ public class MapGUI extends javax.swing.JFrame {
                 jButton3MouseDragged(evt);
             }
         });
-        jLayeredPane1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 90, 90));
+        jLayeredPane1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 650, 90, 90));
+
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/char.png"))); // NOI18N
+        jButton4.setBorderPainted(false);
+        jButton4.setContentAreaFilled(false);
+        jButton4.setFocusPainted(false);
+        jButton4.setMaximumSize(new java.awt.Dimension(90, 90));
+        jButton4.setMinimumSize(new java.awt.Dimension(90, 90));
+        jButton4.setPreferredSize(new java.awt.Dimension(90, 90));
+        jButton4.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jButton4MouseDragged(evt);
+            }
+        });
+        jLayeredPane1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 90, 90));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/game_background.png"))); // NOI18N
         jLayeredPane1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 540, -1));
@@ -97,6 +112,13 @@ public class MapGUI extends javax.swing.JFrame {
         pInfoPoint.setLocation(pInfoPoint.getX() - 735, pInfoPoint.getY() - 100);
         jButton3.setLocation(pInfoPoint);
     }//GEN-LAST:event_jButton3MouseDragged
+
+    private void jButton4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseDragged
+        pInfo = MouseInfo.getPointerInfo();
+        pInfoPoint = pInfo.getLocation();
+        pInfoPoint.setLocation(pInfoPoint.getX() - 735, pInfoPoint.getY() - 100);
+        jButton4.setLocation(pInfoPoint);
+    }//GEN-LAST:event_jButton4MouseDragged
 
     /**
      * @param args the command line arguments
@@ -135,6 +157,7 @@ public class MapGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
