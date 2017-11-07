@@ -23,8 +23,6 @@ public class MapGUI extends javax.swing.JFrame {
      */
     public MapGUI() {
         initComponents();
-        
-        
     }
 
     /**
