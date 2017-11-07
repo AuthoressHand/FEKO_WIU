@@ -17,6 +17,7 @@ public class MapGUI extends javax.swing.JFrame {
 
     private PointerInfo pInfo;
     private Point pInfoPoint;
+    private Point invalidPoint;
     
     /**
      * Creates new form MapGUI
@@ -58,7 +59,6 @@ public class MapGUI extends javax.swing.JFrame {
 
         jLayeredPane1.setMaximumSize(new java.awt.Dimension(540, 925));
         jLayeredPane1.setMinimumSize(new java.awt.Dimension(540, 925));
-        jLayeredPane1.setPreferredSize(new java.awt.Dimension(540, 925));
         jLayeredPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/enemy_char.png"))); // NOI18N
@@ -76,6 +76,9 @@ public class MapGUI extends javax.swing.JFrame {
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jButton3MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jButton3MouseReleased(evt);
             }
         });
         jLayeredPane1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 650, 90, 90));
@@ -95,6 +98,9 @@ public class MapGUI extends javax.swing.JFrame {
         jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jButton4MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jButton4MouseReleased(evt);
             }
         });
         jLayeredPane1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 90, 90));
@@ -199,7 +205,7 @@ public class MapGUI extends javax.swing.JFrame {
         pInfoPoint = pInfo.getLocation();
         pInfoPoint.setLocation(pInfoPoint.getX() - 735, pInfoPoint.getY() - 100);
         
-        if(pInfoPoint.getX() >= 0 && pInfoPoint.getX() <=450 && pInfoPoint.getY() >=124 && pInfoPoint.getY() <= 750 )
+        if(pInfoPoint.getX() >= -70 && pInfoPoint.getX() <=520 && pInfoPoint.getY() >=-70 && pInfoPoint.getY() <= 880 )
             jButton3.setLocation(pInfoPoint);
     }//GEN-LAST:event_jButton3MouseDragged
 
@@ -207,8 +213,9 @@ public class MapGUI extends javax.swing.JFrame {
         pInfo = MouseInfo.getPointerInfo();
         pInfoPoint = pInfo.getLocation();
         pInfoPoint.setLocation(pInfoPoint.getX() - 735, pInfoPoint.getY() - 100);
+        System.out.println(pInfoPoint);
         
-        if(pInfoPoint.getX() >= 0 && pInfoPoint.getX() <=450 && pInfoPoint.getY() >=124 && pInfoPoint.getY() <= 750 )
+        if(pInfoPoint.getX() >= -70 && pInfoPoint.getX() <=520 && pInfoPoint.getY() >=-70 && pInfoPoint.getY() <= 880 )
             jButton4.setLocation(pInfoPoint);
     }//GEN-LAST:event_jButton4MouseDragged
 
@@ -251,6 +258,52 @@ public class MapGUI extends javax.swing.JFrame {
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/Sharena_portrait.png")));
         jLabel8.setText("Sharena");
     }//GEN-LAST:event_jButton4MousePressed
+
+    private void jButton4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseReleased
+        if(pInfoPoint.getY() < 120){
+            invalidPoint = pInfo.getLocation();
+            pInfoPoint.setLocation(pInfoPoint.getX(), (120 - invalidPoint.getY())+invalidPoint.getY());
+            jButton4.setLocation(pInfoPoint);
+        }
+        if(pInfoPoint.getY() > 750){
+            invalidPoint = pInfo.getLocation();
+            pInfoPoint.setLocation(pInfoPoint.getX(), invalidPoint.getY()-(invalidPoint.getY() - 750));
+            jButton4.setLocation(pInfoPoint);
+        }
+        if(pInfoPoint.getX() < 0){
+            invalidPoint = pInfo.getLocation();
+            pInfoPoint.setLocation((0 - invalidPoint.getX()) + invalidPoint.getX(), pInfoPoint.getY());
+            jButton4.setLocation(pInfoPoint);
+        }
+        if(pInfoPoint.getX() > 450){
+            invalidPoint = pInfo.getLocation();
+            pInfoPoint.setLocation(invalidPoint.getX()-(invalidPoint.getX() - 450), pInfoPoint.getY());
+            jButton4.setLocation(pInfoPoint);
+        }
+    }//GEN-LAST:event_jButton4MouseReleased
+
+    private void jButton3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseReleased
+        if(pInfoPoint.getY() < 120){
+            invalidPoint = pInfo.getLocation();
+            pInfoPoint.setLocation(pInfoPoint.getX(), (120 - invalidPoint.getY())+invalidPoint.getY());
+            jButton3.setLocation(pInfoPoint);
+        }
+        if(pInfoPoint.getY() > 750){
+            invalidPoint = pInfo.getLocation();
+            pInfoPoint.setLocation(pInfoPoint.getX(), invalidPoint.getY()-(invalidPoint.getY() - 750));
+            jButton3.setLocation(pInfoPoint);
+        }
+        if(pInfoPoint.getX() < 0){
+            invalidPoint = pInfo.getLocation();
+            pInfoPoint.setLocation((0 - invalidPoint.getX()) + invalidPoint.getX(), pInfoPoint.getY());
+            jButton3.setLocation(pInfoPoint);
+        }
+        if(pInfoPoint.getX() > 450){
+            invalidPoint = pInfo.getLocation();
+            pInfoPoint.setLocation(invalidPoint.getX()-(invalidPoint.getX() - 450), pInfoPoint.getY());
+            jButton3.setLocation(pInfoPoint);
+        }
+    }//GEN-LAST:event_jButton3MouseReleased
 
     /**
      * @param args the command line arguments
