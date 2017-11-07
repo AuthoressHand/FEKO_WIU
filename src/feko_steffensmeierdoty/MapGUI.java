@@ -24,6 +24,7 @@ public class MapGUI extends javax.swing.JFrame {
     public MapGUI() {
         initComponents();
         
+        
     }
 
     /**
@@ -107,17 +108,23 @@ public class MapGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseDragged
+        
+        
         pInfo = MouseInfo.getPointerInfo();
         pInfoPoint = pInfo.getLocation();
         pInfoPoint.setLocation(pInfoPoint.getX() - 735, pInfoPoint.getY() - 100);
-        jButton3.setLocation(pInfoPoint);
+        
+        if(pInfoPoint.getX() >= 0 && pInfoPoint.getX() <=450 && pInfoPoint.getY() >=124 && pInfoPoint.getY() <= 750 )
+            jButton3.setLocation(pInfoPoint);
     }//GEN-LAST:event_jButton3MouseDragged
 
     private void jButton4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseDragged
         pInfo = MouseInfo.getPointerInfo();
         pInfoPoint = pInfo.getLocation();
         pInfoPoint.setLocation(pInfoPoint.getX() - 735, pInfoPoint.getY() - 100);
-        jButton4.setLocation(pInfoPoint);
+        
+        if(pInfoPoint.getX() >= 0 && pInfoPoint.getX() <=450 && pInfoPoint.getY() >=124 && pInfoPoint.getY() <= 750 )
+            jButton4.setLocation(pInfoPoint);
     }//GEN-LAST:event_jButton4MouseDragged
 
     /**
