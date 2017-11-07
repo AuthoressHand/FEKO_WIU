@@ -5,17 +5,25 @@
  */
 package feko_steffensmeierdoty;
 
+import java.awt.MouseInfo;
+import java.awt.Point;
+import java.awt.PointerInfo;
+
 /**
  *
  * @author rms130
  */
 public class MapGUI extends javax.swing.JFrame {
 
+    private PointerInfo pInfo;
+    private Point pInfoPoint;
+    
     /**
      * Creates new form MapGUI
      */
     public MapGUI() {
         initComponents();
+        
     }
 
     /**
@@ -49,20 +57,15 @@ public class MapGUI extends javax.swing.JFrame {
         jButton3.setBorderPainted(false);
         jButton3.setContentAreaFilled(false);
         jButton3.setFocusPainted(false);
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton3MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton3MouseExited(evt);
-            }
-        });
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+        jButton3.setMaximumSize(new java.awt.Dimension(90, 90));
+        jButton3.setMinimumSize(new java.awt.Dimension(90, 90));
+        jButton3.setPreferredSize(new java.awt.Dimension(90, 90));
+        jButton3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jButton3MouseDragged(evt);
             }
         });
-        jLayeredPane1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 390, 90, 80));
+        jLayeredPane1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 90, 90));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/game_background.png"))); // NOI18N
         jLayeredPane1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 540, -1));
@@ -88,17 +91,12 @@ public class MapGUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseEntered
-        
-    }//GEN-LAST:event_jButton3MouseEntered
-
-    private void jButton3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseExited
-        
-    }//GEN-LAST:event_jButton3MouseExited
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-   
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void jButton3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseDragged
+        pInfo = MouseInfo.getPointerInfo();
+        pInfoPoint = pInfo.getLocation();
+        pInfoPoint.setLocation(pInfoPoint.getX() - 735, pInfoPoint.getY() - 100);
+        jButton3.setLocation(pInfoPoint);
+    }//GEN-LAST:event_jButton3MouseDragged
 
     /**
      * @param args the command line arguments
