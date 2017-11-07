@@ -96,6 +96,9 @@ public class MapGUI extends javax.swing.JFrame {
         jButton6.setMinimumSize(new java.awt.Dimension(90, 90));
         jButton6.setPreferredSize(new java.awt.Dimension(90, 90));
         jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton6MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButton6MouseEntered(evt);
             }
@@ -212,6 +215,12 @@ public class MapGUI extends javax.swing.JFrame {
     private void jButton7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseExited
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/dangerarea_button_idle.png")));
     }//GEN-LAST:event_jButton7MouseExited
+
+    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
+        EndGUI endGUI = new EndGUI();
+        endGUI.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_jButton6MouseClicked
 
     /**
      * @param args the command line arguments
