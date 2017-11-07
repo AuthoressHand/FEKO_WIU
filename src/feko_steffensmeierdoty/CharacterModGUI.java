@@ -15,7 +15,6 @@ public class CharacterModGUI extends javax.swing.JFrame {
      * Creates new form CharacterModGUI
      */
     public CharacterModGUI() {
-        setResizable(false);
         initComponents();
     }
 

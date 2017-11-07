@@ -36,7 +36,6 @@ public class EndGUI extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(540, 925));
         setMinimumSize(new java.awt.Dimension(540, 925));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(540, 925));
         setResizable(false);
 
         jLayeredPane1.setMaximumSize(new java.awt.Dimension(540, 925));
