@@ -46,7 +46,6 @@ public class CharacterModGUI extends javax.swing.JFrame {
 
         jLayeredPane1.setMaximumSize(new java.awt.Dimension(540, 925));
         jLayeredPane1.setMinimumSize(new java.awt.Dimension(540, 925));
-        jLayeredPane1.setPreferredSize(new java.awt.Dimension(540, 925));
         jLayeredPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/misc_button_idle.png"))); // NOI18N
