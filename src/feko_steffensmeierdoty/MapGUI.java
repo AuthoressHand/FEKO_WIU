@@ -19,7 +19,7 @@ public class MapGUI extends javax.swing.JFrame {
     private static PointerInfo pInfo;
     private static Point pInfoPoint;
     private static Point invalidPoint;
-    
+    private static int count = 0;
     /**
      * Creates new form MapGUI
      */
@@ -37,19 +37,19 @@ public class MapGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        EnemyCharacter = new javax.swing.JButton();
+        MainCharacter = new javax.swing.JButton();
+        EndTurnButton = new javax.swing.JButton();
+        DangerAreaButton = new javax.swing.JButton();
+        SettingsButton = new javax.swing.JButton();
+        BattleWheel = new javax.swing.JLabel();
+        NameText = new javax.swing.JLabel();
+        NamePlate = new javax.swing.JLabel();
+        Map = new javax.swing.JLabel();
+        CharacterPortrait = new javax.swing.JLabel();
+        StatsInterface = new javax.swing.JLabel();
+        TopBorder = new javax.swing.JLabel();
+        BottomBorder = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(540, 925));
@@ -62,130 +62,130 @@ public class MapGUI extends javax.swing.JFrame {
         jLayeredPane1.setMinimumSize(new java.awt.Dimension(540, 925));
         jLayeredPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/enemy_char.png"))); // NOI18N
-        jButton3.setBorderPainted(false);
-        jButton3.setContentAreaFilled(false);
-        jButton3.setFocusPainted(false);
-        jButton3.setMaximumSize(new java.awt.Dimension(90, 90));
-        jButton3.setMinimumSize(new java.awt.Dimension(90, 90));
-        jButton3.setPreferredSize(new java.awt.Dimension(90, 90));
-        jButton3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        EnemyCharacter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/enemy_char.png"))); // NOI18N
+        EnemyCharacter.setBorderPainted(false);
+        EnemyCharacter.setContentAreaFilled(false);
+        EnemyCharacter.setFocusPainted(false);
+        EnemyCharacter.setMaximumSize(new java.awt.Dimension(90, 90));
+        EnemyCharacter.setMinimumSize(new java.awt.Dimension(90, 90));
+        EnemyCharacter.setPreferredSize(new java.awt.Dimension(90, 90));
+        EnemyCharacter.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
-                jButton3MouseDragged(evt);
+                EnemyCharacterMouseDragged(evt);
             }
         });
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+        EnemyCharacter.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButton3MousePressed(evt);
+                EnemyCharacterMousePressed(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jButton3MouseReleased(evt);
+                EnemyCharacterMouseReleased(evt);
             }
         });
-        jLayeredPane1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 650, 90, 90));
+        jLayeredPane1.add(EnemyCharacter, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 650, 90, 90));
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/char.png"))); // NOI18N
-        jButton4.setBorderPainted(false);
-        jButton4.setContentAreaFilled(false);
-        jButton4.setFocusPainted(false);
-        jButton4.setMaximumSize(new java.awt.Dimension(90, 90));
-        jButton4.setMinimumSize(new java.awt.Dimension(90, 90));
-        jButton4.setPreferredSize(new java.awt.Dimension(90, 90));
-        jButton4.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        MainCharacter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/char.png"))); // NOI18N
+        MainCharacter.setBorderPainted(false);
+        MainCharacter.setContentAreaFilled(false);
+        MainCharacter.setFocusPainted(false);
+        MainCharacter.setMaximumSize(new java.awt.Dimension(90, 90));
+        MainCharacter.setMinimumSize(new java.awt.Dimension(90, 90));
+        MainCharacter.setPreferredSize(new java.awt.Dimension(90, 90));
+        MainCharacter.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
-                jButton4MouseDragged(evt);
+                MainCharacterMouseDragged(evt);
             }
         });
-        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+        MainCharacter.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButton4MousePressed(evt);
+                MainCharacterMousePressed(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jButton4MouseReleased(evt);
+                MainCharacterMouseReleased(evt);
             }
         });
-        jLayeredPane1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 90, 90));
+        jLayeredPane1.add(MainCharacter, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 90, 90));
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/endturn_button_idle.png"))); // NOI18N
-        jButton6.setBorderPainted(false);
-        jButton6.setContentAreaFilled(false);
-        jButton6.setFocusPainted(false);
-        jButton6.setMaximumSize(new java.awt.Dimension(90, 90));
-        jButton6.setMinimumSize(new java.awt.Dimension(90, 90));
-        jButton6.setPreferredSize(new java.awt.Dimension(90, 90));
-        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+        EndTurnButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/endturn_button_idle.png"))); // NOI18N
+        EndTurnButton.setBorderPainted(false);
+        EndTurnButton.setContentAreaFilled(false);
+        EndTurnButton.setFocusPainted(false);
+        EndTurnButton.setMaximumSize(new java.awt.Dimension(90, 90));
+        EndTurnButton.setMinimumSize(new java.awt.Dimension(90, 90));
+        EndTurnButton.setPreferredSize(new java.awt.Dimension(90, 90));
+        EndTurnButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton6MouseClicked(evt);
+                EndTurnButtonMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton6MouseEntered(evt);
+                EndTurnButtonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton6MouseExited(evt);
+                EndTurnButtonMouseExited(evt);
             }
         });
-        jLayeredPane1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 840, 90, 90));
+        jLayeredPane1.add(EndTurnButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 840, 90, 90));
 
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/dangerarea_button_idle.png"))); // NOI18N
-        jButton7.setBorderPainted(false);
-        jButton7.setContentAreaFilled(false);
-        jButton7.setFocusPainted(false);
-        jButton7.setMaximumSize(new java.awt.Dimension(90, 90));
-        jButton7.setMinimumSize(new java.awt.Dimension(90, 90));
-        jButton7.setPreferredSize(new java.awt.Dimension(90, 90));
-        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
+        DangerAreaButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/dangerarea_button_idle.png"))); // NOI18N
+        DangerAreaButton.setBorderPainted(false);
+        DangerAreaButton.setContentAreaFilled(false);
+        DangerAreaButton.setFocusPainted(false);
+        DangerAreaButton.setMaximumSize(new java.awt.Dimension(90, 90));
+        DangerAreaButton.setMinimumSize(new java.awt.Dimension(90, 90));
+        DangerAreaButton.setPreferredSize(new java.awt.Dimension(90, 90));
+        DangerAreaButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton7MouseEntered(evt);
+                DangerAreaButtonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton7MouseExited(evt);
+                DangerAreaButtonMouseExited(evt);
             }
         });
-        jLayeredPane1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 840, 90, 90));
+        jLayeredPane1.add(DangerAreaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 840, 90, 90));
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLayeredPane1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 140, 30));
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/battle_wheel.png"))); // NOI18N
-        jLayeredPane1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 850, -1, -1));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/game_background.png"))); // NOI18N
-        jLayeredPane1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 540, -1));
-
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/name_plate.png"))); // NOI18N
-        jLayeredPane1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, -1));
-        jLayeredPane1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/stats_border.png"))); // NOI18N
-        jLayeredPane1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, -1, -1));
-
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/settings_button_idle.png"))); // NOI18N
-        jButton5.setBorderPainted(false);
-        jButton5.setContentAreaFilled(false);
-        jButton5.setFocusPainted(false);
-        jButton5.setMaximumSize(new java.awt.Dimension(90, 90));
-        jButton5.setMinimumSize(new java.awt.Dimension(90, 90));
-        jButton5.setPreferredSize(new java.awt.Dimension(90, 90));
-        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+        SettingsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/settings_button_idle.png"))); // NOI18N
+        SettingsButton.setBorderPainted(false);
+        SettingsButton.setContentAreaFilled(false);
+        SettingsButton.setFocusPainted(false);
+        SettingsButton.setMaximumSize(new java.awt.Dimension(90, 90));
+        SettingsButton.setMinimumSize(new java.awt.Dimension(90, 90));
+        SettingsButton.setPreferredSize(new java.awt.Dimension(90, 90));
+        SettingsButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton5MouseEntered(evt);
+                SettingsButtonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton5MouseExited(evt);
+                SettingsButtonMouseExited(evt);
             }
         });
-        jLayeredPane1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 840, 90, 90));
+        jLayeredPane1.add(SettingsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 840, 90, 90));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/top_banner_empty.png"))); // NOI18N
-        jLayeredPane1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 120));
+        BattleWheel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/battle_wheel.png"))); // NOI18N
+        jLayeredPane1.add(BattleWheel, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 850, -1, -1));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/bottom_banner.png"))); // NOI18N
-        jLayeredPane1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 840, -1, -1));
+        NameText.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        NameText.setForeground(new java.awt.Color(255, 255, 255));
+        NameText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLayeredPane1.add(NameText, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 140, 30));
+
+        NamePlate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        NamePlate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/name_plate.png"))); // NOI18N
+        jLayeredPane1.add(NamePlate, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, -1));
+
+        Map.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/game_background.png"))); // NOI18N
+        jLayeredPane1.add(Map, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 540, -1));
+        jLayeredPane1.add(CharacterPortrait, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        StatsInterface.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/stats_border.png"))); // NOI18N
+        jLayeredPane1.add(StatsInterface, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, -1, -1));
+
+        TopBorder.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        TopBorder.setForeground(new java.awt.Color(255, 255, 255));
+        TopBorder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/top_banner_empty.png"))); // NOI18N
+        jLayeredPane1.add(TopBorder, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 120));
+
+        BottomBorder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/bottom_banner.png"))); // NOI18N
+        jLayeredPane1.add(BottomBorder, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 840, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -195,72 +195,73 @@ public class MapGUI extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseDragged
+    private void EnemyCharacterMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacterMouseDragged
         updateCharacterLocation();
-        checkDragBoundary(jButton3);
-    }//GEN-LAST:event_jButton3MouseDragged
+        checkDragBoundary(EnemyCharacter);
+    }//GEN-LAST:event_EnemyCharacterMouseDragged
 
-    private void jButton4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseDragged
+    private void MainCharacterMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MainCharacterMouseDragged
         updateCharacterLocation();
-        checkDragBoundary(jButton4);
-    }//GEN-LAST:event_jButton4MouseDragged
+        checkDragBoundary(MainCharacter);
+    }//GEN-LAST:event_MainCharacterMouseDragged
 
-    private void jButton5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseEntered
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/settings_button_hover.png")));
-    }//GEN-LAST:event_jButton5MouseEntered
+    private void SettingsButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SettingsButtonMouseEntered
+        SettingsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/settings_button_hover.png")));
+    }//GEN-LAST:event_SettingsButtonMouseEntered
 
-    private void jButton5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseExited
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/settings_button_idle.png")));
-    }//GEN-LAST:event_jButton5MouseExited
+    private void SettingsButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SettingsButtonMouseExited
+        SettingsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/settings_button_idle.png")));
+    }//GEN-LAST:event_SettingsButtonMouseExited
 
-    private void jButton6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseEntered
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/endturn_button_active.png")));
-    }//GEN-LAST:event_jButton6MouseEntered
+    private void EndTurnButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EndTurnButtonMouseEntered
+        EndTurnButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/endturn_button_active.png")));
+    }//GEN-LAST:event_EndTurnButtonMouseEntered
 
-    private void jButton6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseExited
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/endturn_button_idle.png")));
-    }//GEN-LAST:event_jButton6MouseExited
+    private void EndTurnButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EndTurnButtonMouseExited
+        EndTurnButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/endturn_button_idle.png")));
+    }//GEN-LAST:event_EndTurnButtonMouseExited
 
-    private void jButton7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseEntered
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/dangerarea_button_active.png")));
-    }//GEN-LAST:event_jButton7MouseEntered
+    private void DangerAreaButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DangerAreaButtonMouseEntered
+        DangerAreaButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/dangerarea_button_active.png")));
+    }//GEN-LAST:event_DangerAreaButtonMouseEntered
 
-    private void jButton7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseExited
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/dangerarea_button_idle.png")));
-    }//GEN-LAST:event_jButton7MouseExited
+    private void DangerAreaButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DangerAreaButtonMouseExited
+        DangerAreaButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/dangerarea_button_idle.png")));
+    }//GEN-LAST:event_DangerAreaButtonMouseExited
 
-    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
+    private void EndTurnButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EndTurnButtonMouseClicked
         EndGUI endGUI = new EndGUI();
         endGUI.setVisible(true);
         setVisible(false);
-    }//GEN-LAST:event_jButton6MouseClicked
+    }//GEN-LAST:event_EndTurnButtonMouseClicked
 
-    private void jButton3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MousePressed
+    private void EnemyCharacterMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacterMousePressed
         updateCharacterLocation();
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/Tharja_portrait.png")));
-        //jLabel8.setText("Tharja");
-    }//GEN-LAST:event_jButton3MousePressed
+        CharacterPortrait.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/Tharja_portrait.png")));
+        NameText.setText("Tharja");
+    }//GEN-LAST:event_EnemyCharacterMousePressed
 
-    private void jButton4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MousePressed
+    private void MainCharacterMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MainCharacterMousePressed
         updateCharacterLocation();
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/Sharena_portrait.png")));
-        //jLabel8.setText("Sharena");
-    }//GEN-LAST:event_jButton4MousePressed
+        CharacterPortrait.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/Sharena_portrait.png")));
+        NameText.setText("Sharena");
+        System.out.println(EnemyCharacter.getLocation());
+    }//GEN-LAST:event_MainCharacterMousePressed
 
-    private void jButton4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseReleased
-        checkReleaseBoundary(jButton4);
-    }//GEN-LAST:event_jButton4MouseReleased
+    private void MainCharacterMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MainCharacterMouseReleased
+        checkReleaseBoundary(MainCharacter);
+    }//GEN-LAST:event_MainCharacterMouseReleased
 
-    private void jButton3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseReleased
-        checkReleaseBoundary(jButton3);
-    }//GEN-LAST:event_jButton3MouseReleased
+    private void EnemyCharacterMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacterMouseReleased
+        checkReleaseBoundary(EnemyCharacter);
+    }//GEN-LAST:event_EnemyCharacterMouseReleased
 
     private static void checkReleaseBoundary(JButton jButton){
         
@@ -334,19 +335,19 @@ public class MapGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel BattleWheel;
+    private javax.swing.JLabel BottomBorder;
+    private javax.swing.JLabel CharacterPortrait;
+    private javax.swing.JButton DangerAreaButton;
+    private javax.swing.JButton EndTurnButton;
+    private javax.swing.JButton EnemyCharacter;
+    private javax.swing.JButton MainCharacter;
+    private javax.swing.JLabel Map;
+    private javax.swing.JLabel NamePlate;
+    private javax.swing.JLabel NameText;
+    private javax.swing.JButton SettingsButton;
+    private javax.swing.JLabel StatsInterface;
+    private javax.swing.JLabel TopBorder;
     private javax.swing.JLayeredPane jLayeredPane1;
     // End of variables declaration//GEN-END:variables
 }

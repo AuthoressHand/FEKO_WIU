@@ -28,13 +28,13 @@ public class CharacterModGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        BattleButton = new javax.swing.JButton();
+        AlliesButton = new javax.swing.JButton();
+        MiscButton = new javax.swing.JButton();
+        MainCharacter = new javax.swing.JLabel();
+        CastleBackground = new javax.swing.JLabel();
+        TopBorder = new javax.swing.JLabel();
+        BottomBorder = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(540, 925));
@@ -48,105 +48,105 @@ public class CharacterModGUI extends javax.swing.JFrame {
         jLayeredPane1.setMinimumSize(new java.awt.Dimension(540, 925));
         jLayeredPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/misc_button_idle.png"))); // NOI18N
-        jButton3.setBorderPainted(false);
-        jButton3.setContentAreaFilled(false);
-        jButton3.setFocusPainted(false);
-        jButton3.setMaximumSize(new java.awt.Dimension(90, 90));
-        jButton3.setMinimumSize(new java.awt.Dimension(90, 90));
-        jButton3.setPreferredSize(new java.awt.Dimension(90, 90));
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton3MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton3MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton3MouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButton3MousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jButton3MouseReleased(evt);
-            }
-        });
-        jLayeredPane1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 840, 90, 90));
-
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/battle_button_idle.png"))); // NOI18N
-        jButton4.setBorderPainted(false);
-        jButton4.setContentAreaFilled(false);
-        jButton4.setFocusPainted(false);
-        jButton4.setMaximumSize(new java.awt.Dimension(90, 90));
-        jButton4.setMinimumSize(new java.awt.Dimension(90, 90));
-        jButton4.setPreferredSize(new java.awt.Dimension(90, 90));
-        jButton4.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        BattleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/battle_button_idle.png"))); // NOI18N
+        BattleButton.setBorderPainted(false);
+        BattleButton.setContentAreaFilled(false);
+        BattleButton.setFocusPainted(false);
+        BattleButton.setMaximumSize(new java.awt.Dimension(90, 90));
+        BattleButton.setMinimumSize(new java.awt.Dimension(90, 90));
+        BattleButton.setPreferredSize(new java.awt.Dimension(90, 90));
+        BattleButton.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
-                jButton4MouseDragged(evt);
+                BattleButtonMouseDragged(evt);
             }
         });
-        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+        BattleButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton4MouseClicked(evt);
+                BattleButtonMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton4MouseEntered(evt);
+                BattleButtonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton4MouseExited(evt);
+                BattleButtonMouseExited(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButton4MousePressed(evt);
+                BattleButtonMousePressed(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jButton4MouseReleased(evt);
+                BattleButtonMouseReleased(evt);
             }
         });
-        jLayeredPane1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 840, 90, 90));
+        jLayeredPane1.add(BattleButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 840, 90, 90));
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/allies_button_idle.png"))); // NOI18N
-        jButton5.setBorderPainted(false);
-        jButton5.setContentAreaFilled(false);
-        jButton5.setFocusPainted(false);
-        jButton5.setMaximumSize(new java.awt.Dimension(90, 90));
-        jButton5.setMinimumSize(new java.awt.Dimension(90, 90));
-        jButton5.setPreferredSize(new java.awt.Dimension(90, 90));
-        jButton5.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        AlliesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/allies_button_idle.png"))); // NOI18N
+        AlliesButton.setBorderPainted(false);
+        AlliesButton.setContentAreaFilled(false);
+        AlliesButton.setFocusPainted(false);
+        AlliesButton.setMaximumSize(new java.awt.Dimension(90, 90));
+        AlliesButton.setMinimumSize(new java.awt.Dimension(90, 90));
+        AlliesButton.setPreferredSize(new java.awt.Dimension(90, 90));
+        AlliesButton.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
-                jButton5MouseDragged(evt);
+                AlliesButtonMouseDragged(evt);
             }
         });
-        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+        AlliesButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton5MouseClicked(evt);
+                AlliesButtonMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton5MouseEntered(evt);
+                AlliesButtonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton5MouseExited(evt);
+                AlliesButtonMouseExited(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButton5MousePressed(evt);
+                AlliesButtonMousePressed(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jButton5MouseReleased(evt);
+                AlliesButtonMouseReleased(evt);
             }
         });
-        jLayeredPane1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 840, 90, 90));
+        jLayeredPane1.add(AlliesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 840, 90, 90));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/char.png"))); // NOI18N
-        jLayeredPane1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, -1, -1));
+        MiscButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/misc_button_idle.png"))); // NOI18N
+        MiscButton.setBorderPainted(false);
+        MiscButton.setContentAreaFilled(false);
+        MiscButton.setFocusPainted(false);
+        MiscButton.setMaximumSize(new java.awt.Dimension(90, 90));
+        MiscButton.setMinimumSize(new java.awt.Dimension(90, 90));
+        MiscButton.setPreferredSize(new java.awt.Dimension(90, 90));
+        MiscButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MiscButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                MiscButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                MiscButtonMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                MiscButtonMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                MiscButtonMouseReleased(evt);
+            }
+        });
+        jLayeredPane1.add(MiscButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 840, 90, 90));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/char_mod_border_bottom.png"))); // NOI18N
-        jLayeredPane1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 840, -1, -1));
+        MainCharacter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/char.png"))); // NOI18N
+        jLayeredPane1.add(MainCharacter, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, -1, -1));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/char_mod_border_top.png"))); // NOI18N
-        jLayeredPane1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 120));
+        CastleBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/player_castle_background.png"))); // NOI18N
+        jLayeredPane1.add(CastleBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/player_castle_background.png"))); // NOI18N
-        jLayeredPane1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, -1, -1));
+        TopBorder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/char_mod_border_top.png"))); // NOI18N
+        jLayeredPane1.add(TopBorder, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 120));
+
+        BottomBorder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/char_mod_border_bottom.png"))); // NOI18N
+        jLayeredPane1.add(BottomBorder, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 840, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -163,75 +163,75 @@ public class CharacterModGUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseEntered
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/misc_button_hover.png")));
-    }//GEN-LAST:event_jButton3MouseEntered
+    private void MiscButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MiscButtonMouseEntered
+        MiscButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/misc_button_hover.png")));
+    }//GEN-LAST:event_MiscButtonMouseEntered
 
-    private void jButton3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseExited
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/misc_button_idle.png")));
-    }//GEN-LAST:event_jButton3MouseExited
+    private void MiscButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MiscButtonMouseExited
+        MiscButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/misc_button_idle.png")));
+    }//GEN-LAST:event_MiscButtonMouseExited
 
-    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+    private void MiscButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MiscButtonMouseClicked
         
-    }//GEN-LAST:event_jButton3MouseClicked
+    }//GEN-LAST:event_MiscButtonMouseClicked
 
-    private void jButton3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MousePressed
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/misc_button_click.png")));
-    }//GEN-LAST:event_jButton3MousePressed
+    private void MiscButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MiscButtonMousePressed
+        MiscButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/misc_button_click.png")));
+    }//GEN-LAST:event_MiscButtonMousePressed
 
-    private void jButton4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseDragged
+    private void BattleButtonMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BattleButtonMouseDragged
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4MouseDragged
+    }//GEN-LAST:event_BattleButtonMouseDragged
 
-    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+    private void BattleButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BattleButtonMouseClicked
         MapGUI mapGUI = new MapGUI();
         mapGUI.setVisible(true);
         setVisible(false);
-    }//GEN-LAST:event_jButton4MouseClicked
+    }//GEN-LAST:event_BattleButtonMouseClicked
 
-    private void jButton4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseEntered
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/battle_button_hover.png")));
-    }//GEN-LAST:event_jButton4MouseEntered
+    private void BattleButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BattleButtonMouseEntered
+        BattleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/battle_button_hover.png")));
+    }//GEN-LAST:event_BattleButtonMouseEntered
 
-    private void jButton4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseExited
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/battle_button_idle.png")));
-    }//GEN-LAST:event_jButton4MouseExited
+    private void BattleButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BattleButtonMouseExited
+        BattleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/battle_button_idle.png")));
+    }//GEN-LAST:event_BattleButtonMouseExited
 
-    private void jButton4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MousePressed
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/battle_button_click.png")));
-    }//GEN-LAST:event_jButton4MousePressed
+    private void BattleButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BattleButtonMousePressed
+        BattleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/battle_button_click.png")));
+    }//GEN-LAST:event_BattleButtonMousePressed
 
-    private void jButton5MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseDragged
+    private void AlliesButtonMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlliesButtonMouseDragged
         
-    }//GEN-LAST:event_jButton5MouseDragged
+    }//GEN-LAST:event_AlliesButtonMouseDragged
 
-    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+    private void AlliesButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlliesButtonMouseClicked
         
-    }//GEN-LAST:event_jButton5MouseClicked
+    }//GEN-LAST:event_AlliesButtonMouseClicked
 
-    private void jButton5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseEntered
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/allies_button_hover.png")));
-    }//GEN-LAST:event_jButton5MouseEntered
+    private void AlliesButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlliesButtonMouseEntered
+        AlliesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/allies_button_hover.png")));
+    }//GEN-LAST:event_AlliesButtonMouseEntered
 
-    private void jButton5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseExited
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/allies_button_idle.png")));
-    }//GEN-LAST:event_jButton5MouseExited
+    private void AlliesButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlliesButtonMouseExited
+        AlliesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/allies_button_idle.png")));
+    }//GEN-LAST:event_AlliesButtonMouseExited
 
-    private void jButton5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MousePressed
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/allies_button_click.png")));
-    }//GEN-LAST:event_jButton5MousePressed
+    private void AlliesButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlliesButtonMousePressed
+        AlliesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/allies_button_click.png")));
+    }//GEN-LAST:event_AlliesButtonMousePressed
 
-    private void jButton3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseReleased
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/misc_button_hover.png")));
-    }//GEN-LAST:event_jButton3MouseReleased
+    private void MiscButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MiscButtonMouseReleased
+        MiscButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/misc_button_hover.png")));
+    }//GEN-LAST:event_MiscButtonMouseReleased
 
-    private void jButton5MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseReleased
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/allies_button_hover.png")));
-    }//GEN-LAST:event_jButton5MouseReleased
+    private void AlliesButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlliesButtonMouseReleased
+        AlliesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/allies_button_hover.png")));
+    }//GEN-LAST:event_AlliesButtonMouseReleased
 
-    private void jButton4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseReleased
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/battle_button_hover.png")));
-    }//GEN-LAST:event_jButton4MouseReleased
+    private void BattleButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BattleButtonMouseReleased
+        BattleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/battle_button_hover.png")));
+    }//GEN-LAST:event_BattleButtonMouseReleased
 
     /**
      * @param args the command line arguments
@@ -269,13 +269,13 @@ public class CharacterModGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JButton AlliesButton;
+    private javax.swing.JButton BattleButton;
+    private javax.swing.JLabel BottomBorder;
+    private javax.swing.JLabel CastleBackground;
+    private javax.swing.JLabel MainCharacter;
+    private javax.swing.JButton MiscButton;
+    private javax.swing.JLabel TopBorder;
     private javax.swing.JLayeredPane jLayeredPane1;
     // End of variables declaration//GEN-END:variables
 }
