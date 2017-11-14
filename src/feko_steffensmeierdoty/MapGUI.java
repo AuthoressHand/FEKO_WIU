@@ -252,7 +252,6 @@ public class MapGUI extends javax.swing.JFrame {
         updateCharacterLocation();
         CharacterPortrait.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/Sharena_portrait.png")));
         NameText.setText("Sharena");
-        System.out.println(EnemyCharacter.getLocation());
     }//GEN-LAST:event_MainCharacterMousePressed
 
     private void MainCharacterMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MainCharacterMouseReleased
