@@ -19,7 +19,7 @@ public class MapGUI extends javax.swing.JFrame {
     private static PointerInfo pInfo;
     private static Point pInfoPoint;
     private static Point invalidPoint;
-    private static int count = 0;
+    private static String name;
     /**
      * Creates new form MapGUI
      */
@@ -43,7 +43,7 @@ public class MapGUI extends javax.swing.JFrame {
         DangerAreaButton = new javax.swing.JButton();
         SettingsButton = new javax.swing.JButton();
         BattleWheel = new javax.swing.JLabel();
-        NameText = new javax.swing.JLabel();
+        NamePlateText = new javax.swing.JLabel();
         NamePlate = new javax.swing.JLabel();
         Map = new javax.swing.JLabel();
         CharacterPortrait = new javax.swing.JLabel();
@@ -163,10 +163,10 @@ public class MapGUI extends javax.swing.JFrame {
         BattleWheel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/battle_wheel.png"))); // NOI18N
         jLayeredPane1.add(BattleWheel, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 850, -1, -1));
 
-        NameText.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        NameText.setForeground(new java.awt.Color(255, 255, 255));
-        NameText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLayeredPane1.add(NameText, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 140, 30));
+        NamePlateText.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        NamePlateText.setForeground(new java.awt.Color(255, 255, 255));
+        NamePlateText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLayeredPane1.add(NamePlateText, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 140, 30));
 
         NamePlate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         NamePlate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/name_plate.png"))); // NOI18N
@@ -245,13 +245,15 @@ public class MapGUI extends javax.swing.JFrame {
     private void EnemyCharacterMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacterMousePressed
         updateCharacterLocation();
         CharacterPortrait.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/Tharja_portrait.png")));
-        NameText.setText("Tharja");
+        name = "Tharja";
+        NamePlateText.setText(name);
     }//GEN-LAST:event_EnemyCharacterMousePressed
 
     private void MainCharacterMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MainCharacterMousePressed
         updateCharacterLocation();
         CharacterPortrait.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/Sharena_portrait.png")));
-        NameText.setText("Sharena");
+        name = "Sharena";
+        NamePlateText.setText(name);
     }//GEN-LAST:event_MainCharacterMousePressed
 
     private void MainCharacterMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MainCharacterMouseReleased
@@ -343,7 +345,7 @@ public class MapGUI extends javax.swing.JFrame {
     private javax.swing.JButton MainCharacter;
     private javax.swing.JLabel Map;
     private javax.swing.JLabel NamePlate;
-    private javax.swing.JLabel NameText;
+    private javax.swing.JLabel NamePlateText;
     private javax.swing.JButton SettingsButton;
     private javax.swing.JLabel StatsInterface;
     private javax.swing.JLabel TopBorder;
