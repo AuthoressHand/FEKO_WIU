@@ -1,4 +1,5 @@
-
+HEAD
 /nbproject/private/
-/build/
-/dist/ master
+/dist/
+/GuessingGame/nbproject/private/
+/GuessingGame/build/
