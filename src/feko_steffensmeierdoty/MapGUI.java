@@ -18,9 +18,7 @@ public class MapGUI extends javax.swing.JFrame {
     private static Point pInfoPoint;
     private static Point invalidPoint;
     private static String name;
-    /**
-     * Creates new form MapGUI
-     */
+    
     public MapGUI() {
         initComponents();
     }
@@ -288,12 +286,13 @@ public class MapGUI extends javax.swing.JFrame {
     private static void updateCharacterLocation(){
         pInfo = MouseInfo.getPointerInfo();
         pInfoPoint = pInfo.getLocation();
-        pInfoPoint.setLocation(pInfoPoint.getX() - 735, pInfoPoint.getY() - 100);
+        pInfoPoint.setLocation(pInfoPoint.getX() - 1048, pInfoPoint.getY() - 310);
     }
     
     private static void checkDragBoundary(JButton jButton){
         if(pInfoPoint.getX() >= -70 && pInfoPoint.getX() <=520 && pInfoPoint.getY() >=-70 && pInfoPoint.getY() <= 880 )
             jButton.setLocation(pInfoPoint);
+            JFrame
         
     }
     /**

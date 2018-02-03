@@ -18,6 +18,10 @@ import java.awt.Image;
 public class EnemyChar extends Character {
     private MoveType moveType;
     
+    //if(charType == ?)
+        //do base attributes accordingly
+    
+    
     public EnemyChar(String name, int maxHP, Weapon weapon, int level, int attack, int defense, int resistance, int speed, Skill[] skills, Rally rally, Image charImg, CharType charType, MoveType moveType) {
         super(name, maxHP, weapon, level, attack, defense, resistance, speed, skills, rally, charImg, charType);
         this.moveType = moveType;

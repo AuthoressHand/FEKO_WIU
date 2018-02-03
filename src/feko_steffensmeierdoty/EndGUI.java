@@ -11,9 +11,6 @@ package feko_steffensmeierdoty;
  */
 public class EndGUI extends javax.swing.JFrame {
 
-    /**
-     * Creates new form EndGUI
-     */
     public EndGUI() {
         initComponents();
     }
