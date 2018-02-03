@@ -5,19 +5,18 @@
  */
 package feko_steffensmeierdoty;
 
+import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.Toolkit;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 /**
  *
- * @author rms130
+ * @author 
  */
 public class MainMenuGUI extends javax.swing.JFrame {
     
-    /**
-     * Creates new form MainMenuGUI
-     */
     public MainMenuGUI() {
         initComponents();
     }
@@ -126,6 +125,8 @@ public class MainMenuGUI extends javax.swing.JFrame {
         jLayeredPane1.add(ExitGameButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 450, 290, 60));
 
         Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/main_menu_background.png"))); // NOI18N
+        Background.setMaximumSize(null);
+        Background.setMinimumSize(null);
         jLayeredPane1.add(Background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -144,13 +145,13 @@ public class MainMenuGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void LoadGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoadGameButtonActionPerformed
-        //CharacterModGUI charModGUI = new CharacterModGUI();
-        CharacterModGUI cModGUI = new CharacterModGUI();
-        cModGUI.setVisible(true);
-        //charModGUI.setVisible(true);
+        CharacterModGUI charModGUI = new CharacterModGUI();
+        
+        charModGUI.setVisible(true);
+        
         setVisible(false);
     }//GEN-LAST:event_LoadGameButtonActionPerformed
-
+  
     private void LoadGameButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LoadGameButtonMouseEntered
         LoadGameButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/main_menu_button1.png")));
     }//GEN-LAST:event_LoadGameButtonMouseEntered
