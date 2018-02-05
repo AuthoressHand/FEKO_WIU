@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -155,20 +156,24 @@ public abstract class Character {
     }
     
     protected void givePermBoost(Stat stat, int effect) {
-        if (stat == Stat.HP) {
-            this.maxHP += effect;
-        }
-        else if (stat == Stat.Attack) {
-            this.attack += effect;
-        }
-        else if (stat == Stat.Defense) {
-            this.defense += effect;
-        }
-        else if (stat == Stat.Resistance) {
-            this.resistance += effect;
-        }
-        else if (stat == Stat.Speed) {
-            this.speed = effect;
+        if (null != stat) switch (stat) {
+            case HP:
+                this.maxHP += effect;
+                break;
+            case Attack:
+                this.attack += effect;
+                break;
+            case Defense:
+                this.defense += effect;
+                break;
+            case Resistance:
+                this.resistance += effect;
+                break;
+            case Speed:
+                this.speed = effect;
+                break;
+            default:
+                break;
         }
     }
 }
