@@ -10,6 +10,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import objects.AudioPlayer;
 
 /**
  *
@@ -17,8 +18,15 @@ import javax.swing.ImageIcon;
  */
 public class MainMenuGUI extends javax.swing.JFrame {
     
+    private AudioPlayer audioPlayer;
+    
     public MainMenuGUI() {
         initComponents();
+        /*try{
+            audioPlayer.play("C:\\Users\\Justin\\Documents\\NetBeansProjects\\FEKO_WIU\\src\\audio\\menu.mp3");
+        } catch(Exception e){
+            e.printStackTrace();
+        }*/
     }
 
     /**

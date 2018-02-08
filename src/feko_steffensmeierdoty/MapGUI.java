@@ -18,8 +18,6 @@ public class MapGUI extends javax.swing.JFrame {
     private static Point componentLocation;
     private static Rectangle bounds;
     private static Point charInitialPoint;
-    private final int TIMER_DELAY = 1000;
-    private final Timer TIMER;
     private final JLabel[] grid;
 
     public MapGUI() {
@@ -34,9 +32,6 @@ public class MapGUI extends javax.swing.JFrame {
                                  pos50, pos51, pos52, pos53, pos54, pos55, 
                                  pos60, pos61, pos62, pos63, pos64, pos65, 
                                  pos70, pos71, pos72, pos73, pos74, pos75};
-        
-        TIMER = new Timer(TIMER_DELAY, gameLoop);
-        TIMER.start();
 
     }
 
@@ -73,7 +68,7 @@ public class MapGUI extends javax.swing.JFrame {
         MainContainer.setMinimumSize(new java.awt.Dimension(540, 925));
         MainContainer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/char.png"))); // NOI18N
+        jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/anna.png"))); // NOI18N
         jToggleButton1.setBorderPainted(false);
         jToggleButton1.setContentAreaFilled(false);
         jToggleButton1.setFocusPainted(false);
@@ -97,7 +92,7 @@ public class MapGUI extends javax.swing.JFrame {
         });
         MainContainer.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 90, 90));
 
-        jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/enemy_char.png"))); // NOI18N
+        jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/zeph.png"))); // NOI18N
         jToggleButton2.setBorderPainted(false);
         jToggleButton2.setContentAreaFilled(false);
         jToggleButton2.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
@@ -120,7 +115,7 @@ public class MapGUI extends javax.swing.JFrame {
                 jToggleButton2MouseReleased(evt);
             }
         });
-        MainContainer.add(jToggleButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 660, 90, 90));
+        MainContainer.add(jToggleButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 90, 90));
 
         DangerAreaButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/dangerarea_button_idle.png"))); // NOI18N
         DangerAreaButton.setBorderPainted(false);
@@ -368,13 +363,6 @@ public class MapGUI extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    // THE MAIN GAME LOOP
-    private final ActionListener gameLoop = (ActionEvent e) -> {
-        
-        //System.out.println("Tick");
-        
-    };
     
     private void SettingsButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SettingsButtonMouseEntered
         SettingsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/settings_button_hover.png")));
@@ -432,13 +420,13 @@ public class MapGUI extends javax.swing.JFrame {
         
         charInitialPoint = jToggleButton1.getLocation();
         CharacterPortrait.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/Sharena_portrait.png")));
-        //NamePlateText.setText("Sharena");
+        NamePlateText.setText("Sharena");
     }//GEN-LAST:event_jToggleButton1MousePressed
 
     private void jToggleButton2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton2MousePressed
         charInitialPoint = jToggleButton2.getLocation();
         CharacterPortrait.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/Tharja_portrait.png")));
-        //NamePlateText.setText("Tharja");
+        NamePlateText.setText("Tharja");
     }//GEN-LAST:event_jToggleButton2MousePressed
 
     private void jToggleButton1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton1MouseReleased

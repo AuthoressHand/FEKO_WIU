@@ -15,5 +15,5 @@ public class GridTile {
     
     private JLabel tilePosition;
     private boolean accessible;
-    
+    private Character character;
 }

@@ -14,5 +14,7 @@ public class Grid {
     private AllyChar[] allyTeam;
     private EnemyChar[] enemyTeam;
     private GridTile[] grid;
+    private String mapPNG;
+    private int mapLevel;
     
 }
