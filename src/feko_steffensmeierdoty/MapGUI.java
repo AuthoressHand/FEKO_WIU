@@ -395,29 +395,14 @@ public class MapGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_EndTurnButtonMouseClicked
    
     private void jToggleButton1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton1MouseDragged
-        if (isMouseWithinComponent(MainContainer)) {
-            mouseLocation = MouseInfo.getPointerInfo().getLocation();
-            componentLocation = MainContainer.getLocationOnScreen();
-            mouseLocation.x = mouseLocation.x - componentLocation.x - jToggleButton1.getWidth() / 2;
-            mouseLocation.y = mouseLocation.y - componentLocation.y - jToggleButton1.getHeight() / 2;
-
-            jToggleButton1.setLocation(mouseLocation);
-        }
+        moveCharacter(jToggleButton1);
     }//GEN-LAST:event_jToggleButton1MouseDragged
 
     private void jToggleButton2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton2MouseDragged
-        if (isMouseWithinComponent(MainContainer)) {
-            mouseLocation = MouseInfo.getPointerInfo().getLocation();
-            componentLocation = MainContainer.getLocationOnScreen();
-            mouseLocation.x = mouseLocation.x - componentLocation.x - jToggleButton2.getWidth() / 2;
-            mouseLocation.y = mouseLocation.y - componentLocation.y - jToggleButton2.getHeight() / 2;
-
-            jToggleButton2.setLocation(mouseLocation);
-        }
+        moveCharacter(jToggleButton2);
     }//GEN-LAST:event_jToggleButton2MouseDragged
 
     private void jToggleButton1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton1MousePressed
-        
         charInitialPoint = jToggleButton1.getLocation();
         CharacterPortrait.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/Sharena_portrait.png")));
         NamePlateText.setText("Sharena");
@@ -430,36 +415,42 @@ public class MapGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton2MousePressed
 
     private void jToggleButton1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton1MouseReleased
-        if (isMouseWithinComponent(Grid)) {
-            for (JLabel jl : grid) {
-                if (isMouseWithinComponent(jl)) {
-                    jToggleButton1.setLocation(jl.getX(), jl.getY() + TopBorder.getHeight());
-                    break;
-                }
-            }
-        } else {
-            jToggleButton1.setLocation(charInitialPoint);
-        }
+        checkForValidMove(Grid,jToggleButton1);        
     }//GEN-LAST:event_jToggleButton1MouseReleased
 
     private void jToggleButton2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton2MouseReleased
-        if (isMouseWithinComponent(Grid)) {
-            for (JLabel jl : grid) {
-                if (isMouseWithinComponent(jl)) {
-                    jToggleButton2.setLocation(jl.getX(), jl.getY() + TopBorder.getHeight());
-                    break;
-                }
-            }
-        } else {
-            jToggleButton2.setLocation(charInitialPoint);
-        }
+        checkForValidMove(Grid,jToggleButton2);
     }//GEN-LAST:event_jToggleButton2MouseReleased
 
-    public static boolean isMouseWithinComponent(Component c) {
+    private boolean isMouseWithinComponent(Component c) {
         mouseLocation = MouseInfo.getPointerInfo().getLocation();
         bounds = c.getBounds();
         bounds.setLocation(c.getLocationOnScreen());
         return bounds.contains(mouseLocation);
+    }
+    
+    private void checkForValidMove(Component boundary, Component character) {
+        if (isMouseWithinComponent(boundary)) {
+            for (JLabel jl : grid) {
+                if (isMouseWithinComponent(jl)) {
+                    character.setLocation(jl.getX(), jl.getY() + TopBorder.getHeight());
+                    break;
+                }
+            }
+        } else {
+            character.setLocation(charInitialPoint);
+        }
+    }
+    
+    private void moveCharacter(Component character) {
+        if (isMouseWithinComponent(MainContainer)) {
+            mouseLocation = MouseInfo.getPointerInfo().getLocation();
+            componentLocation = MainContainer.getLocationOnScreen();
+            mouseLocation.x = mouseLocation.x - componentLocation.x - character.getWidth() / 2;
+            mouseLocation.y = mouseLocation.y - componentLocation.y - character.getHeight() / 2;
+
+            character.setLocation(mouseLocation);
+        }
     }
 
     /**
