@@ -54,11 +54,13 @@ public class MapGUI extends javax.swing.JFrame {
         jToggleButton1 = new javax.swing.JToggleButton();
         Map = new javax.swing.JLabel();
         StatsLayer = new javax.swing.JLayeredPane();
-        StatsInterface = new javax.swing.JLabel();
         CharacterPortrait = new javax.swing.JLabel();
         NamePlateText = new javax.swing.JLabel();
         NamePlate = new javax.swing.JLabel();
-        TopBorder = new javax.swing.JLabel();
+        StatsInterface = new javax.swing.JLabel();
+        TopBorderStats = new javax.swing.JLabel();
+        WaitingStatsLayer = new javax.swing.JLayeredPane();
+        TopBorderWaiting = new javax.swing.JLabel();
         Grid = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -71,7 +73,6 @@ public class MapGUI extends javax.swing.JFrame {
         MainContainer.setMinimumSize(new java.awt.Dimension(540, 925));
         MainContainer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        MenuButtonLayer.setAlignmentY(0.5F);
         MenuButtonLayer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         DangerAreaButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/dangerarea_button_idle.png"))); // NOI18N
@@ -194,9 +195,6 @@ public class MapGUI extends javax.swing.JFrame {
         MainContainer.add(MapLayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 540, 720));
 
         StatsLayer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        StatsInterface.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/stats_border.png"))); // NOI18N
-        StatsLayer.add(StatsInterface, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, -1, -1));
         StatsLayer.add(CharacterPortrait, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         NamePlateText.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -211,12 +209,25 @@ public class MapGUI extends javax.swing.JFrame {
         NamePlate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/name_plate.png"))); // NOI18N
         StatsLayer.add(NamePlate, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, -1));
 
-        TopBorder.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        TopBorder.setForeground(new java.awt.Color(255, 255, 255));
-        TopBorder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/top_banner_empty.png"))); // NOI18N
-        StatsLayer.add(TopBorder, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 120));
+        StatsInterface.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/stats_border.png"))); // NOI18N
+        StatsLayer.add(StatsInterface, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, -1, -1));
+
+        TopBorderStats.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        TopBorderStats.setForeground(new java.awt.Color(255, 255, 255));
+        TopBorderStats.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/top_border_stats.png"))); // NOI18N
+        StatsLayer.add(TopBorderStats, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 120));
 
         MainContainer.add(StatsLayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 120));
+        StatsLayer.setVisible(false);
+
+        WaitingStatsLayer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        TopBorderWaiting.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        TopBorderWaiting.setForeground(new java.awt.Color(255, 255, 255));
+        TopBorderWaiting.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/top_banner_waiting.png"))); // NOI18N
+        WaitingStatsLayer.add(TopBorderWaiting, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 120));
+
+        MainContainer.add(WaitingStatsLayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 120));
 
         Grid.setLayout(new java.awt.GridLayout(8, 6));
 
@@ -420,12 +431,14 @@ public class MapGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton2MouseDragged
 
     private void jToggleButton1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton1MousePressed
+        StatsLayer.setVisible(true);
         charInitialPoint = jToggleButton1.getLocation();
         CharacterPortrait.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/Sharena_portrait.png")));
         NamePlateText.setText("Sharena");
     }//GEN-LAST:event_jToggleButton1MousePressed
 
     private void jToggleButton2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton2MousePressed
+        StatsLayer.setVisible(true);
         charInitialPoint = jToggleButton2.getLocation();
         CharacterPortrait.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/Tharja_portrait.png")));
         NamePlateText.setText("Tharja");
@@ -464,7 +477,7 @@ public class MapGUI extends javax.swing.JFrame {
             mouseLocation = MouseInfo.getPointerInfo().getLocation();
             componentLocation = MainContainer.getLocationOnScreen();
             mouseLocation.x = mouseLocation.x - componentLocation.x - character.getWidth() / 2;
-            mouseLocation.y = mouseLocation.y - componentLocation.y - character.getHeight() / 2 - TopBorder.getHeight();
+            mouseLocation.y = mouseLocation.y - componentLocation.y - character.getHeight() / 2 - TopBorderStats.getHeight();
 
             character.setLocation(mouseLocation);
         }
@@ -522,7 +535,9 @@ public class MapGUI extends javax.swing.JFrame {
     private javax.swing.JButton SettingsButton;
     private javax.swing.JLabel StatsInterface;
     private javax.swing.JLayeredPane StatsLayer;
-    private javax.swing.JLabel TopBorder;
+    private javax.swing.JLabel TopBorderStats;
+    private javax.swing.JLabel TopBorderWaiting;
+    private javax.swing.JLayeredPane WaitingStatsLayer;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton2;
     private static final javax.swing.JLabel pos00 = new javax.swing.JLabel();

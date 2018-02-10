@@ -16,5 +16,5 @@ public class Grid {
     private GridTile[] grid;
     private String mapPNG;
     private int mapLevel;
-    
+ 
 }

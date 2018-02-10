@@ -30,6 +30,8 @@ public class CharacterModGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         MainContainer = new javax.swing.JLayeredPane();
+        jLayeredPane1 = new javax.swing.JLayeredPane();
+        MainStatsLayer = new javax.swing.JLayeredPane();
         TopBorder = new javax.swing.JLabel();
         MenuButtonLayer = new javax.swing.JLayeredPane();
         BattleButton = new javax.swing.JButton();
@@ -68,8 +70,15 @@ public class CharacterModGUI extends javax.swing.JFrame {
         MainContainer.setMinimumSize(new java.awt.Dimension(540, 925));
         MainContainer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLayeredPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        MainContainer.add(jLayeredPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, -1));
+
+        MainStatsLayer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         TopBorder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/char_mod_border_top.png"))); // NOI18N
-        MainContainer.add(TopBorder, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        MainStatsLayer.add(TopBorder, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        MainContainer.add(MainStatsLayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 80));
 
         MenuButtonLayer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -426,7 +435,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MainContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 930, Short.MAX_VALUE)
+            .addComponent(MainContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 925, Short.MAX_VALUE)
         );
 
         pack();
@@ -711,6 +720,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
     private javax.swing.JLabel LearnSkillsText;
     private javax.swing.JLabel MainCharacter;
     private javax.swing.JLayeredPane MainContainer;
+    private javax.swing.JLayeredPane MainStatsLayer;
     private javax.swing.JLayeredPane MenuButtonLayer;
     private javax.swing.JButton MiscButton;
     private javax.swing.JButton StoryMapsButton;
@@ -719,5 +729,6 @@ public class CharacterModGUI extends javax.swing.JFrame {
     private javax.swing.JLabel TopBorder;
     private javax.swing.JLabel WorldMapBackground;
     private javax.swing.JLabel WorldMapBackground1;
+    private javax.swing.JLayeredPane jLayeredPane1;
     // End of variables declaration//GEN-END:variables
 }
