@@ -11,6 +11,8 @@ package feko_steffensmeierdoty;
  */
 public class CharacterModGUI extends javax.swing.JFrame {
 
+    
+    
     /**
      * Creates new form CharacterModGUI
      */
@@ -27,14 +29,23 @@ public class CharacterModGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLayeredPane1 = new javax.swing.JLayeredPane();
+        MainContainer = new javax.swing.JLayeredPane();
         BattleButton = new javax.swing.JButton();
         AlliesButton = new javax.swing.JButton();
         MiscButton = new javax.swing.JButton();
+        HomeButton = new javax.swing.JButton();
+        BottomBorder = new javax.swing.JLabel();
+        TopBorder = new javax.swing.JLabel();
+        HomeLayer = new javax.swing.JLayeredPane();
         MainCharacter = new javax.swing.JLabel();
         CastleBackground = new javax.swing.JLabel();
-        TopBorder = new javax.swing.JLabel();
-        BottomBorder = new javax.swing.JLabel();
+        BattleLayer = new javax.swing.JLayeredPane();
+        jLabel1 = new javax.swing.JLabel();
+        WorldMapButton = new javax.swing.JButton();
+        WorldMapPNG = new javax.swing.JLabel();
+        WorldMapBackground = new javax.swing.JLabel();
+        AlliesLayer = new javax.swing.JLayeredPane();
+        WorldMapBackground1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(540, 925));
@@ -44,9 +55,9 @@ public class CharacterModGUI extends javax.swing.JFrame {
         setResizable(false);
         setSize(new java.awt.Dimension(540, 925));
 
-        jLayeredPane1.setMaximumSize(new java.awt.Dimension(540, 925));
-        jLayeredPane1.setMinimumSize(new java.awt.Dimension(540, 925));
-        jLayeredPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        MainContainer.setMaximumSize(new java.awt.Dimension(540, 925));
+        MainContainer.setMinimumSize(new java.awt.Dimension(540, 925));
+        MainContainer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         BattleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/battle_button_idle.png"))); // NOI18N
         BattleButton.setBorderPainted(false);
@@ -77,7 +88,12 @@ public class CharacterModGUI extends javax.swing.JFrame {
                 BattleButtonMouseReleased(evt);
             }
         });
-        jLayeredPane1.add(BattleButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 840, 90, 90));
+        BattleButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BattleButtonActionPerformed(evt);
+            }
+        });
+        MainContainer.add(BattleButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 840, 90, 90));
 
         AlliesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/allies_button_idle.png"))); // NOI18N
         AlliesButton.setBorderPainted(false);
@@ -108,7 +124,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
                 AlliesButtonMouseReleased(evt);
             }
         });
-        jLayeredPane1.add(AlliesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 840, 90, 90));
+        MainContainer.add(AlliesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 840, 90, 90));
 
         MiscButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/misc_button_idle.png"))); // NOI18N
         MiscButton.setBorderPainted(false);
@@ -134,29 +150,127 @@ public class CharacterModGUI extends javax.swing.JFrame {
                 MiscButtonMouseReleased(evt);
             }
         });
-        jLayeredPane1.add(MiscButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 840, 90, 90));
+        MainContainer.add(MiscButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 840, 90, 90));
 
-        MainCharacter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/char.png"))); // NOI18N
-        jLayeredPane1.add(MainCharacter, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, -1, -1));
-
-        CastleBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/player_castle_background.png"))); // NOI18N
-        jLayeredPane1.add(CastleBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, -1, -1));
-
-        TopBorder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/char_mod_border_top.png"))); // NOI18N
-        jLayeredPane1.add(TopBorder, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 120));
+        HomeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/home_button_idle.png"))); // NOI18N
+        HomeButton.setBorderPainted(false);
+        HomeButton.setContentAreaFilled(false);
+        HomeButton.setFocusPainted(false);
+        HomeButton.setMaximumSize(new java.awt.Dimension(90, 90));
+        HomeButton.setMinimumSize(new java.awt.Dimension(90, 90));
+        HomeButton.setPreferredSize(new java.awt.Dimension(90, 90));
+        HomeButton.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                HomeButtonMouseDragged(evt);
+            }
+        });
+        HomeButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                HomeButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                HomeButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                HomeButtonMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                HomeButtonMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                HomeButtonMouseReleased(evt);
+            }
+        });
+        HomeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HomeButtonActionPerformed(evt);
+            }
+        });
+        MainContainer.add(HomeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 840, 90, 90));
 
         BottomBorder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/char_mod_border_bottom.png"))); // NOI18N
-        jLayeredPane1.add(BottomBorder, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 840, -1, -1));
+        MainContainer.add(BottomBorder, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 850, -1, 90));
+
+        TopBorder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/char_mod_border_top.png"))); // NOI18N
+        MainContainer.add(TopBorder, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        HomeLayer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        MainCharacter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/anna.png"))); // NOI18N
+        HomeLayer.add(MainCharacter, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, -1, -1));
+
+        CastleBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/player_castle_background.png"))); // NOI18N
+        HomeLayer.add(CastleBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(-80, 0, 630, 930));
+
+        MainContainer.add(HomeLayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 930));
+
+        BattleLayer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        BattleLayer.setVisible(false);
+
+        jLabel1.setFont(new java.awt.Font("Eras Medium ITC", 1, 24)); // NOI18N
+        jLabel1.setText("Story Maps");
+        BattleLayer.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 480, 140, 30));
+
+        WorldMapButton.setBorderPainted(false);
+        WorldMapButton.setContentAreaFilled(false);
+        WorldMapButton.setFocusPainted(false);
+        WorldMapButton.setMaximumSize(new java.awt.Dimension(90, 90));
+        WorldMapButton.setMinimumSize(new java.awt.Dimension(90, 90));
+        WorldMapButton.setPreferredSize(new java.awt.Dimension(90, 90));
+        WorldMapButton.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                WorldMapButtonMouseDragged(evt);
+            }
+        });
+        WorldMapButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                WorldMapButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                WorldMapButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                WorldMapButtonMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                WorldMapButtonMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                WorldMapButtonMouseReleased(evt);
+            }
+        });
+        WorldMapButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                WorldMapButtonActionPerformed(evt);
+            }
+        });
+        BattleLayer.add(WorldMapButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 310, 140, 170));
+
+        WorldMapPNG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/main_story_button_idle.png"))); // NOI18N
+        BattleLayer.add(WorldMapPNG, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, -1));
+
+        WorldMapBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/world_map.png"))); // NOI18N
+        BattleLayer.add(WorldMapBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(-90, 0, 630, 930));
+
+        MainContainer.add(BattleLayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 930));
+
+        AlliesLayer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        BattleLayer.setVisible(false);
+
+        WorldMapBackground1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/allies_background.png"))); // NOI18N
+        AlliesLayer.add(WorldMapBackground1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-80, 30, 630, 930));
+
+        MainContainer.add(AlliesLayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 930));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(MainContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(MainContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 925, Short.MAX_VALUE)
         );
 
         pack();
@@ -184,9 +298,9 @@ public class CharacterModGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_BattleButtonMouseDragged
 
     private void BattleButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BattleButtonMouseClicked
-        MapGUI mapGUI = new MapGUI();
-        mapGUI.setVisible(true);
-        setVisible(false);
+        HomeLayer.setVisible(false);
+        AlliesLayer.setVisible(false);
+        BattleLayer.setVisible(true);
     }//GEN-LAST:event_BattleButtonMouseClicked
 
     private void BattleButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BattleButtonMouseEntered
@@ -206,7 +320,9 @@ public class CharacterModGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_AlliesButtonMouseDragged
 
     private void AlliesButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlliesButtonMouseClicked
-        
+        BattleLayer.setVisible(false);
+        HomeLayer.setVisible(false);
+        AlliesLayer.setVisible(true);
     }//GEN-LAST:event_AlliesButtonMouseClicked
 
     private void AlliesButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlliesButtonMouseEntered
@@ -232,6 +348,70 @@ public class CharacterModGUI extends javax.swing.JFrame {
     private void BattleButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BattleButtonMouseReleased
         BattleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/battle_button_hover.png")));
     }//GEN-LAST:event_BattleButtonMouseReleased
+
+    private void HomeButtonMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HomeButtonMouseDragged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_HomeButtonMouseDragged
+
+    private void HomeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HomeButtonMouseClicked
+        BattleLayer.setVisible(false);
+        AlliesLayer.setVisible(false);
+        HomeLayer.setVisible(true);
+    }//GEN-LAST:event_HomeButtonMouseClicked
+
+    private void HomeButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HomeButtonMouseEntered
+        HomeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/home_button_hover.png")));
+    }//GEN-LAST:event_HomeButtonMouseEntered
+
+    private void HomeButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HomeButtonMouseExited
+        HomeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/home_button_idle.png")));
+    }//GEN-LAST:event_HomeButtonMouseExited
+
+    private void HomeButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HomeButtonMousePressed
+        HomeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/home_button_click.png")));
+    }//GEN-LAST:event_HomeButtonMousePressed
+
+    private void HomeButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HomeButtonMouseReleased
+        HomeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/home_button_idle.png")));
+    }//GEN-LAST:event_HomeButtonMouseReleased
+
+    private void BattleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BattleButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BattleButtonActionPerformed
+
+    private void HomeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_HomeButtonActionPerformed
+
+    private void WorldMapButtonMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_WorldMapButtonMouseDragged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_WorldMapButtonMouseDragged
+
+    private void WorldMapButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_WorldMapButtonMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_WorldMapButtonMouseClicked
+
+    private void WorldMapButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_WorldMapButtonMouseEntered
+        WorldMapPNG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/main_story_button_hover.png")));
+    }//GEN-LAST:event_WorldMapButtonMouseEntered
+
+    private void WorldMapButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_WorldMapButtonMouseExited
+        WorldMapPNG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/main_story_button_idle.png")));
+    }//GEN-LAST:event_WorldMapButtonMouseExited
+
+    private void WorldMapButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_WorldMapButtonMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_WorldMapButtonMousePressed
+
+    private void WorldMapButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_WorldMapButtonMouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_WorldMapButtonMouseReleased
+
+    private void WorldMapButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WorldMapButtonActionPerformed
+        MapGUI mapGUI = new MapGUI();
+        mapGUI.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_WorldMapButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -270,12 +450,21 @@ public class CharacterModGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AlliesButton;
+    private javax.swing.JLayeredPane AlliesLayer;
     private javax.swing.JButton BattleButton;
+    private javax.swing.JLayeredPane BattleLayer;
     private javax.swing.JLabel BottomBorder;
     private javax.swing.JLabel CastleBackground;
+    private javax.swing.JButton HomeButton;
+    private javax.swing.JLayeredPane HomeLayer;
     private javax.swing.JLabel MainCharacter;
+    private javax.swing.JLayeredPane MainContainer;
     private javax.swing.JButton MiscButton;
     private javax.swing.JLabel TopBorder;
-    private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JLabel WorldMapBackground;
+    private javax.swing.JLabel WorldMapBackground1;
+    private javax.swing.JButton WorldMapButton;
+    private javax.swing.JLabel WorldMapPNG;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
