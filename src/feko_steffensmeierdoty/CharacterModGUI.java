@@ -30,33 +30,59 @@ public class CharacterModGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         MainContainer = new javax.swing.JLayeredPane();
-        jLayeredPane1 = new javax.swing.JLayeredPane();
-        MainStatsLayer = new javax.swing.JLayeredPane();
-        TopBorder = new javax.swing.JLabel();
         MenuButtonLayer = new javax.swing.JLayeredPane();
         BattleButton = new javax.swing.JButton();
         AlliesButton = new javax.swing.JButton();
         MiscButton = new javax.swing.JButton();
         HomeButton = new javax.swing.JButton();
         BottomBorder = new javax.swing.JLabel();
+        MainStatsLayer = new javax.swing.JLayeredPane();
+        TopBorder = new javax.swing.JLabel();
+        AlliesLayer = new javax.swing.JLayeredPane();
+        EditStatsLayer = new javax.swing.JLayeredPane();
+        CharacterPortrait = new javax.swing.JLabel();
+        NamePlateText = new javax.swing.JLabel();
+        NamePlate = new javax.swing.JLabel();
+        StatsInterface = new javax.swing.JLabel();
+        TopBorderStats = new javax.swing.JLabel();
+        AlliesOptionsLayer = new javax.swing.JLayeredPane();
+        LearnSkillsText = new javax.swing.JLabel();
+        EquipSkillsText = new javax.swing.JLabel();
+        EditTeamsText = new javax.swing.JLabel();
+        AlliesBannerText = new javax.swing.JLabel();
+        AlliesBanner = new javax.swing.JButton();
+        EquipSkillsButton = new javax.swing.JButton();
+        LearnSkillsButton = new javax.swing.JButton();
+        EditTeamsButton = new javax.swing.JButton();
+        AlliesOptionsBackground = new javax.swing.JLabel();
+        EditTeamsLayer = new javax.swing.JLayeredPane();
+        TeamLoadout = new javax.swing.JLayeredPane();
+        Slot1 = new javax.swing.JButton();
+        Slot2 = new javax.swing.JButton();
+        Slot3 = new javax.swing.JButton();
+        Slot4 = new javax.swing.JButton();
+        CharacterButton1 = new javax.swing.JButton();
+        TeamPickerUI = new javax.swing.JLabel();
+        TeamLoadoutUI = new javax.swing.JLabel();
+        EditTeamsBackButton = new javax.swing.JButton();
+        EditTeamsBannerText = new javax.swing.JLabel();
+        EditTeamBanner = new javax.swing.JButton();
+        EditTeamsBackground = new javax.swing.JLabel();
         HomeLayer = new javax.swing.JLayeredPane();
-        MainCharacter = new javax.swing.JLabel();
+        Stone = new javax.swing.JLabel();
+        NewsBoard = new javax.swing.JLabel();
+        Fountain = new javax.swing.JLabel();
+        Owl = new javax.swing.JLabel();
+        Character1 = new javax.swing.JLabel();
+        Character2 = new javax.swing.JLabel();
+        Character3 = new javax.swing.JLabel();
+        Character4 = new javax.swing.JLabel();
         CastleBackground = new javax.swing.JLabel();
         BattleLayer = new javax.swing.JLayeredPane();
         StoryMapsText = new javax.swing.JLabel();
         StoryMapsButton = new javax.swing.JButton();
         StoryMapsPNG = new javax.swing.JLabel();
         WorldMapBackground = new javax.swing.JLabel();
-        AlliesLayer = new javax.swing.JLayeredPane();
-        AlliesText = new javax.swing.JLabel();
-        EditTeamsText = new javax.swing.JLabel();
-        EquipSkillsText = new javax.swing.JLabel();
-        LearnSkillsText = new javax.swing.JLabel();
-        EditTeamsButton = new javax.swing.JButton();
-        LearnSkillsButton = new javax.swing.JButton();
-        EquipSkillsButton = new javax.swing.JButton();
-        AlliesBanner = new javax.swing.JButton();
-        WorldMapBackground1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(540, 925));
@@ -70,30 +96,15 @@ public class CharacterModGUI extends javax.swing.JFrame {
         MainContainer.setMinimumSize(new java.awt.Dimension(540, 925));
         MainContainer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLayeredPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        MainContainer.add(jLayeredPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, -1));
-
-        MainStatsLayer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        TopBorder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/char_mod_border_top.png"))); // NOI18N
-        MainStatsLayer.add(TopBorder, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-
-        MainContainer.add(MainStatsLayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 80));
-
         MenuButtonLayer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        BattleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/battle_button_idle.png"))); // NOI18N
+        BattleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/battle_button_idle.png"))); // NOI18N
         BattleButton.setBorderPainted(false);
         BattleButton.setContentAreaFilled(false);
         BattleButton.setFocusPainted(false);
         BattleButton.setMaximumSize(new java.awt.Dimension(90, 90));
         BattleButton.setMinimumSize(new java.awt.Dimension(90, 90));
         BattleButton.setPreferredSize(new java.awt.Dimension(90, 90));
-        BattleButton.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                BattleButtonMouseDragged(evt);
-            }
-        });
         BattleButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BattleButtonMouseClicked(evt);
@@ -118,7 +129,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
         });
         MenuButtonLayer.add(BattleButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 30, 90, 100));
 
-        AlliesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/allies_button_idle.png"))); // NOI18N
+        AlliesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/allies_button_idle.png"))); // NOI18N
         AlliesButton.setBorderPainted(false);
         AlliesButton.setContentAreaFilled(false);
         AlliesButton.setFocusPainted(false);
@@ -154,7 +165,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
         });
         MenuButtonLayer.add(AlliesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, 90, 100));
 
-        MiscButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/misc_button_idle.png"))); // NOI18N
+        MiscButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/misc_button_idle.png"))); // NOI18N
         MiscButton.setBorderPainted(false);
         MiscButton.setContentAreaFilled(false);
         MiscButton.setFocusPainted(false);
@@ -180,7 +191,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
         });
         MenuButtonLayer.add(MiscButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 30, 90, 100));
 
-        HomeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/home_button_idle.png"))); // NOI18N
+        HomeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/home_button_idle.png"))); // NOI18N
         HomeButton.setBorderPainted(false);
         HomeButton.setContentAreaFilled(false);
         HomeButton.setFocusPainted(false);
@@ -216,17 +227,329 @@ public class CharacterModGUI extends javax.swing.JFrame {
         });
         MenuButtonLayer.add(HomeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, 90, 100));
 
-        BottomBorder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/char_mod_border_bottom.png"))); // NOI18N
+        BottomBorder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/char_mod_border_bottom.png"))); // NOI18N
         MenuButtonLayer.add(BottomBorder, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 180));
 
         MainContainer.add(MenuButtonLayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 800, 540, 130));
 
+        MainStatsLayer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        TopBorder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/char_mod_border_top.png"))); // NOI18N
+        MainStatsLayer.add(TopBorder, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        MainContainer.add(MainStatsLayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 80));
+
+        AlliesLayer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        AlliesLayer.setVisible(false);
+
+        EditStatsLayer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        EditStatsLayer.add(CharacterPortrait, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        NamePlateText.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        NamePlateText.setForeground(new java.awt.Color(255, 255, 255));
+        NamePlateText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        NamePlateText.setFocusable(false);
+        NamePlateText.setRequestFocusEnabled(false);
+        EditStatsLayer.add(NamePlateText, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 140, 30));
+
+        NamePlate.setForeground(new java.awt.Color(255, 255, 255));
+        NamePlate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        NamePlate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/name_plate.png"))); // NOI18N
+        EditStatsLayer.add(NamePlate, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, -1));
+
+        StatsInterface.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/stats_border.png"))); // NOI18N
+        EditStatsLayer.add(StatsInterface, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, -1, -1));
+
+        TopBorderStats.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        TopBorderStats.setForeground(new java.awt.Color(255, 255, 255));
+        TopBorderStats.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/top_border_stats.png"))); // NOI18N
+        EditStatsLayer.add(TopBorderStats, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 120));
+
+        AlliesLayer.add(EditStatsLayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 120));
+        EditStatsLayer.setVisible(false);
+
+        AlliesOptionsLayer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        LearnSkillsText.setFont(new java.awt.Font("Franklin Gothic Book", 1, 30)); // NOI18N
+        LearnSkillsText.setForeground(new java.awt.Color(255, 255, 255));
+        LearnSkillsText.setText("Learn Skills");
+        AlliesOptionsLayer.add(LearnSkillsText, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 370, 200, 60));
+
+        EquipSkillsText.setFont(new java.awt.Font("Franklin Gothic Book", 1, 30)); // NOI18N
+        EquipSkillsText.setForeground(new java.awt.Color(255, 255, 255));
+        EquipSkillsText.setText("Equip Skills");
+        AlliesOptionsLayer.add(EquipSkillsText, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 470, 200, 60));
+
+        EditTeamsText.setFont(new java.awt.Font("Franklin Gothic Book", 1, 30)); // NOI18N
+        EditTeamsText.setForeground(new java.awt.Color(255, 255, 255));
+        EditTeamsText.setText("Edit Teams");
+        AlliesOptionsLayer.add(EditTeamsText, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 210, 60));
+
+        AlliesBannerText.setFont(new java.awt.Font("Franklin Gothic Book", 1, 36)); // NOI18N
+        AlliesBannerText.setForeground(new java.awt.Color(51, 51, 51));
+        AlliesBannerText.setText("Allies");
+        AlliesOptionsLayer.add(AlliesBannerText, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, 110, 60));
+
+        AlliesBanner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/tan_header.png"))); // NOI18N
+        AlliesBanner.setBorderPainted(false);
+        AlliesBanner.setContentAreaFilled(false);
+        AlliesBanner.setFocusPainted(false);
+        AlliesBanner.setMaximumSize(new java.awt.Dimension(90, 90));
+        AlliesBanner.setMinimumSize(new java.awt.Dimension(90, 90));
+        AlliesBanner.setPreferredSize(new java.awt.Dimension(90, 90));
+        AlliesOptionsLayer.add(AlliesBanner, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 500, 100));
+
+        EquipSkillsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/allies_option_button_idle.png"))); // NOI18N
+        EquipSkillsButton.setBorderPainted(false);
+        EquipSkillsButton.setContentAreaFilled(false);
+        EquipSkillsButton.setFocusPainted(false);
+        EquipSkillsButton.setMaximumSize(new java.awt.Dimension(90, 90));
+        EquipSkillsButton.setMinimumSize(new java.awt.Dimension(90, 90));
+        EquipSkillsButton.setPreferredSize(new java.awt.Dimension(90, 90));
+        EquipSkillsButton.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                EquipSkillsButtonMouseDragged(evt);
+            }
+        });
+        EquipSkillsButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                EquipSkillsButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                EquipSkillsButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                EquipSkillsButtonMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                EquipSkillsButtonMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                EquipSkillsButtonMouseReleased(evt);
+            }
+        });
+        EquipSkillsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EquipSkillsButtonActionPerformed(evt);
+            }
+        });
+        AlliesOptionsLayer.add(EquipSkillsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 450, 460, 100));
+
+        LearnSkillsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/allies_option_button_idle.png"))); // NOI18N
+        LearnSkillsButton.setBorderPainted(false);
+        LearnSkillsButton.setContentAreaFilled(false);
+        LearnSkillsButton.setFocusPainted(false);
+        LearnSkillsButton.setMaximumSize(new java.awt.Dimension(90, 90));
+        LearnSkillsButton.setMinimumSize(new java.awt.Dimension(90, 90));
+        LearnSkillsButton.setPreferredSize(new java.awt.Dimension(90, 90));
+        LearnSkillsButton.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                LearnSkillsButtonMouseDragged(evt);
+            }
+        });
+        LearnSkillsButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LearnSkillsButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                LearnSkillsButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                LearnSkillsButtonMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                LearnSkillsButtonMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                LearnSkillsButtonMouseReleased(evt);
+            }
+        });
+        LearnSkillsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LearnSkillsButtonActionPerformed(evt);
+            }
+        });
+        AlliesOptionsLayer.add(LearnSkillsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 460, 100));
+
+        EditTeamsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/allies_option_button_idle.png"))); // NOI18N
+        EditTeamsButton.setBorderPainted(false);
+        EditTeamsButton.setContentAreaFilled(false);
+        EditTeamsButton.setFocusPainted(false);
+        EditTeamsButton.setMaximumSize(new java.awt.Dimension(90, 90));
+        EditTeamsButton.setMinimumSize(new java.awt.Dimension(90, 90));
+        EditTeamsButton.setPreferredSize(new java.awt.Dimension(90, 90));
+        EditTeamsButton.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                EditTeamsButtonMouseDragged(evt);
+            }
+        });
+        EditTeamsButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                EditTeamsButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                EditTeamsButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                EditTeamsButtonMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                EditTeamsButtonMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                EditTeamsButtonMouseReleased(evt);
+            }
+        });
+        EditTeamsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditTeamsButtonActionPerformed(evt);
+            }
+        });
+        AlliesOptionsLayer.add(EditTeamsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 460, 100));
+
+        AlliesOptionsBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/backgrounds/allies_background.png"))); // NOI18N
+        AlliesOptionsLayer.add(AlliesOptionsBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(-80, 30, 630, 930));
+
+        AlliesLayer.add(AlliesOptionsLayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 540, 900));
+
+        EditTeamsLayer.setMinimumSize(new java.awt.Dimension(540, 900));
+        EditTeamsLayer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        TeamLoadout.setLayout(new java.awt.GridLayout());
+
+        Slot1.setContentAreaFilled(false);
+        Slot1.setOpaque(false);
+        TeamLoadout.add(Slot1);
+
+        Slot2.setContentAreaFilled(false);
+        Slot2.setOpaque(false);
+        TeamLoadout.add(Slot2);
+
+        Slot3.setContentAreaFilled(false);
+        Slot3.setOpaque(false);
+        TeamLoadout.add(Slot3);
+
+        Slot4.setContentAreaFilled(false);
+        Slot4.setOpaque(false);
+        TeamLoadout.add(Slot4);
+
+        EditTeamsLayer.add(TeamLoadout, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, 360, 90));
+
+        CharacterButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/anna_portrait.png"))); // NOI18N
+        CharacterButton1.setBorderPainted(false);
+        CharacterButton1.setContentAreaFilled(false);
+        CharacterButton1.setFocusPainted(false);
+        CharacterButton1.setMaximumSize(new java.awt.Dimension(90, 90));
+        CharacterButton1.setMinimumSize(new java.awt.Dimension(90, 90));
+        CharacterButton1.setPreferredSize(new java.awt.Dimension(90, 90));
+        CharacterButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CharacterButton1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CharacterButton1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                CharacterButton1MouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                CharacterButton1MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                CharacterButton1MouseReleased(evt);
+            }
+        });
+        CharacterButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CharacterButton1ActionPerformed(evt);
+            }
+        });
+        EditTeamsLayer.add(CharacterButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, 90, 90));
+
+        TeamPickerUI.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/team_picker_UI.png"))); // NOI18N
+        EditTeamsLayer.add(TeamPickerUI, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 310, 600, 400));
+
+        TeamLoadoutUI.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/team_loadout_UI.png"))); // NOI18N
+        EditTeamsLayer.add(TeamLoadoutUI, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 540, 170));
+
+        EditTeamsBackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/back_button_idle.png"))); // NOI18N
+        EditTeamsBackButton.setBorderPainted(false);
+        EditTeamsBackButton.setContentAreaFilled(false);
+        EditTeamsBackButton.setFocusPainted(false);
+        EditTeamsBackButton.setMaximumSize(new java.awt.Dimension(90, 90));
+        EditTeamsBackButton.setMinimumSize(new java.awt.Dimension(90, 90));
+        EditTeamsBackButton.setPreferredSize(new java.awt.Dimension(90, 90));
+        EditTeamsBackButton.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                EditTeamsBackButtonMouseDragged(evt);
+            }
+        });
+        EditTeamsBackButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                EditTeamsBackButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                EditTeamsBackButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                EditTeamsBackButtonMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                EditTeamsBackButtonMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                EditTeamsBackButtonMouseReleased(evt);
+            }
+        });
+        EditTeamsBackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditTeamsBackButtonActionPerformed(evt);
+            }
+        });
+        EditTeamsLayer.add(EditTeamsBackButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 90, 100));
+
+        EditTeamsBannerText.setFont(new java.awt.Font("Franklin Gothic Book", 1, 36)); // NOI18N
+        EditTeamsBannerText.setForeground(new java.awt.Color(51, 51, 51));
+        EditTeamsBannerText.setText("Edit Teams");
+        EditTeamsLayer.add(EditTeamsBannerText, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 210, 60));
+
+        EditTeamBanner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/tan_header.png"))); // NOI18N
+        EditTeamBanner.setBorderPainted(false);
+        EditTeamBanner.setContentAreaFilled(false);
+        EditTeamBanner.setFocusPainted(false);
+        EditTeamBanner.setMaximumSize(new java.awt.Dimension(90, 90));
+        EditTeamBanner.setMinimumSize(new java.awt.Dimension(90, 90));
+        EditTeamBanner.setPreferredSize(new java.awt.Dimension(90, 90));
+        EditTeamsLayer.add(EditTeamBanner, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 500, 80));
+
+        EditTeamsBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/backgrounds/allies_background.png"))); // NOI18N
+        EditTeamsLayer.add(EditTeamsBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(-80, -30, 630, 930));
+
+        AlliesLayer.add(EditTeamsLayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 540, 900));
+
+        MainContainer.add(AlliesLayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 930));
+
         HomeLayer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        MainCharacter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/anna.png"))); // NOI18N
-        HomeLayer.add(MainCharacter, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, -1, -1));
+        Stone.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/glowing_stone.png"))); // NOI18N
+        HomeLayer.add(Stone, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 620, -1, -1));
 
-        CastleBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/player_castle_background.png"))); // NOI18N
+        NewsBoard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/news_board.png"))); // NOI18N
+        HomeLayer.add(NewsBoard, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, -1, -1));
+
+        Fountain.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/fountain.png"))); // NOI18N
+        HomeLayer.add(Fountain, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 610, -1, -1));
+
+        Owl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/owl.png"))); // NOI18N
+        HomeLayer.add(Owl, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 240, -1, -1));
+
+        Character1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/characters/anna.png"))); // NOI18N
+        HomeLayer.add(Character1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, -1, -1));
+        HomeLayer.add(Character2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 390, -1, -1));
+        HomeLayer.add(Character3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 410, -1, -1));
+        HomeLayer.add(Character4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 540, -1, -1));
+
+        CastleBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/backgrounds/player_castle_background.png"))); // NOI18N
         HomeLayer.add(CastleBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(-80, 0, 630, 930));
 
         MainContainer.add(HomeLayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 930));
@@ -274,158 +597,13 @@ public class CharacterModGUI extends javax.swing.JFrame {
         });
         BattleLayer.add(StoryMapsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 310, 140, 170));
 
-        StoryMapsPNG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/main_story_button_idle.png"))); // NOI18N
+        StoryMapsPNG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/main_story_button_idle.png"))); // NOI18N
         BattleLayer.add(StoryMapsPNG, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, -1));
 
-        WorldMapBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/world_map.png"))); // NOI18N
+        WorldMapBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/backgrounds/world_map.png"))); // NOI18N
         BattleLayer.add(WorldMapBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(-90, 0, 630, 930));
 
         MainContainer.add(BattleLayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 930));
-
-        AlliesLayer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        BattleLayer.setVisible(false);
-
-        AlliesText.setFont(new java.awt.Font("Franklin Gothic Book", 1, 36)); // NOI18N
-        AlliesText.setForeground(new java.awt.Color(51, 51, 51));
-        AlliesText.setText("Allies");
-        AlliesLayer.add(AlliesText, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, 110, 60));
-
-        EditTeamsText.setFont(new java.awt.Font("Franklin Gothic Book", 1, 30)); // NOI18N
-        EditTeamsText.setForeground(new java.awt.Color(255, 255, 255));
-        EditTeamsText.setText("Edit Teams");
-        AlliesLayer.add(EditTeamsText, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 210, 60));
-
-        EquipSkillsText.setFont(new java.awt.Font("Franklin Gothic Book", 1, 30)); // NOI18N
-        EquipSkillsText.setForeground(new java.awt.Color(255, 255, 255));
-        EquipSkillsText.setText("Equip Skills");
-        AlliesLayer.add(EquipSkillsText, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 470, 200, 60));
-
-        LearnSkillsText.setFont(new java.awt.Font("Franklin Gothic Book", 1, 30)); // NOI18N
-        LearnSkillsText.setForeground(new java.awt.Color(255, 255, 255));
-        LearnSkillsText.setText("Learn Skills");
-        AlliesLayer.add(LearnSkillsText, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 370, 200, 60));
-
-        EditTeamsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/allies_option_button_idle.png"))); // NOI18N
-        EditTeamsButton.setBorderPainted(false);
-        EditTeamsButton.setContentAreaFilled(false);
-        EditTeamsButton.setFocusPainted(false);
-        EditTeamsButton.setMaximumSize(new java.awt.Dimension(90, 90));
-        EditTeamsButton.setMinimumSize(new java.awt.Dimension(90, 90));
-        EditTeamsButton.setPreferredSize(new java.awt.Dimension(90, 90));
-        EditTeamsButton.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                EditTeamsButtonMouseDragged(evt);
-            }
-        });
-        EditTeamsButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                EditTeamsButtonMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                EditTeamsButtonMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                EditTeamsButtonMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                EditTeamsButtonMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                EditTeamsButtonMouseReleased(evt);
-            }
-        });
-        EditTeamsButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EditTeamsButtonActionPerformed(evt);
-            }
-        });
-        AlliesLayer.add(EditTeamsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 460, 100));
-
-        LearnSkillsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/allies_option_button_idle.png"))); // NOI18N
-        LearnSkillsButton.setBorderPainted(false);
-        LearnSkillsButton.setContentAreaFilled(false);
-        LearnSkillsButton.setFocusPainted(false);
-        LearnSkillsButton.setMaximumSize(new java.awt.Dimension(90, 90));
-        LearnSkillsButton.setMinimumSize(new java.awt.Dimension(90, 90));
-        LearnSkillsButton.setPreferredSize(new java.awt.Dimension(90, 90));
-        LearnSkillsButton.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                LearnSkillsButtonMouseDragged(evt);
-            }
-        });
-        LearnSkillsButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                LearnSkillsButtonMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                LearnSkillsButtonMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                LearnSkillsButtonMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                LearnSkillsButtonMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                LearnSkillsButtonMouseReleased(evt);
-            }
-        });
-        LearnSkillsButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LearnSkillsButtonActionPerformed(evt);
-            }
-        });
-        AlliesLayer.add(LearnSkillsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 460, 100));
-
-        EquipSkillsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/allies_option_button_idle.png"))); // NOI18N
-        EquipSkillsButton.setBorderPainted(false);
-        EquipSkillsButton.setContentAreaFilled(false);
-        EquipSkillsButton.setFocusPainted(false);
-        EquipSkillsButton.setMaximumSize(new java.awt.Dimension(90, 90));
-        EquipSkillsButton.setMinimumSize(new java.awt.Dimension(90, 90));
-        EquipSkillsButton.setPreferredSize(new java.awt.Dimension(90, 90));
-        EquipSkillsButton.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                EquipSkillsButtonMouseDragged(evt);
-            }
-        });
-        EquipSkillsButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                EquipSkillsButtonMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                EquipSkillsButtonMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                EquipSkillsButtonMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                EquipSkillsButtonMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                EquipSkillsButtonMouseReleased(evt);
-            }
-        });
-        EquipSkillsButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EquipSkillsButtonActionPerformed(evt);
-            }
-        });
-        AlliesLayer.add(EquipSkillsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 450, 460, 100));
-
-        AlliesBanner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/allies_header.png"))); // NOI18N
-        AlliesBanner.setBorderPainted(false);
-        AlliesBanner.setContentAreaFilled(false);
-        AlliesBanner.setFocusPainted(false);
-        AlliesBanner.setMaximumSize(new java.awt.Dimension(90, 90));
-        AlliesBanner.setMinimumSize(new java.awt.Dimension(90, 90));
-        AlliesBanner.setPreferredSize(new java.awt.Dimension(90, 90));
-        AlliesLayer.add(AlliesBanner, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 500, 100));
-
-        WorldMapBackground1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/allies_background.png"))); // NOI18N
-        AlliesLayer.add(WorldMapBackground1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-80, 30, 630, 930));
-
-        MainContainer.add(AlliesLayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 930));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -443,11 +621,11 @@ public class CharacterModGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void MiscButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MiscButtonMouseEntered
-        MiscButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/misc_button_hover.png")));
+        MiscButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/misc_button_hover.png")));
     }//GEN-LAST:event_MiscButtonMouseEntered
 
     private void MiscButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MiscButtonMouseExited
-        MiscButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/misc_button_idle.png")));
+        MiscButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/misc_button_idle.png")));
     }//GEN-LAST:event_MiscButtonMouseExited
 
     private void MiscButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MiscButtonMouseClicked
@@ -455,29 +633,28 @@ public class CharacterModGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_MiscButtonMouseClicked
 
     private void MiscButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MiscButtonMousePressed
-        MiscButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/misc_button_click.png")));
+        MiscButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/misc_button_click.png")));
     }//GEN-LAST:event_MiscButtonMousePressed
-
-    private void BattleButtonMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BattleButtonMouseDragged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BattleButtonMouseDragged
 
     private void BattleButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BattleButtonMouseClicked
         HomeLayer.setVisible(false);
         AlliesLayer.setVisible(false);
+        EditStatsLayer.setVisible(false);
+        AlliesOptionsLayer.setVisible(true);
+        MainStatsLayer.setVisible(true);
         BattleLayer.setVisible(true);
     }//GEN-LAST:event_BattleButtonMouseClicked
 
     private void BattleButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BattleButtonMouseEntered
-        BattleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/battle_button_hover.png")));
+        BattleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/battle_button_hover.png")));
     }//GEN-LAST:event_BattleButtonMouseEntered
 
     private void BattleButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BattleButtonMouseExited
-        BattleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/battle_button_idle.png")));
+        BattleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/battle_button_idle.png")));
     }//GEN-LAST:event_BattleButtonMouseExited
 
     private void BattleButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BattleButtonMousePressed
-        BattleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/battle_button_click.png")));
+        BattleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/battle_button_click.png")));
     }//GEN-LAST:event_BattleButtonMousePressed
 
     private void AlliesButtonMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlliesButtonMouseDragged
@@ -487,31 +664,34 @@ public class CharacterModGUI extends javax.swing.JFrame {
     private void AlliesButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlliesButtonMouseClicked
         BattleLayer.setVisible(false);
         HomeLayer.setVisible(false);
+        EditStatsLayer.setVisible(false);
+        AlliesOptionsLayer.setVisible(true);
+        MainStatsLayer.setVisible(true);
         AlliesLayer.setVisible(true);
     }//GEN-LAST:event_AlliesButtonMouseClicked
 
     private void AlliesButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlliesButtonMouseEntered
-        AlliesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/allies_button_hover.png")));
+        AlliesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/allies_button_hover.png")));
     }//GEN-LAST:event_AlliesButtonMouseEntered
 
     private void AlliesButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlliesButtonMouseExited
-        AlliesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/allies_button_idle.png")));
+        AlliesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/allies_button_idle.png")));
     }//GEN-LAST:event_AlliesButtonMouseExited
 
     private void AlliesButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlliesButtonMousePressed
-        AlliesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/allies_button_click.png")));
+        AlliesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/allies_button_click.png")));
     }//GEN-LAST:event_AlliesButtonMousePressed
 
     private void MiscButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MiscButtonMouseReleased
-        MiscButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/misc_button_hover.png")));
+        MiscButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/misc_button_hover.png")));
     }//GEN-LAST:event_MiscButtonMouseReleased
 
     private void AlliesButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlliesButtonMouseReleased
-        AlliesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/allies_button_hover.png")));
+        AlliesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/allies_button_hover.png")));
     }//GEN-LAST:event_AlliesButtonMouseReleased
 
     private void BattleButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BattleButtonMouseReleased
-        BattleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/battle_button_hover.png")));
+        BattleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/battle_button_hover.png")));
     }//GEN-LAST:event_BattleButtonMouseReleased
 
     private void HomeButtonMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HomeButtonMouseDragged
@@ -521,23 +701,26 @@ public class CharacterModGUI extends javax.swing.JFrame {
     private void HomeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HomeButtonMouseClicked
         BattleLayer.setVisible(false);
         AlliesLayer.setVisible(false);
+        EditStatsLayer.setVisible(false);
+        AlliesOptionsLayer.setVisible(true);
+        MainStatsLayer.setVisible(true);
         HomeLayer.setVisible(true);
     }//GEN-LAST:event_HomeButtonMouseClicked
 
     private void HomeButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HomeButtonMouseEntered
-        HomeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/home_button_hover.png")));
+        HomeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/home_button_hover.png")));
     }//GEN-LAST:event_HomeButtonMouseEntered
 
     private void HomeButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HomeButtonMouseExited
-        HomeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/home_button_idle.png")));
+        HomeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/home_button_idle.png")));
     }//GEN-LAST:event_HomeButtonMouseExited
 
     private void HomeButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HomeButtonMousePressed
-        HomeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/home_button_click.png")));
+        HomeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/home_button_click.png")));
     }//GEN-LAST:event_HomeButtonMousePressed
 
     private void HomeButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HomeButtonMouseReleased
-        HomeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/home_button_idle.png")));
+        HomeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/home_button_idle.png")));
     }//GEN-LAST:event_HomeButtonMouseReleased
 
     private void BattleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BattleButtonActionPerformed
@@ -557,11 +740,11 @@ public class CharacterModGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_StoryMapsButtonMouseClicked
 
     private void StoryMapsButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StoryMapsButtonMouseEntered
-        StoryMapsPNG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/main_story_button_hover.png")));
+        StoryMapsPNG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/main_story_button_hover.png")));
     }//GEN-LAST:event_StoryMapsButtonMouseEntered
 
     private void StoryMapsButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StoryMapsButtonMouseExited
-        StoryMapsPNG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/main_story_button_idle.png")));
+        StoryMapsPNG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/main_story_button_idle.png")));
     }//GEN-LAST:event_StoryMapsButtonMouseExited
 
     private void StoryMapsButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StoryMapsButtonMousePressed
@@ -587,15 +770,18 @@ public class CharacterModGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_EditTeamsButtonMouseDragged
 
     private void EditTeamsButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditTeamsButtonMouseClicked
-        // TODO add your handling code here:
+        MainStatsLayer.setVisible(false);
+        AlliesOptionsLayer.setVisible(false);
+        EditStatsLayer.setVisible(true);
+        EditTeamsLayer.setVisible(true);
     }//GEN-LAST:event_EditTeamsButtonMouseClicked
 
     private void EditTeamsButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditTeamsButtonMouseEntered
-        EditTeamsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/allies_option_button_hover.png")));
+        EditTeamsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/allies_option_button_hover.png")));
     }//GEN-LAST:event_EditTeamsButtonMouseEntered
 
     private void EditTeamsButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditTeamsButtonMouseExited
-        EditTeamsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/allies_option_button_idle.png")));
+        EditTeamsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/allies_option_button_idle.png")));
     }//GEN-LAST:event_EditTeamsButtonMouseExited
 
     private void EditTeamsButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditTeamsButtonMousePressed
@@ -619,11 +805,11 @@ public class CharacterModGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_LearnSkillsButtonMouseClicked
 
     private void LearnSkillsButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LearnSkillsButtonMouseEntered
-        LearnSkillsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/allies_option_button_hover.png")));
+        LearnSkillsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/allies_option_button_hover.png")));
     }//GEN-LAST:event_LearnSkillsButtonMouseEntered
 
     private void LearnSkillsButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LearnSkillsButtonMouseExited
-        LearnSkillsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/allies_option_button_idle.png")));
+        LearnSkillsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/allies_option_button_idle.png")));
     }//GEN-LAST:event_LearnSkillsButtonMouseExited
 
     private void LearnSkillsButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LearnSkillsButtonMousePressed
@@ -647,11 +833,11 @@ public class CharacterModGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_EquipSkillsButtonMouseClicked
 
     private void EquipSkillsButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EquipSkillsButtonMouseEntered
-        EquipSkillsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/allies_option_button_hover.png")));
+        EquipSkillsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/allies_option_button_hover.png")));
     }//GEN-LAST:event_EquipSkillsButtonMouseEntered
 
     private void EquipSkillsButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EquipSkillsButtonMouseExited
-        EquipSkillsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/character_mod/allies_option_button_idle.png")));
+        EquipSkillsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/allies_option_button_idle.png")));
     }//GEN-LAST:event_EquipSkillsButtonMouseExited
 
     private void EquipSkillsButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EquipSkillsButtonMousePressed
@@ -665,6 +851,61 @@ public class CharacterModGUI extends javax.swing.JFrame {
     private void EquipSkillsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EquipSkillsButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_EquipSkillsButtonActionPerformed
+
+    private void EditTeamsBackButtonMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditTeamsBackButtonMouseDragged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EditTeamsBackButtonMouseDragged
+
+    private void EditTeamsBackButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditTeamsBackButtonMouseClicked
+        EditTeamsLayer.setVisible(false);
+        EditStatsLayer.setVisible(false);
+        AlliesOptionsLayer.setVisible(true);
+        MainStatsLayer.setVisible(true);
+    }//GEN-LAST:event_EditTeamsBackButtonMouseClicked
+
+    private void EditTeamsBackButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditTeamsBackButtonMouseEntered
+        EditTeamsBackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/back_button_hover.png")));
+    }//GEN-LAST:event_EditTeamsBackButtonMouseEntered
+
+    private void EditTeamsBackButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditTeamsBackButtonMouseExited
+        EditTeamsBackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/back_button_idle.png")));
+    }//GEN-LAST:event_EditTeamsBackButtonMouseExited
+
+    private void EditTeamsBackButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditTeamsBackButtonMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EditTeamsBackButtonMousePressed
+
+    private void EditTeamsBackButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditTeamsBackButtonMouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EditTeamsBackButtonMouseReleased
+
+    private void EditTeamsBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditTeamsBackButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EditTeamsBackButtonActionPerformed
+
+    private void CharacterButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CharacterButton1MouseClicked
+
+    private void CharacterButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CharacterButton1MouseEntered
+
+    private void CharacterButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CharacterButton1MouseExited
+
+    private void CharacterButton1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton1MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CharacterButton1MousePressed
+
+    private void CharacterButton1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton1MouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CharacterButton1MouseReleased
+
+    private void CharacterButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CharacterButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CharacterButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -703,32 +944,58 @@ public class CharacterModGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AlliesBanner;
+    private javax.swing.JLabel AlliesBannerText;
     private javax.swing.JButton AlliesButton;
     private javax.swing.JLayeredPane AlliesLayer;
-    private javax.swing.JLabel AlliesText;
+    private javax.swing.JLabel AlliesOptionsBackground;
+    private javax.swing.JLayeredPane AlliesOptionsLayer;
     private javax.swing.JButton BattleButton;
     private javax.swing.JLayeredPane BattleLayer;
     private javax.swing.JLabel BottomBorder;
     private javax.swing.JLabel CastleBackground;
+    private javax.swing.JLabel Character1;
+    private javax.swing.JLabel Character2;
+    private javax.swing.JLabel Character3;
+    private javax.swing.JLabel Character4;
+    private javax.swing.JButton CharacterButton1;
+    private javax.swing.JLabel CharacterPortrait;
+    private javax.swing.JLayeredPane EditStatsLayer;
+    private javax.swing.JButton EditTeamBanner;
+    private javax.swing.JButton EditTeamsBackButton;
+    private javax.swing.JLabel EditTeamsBackground;
+    private javax.swing.JLabel EditTeamsBannerText;
     private javax.swing.JButton EditTeamsButton;
+    private javax.swing.JLayeredPane EditTeamsLayer;
     private javax.swing.JLabel EditTeamsText;
     private javax.swing.JButton EquipSkillsButton;
     private javax.swing.JLabel EquipSkillsText;
+    private javax.swing.JLabel Fountain;
     private javax.swing.JButton HomeButton;
     private javax.swing.JLayeredPane HomeLayer;
     private javax.swing.JButton LearnSkillsButton;
     private javax.swing.JLabel LearnSkillsText;
-    private javax.swing.JLabel MainCharacter;
     private javax.swing.JLayeredPane MainContainer;
     private javax.swing.JLayeredPane MainStatsLayer;
     private javax.swing.JLayeredPane MenuButtonLayer;
     private javax.swing.JButton MiscButton;
+    private javax.swing.JLabel NamePlate;
+    private javax.swing.JLabel NamePlateText;
+    private javax.swing.JLabel NewsBoard;
+    private javax.swing.JLabel Owl;
+    private javax.swing.JButton Slot1;
+    private javax.swing.JButton Slot2;
+    private javax.swing.JButton Slot3;
+    private javax.swing.JButton Slot4;
+    private javax.swing.JLabel StatsInterface;
+    private javax.swing.JLabel Stone;
     private javax.swing.JButton StoryMapsButton;
     private javax.swing.JLabel StoryMapsPNG;
     private javax.swing.JLabel StoryMapsText;
+    private javax.swing.JLayeredPane TeamLoadout;
+    private javax.swing.JLabel TeamLoadoutUI;
+    private javax.swing.JLabel TeamPickerUI;
     private javax.swing.JLabel TopBorder;
+    private javax.swing.JLabel TopBorderStats;
     private javax.swing.JLabel WorldMapBackground;
-    private javax.swing.JLabel WorldMapBackground1;
-    private javax.swing.JLayeredPane jLayeredPane1;
     // End of variables declaration//GEN-END:variables
 }

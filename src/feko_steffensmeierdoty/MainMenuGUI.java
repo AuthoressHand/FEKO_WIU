@@ -5,28 +5,14 @@
  */
 package feko_steffensmeierdoty;
 
-import java.awt.Dimension;
-import java.awt.Image;
-import java.awt.Toolkit;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import objects.AudioPlayer;
-
 /**
  *
  * @author 
  */
 public class MainMenuGUI extends javax.swing.JFrame {
     
-    private AudioPlayer audioPlayer;
-    
     public MainMenuGUI() {
         initComponents();
-        /*try{
-            audioPlayer.play("C:\\Users\\Justin\\Documents\\NetBeansProjects\\FEKO_WIU\\src\\audio\\menu.mp3");
-        } catch(Exception e){
-            e.printStackTrace();
-        }*/
     }
 
     /**
@@ -59,10 +45,10 @@ public class MainMenuGUI extends javax.swing.JFrame {
         jLayeredPane1.setMinimumSize(new java.awt.Dimension(1024, 612));
         jLayeredPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        FireEmblemLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo.png"))); // NOI18N
+        FireEmblemLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/logo.png"))); // NOI18N
         jLayeredPane1.add(FireEmblemLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, -1, -1));
 
-        TheKnockOffLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/custom_logo.png"))); // NOI18N
+        TheKnockOffLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/custom_logo.png"))); // NOI18N
         jLayeredPane1.add(TheKnockOffLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, -1, -1));
 
         LoadGameText.setFont(new java.awt.Font("Calibri Light", 1, 18)); // NOI18N
@@ -80,7 +66,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
         ExitGameText.setText("Exit Game");
         jLayeredPane1.add(ExitGameText, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 470, -1, -1));
 
-        LoadGameButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/main_menu_button2.png"))); // NOI18N
+        LoadGameButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/main_menu_button2.png"))); // NOI18N
         LoadGameButton.setBorderPainted(false);
         LoadGameButton.setContentAreaFilled(false);
         LoadGameButton.setFocusPainted(false);
@@ -99,7 +85,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
         });
         jLayeredPane1.add(LoadGameButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, 290, 60));
 
-        OptionsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/main_menu_button2.png"))); // NOI18N
+        OptionsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/main_menu_button2.png"))); // NOI18N
         OptionsButton.setBorderPainted(false);
         OptionsButton.setContentAreaFilled(false);
         OptionsButton.setFocusPainted(false);
@@ -113,7 +99,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
         });
         jLayeredPane1.add(OptionsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, 290, 60));
 
-        ExitGameButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/main_menu_button2.png"))); // NOI18N
+        ExitGameButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/main_menu_button2.png"))); // NOI18N
         ExitGameButton.setBorderPainted(false);
         ExitGameButton.setContentAreaFilled(false);
         ExitGameButton.setFocusPainted(false);
@@ -132,7 +118,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
         });
         jLayeredPane1.add(ExitGameButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 450, 290, 60));
 
-        Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/main_menu_background.png"))); // NOI18N
+        Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/backgrounds/main_menu_background.png"))); // NOI18N
         Background.setMaximumSize(null);
         Background.setMinimumSize(null);
         jLayeredPane1.add(Background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -161,27 +147,27 @@ public class MainMenuGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_LoadGameButtonActionPerformed
   
     private void LoadGameButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LoadGameButtonMouseEntered
-        LoadGameButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/main_menu_button1.png")));
+        LoadGameButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/main_menu_button1.png")));
     }//GEN-LAST:event_LoadGameButtonMouseEntered
 
     private void LoadGameButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LoadGameButtonMouseExited
-        LoadGameButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/main_menu_button2.png")));
+        LoadGameButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/main_menu_button2.png")));
     }//GEN-LAST:event_LoadGameButtonMouseExited
 
     private void OptionsButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OptionsButtonMouseEntered
-        OptionsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/main_menu_button1.png")));
+        OptionsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/main_menu_button1.png")));
     }//GEN-LAST:event_OptionsButtonMouseEntered
 
     private void OptionsButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OptionsButtonMouseExited
-        OptionsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/main_menu_button2.png")));
+        OptionsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/main_menu_button2.png")));
     }//GEN-LAST:event_OptionsButtonMouseExited
 
     private void ExitGameButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitGameButtonMouseEntered
-        ExitGameButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/main_menu_button1.png")));
+        ExitGameButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/main_menu_button1.png")));
     }//GEN-LAST:event_ExitGameButtonMouseEntered
 
     private void ExitGameButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitGameButtonMouseExited
-        ExitGameButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/main_menu_button2.png")));
+        ExitGameButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/main_menu_button2.png")));
     }//GEN-LAST:event_ExitGameButtonMouseExited
 
     private void ExitGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitGameButtonActionPerformed
