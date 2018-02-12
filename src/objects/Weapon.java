@@ -15,27 +15,28 @@ import common.WeaponType;
  * @dateCreated 12/5/2017
  * 
  */
-public class Weapon extends Skill {
+public class Weapon {
     private WeaponType type;
     private int dmg;
-    private int range;
-    private DamageType dmgType;
+    //private int range;
+    //private DamageType dmgType;
     
-    public Weapon(Stat stat, int effect, String name, int spCost, String description, WeaponType type, int dmg, int range, DamageType dmgType) {
-        super(stat, effect, name, spCost, description);
+    public Weapon(WeaponType type) {
         this.type = type;
-        this.dmg = dmg;
-        this.range = range;
-        this.dmgType = dmgType;
+        if(this.type.equals(WeaponType.Sword)){
+            this.dmg = 2;
+        }
+        //this.range = range;
+        //this.dmgType = dmgType;
     }
     
-    public int checkRange() {
+    /*public int checkRange() {
         return range;
     }
     
     public DamageType getDmgType() {
         return dmgType;
-    }
+    }*/
     
     public int getDmg() {
         return dmg;

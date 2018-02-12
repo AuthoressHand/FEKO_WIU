@@ -5,19 +5,26 @@
  */
 package feko_steffensmeierdoty;
 
+import java.util.LinkedList;
+import javax.swing.JButton;
+
 /**
  *
  * @author rms130
  */
 public class CharacterModGUI extends javax.swing.JFrame {
 
-    
+    private JButton[] teamSlots = new JButton[4];
     
     /**
      * Creates new form CharacterModGUI
      */
     public CharacterModGUI() {
         initComponents();
+        teamSlots[0] = Slot1;
+        teamSlots[1] = Slot2;
+        teamSlots[2] = Slot3;
+        teamSlots[3] = Slot4;
     }
 
     /**
@@ -61,6 +68,8 @@ public class CharacterModGUI extends javax.swing.JFrame {
         Slot2 = new javax.swing.JButton();
         Slot3 = new javax.swing.JButton();
         Slot4 = new javax.swing.JButton();
+        CharacterButton3 = new javax.swing.JButton();
+        CharacterButton2 = new javax.swing.JButton();
         CharacterButton1 = new javax.swing.JButton();
         TeamPickerUI = new javax.swing.JLabel();
         TeamLoadoutUI = new javax.swing.JLabel();
@@ -88,7 +97,6 @@ public class CharacterModGUI extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(540, 925));
         setMinimumSize(new java.awt.Dimension(540, 925));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(540, 925));
         setResizable(false);
         setSize(new java.awt.Dimension(540, 925));
 
@@ -415,27 +423,85 @@ public class CharacterModGUI extends javax.swing.JFrame {
         EditTeamsLayer.setMinimumSize(new java.awt.Dimension(540, 900));
         EditTeamsLayer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        TeamLoadout.setLayout(new java.awt.GridLayout());
+        TeamLoadout.setLayout(new java.awt.GridLayout(1, 0));
 
         Slot1.setContentAreaFilled(false);
-        Slot1.setOpaque(false);
         TeamLoadout.add(Slot1);
 
         Slot2.setContentAreaFilled(false);
-        Slot2.setOpaque(false);
         TeamLoadout.add(Slot2);
 
         Slot3.setContentAreaFilled(false);
-        Slot3.setOpaque(false);
         TeamLoadout.add(Slot3);
 
         Slot4.setContentAreaFilled(false);
-        Slot4.setOpaque(false);
         TeamLoadout.add(Slot4);
 
         EditTeamsLayer.add(TeamLoadout, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, 360, 90));
 
-        CharacterButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/anna_portrait.png"))); // NOI18N
+        CharacterButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/soleil_silver_portrait_idle.png"))); // NOI18N
+        CharacterButton3.setBorderPainted(false);
+        CharacterButton3.setContentAreaFilled(false);
+        CharacterButton3.setFocusPainted(false);
+        CharacterButton3.setMaximumSize(new java.awt.Dimension(90, 90));
+        CharacterButton3.setMinimumSize(new java.awt.Dimension(90, 90));
+        CharacterButton3.setPreferredSize(new java.awt.Dimension(90, 90));
+        CharacterButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CharacterButton3MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CharacterButton3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                CharacterButton3MouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                CharacterButton3MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                CharacterButton3MouseReleased(evt);
+            }
+        });
+        CharacterButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CharacterButton3ActionPerformed(evt);
+            }
+        });
+        EditTeamsLayer.add(CharacterButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 340, 90, 90));
+
+        CharacterButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/alfonse_silver_portrait_idle.png"))); // NOI18N
+        CharacterButton2.setBorderPainted(false);
+        CharacterButton2.setContentAreaFilled(false);
+        CharacterButton2.setFocusPainted(false);
+        CharacterButton2.setMaximumSize(new java.awt.Dimension(90, 90));
+        CharacterButton2.setMinimumSize(new java.awt.Dimension(90, 90));
+        CharacterButton2.setPreferredSize(new java.awt.Dimension(90, 90));
+        CharacterButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CharacterButton2MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CharacterButton2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                CharacterButton2MouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                CharacterButton2MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                CharacterButton2MouseReleased(evt);
+            }
+        });
+        CharacterButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CharacterButton2ActionPerformed(evt);
+            }
+        });
+        EditTeamsLayer.add(CharacterButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 340, 90, 90));
+
+        CharacterButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/anna_silver_portrait_idle.png"))); // NOI18N
         CharacterButton1.setBorderPainted(false);
         CharacterButton1.setContentAreaFilled(false);
         CharacterButton1.setFocusPainted(false);
@@ -464,7 +530,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
                 CharacterButton1ActionPerformed(evt);
             }
         });
-        EditTeamsLayer.add(CharacterButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, 90, 90));
+        EditTeamsLayer.add(CharacterButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 340, 90, 90));
 
         TeamPickerUI.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/team_picker_UI.png"))); // NOI18N
         EditTeamsLayer.add(TeamPickerUI, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 310, 600, 400));
@@ -560,7 +626,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
         StoryMapsText.setFont(new java.awt.Font("Franklin Gothic Book", 1, 24)); // NOI18N
         StoryMapsText.setForeground(new java.awt.Color(51, 51, 51));
         StoryMapsText.setText("Story Maps");
-        BattleLayer.add(StoryMapsText, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 480, 130, 30));
+        BattleLayer.add(StoryMapsText, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 470, 130, 40));
 
         StoryMapsButton.setBorderPainted(false);
         StoryMapsButton.setContentAreaFilled(false);
@@ -884,7 +950,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_EditTeamsBackButtonActionPerformed
 
     private void CharacterButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton1MouseClicked
-        // TODO add your handling code here:
+        editTeamLoadout(CharacterButton1,"/img/portraits/anna_silver_portrait_idle.png","/img/portraits/anna_silver_portrait_clicked.png");
     }//GEN-LAST:event_CharacterButton1MouseClicked
 
     private void CharacterButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton1MouseEntered
@@ -907,6 +973,80 @@ public class CharacterModGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_CharacterButton1ActionPerformed
 
+    private void CharacterButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton2MouseClicked
+        editTeamLoadout(CharacterButton2,"/img/portraits/alfonse_silver_portrait_idle.png","/img/portraits/alfonse_silver_portrait_clicked.png");
+    }//GEN-LAST:event_CharacterButton2MouseClicked
+
+    private void CharacterButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton2MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CharacterButton2MouseEntered
+
+    private void CharacterButton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton2MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CharacterButton2MouseExited
+
+    private void CharacterButton2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton2MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CharacterButton2MousePressed
+
+    private void CharacterButton2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton2MouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CharacterButton2MouseReleased
+
+    private void CharacterButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CharacterButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CharacterButton2ActionPerformed
+
+    private void CharacterButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CharacterButton3MouseClicked
+
+    private void CharacterButton3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton3MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CharacterButton3MouseEntered
+
+    private void CharacterButton3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton3MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CharacterButton3MouseExited
+
+    private void CharacterButton3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton3MousePressed
+        editTeamLoadout(CharacterButton3,"/img/portraits/soleil_silver_portrait_idle.png","/img/portraits/soleil_silver_portrait_clicked.png");
+    }//GEN-LAST:event_CharacterButton3MousePressed
+
+    private void CharacterButton3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton3MouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CharacterButton3MouseReleased
+
+    private void CharacterButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CharacterButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CharacterButton3ActionPerformed
+
+    private void editTeamLoadout(JButton characterButton, String idleImg, String clickImg) {
+        try{
+            if(characterButton.getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource(clickImg)).toString())){
+                characterButton.setIcon(new javax.swing.ImageIcon(getClass().getResource(idleImg)));
+                
+                for(int i = 0; i < teamSlots.length; i++){
+                    if(teamSlots[i].getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource(idleImg)).toString())) {
+                        while(i < teamSlots.length-1){
+                            teamSlots[i].setIcon(teamSlots[i+1].getIcon());
+                            i++;
+                        }
+                        return;
+                    }
+                }
+            } else {
+                characterButton.setIcon(new javax.swing.ImageIcon(getClass().getResource(clickImg)));
+                for(JButton jb: teamSlots){
+                    if(jb.getIcon()==null) {
+                        jb.setIcon(new javax.swing.ImageIcon(getClass().getResource(idleImg)));
+                        return;
+                    }
+                }
+            }
+        } catch(NullPointerException e) {}
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -958,6 +1098,8 @@ public class CharacterModGUI extends javax.swing.JFrame {
     private javax.swing.JLabel Character3;
     private javax.swing.JLabel Character4;
     private javax.swing.JButton CharacterButton1;
+    private javax.swing.JButton CharacterButton2;
+    private javax.swing.JButton CharacterButton3;
     private javax.swing.JLabel CharacterPortrait;
     private javax.swing.JLayeredPane EditStatsLayer;
     private javax.swing.JButton EditTeamBanner;

@@ -8,8 +8,8 @@ package objects;
 
 import common.CharType;
 import common.Stat;
-import java.awt.Image;
-import java.util.ArrayList;
+import common.WeaponType;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -17,7 +17,7 @@ import java.util.ArrayList;
  * @dateCreated 12/5/2017
  * The main object that the player controls and fights against during the game, lists out everything the character needs
  */
-public abstract class Character {
+public class Character {
     private String name;
     private int maxHP;
     private int currentHP;
@@ -25,33 +25,48 @@ public abstract class Character {
     private int level;
     private int attack;
     private int defense;
-    private int resistance;
-    private int speed;
-    private int tempAttack;
-    private int tempDefense;
-    private int tempResistance;
-    private int tempSpeed;
-    private int walkRange;
-    private Skill[] skills;
-    private Rally rally;
-    private Image charImg;
-    private boolean active;
+    //private int resistance;
+    //private int speed;
+    //private int tempAttack;
+    //private int tempDefense;
+    //private int tempResistance;
+    //private int tempSpeed;
+    //private int walkRange;
+    //private Skill[] skills;
+    //private Rally rally;
+    private ImageIcon charImg;
+    //private boolean active;
     private CharType charType;
     
-    public Character(String name, int maxHP, Weapon weapon, int level, int attack, int defense, int resistance, int speed, Skill[] skills, Rally rally, Image charImg, CharType charType) {
-        this.setCharacter(name, maxHP, weapon, level, attack, defense, resistance, speed, skills, rally, charImg, charType);
+    public Character(String name) {
+        this.name = name;
+        this.level = 1;
+        this.maxHP = 10 + level;
+        this.weapon = new Weapon(WeaponType.Sword);
+        this.attack = 2;
+        this.defense = 2;
+        
+        switch(name) {
+            case "Anna": 
+                this.charImg = new ImageIcon(getClass().getResource("/img/characters/anna.png"));
+                break;
+            case "Zeph":
+                this.charImg = new ImageIcon(getClass().getResource("/img/characters/zeph.png"));
+                break;
+        }
+        
     }
     
-    public Character(String name, int maxHP, Weapon weapon, int level, int attack, int defense, int resistance, int speed, int tempAttack, int tempDefense, int tempResistance, int tempSpeed, Skill[] skills, Rally rally, Image charImg, boolean active, CharType charType) {
+    /*public Character(String name, int maxHP, Weapon weapon, int level, int attack, int defense, int resistance, int speed, int tempAttack, int tempDefense, int tempResistance, int tempSpeed, Skill[] skills, Rally rally, Image charImg, boolean active, CharType charType) {
         this.setCharacter(name, maxHP, weapon, level, attack, defense, resistance, speed, skills, rally, charImg, charType);
         this.tempAttack = tempAttack;
         this.tempDefense = tempDefense;
         this.tempResistance = tempResistance;
         this.tempSpeed = tempSpeed;
         this.active = active;
-    }
+    }*/
     
-    private void setCharacter(String name, int maxHP, Weapon weapon, int level, int attack, int defense, int resistance, int speed, Skill[] skills, Rally rally, Image charImg, CharType charType) {
+    /*private void setCharacter(String name, int maxHP, Weapon weapon, int level, int attack, int defense, int resistance, int speed, Skill[] skills, Rally rally, Image charImg, CharType charType) {
         this.name = name;
         this.maxHP = maxHP;
         this.currentHP = maxHP;
@@ -68,22 +83,22 @@ public abstract class Character {
         this.charImg = charImg;
         this.active = true;
         this.charType = charType;
-    }
+    }*/
     
-    public void reactivate() {
+    /*public void reactivate() {
         this.active = true;
     }
     
     public void deactivate() {
         this.active = false;
-    }
+    }*/
     
     public void changeHP(int hp) {
         this.currentHP -= hp;
         if (this.currentHP > this.maxHP)
             this.currentHP = this.maxHP;
     }
-    
+    /*
     public void boostAtk(int atkBoost) {
         this.tempAttack += atkBoost;
     }
@@ -99,15 +114,15 @@ public abstract class Character {
     public void boostSpd(int spdBoost) {
         this.tempSpeed += spdBoost;
     }
-    
+    */
     public int getTotalAtk() {
-        return this.attack + this.tempAttack;
+        return this.attack + weapon.getDmg(); //+ this.tempAttack;
     }
     
     public int getTotalDef() {
-        return this.defense + this.tempDefense;
+        return this.defense; // + this.tempDefense;
     }
-    
+    /*
     public int getTotalRes() {
         return this.resistance + this.tempResistance;
     }
@@ -118,12 +133,12 @@ public abstract class Character {
     
     public int getWalkRange() {
         return this.walkRange;
-    }
+    }*/
     
-    public Image getCharImg() {
+    public ImageIcon getCharImg() {
         return this.charImg;
     }
-    
+    /*
     public Skill getSkill(int x) {
         return this.skills[x];
     }
@@ -131,14 +146,14 @@ public abstract class Character {
     protected void setSkill(Skill skill, int x) {
         this.skills[x].equals(skill);
         this.givePermBoost(skill.getStat(), skill.getEffect());
-    }
+    }*/
     
     protected void setWeapon(Weapon weapon) {
         this.weapon = weapon;
-        if (weapon.getStat() != null)
-            givePermBoost(weapon.getStat(), weapon.getEffect());
+        /*if (weapon.getStat() != null)
+            givePermBoost(weapon.getStat(), weapon.getEffect());*/
     }
-    
+    /*
     protected void setRally(Rally rally) {
         this.rally = rally;
     }
@@ -150,7 +165,7 @@ public abstract class Character {
     public void equipRally(Rally rally) {
         this.setRally(rally);
     }
-    
+    */
     protected void increaseLevel() {
         this.level += 1;
     }
@@ -166,12 +181,12 @@ public abstract class Character {
             case Defense:
                 this.defense += effect;
                 break;
-            case Resistance:
+            /*case Resistance:
                 this.resistance += effect;
                 break;
             case Speed:
                 this.speed = effect;
-                break;
+                break;*/
             default:
                 break;
         }

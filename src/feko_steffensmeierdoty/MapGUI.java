@@ -4,8 +4,6 @@
 package feko_steffensmeierdoty;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.*;
 
 /**
@@ -44,8 +42,10 @@ public class MapGUI extends javax.swing.JFrame {
 
         MainContainer = new javax.swing.JLayeredPane();
         MapLayer = new javax.swing.JLayeredPane();
-        jToggleButton2 = new javax.swing.JToggleButton();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        Character4 = new javax.swing.JToggleButton();
+        Character3 = new javax.swing.JToggleButton();
+        Character2 = new javax.swing.JToggleButton();
+        Character1 = new javax.swing.JToggleButton();
         Grid = new javax.swing.JPanel();
         pos00 = new javax.swing.JButton();
         pos01 = new javax.swing.JButton();
@@ -104,7 +104,8 @@ public class MapGUI extends javax.swing.JFrame {
         BottomBorder = new javax.swing.JLabel();
         StatsLayer = new javax.swing.JLayeredPane();
         CharacterPortrait = new javax.swing.JLabel();
-        NamePlateText = new javax.swing.JLabel();
+        NamePlateText = new javax.swing.JTextField();
+        NamePlateDecor = new javax.swing.JLabel();
         NamePlate = new javax.swing.JLabel();
         StatsInterface = new javax.swing.JLabel();
         TopBorderStats = new javax.swing.JLabel();
@@ -121,63 +122,117 @@ public class MapGUI extends javax.swing.JFrame {
         MainContainer.setMinimumSize(new java.awt.Dimension(540, 925));
         MainContainer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        MapLayer.setEnabled(false);
         MapLayer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/zeph.png"))); // NOI18N
-        jToggleButton2.setBorderPainted(false);
-        jToggleButton2.setContentAreaFilled(false);
-        jToggleButton2.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        jToggleButton2.setFocusPainted(false);
-        jToggleButton2.setHideActionText(true);
-        jToggleButton2.setMaximumSize(new java.awt.Dimension(90, 90));
-        jToggleButton2.setMinimumSize(new java.awt.Dimension(90, 90));
-        jToggleButton2.setPreferredSize(new java.awt.Dimension(90, 90));
-        jToggleButton2.setRequestFocusEnabled(false);
-        jToggleButton2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        Character4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/characters/soleil.png"))); // NOI18N
+        Character4.setBorderPainted(false);
+        Character4.setContentAreaFilled(false);
+        Character4.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        Character4.setFocusPainted(false);
+        Character4.setHideActionText(true);
+        Character4.setMaximumSize(new java.awt.Dimension(90, 90));
+        Character4.setMinimumSize(new java.awt.Dimension(90, 90));
+        Character4.setPreferredSize(new java.awt.Dimension(90, 90));
+        Character4.setRequestFocusEnabled(false);
+        Character4.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
-                jToggleButton2MouseDragged(evt);
+                Character4MouseDragged(evt);
             }
         });
-        jToggleButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        Character4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jToggleButton2MousePressed(evt);
+                Character4MousePressed(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jToggleButton2MouseReleased(evt);
+                Character4MouseReleased(evt);
             }
         });
-        MapLayer.add(jToggleButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 90, 90));
+        MapLayer.add(Character4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 210, 90, 90));
 
-        jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/anna.png"))); // NOI18N
-        jToggleButton1.setBorderPainted(false);
-        jToggleButton1.setContentAreaFilled(false);
-        jToggleButton1.setFocusPainted(false);
-        jToggleButton1.setHideActionText(true);
-        jToggleButton1.setMaximumSize(new java.awt.Dimension(90, 90));
-        jToggleButton1.setMinimumSize(new java.awt.Dimension(90, 90));
-        jToggleButton1.setPreferredSize(new java.awt.Dimension(90, 90));
-        jToggleButton1.setRequestFocusEnabled(false);
-        jToggleButton1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        Character3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/characters/alfonse.png"))); // NOI18N
+        Character3.setBorderPainted(false);
+        Character3.setContentAreaFilled(false);
+        Character3.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        Character3.setFocusPainted(false);
+        Character3.setHideActionText(true);
+        Character3.setMaximumSize(new java.awt.Dimension(90, 90));
+        Character3.setMinimumSize(new java.awt.Dimension(90, 90));
+        Character3.setPreferredSize(new java.awt.Dimension(90, 90));
+        Character3.setRequestFocusEnabled(false);
+        Character3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
-                jToggleButton1MouseDragged(evt);
+                Character3MouseDragged(evt);
             }
         });
-        jToggleButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        Character3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jToggleButton1MousePressed(evt);
+                Character3MousePressed(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jToggleButton1MouseReleased(evt);
+                Character3MouseReleased(evt);
             }
         });
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+        MapLayer.add(Character3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 660, 90, 90));
+
+        Character2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/characters/zeph.png"))); // NOI18N
+        Character2.setBorderPainted(false);
+        Character2.setContentAreaFilled(false);
+        Character2.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        Character2.setFocusPainted(false);
+        Character2.setHideActionText(true);
+        Character2.setMaximumSize(new java.awt.Dimension(90, 90));
+        Character2.setMinimumSize(new java.awt.Dimension(90, 90));
+        Character2.setPreferredSize(new java.awt.Dimension(90, 90));
+        Character2.setRequestFocusEnabled(false);
+        Character2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                Character2MouseDragged(evt);
+            }
+        });
+        Character2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                Character2MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                Character2MouseReleased(evt);
+            }
+        });
+        Character2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+                Character2ActionPerformed(evt);
             }
         });
-        MapLayer.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 90, 90));
+        MapLayer.add(Character2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 90, 90));
 
-        MainContainer.add(MapLayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 930));
+        Character1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/anna.png"))); // NOI18N
+        Character1.setBorderPainted(false);
+        Character1.setContentAreaFilled(false);
+        Character1.setFocusPainted(false);
+        Character1.setHideActionText(true);
+        Character1.setMaximumSize(new java.awt.Dimension(90, 90));
+        Character1.setMinimumSize(new java.awt.Dimension(90, 90));
+        Character1.setPreferredSize(new java.awt.Dimension(90, 90));
+        Character1.setRequestFocusEnabled(false);
+        Character1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                Character1MouseDragged(evt);
+            }
+        });
+        Character1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                Character1MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                Character1MouseReleased(evt);
+            }
+        });
+        Character1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Character1ActionPerformed(evt);
+            }
+        });
+        MapLayer.add(Character1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 90, 90));
 
         Grid.setOpaque(false);
         Grid.setLayout(new java.awt.GridLayout(8, 6));
@@ -379,11 +434,13 @@ public class MapGUI extends javax.swing.JFrame {
         pos75.setContentAreaFilled(false);
         Grid.add(pos75);
 
-        MainContainer.add(Grid, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 540, 720));
+        MapLayer.add(Grid, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 540, 720));
 
         Map.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/game_background.png"))); // NOI18N
         Map.setToolTipText("");
-        MainContainer.add(Map, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 540, -1));
+        MapLayer.add(Map, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 540, -1));
+
+        MainContainer.add(MapLayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 930));
 
         MenuButtonLayer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -450,14 +507,20 @@ public class MapGUI extends javax.swing.JFrame {
         MainContainer.add(MenuButtonLayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 840, 540, 90));
 
         StatsLayer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        StatsLayer.add(CharacterPortrait, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        StatsLayer.add(CharacterPortrait, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 1, -1, -1));
 
         NamePlateText.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        NamePlateText.setForeground(new java.awt.Color(255, 255, 255));
-        NamePlateText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        NamePlateText.setFocusable(false);
-        NamePlateText.setRequestFocusEnabled(false);
-        StatsLayer.add(NamePlateText, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 140, 30));
+        NamePlateText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        NamePlateText.setBorder(null);
+        NamePlateText.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        NamePlateText.setEnabled(false);
+        NamePlateText.setOpaque(false);
+        StatsLayer.add(NamePlateText, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 140, 25));
+
+        NamePlateDecor.setForeground(new java.awt.Color(255, 255, 255));
+        NamePlateDecor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        NamePlateDecor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/name_plate_decor.png"))); // NOI18N
+        StatsLayer.add(NamePlateDecor, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, -1));
 
         NamePlate.setForeground(new java.awt.Color(255, 255, 255));
         NamePlate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -529,43 +592,77 @@ public class MapGUI extends javax.swing.JFrame {
         setVisible(false);
     }//GEN-LAST:event_EndTurnButtonMouseClicked
    
-    private void jToggleButton1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton1MouseDragged
-        moveCharacter(jToggleButton1);
-    }//GEN-LAST:event_jToggleButton1MouseDragged
+    private void Character1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character1MouseDragged
+        moveCharacter(Character1);
+    }//GEN-LAST:event_Character1MouseDragged
 
-    private void jToggleButton2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton2MouseDragged
-        moveCharacter(jToggleButton2);
-    }//GEN-LAST:event_jToggleButton2MouseDragged
+    private void Character2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character2MouseDragged
+        moveCharacter(Character2);
+    }//GEN-LAST:event_Character2MouseDragged
 
-    private void jToggleButton1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton1MousePressed
+    private void Character1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character1MousePressed
         StatsLayer.setVisible(true);
-        charInitialPoint = jToggleButton1.getLocation();
-        CharacterPortrait.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/Tharja_portrait.png")));
-        NamePlateText.setText("Sharena");
-    }//GEN-LAST:event_jToggleButton1MousePressed
+        charInitialPoint = Character1.getLocation();
+        CharacterPortrait.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/anna_battle_portrait.png")));
+        NamePlateText.setText("Anna");
+    }//GEN-LAST:event_Character1MousePressed
 
-    private void jToggleButton2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton2MousePressed
+    private void Character2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character2MousePressed
         StatsLayer.setVisible(true);
-        charInitialPoint = jToggleButton2.getLocation();
-        CharacterPortrait.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/Tharja_portrait.png")));
-        NamePlateText.setText("Tharja");
-    }//GEN-LAST:event_jToggleButton2MousePressed
+        charInitialPoint = Character2.getLocation();
+        CharacterPortrait.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/zeph_battle_portrait.png")));
+        NamePlateText.setText("Zephiel");
+    }//GEN-LAST:event_Character2MousePressed
 
-    private void jToggleButton1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton1MouseReleased
-        checkForValidMove(Grid,jToggleButton1);        
-    }//GEN-LAST:event_jToggleButton1MouseReleased
+    private void Character1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character1MouseReleased
+        checkForValidMove(Grid,Character1);        
+    }//GEN-LAST:event_Character1MouseReleased
 
-    private void jToggleButton2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton2MouseReleased
-        checkForValidMove(Grid,jToggleButton2);
-    }//GEN-LAST:event_jToggleButton2MouseReleased
+    private void Character2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character2MouseReleased
+        checkForValidMove(Grid,Character2);
+    }//GEN-LAST:event_Character2MouseReleased
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+    private void Character1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Character1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+    }//GEN-LAST:event_Character1ActionPerformed
 
     private void pos51ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pos51ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_pos51ActionPerformed
+
+    private void Character3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character3MouseDragged
+        moveCharacter(Character3);
+    }//GEN-LAST:event_Character3MouseDragged
+
+    private void Character3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character3MousePressed
+        StatsLayer.setVisible(true);
+        charInitialPoint = Character3.getLocation();
+        CharacterPortrait.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/alfonse_battle_portrait.png")));
+        NamePlateText.setText("Alfonse");
+    }//GEN-LAST:event_Character3MousePressed
+
+    private void Character3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character3MouseReleased
+        checkForValidMove(Grid,Character3);
+    }//GEN-LAST:event_Character3MouseReleased
+
+    private void Character4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character4MouseDragged
+        moveCharacter(Character4);
+    }//GEN-LAST:event_Character4MouseDragged
+
+    private void Character4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character4MousePressed
+        StatsLayer.setVisible(true);
+        charInitialPoint = Character4.getLocation();
+        CharacterPortrait.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/soleil_battle_portrait.png")));
+        NamePlateText.setText("Soleil");
+    }//GEN-LAST:event_Character4MousePressed
+
+    private void Character4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character4MouseReleased
+        checkForValidMove(Grid,Character4);
+    }//GEN-LAST:event_Character4MouseReleased
+
+    private void Character2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Character2ActionPerformed
+        
+    }//GEN-LAST:event_Character2ActionPerformed
 
     private boolean isMouseWithinComponent(Component c) {
         mouseLocation = MouseInfo.getPointerInfo().getLocation();
@@ -637,6 +734,10 @@ public class MapGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BattleWheel;
     private javax.swing.JLabel BottomBorder;
+    private javax.swing.JToggleButton Character1;
+    private javax.swing.JToggleButton Character2;
+    private javax.swing.JToggleButton Character3;
+    private javax.swing.JToggleButton Character4;
     private javax.swing.JLabel CharacterPortrait;
     private javax.swing.JButton DangerAreaButton;
     private javax.swing.JButton EndTurnButton;
@@ -646,15 +747,14 @@ public class MapGUI extends javax.swing.JFrame {
     private javax.swing.JLayeredPane MapLayer;
     private javax.swing.JLayeredPane MenuButtonLayer;
     private javax.swing.JLabel NamePlate;
-    private javax.swing.JLabel NamePlateText;
+    private javax.swing.JLabel NamePlateDecor;
+    private javax.swing.JTextField NamePlateText;
     private javax.swing.JButton SettingsButton;
     private javax.swing.JLabel StatsInterface;
     private javax.swing.JLayeredPane StatsLayer;
     private javax.swing.JLabel TopBorderStats;
     private javax.swing.JLabel TopBorderWaiting;
     private javax.swing.JLayeredPane WaitingStatsLayer;
-    private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JButton pos00;
     private javax.swing.JButton pos01;
     private javax.swing.JButton pos02;
