@@ -115,8 +115,6 @@ public class MainMenuGUI extends javax.swing.JFrame {
         jLayeredPane1.add(ExitGameButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 450, 290, 60));
 
         Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/backgrounds/main_menu_background.png"))); // NOI18N
-        Background.setMaximumSize(null);
-        Background.setMinimumSize(null);
         jLayeredPane1.add(Background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -134,42 +132,42 @@ public class MainMenuGUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void LoadGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoadGameButtonActionPerformed
-        CharacterModGUI charModGUI = new CharacterModGUI();
-        
-        charModGUI.setVisible(true);
-        
-        setVisible(false);
-    }//GEN-LAST:event_LoadGameButtonActionPerformed
-  
-    private void LoadGameButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LoadGameButtonMouseEntered
-        LoadGameButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/main_menu_button1.png")));
-    }//GEN-LAST:event_LoadGameButtonMouseEntered
-
-    private void LoadGameButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LoadGameButtonMouseExited
-        LoadGameButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/main_menu_button2.png")));
-    }//GEN-LAST:event_LoadGameButtonMouseExited
-
-    private void OptionsButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OptionsButtonMouseEntered
-        OptionsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/main_menu_button1.png")));
-    }//GEN-LAST:event_OptionsButtonMouseEntered
-
-    private void OptionsButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OptionsButtonMouseExited
-        OptionsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/main_menu_button2.png")));
-    }//GEN-LAST:event_OptionsButtonMouseExited
-
-    private void ExitGameButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitGameButtonMouseEntered
-        ExitGameButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/main_menu_button1.png")));
-    }//GEN-LAST:event_ExitGameButtonMouseEntered
+    private void ExitGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitGameButtonActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_ExitGameButtonActionPerformed
 
     private void ExitGameButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitGameButtonMouseExited
         ExitGameButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/main_menu_button2.png")));
     }//GEN-LAST:event_ExitGameButtonMouseExited
 
-    private void ExitGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitGameButtonActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_ExitGameButtonActionPerformed
+    private void ExitGameButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitGameButtonMouseEntered
+        ExitGameButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/main_menu_button1.png")));
+    }//GEN-LAST:event_ExitGameButtonMouseEntered
 
+    private void OptionsButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OptionsButtonMouseExited
+        OptionsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/main_menu_button2.png")));
+    }//GEN-LAST:event_OptionsButtonMouseExited
+
+    private void OptionsButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OptionsButtonMouseEntered
+        OptionsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/main_menu_button1.png")));
+    }//GEN-LAST:event_OptionsButtonMouseEntered
+
+    private void LoadGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoadGameButtonActionPerformed
+        CharacterModGUI charModGUI = new CharacterModGUI();
+
+        charModGUI.setVisible(true);
+
+        setVisible(false);
+    }//GEN-LAST:event_LoadGameButtonActionPerformed
+
+    private void LoadGameButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LoadGameButtonMouseExited
+        LoadGameButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/main_menu_button2.png")));
+    }//GEN-LAST:event_LoadGameButtonMouseExited
+
+    private void LoadGameButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LoadGameButtonMouseEntered
+        LoadGameButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/main_menu_button1.png")));
+    }//GEN-LAST:event_LoadGameButtonMouseEntered
+  
     /**
      * @param args the command line arguments
      */

@@ -46,6 +46,7 @@ public class MapGUI extends javax.swing.JFrame {
         Character3 = new javax.swing.JToggleButton();
         Character2 = new javax.swing.JToggleButton();
         Character1 = new javax.swing.JToggleButton();
+        Map = new javax.swing.JLabel();
         Grid = new javax.swing.JPanel();
         pos00 = new javax.swing.JButton();
         pos01 = new javax.swing.JButton();
@@ -95,7 +96,6 @@ public class MapGUI extends javax.swing.JFrame {
         pos73 = new javax.swing.JButton();
         pos74 = new javax.swing.JButton();
         pos75 = new javax.swing.JButton();
-        Map = new javax.swing.JLabel();
         MenuButtonLayer = new javax.swing.JLayeredPane();
         DangerAreaButton = new javax.swing.JButton();
         SettingsButton = new javax.swing.JButton();
@@ -148,6 +148,11 @@ public class MapGUI extends javax.swing.JFrame {
                 Character4MouseReleased(evt);
             }
         });
+        Character4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Character4ActionPerformed(evt);
+            }
+        });
         MapLayer.add(Character4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 210, 90, 90));
 
         Character3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/characters/alfonse.png"))); // NOI18N
@@ -173,7 +178,7 @@ public class MapGUI extends javax.swing.JFrame {
                 Character3MouseReleased(evt);
             }
         });
-        MapLayer.add(Character3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 660, 90, 90));
+        MapLayer.add(Character3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 90, 90));
 
         Character2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/characters/zeph.png"))); // NOI18N
         Character2.setBorderPainted(false);
@@ -203,7 +208,7 @@ public class MapGUI extends javax.swing.JFrame {
                 Character2ActionPerformed(evt);
             }
         });
-        MapLayer.add(Character2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 90, 90));
+        MapLayer.add(Character2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 660, 90, 90));
 
         Character1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/anna.png"))); // NOI18N
         Character1.setBorderPainted(false);
@@ -233,6 +238,12 @@ public class MapGUI extends javax.swing.JFrame {
             }
         });
         MapLayer.add(Character1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 90, 90));
+
+        Map.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/game_background.png"))); // NOI18N
+        Map.setToolTipText("");
+        MapLayer.add(Map, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 540, -1));
+
+        MainContainer.add(MapLayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 930));
 
         Grid.setOpaque(false);
         Grid.setLayout(new java.awt.GridLayout(8, 6));
@@ -434,13 +445,7 @@ public class MapGUI extends javax.swing.JFrame {
         pos75.setContentAreaFilled(false);
         Grid.add(pos75);
 
-        MapLayer.add(Grid, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 540, 720));
-
-        Map.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/game_background.png"))); // NOI18N
-        Map.setToolTipText("");
-        MapLayer.add(Map, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 540, -1));
-
-        MainContainer.add(MapLayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 930));
+        MainContainer.add(Grid, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 540, 720));
 
         MenuButtonLayer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -513,6 +518,7 @@ public class MapGUI extends javax.swing.JFrame {
         NamePlateText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         NamePlateText.setBorder(null);
         NamePlateText.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        NamePlateText.setDisabledTextColor(new java.awt.Color(255, 255, 255));
         NamePlateText.setEnabled(false);
         NamePlateText.setOpaque(false);
         StatsLayer.add(NamePlateText, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 140, 25));
@@ -663,6 +669,10 @@ public class MapGUI extends javax.swing.JFrame {
     private void Character2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Character2ActionPerformed
         
     }//GEN-LAST:event_Character2ActionPerformed
+
+    private void Character4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Character4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Character4ActionPerformed
 
     private boolean isMouseWithinComponent(Component c) {
         mouseLocation = MouseInfo.getPointerInfo().getLocation();

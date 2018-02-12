@@ -425,15 +425,19 @@ public class CharacterModGUI extends javax.swing.JFrame {
 
         TeamLoadout.setLayout(new java.awt.GridLayout(1, 0));
 
+        Slot1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         Slot1.setContentAreaFilled(false);
         TeamLoadout.add(Slot1);
 
+        Slot2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         Slot2.setContentAreaFilled(false);
         TeamLoadout.add(Slot2);
 
+        Slot3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         Slot3.setContentAreaFilled(false);
         TeamLoadout.add(Slot3);
 
+        Slot4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         Slot4.setContentAreaFilled(false);
         TeamLoadout.add(Slot4);
 
