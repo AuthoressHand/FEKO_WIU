@@ -68,6 +68,8 @@ public class CharacterModGUI extends javax.swing.JFrame {
         Slot2 = new javax.swing.JButton();
         Slot3 = new javax.swing.JButton();
         Slot4 = new javax.swing.JButton();
+        UndoText = new javax.swing.JLabel();
+        UndoButton = new javax.swing.JButton();
         CharacterButton3 = new javax.swing.JButton();
         CharacterButton2 = new javax.swing.JButton();
         CharacterButton1 = new javax.swing.JButton();
@@ -423,25 +425,67 @@ public class CharacterModGUI extends javax.swing.JFrame {
         EditTeamsLayer.setMinimumSize(new java.awt.Dimension(540, 900));
         EditTeamsLayer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        TeamLoadout.setLayout(new java.awt.GridLayout(1, 0));
+        TeamLoadout.setLayout(new java.awt.GridLayout(1, 0, 10, 0));
 
-        Slot1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Slot1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/empty_portrait.png"))); // NOI18N
+        Slot1.setBorder(null);
         Slot1.setContentAreaFilled(false);
         TeamLoadout.add(Slot1);
 
-        Slot2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Slot2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/empty_portrait.png"))); // NOI18N
+        Slot2.setBorder(null);
         Slot2.setContentAreaFilled(false);
         TeamLoadout.add(Slot2);
 
-        Slot3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Slot3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/empty_portrait.png"))); // NOI18N
+        Slot3.setBorder(null);
         Slot3.setContentAreaFilled(false);
         TeamLoadout.add(Slot3);
 
-        Slot4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Slot4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/empty_portrait.png"))); // NOI18N
+        Slot4.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         Slot4.setContentAreaFilled(false);
         TeamLoadout.add(Slot4);
 
-        EditTeamsLayer.add(TeamLoadout, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, 360, 90));
+        EditTeamsLayer.add(TeamLoadout, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 390, 90));
+
+        UndoText.setFont(new java.awt.Font("Franklin Gothic Book", 1, 18)); // NOI18N
+        UndoText.setForeground(new java.awt.Color(255, 255, 255));
+        UndoText.setText("Undo");
+        UndoText.setVisible(false);
+        EditTeamsLayer.add(UndoText, new org.netbeans.lib.awtextra.AbsoluteConstraints(63, 370, 60, 30));
+
+        UndoButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/empty_portrait.png"))); // NOI18N
+        UndoButton.setBorderPainted(false);
+        UndoButton.setContentAreaFilled(false);
+        UndoButton.setFocusPainted(false);
+        UndoButton.setMaximumSize(new java.awt.Dimension(90, 90));
+        UndoButton.setMinimumSize(new java.awt.Dimension(90, 90));
+        UndoButton.setPreferredSize(new java.awt.Dimension(90, 90));
+        UndoButton.setVisible(false);
+        UndoButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                UndoButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                UndoButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                UndoButtonMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                UndoButtonMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                UndoButtonMouseReleased(evt);
+            }
+        });
+        UndoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UndoButtonActionPerformed(evt);
+            }
+        });
+        EditTeamsLayer.add(UndoButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 90, 90));
 
         CharacterButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/soleil_silver_portrait_idle.png"))); // NOI18N
         CharacterButton3.setBorderPainted(false);
@@ -581,7 +625,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
         EditTeamsBannerText.setFont(new java.awt.Font("Franklin Gothic Book", 1, 36)); // NOI18N
         EditTeamsBannerText.setForeground(new java.awt.Color(51, 51, 51));
         EditTeamsBannerText.setText("Edit Teams");
-        EditTeamsLayer.add(EditTeamsBannerText, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 210, 60));
+        EditTeamsLayer.add(EditTeamsBannerText, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, 210, 60));
 
         EditTeamBanner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/tan_header.png"))); // NOI18N
         EditTeamBanner.setBorderPainted(false);
@@ -1025,30 +1069,62 @@ public class CharacterModGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_CharacterButton3ActionPerformed
 
-    private void editTeamLoadout(JButton characterButton, String idleImg, String clickImg) {
-        try{
-            if(characterButton.getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource(clickImg)).toString())){
-                characterButton.setIcon(new javax.swing.ImageIcon(getClass().getResource(idleImg)));
+    private void UndoButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UndoButtonMouseClicked
+        for(int i = 1; i < teamSlots.length+1; i++){
+            if(i==4 && !teamSlots[i].getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/empty_portrait.png")).toString())){
+                teamSlots[i].setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/empty_portrait.png")));
+                return;
+            }
                 
-                for(int i = 0; i < teamSlots.length; i++){
-                    if(teamSlots[i].getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource(idleImg)).toString())) {
-                        while(i < teamSlots.length-1){
-                            teamSlots[i].setIcon(teamSlots[i+1].getIcon());
-                            i++;
-                        }
-                        return;
+            if(teamSlots[i].getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/empty_portrait.png")).toString())) {
+                teamSlots[i-1].setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/empty_portrait.png")));
+                return;
+            }
+        }
+    }//GEN-LAST:event_UndoButtonMouseClicked
+
+    private void UndoButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UndoButtonMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_UndoButtonMouseEntered
+
+    private void UndoButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UndoButtonMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_UndoButtonMouseExited
+
+    private void UndoButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UndoButtonMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_UndoButtonMousePressed
+
+    private void UndoButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UndoButtonMouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_UndoButtonMouseReleased
+
+    private void UndoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UndoButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_UndoButtonActionPerformed
+
+    private void editTeamLoadout(JButton characterButton, String idleImg, String clickImg) {
+        if(characterButton.getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource(clickImg)).toString())){
+            characterButton.setIcon(new javax.swing.ImageIcon(getClass().getResource(idleImg)));
+
+            for(int i = 0; i < teamSlots.length; i++){
+                if(teamSlots[i].getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource(idleImg)).toString())) {
+                    while(i < teamSlots.length-1){
+                        teamSlots[i].setIcon(teamSlots[i+1].getIcon());
+                        i++;
                     }
-                }
-            } else {
-                characterButton.setIcon(new javax.swing.ImageIcon(getClass().getResource(clickImg)));
-                for(JButton jb: teamSlots){
-                    if(jb.getIcon()==null) {
-                        jb.setIcon(new javax.swing.ImageIcon(getClass().getResource(idleImg)));
-                        return;
-                    }
+                    return;
                 }
             }
-        } catch(NullPointerException e) {}
+        } else {
+            characterButton.setIcon(new javax.swing.ImageIcon(getClass().getResource(clickImg)));
+            for(JButton jb: teamSlots){
+                if(jb.getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/empty_portrait.png")).toString())) {
+                    jb.setIcon(new javax.swing.ImageIcon(getClass().getResource(idleImg)));
+                    return;
+                }
+            }
+        }
     }
     
     /**
@@ -1142,6 +1218,8 @@ public class CharacterModGUI extends javax.swing.JFrame {
     private javax.swing.JLabel TeamPickerUI;
     private javax.swing.JLabel TopBorder;
     private javax.swing.JLabel TopBorderStats;
+    private javax.swing.JButton UndoButton;
+    private javax.swing.JLabel UndoText;
     private javax.swing.JLabel WorldMapBackground;
     // End of variables declaration//GEN-END:variables
 }

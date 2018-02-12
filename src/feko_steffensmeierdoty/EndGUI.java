@@ -38,7 +38,6 @@ public class EndGUI extends javax.swing.JFrame {
 
         jLayeredPane2.setMaximumSize(new java.awt.Dimension(540, 925));
         jLayeredPane2.setMinimumSize(new java.awt.Dimension(540, 925));
-        jLayeredPane2.setPreferredSize(new java.awt.Dimension(540, 925));
         jLayeredPane2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/win_logo.png"))); // NOI18N
