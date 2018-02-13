@@ -1018,7 +1018,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_EditTeamsBackButtonActionPerformed
 
     private void CharacterButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton1MouseClicked
-        editTeamLoadout(CharacterButton1,"/img/portraits/anna_silver_portrait_idle.png","/img/portraits/anna_silver_portrait_clicked.png");
+        editTeam(CharacterButton1,"/img/portraits/anna_silver_portrait_idle.png","/img/portraits/anna_silver_portrait_clicked.png");
     }//GEN-LAST:event_CharacterButton1MouseClicked
 
     private void CharacterButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton1MouseEntered
@@ -1042,7 +1042,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_CharacterButton1ActionPerformed
 
     private void CharacterButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton2MouseClicked
-        editTeamLoadout(CharacterButton2,"/img/portraits/alfonse_silver_portrait_idle.png","/img/portraits/alfonse_silver_portrait_clicked.png");
+        editTeam(CharacterButton2,"/img/portraits/alfonse_silver_portrait_idle.png","/img/portraits/alfonse_silver_portrait_clicked.png");
     }//GEN-LAST:event_CharacterButton2MouseClicked
 
     private void CharacterButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton2MouseEntered
@@ -1078,7 +1078,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_CharacterButton3MouseExited
 
     private void CharacterButton3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton3MousePressed
-        editTeamLoadout(CharacterButton3,"/img/portraits/soleil_silver_portrait_idle.png","/img/portraits/soleil_silver_portrait_clicked.png");
+        editTeam(CharacterButton3,"/img/portraits/soleil_silver_portrait_idle.png","/img/portraits/soleil_silver_portrait_clicked.png");
     }//GEN-LAST:event_CharacterButton3MousePressed
 
     private void CharacterButton3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton3MouseReleased
@@ -1102,7 +1102,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_CharacterButton4MouseExited
 
     private void CharacterButton4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton4MousePressed
-        editTeamLoadout(CharacterButton4,"/img/portraits/roy_silver_portrait_idle.png","/img/portraits/roy_silver_portrait_clicked.png");
+        editTeam(CharacterButton4,"/img/portraits/roy_silver_portrait_idle.png","/img/portraits/roy_silver_portrait_clicked.png");
     }//GEN-LAST:event_CharacterButton4MousePressed
 
     private void CharacterButton4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton4MouseReleased
@@ -1126,7 +1126,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_CharacterButton5MouseExited
 
     private void CharacterButton5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton5MousePressed
-        editTeamLoadout(CharacterButton5,"/img/portraits/selena_silver_portrait_idle.png","/img/portraits/selena_silver_portrait_clicked.png");
+        editTeam(CharacterButton5,"/img/portraits/selena_silver_portrait_idle.png","/img/portraits/selena_silver_portrait_clicked.png");
     }//GEN-LAST:event_CharacterButton5MousePressed
 
     private void CharacterButton5MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton5MouseReleased
@@ -1137,7 +1137,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_CharacterButton5ActionPerformed
 
-    private void editTeamLoadout(JButton characterButton, String idleImg, String clickImg) {
+    private void editTeam(JButton characterButton, String idleImg, String clickImg) {
         if(characterButton.getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource(clickImg)).toString())){
             characterButton.setIcon(new javax.swing.ImageIcon(getClass().getResource(idleImg)));
 
@@ -1156,7 +1156,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
                 }
             }
         } else {
-            if(isSlotsFull())
+            if(isTeamFull())
                 return;
             characterButton.setIcon(new javax.swing.ImageIcon(getClass().getResource(clickImg)));
             for(JButton jb: teamSlots){
@@ -1168,12 +1168,21 @@ public class CharacterModGUI extends javax.swing.JFrame {
         }
     }
     
-    private boolean isSlotsFull() {
+    private boolean isTeamFull() {
         for(JButton jb: teamSlots){
             if(jb.getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/empty_portrait.png")).toString()))
                 return false;
         }
         return true;
+    }
+    
+    private int getTeamSize() {
+        int counter = 0;
+        for(JButton jb: teamSlots){
+            if(!jb.getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/empty_portrait.png")).toString()))
+                counter++;
+        }
+        return counter;
     }
     
     private void initEditTeamSlots() {
