@@ -42,6 +42,7 @@ public class MapGUI extends javax.swing.JFrame {
 
         MainContainer = new javax.swing.JLayeredPane();
         MapLayer = new javax.swing.JLayeredPane();
+        Character7 = new javax.swing.JToggleButton();
         Character6 = new javax.swing.JToggleButton();
         Character5 = new javax.swing.JToggleButton();
         Character4 = new javax.swing.JToggleButton();
@@ -126,6 +127,36 @@ public class MapGUI extends javax.swing.JFrame {
 
         MapLayer.setEnabled(false);
         MapLayer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Character7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/characters/selena.png"))); // NOI18N
+        Character7.setBorderPainted(false);
+        Character7.setContentAreaFilled(false);
+        Character7.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        Character7.setFocusPainted(false);
+        Character7.setHideActionText(true);
+        Character7.setMaximumSize(new java.awt.Dimension(90, 90));
+        Character7.setMinimumSize(new java.awt.Dimension(90, 90));
+        Character7.setPreferredSize(new java.awt.Dimension(90, 90));
+        Character7.setRequestFocusEnabled(false);
+        Character7.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                Character7MouseDragged(evt);
+            }
+        });
+        Character7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                Character7MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                Character7MouseReleased(evt);
+            }
+        });
+        Character7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Character7ActionPerformed(evt);
+            }
+        });
+        MapLayer.add(Character7, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, 90, 90));
 
         Character6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/characters/hawkeye.png"))); // NOI18N
         Character6.setBorderPainted(false);
@@ -774,6 +805,25 @@ public class MapGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Character6ActionPerformed
 
+    private void Character7MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character7MouseDragged
+        moveCharacter(Character7);
+    }//GEN-LAST:event_Character7MouseDragged
+
+    private void Character7MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character7MousePressed
+        StatsLayer.setVisible(true);
+        charInitialPoint = Character7.getLocation();
+        CharacterPortrait.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/selena_battle_portrait.png")));
+        NamePlateText.setText("Selena");
+    }//GEN-LAST:event_Character7MousePressed
+
+    private void Character7MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character7MouseReleased
+        checkForValidMove(Grid,Character7);
+    }//GEN-LAST:event_Character7MouseReleased
+
+    private void Character7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Character7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Character7ActionPerformed
+
     private boolean isMouseWithinComponent(Component c) {
         mouseLocation = MouseInfo.getPointerInfo().getLocation();
         bounds = c.getBounds();
@@ -850,6 +900,7 @@ public class MapGUI extends javax.swing.JFrame {
     private javax.swing.JToggleButton Character4;
     private javax.swing.JToggleButton Character5;
     private javax.swing.JToggleButton Character6;
+    private javax.swing.JToggleButton Character7;
     private javax.swing.JLabel CharacterPortrait;
     private javax.swing.JButton DangerAreaButton;
     private javax.swing.JButton EndTurnButton;

@@ -64,8 +64,8 @@ public class CharacterModGUI extends javax.swing.JFrame {
         Slot2 = new javax.swing.JButton();
         Slot3 = new javax.swing.JButton();
         Slot4 = new javax.swing.JButton();
-        UndoText = new javax.swing.JLabel();
-        UndoButton = new javax.swing.JButton();
+        CharacterButton5 = new javax.swing.JButton();
+        CharacterButton4 = new javax.swing.JButton();
         CharacterButton3 = new javax.swing.JButton();
         CharacterButton2 = new javax.swing.JButton();
         CharacterButton1 = new javax.swing.JButton();
@@ -445,43 +445,67 @@ public class CharacterModGUI extends javax.swing.JFrame {
 
         EditTeamsLayer.add(TeamLoadout, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 390, 90));
 
-        UndoText.setFont(new java.awt.Font("Franklin Gothic Book", 1, 18)); // NOI18N
-        UndoText.setForeground(new java.awt.Color(255, 255, 255));
-        UndoText.setText("Undo");
-        UndoText.setVisible(false);
-        EditTeamsLayer.add(UndoText, new org.netbeans.lib.awtextra.AbsoluteConstraints(63, 370, 60, 30));
-
-        UndoButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/empty_portrait.png"))); // NOI18N
-        UndoButton.setBorderPainted(false);
-        UndoButton.setContentAreaFilled(false);
-        UndoButton.setFocusPainted(false);
-        UndoButton.setMaximumSize(new java.awt.Dimension(90, 90));
-        UndoButton.setMinimumSize(new java.awt.Dimension(90, 90));
-        UndoButton.setPreferredSize(new java.awt.Dimension(90, 90));
-        UndoButton.setVisible(false);
-        UndoButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        CharacterButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/selena_silver_portrait_idle.png"))); // NOI18N
+        CharacterButton5.setBorderPainted(false);
+        CharacterButton5.setContentAreaFilled(false);
+        CharacterButton5.setFocusPainted(false);
+        CharacterButton5.setMaximumSize(new java.awt.Dimension(90, 90));
+        CharacterButton5.setMinimumSize(new java.awt.Dimension(90, 90));
+        CharacterButton5.setPreferredSize(new java.awt.Dimension(90, 90));
+        CharacterButton5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                UndoButtonMouseClicked(evt);
+                CharacterButton5MouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                UndoButtonMouseEntered(evt);
+                CharacterButton5MouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                UndoButtonMouseExited(evt);
+                CharacterButton5MouseExited(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                UndoButtonMousePressed(evt);
+                CharacterButton5MousePressed(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                UndoButtonMouseReleased(evt);
+                CharacterButton5MouseReleased(evt);
             }
         });
-        UndoButton.addActionListener(new java.awt.event.ActionListener() {
+        CharacterButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UndoButtonActionPerformed(evt);
+                CharacterButton5ActionPerformed(evt);
             }
         });
-        EditTeamsLayer.add(UndoButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 90, 90));
+        EditTeamsLayer.add(CharacterButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 460, 90, 90));
+
+        CharacterButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/roy_silver_portrait_idle.png"))); // NOI18N
+        CharacterButton4.setBorderPainted(false);
+        CharacterButton4.setContentAreaFilled(false);
+        CharacterButton4.setFocusPainted(false);
+        CharacterButton4.setMaximumSize(new java.awt.Dimension(90, 90));
+        CharacterButton4.setMinimumSize(new java.awt.Dimension(90, 90));
+        CharacterButton4.setPreferredSize(new java.awt.Dimension(90, 90));
+        CharacterButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CharacterButton4MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CharacterButton4MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                CharacterButton4MouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                CharacterButton4MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                CharacterButton4MouseReleased(evt);
+            }
+        });
+        CharacterButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CharacterButton4ActionPerformed(evt);
+            }
+        });
+        EditTeamsLayer.add(CharacterButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 340, 90, 90));
 
         CharacterButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/soleil_silver_portrait_idle.png"))); // NOI18N
         CharacterButton3.setBorderPainted(false);
@@ -512,7 +536,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
                 CharacterButton3ActionPerformed(evt);
             }
         });
-        EditTeamsLayer.add(CharacterButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 340, 90, 90));
+        EditTeamsLayer.add(CharacterButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 340, 90, 90));
 
         CharacterButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/alfonse_silver_portrait_idle.png"))); // NOI18N
         CharacterButton2.setBorderPainted(false);
@@ -543,7 +567,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
                 CharacterButton2ActionPerformed(evt);
             }
         });
-        EditTeamsLayer.add(CharacterButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 340, 90, 90));
+        EditTeamsLayer.add(CharacterButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 340, 90, 90));
 
         CharacterButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/anna_silver_portrait_idle.png"))); // NOI18N
         CharacterButton1.setBorderPainted(false);
@@ -574,7 +598,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
                 CharacterButton1ActionPerformed(evt);
             }
         });
-        EditTeamsLayer.add(CharacterButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 340, 90, 90));
+        EditTeamsLayer.add(CharacterButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 90, 90));
 
         TeamPickerUI.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/team_picker_UI.png"))); // NOI18N
         EditTeamsLayer.add(TeamPickerUI, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 310, 600, 400));
@@ -1065,39 +1089,53 @@ public class CharacterModGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_CharacterButton3ActionPerformed
 
-    private void UndoButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UndoButtonMouseClicked
-        for(int i = 1; i < teamSlots.length+1; i++){
-            if(i==4 && !teamSlots[i].getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/empty_portrait.png")).toString())){
-                teamSlots[i].setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/empty_portrait.png")));
-                return;
-            }
-                
-            if(teamSlots[i].getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/empty_portrait.png")).toString())) {
-                teamSlots[i-1].setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/empty_portrait.png")));
-                return;
-            }
-        }
-    }//GEN-LAST:event_UndoButtonMouseClicked
-
-    private void UndoButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UndoButtonMouseEntered
+    private void CharacterButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton4MouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_UndoButtonMouseEntered
+    }//GEN-LAST:event_CharacterButton4MouseClicked
 
-    private void UndoButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UndoButtonMouseExited
+    private void CharacterButton4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton4MouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_UndoButtonMouseExited
+    }//GEN-LAST:event_CharacterButton4MouseEntered
 
-    private void UndoButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UndoButtonMousePressed
-        // TODO add your handling code here:    `````````````
-    }//GEN-LAST:event_UndoButtonMousePressed
-
-    private void UndoButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UndoButtonMouseReleased
+    private void CharacterButton4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton4MouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_UndoButtonMouseReleased
+    }//GEN-LAST:event_CharacterButton4MouseExited
 
-    private void UndoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UndoButtonActionPerformed
+    private void CharacterButton4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton4MousePressed
+        editTeamLoadout(CharacterButton4,"/img/portraits/roy_silver_portrait_idle.png","/img/portraits/roy_silver_portrait_clicked.png");
+    }//GEN-LAST:event_CharacterButton4MousePressed
+
+    private void CharacterButton4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton4MouseReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_UndoButtonActionPerformed
+    }//GEN-LAST:event_CharacterButton4MouseReleased
+
+    private void CharacterButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CharacterButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CharacterButton4ActionPerformed
+
+    private void CharacterButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton5MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CharacterButton5MouseClicked
+
+    private void CharacterButton5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton5MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CharacterButton5MouseEntered
+
+    private void CharacterButton5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton5MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CharacterButton5MouseExited
+
+    private void CharacterButton5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton5MousePressed
+        editTeamLoadout(CharacterButton5,"/img/portraits/selena_silver_portrait_idle.png","/img/portraits/selena_silver_portrait_clicked.png");
+    }//GEN-LAST:event_CharacterButton5MousePressed
+
+    private void CharacterButton5MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton5MouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CharacterButton5MouseReleased
+
+    private void CharacterButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CharacterButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CharacterButton5ActionPerformed
 
     private void editTeamLoadout(JButton characterButton, String idleImg, String clickImg) {
         if(characterButton.getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource(clickImg)).toString())){
@@ -1105,14 +1143,21 @@ public class CharacterModGUI extends javax.swing.JFrame {
 
             for(int i = 0; i < teamSlots.length; i++){
                 if(teamSlots[i].getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource(idleImg)).toString())) {
+                    if(i == teamSlots.length-1){
+                        teamSlots[i].setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/empty_portrait.png")));
+                        return;
+                    }
                     while(i < teamSlots.length-1){
                         teamSlots[i].setIcon(teamSlots[i+1].getIcon());
                         i++;
                     }
+                    teamSlots[i].setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/empty_portrait.png")));
                     return;
                 }
             }
         } else {
+            if(isSlotsFull())
+                return;
             characterButton.setIcon(new javax.swing.ImageIcon(getClass().getResource(clickImg)));
             for(JButton jb: teamSlots){
                 if(jb.getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/empty_portrait.png")).toString())) {
@@ -1121,6 +1166,14 @@ public class CharacterModGUI extends javax.swing.JFrame {
                 }
             }
         }
+    }
+    
+    private boolean isSlotsFull() {
+        for(JButton jb: teamSlots){
+            if(jb.getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/empty_portrait.png")).toString()))
+                return false;
+        }
+        return true;
     }
     
     private void initEditTeamSlots() {
@@ -1183,6 +1236,8 @@ public class CharacterModGUI extends javax.swing.JFrame {
     private javax.swing.JButton CharacterButton1;
     private javax.swing.JButton CharacterButton2;
     private javax.swing.JButton CharacterButton3;
+    private javax.swing.JButton CharacterButton4;
+    private javax.swing.JButton CharacterButton5;
     private javax.swing.JLabel CharacterPortrait;
     private javax.swing.JLayeredPane EditStatsLayer;
     private javax.swing.JButton EditTeamBanner;
@@ -1221,8 +1276,6 @@ public class CharacterModGUI extends javax.swing.JFrame {
     private javax.swing.JLabel TeamPickerUI;
     private javax.swing.JLabel TopBorder;
     private javax.swing.JLabel TopBorderStats;
-    private javax.swing.JButton UndoButton;
-    private javax.swing.JLabel UndoText;
     private javax.swing.JLabel WorldMapBackground;
     // End of variables declaration//GEN-END:variables
 }
