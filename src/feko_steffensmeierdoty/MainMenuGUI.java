@@ -156,8 +156,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
         CharacterModGUI charModGUI = new CharacterModGUI();
 
         charModGUI.setVisible(true);
-
-        setVisible(false);
+        dispose();
     }//GEN-LAST:event_LoadGameButtonActionPerformed
 
     private void LoadGameButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LoadGameButtonMouseExited

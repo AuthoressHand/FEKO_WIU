@@ -150,11 +150,6 @@ public class MapGUI extends javax.swing.JFrame {
                 Character7MouseReleased(evt);
             }
         });
-        Character7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Character7ActionPerformed(evt);
-            }
-        });
         MapLayer.add(Character7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 90, 90));
 
         Character6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/characters/hawkeye.png"))); // NOI18N
@@ -178,11 +173,6 @@ public class MapGUI extends javax.swing.JFrame {
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 Character6MouseReleased(evt);
-            }
-        });
-        Character6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Character6ActionPerformed(evt);
             }
         });
         MapLayer.add(Character6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 660, 90, 90));
@@ -210,11 +200,6 @@ public class MapGUI extends javax.swing.JFrame {
                 Character5MouseReleased(evt);
             }
         });
-        Character5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Character5ActionPerformed(evt);
-            }
-        });
         MapLayer.add(Character5, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 210, 90, 90));
 
         Character4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/characters/soleil.png"))); // NOI18N
@@ -238,11 +223,6 @@ public class MapGUI extends javax.swing.JFrame {
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 Character4MouseReleased(evt);
-            }
-        });
-        Character4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Character4ActionPerformed(evt);
             }
         });
         MapLayer.add(Character4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 90, 90));
@@ -322,11 +302,6 @@ public class MapGUI extends javax.swing.JFrame {
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 Character1MouseReleased(evt);
-            }
-        });
-        Character1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Character1ActionPerformed(evt);
             }
         });
         MapLayer.add(Character1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 90, 90));
@@ -466,11 +441,6 @@ public class MapGUI extends javax.swing.JFrame {
 
         pos51.setBorderPainted(false);
         pos51.setContentAreaFilled(false);
-        pos51.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pos51ActionPerformed(evt);
-            }
-        });
         Grid.add(pos51);
 
         pos52.setBorderPainted(false);
@@ -720,14 +690,6 @@ public class MapGUI extends javax.swing.JFrame {
         checkForValidMove(Grid,Character2);
     }//GEN-LAST:event_Character2MouseReleased
 
-    private void Character1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Character1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Character1ActionPerformed
-
-    private void pos51ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pos51ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pos51ActionPerformed
-
     private void Character3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character3MouseDragged
         moveCharacter(Character3);
     }//GEN-LAST:event_Character3MouseDragged
@@ -762,10 +724,6 @@ public class MapGUI extends javax.swing.JFrame {
         
     }//GEN-LAST:event_Character2ActionPerformed
 
-    private void Character4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Character4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Character4ActionPerformed
-
     private void Character5MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character5MouseDragged
         moveCharacter(Character5);
     }//GEN-LAST:event_Character5MouseDragged
@@ -780,10 +738,6 @@ public class MapGUI extends javax.swing.JFrame {
     private void Character5MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character5MouseReleased
         checkForValidMove(Grid,Character5);
     }//GEN-LAST:event_Character5MouseReleased
-
-    private void Character5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Character5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Character5ActionPerformed
 
     private void Character6MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character6MouseDragged
         moveCharacter(Character6);
@@ -800,10 +754,6 @@ public class MapGUI extends javax.swing.JFrame {
         checkForValidMove(Grid,Character6);
     }//GEN-LAST:event_Character6MouseReleased
 
-    private void Character6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Character6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Character6ActionPerformed
-
     private void Character7MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character7MouseDragged
         moveCharacter(Character7);
     }//GEN-LAST:event_Character7MouseDragged
@@ -818,10 +768,6 @@ public class MapGUI extends javax.swing.JFrame {
     private void Character7MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character7MouseReleased
         checkForValidMove(Grid,Character7);
     }//GEN-LAST:event_Character7MouseReleased
-
-    private void Character7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Character7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Character7ActionPerformed
 
     private boolean isMouseWithinComponent(Component c) {
         mouseLocation = MouseInfo.getPointerInfo().getLocation();

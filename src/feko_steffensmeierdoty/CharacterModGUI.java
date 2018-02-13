@@ -128,11 +128,6 @@ public class CharacterModGUI extends javax.swing.JFrame {
                 BattleButtonMouseReleased(evt);
             }
         });
-        BattleButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BattleButtonActionPerformed(evt);
-            }
-        });
         MenuButtonLayer.add(BattleButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 30, 90, 100));
 
         AlliesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/allies_button_idle.png"))); // NOI18N
@@ -142,11 +137,6 @@ public class CharacterModGUI extends javax.swing.JFrame {
         AlliesButton.setMaximumSize(new java.awt.Dimension(90, 90));
         AlliesButton.setMinimumSize(new java.awt.Dimension(90, 90));
         AlliesButton.setPreferredSize(new java.awt.Dimension(90, 90));
-        AlliesButton.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                AlliesButtonMouseDragged(evt);
-            }
-        });
         AlliesButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 AlliesButtonMouseClicked(evt);
@@ -162,11 +152,6 @@ public class CharacterModGUI extends javax.swing.JFrame {
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 AlliesButtonMouseReleased(evt);
-            }
-        });
-        AlliesButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AlliesButtonActionPerformed(evt);
             }
         });
         MenuButtonLayer.add(AlliesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, 90, 100));
@@ -204,11 +189,6 @@ public class CharacterModGUI extends javax.swing.JFrame {
         HomeButton.setMaximumSize(new java.awt.Dimension(90, 90));
         HomeButton.setMinimumSize(new java.awt.Dimension(90, 90));
         HomeButton.setPreferredSize(new java.awt.Dimension(90, 90));
-        HomeButton.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                HomeButtonMouseDragged(evt);
-            }
-        });
         HomeButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 HomeButtonMouseClicked(evt);
@@ -224,11 +204,6 @@ public class CharacterModGUI extends javax.swing.JFrame {
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 HomeButtonMouseReleased(evt);
-            }
-        });
-        HomeButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                HomeButtonActionPerformed(evt);
             }
         });
         MenuButtonLayer.add(HomeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, 90, 100));
@@ -312,31 +287,12 @@ public class CharacterModGUI extends javax.swing.JFrame {
         EquipSkillsButton.setMaximumSize(new java.awt.Dimension(90, 90));
         EquipSkillsButton.setMinimumSize(new java.awt.Dimension(90, 90));
         EquipSkillsButton.setPreferredSize(new java.awt.Dimension(90, 90));
-        EquipSkillsButton.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                EquipSkillsButtonMouseDragged(evt);
-            }
-        });
         EquipSkillsButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                EquipSkillsButtonMouseClicked(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 EquipSkillsButtonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 EquipSkillsButtonMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                EquipSkillsButtonMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                EquipSkillsButtonMouseReleased(evt);
-            }
-        });
-        EquipSkillsButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EquipSkillsButtonActionPerformed(evt);
             }
         });
         AlliesOptionsLayer.add(EquipSkillsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 450, 460, 100));
@@ -348,31 +304,12 @@ public class CharacterModGUI extends javax.swing.JFrame {
         LearnSkillsButton.setMaximumSize(new java.awt.Dimension(90, 90));
         LearnSkillsButton.setMinimumSize(new java.awt.Dimension(90, 90));
         LearnSkillsButton.setPreferredSize(new java.awt.Dimension(90, 90));
-        LearnSkillsButton.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                LearnSkillsButtonMouseDragged(evt);
-            }
-        });
         LearnSkillsButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                LearnSkillsButtonMouseClicked(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 LearnSkillsButtonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 LearnSkillsButtonMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                LearnSkillsButtonMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                LearnSkillsButtonMouseReleased(evt);
-            }
-        });
-        LearnSkillsButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LearnSkillsButtonActionPerformed(evt);
             }
         });
         AlliesOptionsLayer.add(LearnSkillsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 460, 100));
@@ -384,11 +321,6 @@ public class CharacterModGUI extends javax.swing.JFrame {
         EditTeamsButton.setMaximumSize(new java.awt.Dimension(90, 90));
         EditTeamsButton.setMinimumSize(new java.awt.Dimension(90, 90));
         EditTeamsButton.setPreferredSize(new java.awt.Dimension(90, 90));
-        EditTeamsButton.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                EditTeamsButtonMouseDragged(evt);
-            }
-        });
         EditTeamsButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 EditTeamsButtonMouseClicked(evt);
@@ -398,17 +330,6 @@ public class CharacterModGUI extends javax.swing.JFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 EditTeamsButtonMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                EditTeamsButtonMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                EditTeamsButtonMouseReleased(evt);
-            }
-        });
-        EditTeamsButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EditTeamsButtonActionPerformed(evt);
             }
         });
         AlliesOptionsLayer.add(EditTeamsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 460, 100));
@@ -456,23 +377,6 @@ public class CharacterModGUI extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 CharacterButton5MouseClicked(evt);
             }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                CharacterButton5MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                CharacterButton5MouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                CharacterButton5MousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                CharacterButton5MouseReleased(evt);
-            }
-        });
-        CharacterButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CharacterButton5ActionPerformed(evt);
-            }
         });
         EditTeamsLayer.add(CharacterButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 460, 90, 90));
 
@@ -486,23 +390,6 @@ public class CharacterModGUI extends javax.swing.JFrame {
         CharacterButton4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 CharacterButton4MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                CharacterButton4MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                CharacterButton4MouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                CharacterButton4MousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                CharacterButton4MouseReleased(evt);
-            }
-        });
-        CharacterButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CharacterButton4ActionPerformed(evt);
             }
         });
         EditTeamsLayer.add(CharacterButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 340, 90, 90));
@@ -518,23 +405,6 @@ public class CharacterModGUI extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 CharacterButton3MouseClicked(evt);
             }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                CharacterButton3MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                CharacterButton3MouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                CharacterButton3MousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                CharacterButton3MouseReleased(evt);
-            }
-        });
-        CharacterButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CharacterButton3ActionPerformed(evt);
-            }
         });
         EditTeamsLayer.add(CharacterButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 340, 90, 90));
 
@@ -549,23 +419,6 @@ public class CharacterModGUI extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 CharacterButton2MouseClicked(evt);
             }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                CharacterButton2MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                CharacterButton2MouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                CharacterButton2MousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                CharacterButton2MouseReleased(evt);
-            }
-        });
-        CharacterButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CharacterButton2ActionPerformed(evt);
-            }
         });
         EditTeamsLayer.add(CharacterButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 340, 90, 90));
 
@@ -579,23 +432,6 @@ public class CharacterModGUI extends javax.swing.JFrame {
         CharacterButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 CharacterButton1MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                CharacterButton1MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                CharacterButton1MouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                CharacterButton1MousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                CharacterButton1MouseReleased(evt);
-            }
-        });
-        CharacterButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CharacterButton1ActionPerformed(evt);
             }
         });
         EditTeamsLayer.add(CharacterButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 90, 90));
@@ -613,11 +449,6 @@ public class CharacterModGUI extends javax.swing.JFrame {
         EditTeamsBackButton.setMaximumSize(new java.awt.Dimension(90, 90));
         EditTeamsBackButton.setMinimumSize(new java.awt.Dimension(90, 90));
         EditTeamsBackButton.setPreferredSize(new java.awt.Dimension(90, 90));
-        EditTeamsBackButton.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                EditTeamsBackButtonMouseDragged(evt);
-            }
-        });
         EditTeamsBackButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 EditTeamsBackButtonMouseClicked(evt);
@@ -627,17 +458,6 @@ public class CharacterModGUI extends javax.swing.JFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 EditTeamsBackButtonMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                EditTeamsBackButtonMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                EditTeamsBackButtonMouseReleased(evt);
-            }
-        });
-        EditTeamsBackButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EditTeamsBackButtonActionPerformed(evt);
             }
         });
         EditTeamsLayer.add(EditTeamsBackButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 90, 100));
@@ -702,26 +522,12 @@ public class CharacterModGUI extends javax.swing.JFrame {
         StoryMapsButton.setMaximumSize(new java.awt.Dimension(90, 90));
         StoryMapsButton.setMinimumSize(new java.awt.Dimension(90, 90));
         StoryMapsButton.setPreferredSize(new java.awt.Dimension(90, 90));
-        StoryMapsButton.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                StoryMapsButtonMouseDragged(evt);
-            }
-        });
         StoryMapsButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                StoryMapsButtonMouseClicked(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 StoryMapsButtonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 StoryMapsButtonMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                StoryMapsButtonMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                StoryMapsButtonMouseReleased(evt);
             }
         });
         StoryMapsButton.addActionListener(new java.awt.event.ActionListener() {
@@ -763,7 +569,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_MiscButtonMouseExited
 
     private void MiscButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MiscButtonMouseClicked
-        
+        //TODO
     }//GEN-LAST:event_MiscButtonMouseClicked
 
     private void MiscButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MiscButtonMousePressed
@@ -790,10 +596,6 @@ public class CharacterModGUI extends javax.swing.JFrame {
     private void BattleButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BattleButtonMousePressed
         BattleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/battle_button_click.png")));
     }//GEN-LAST:event_BattleButtonMousePressed
-
-    private void AlliesButtonMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlliesButtonMouseDragged
-        
-    }//GEN-LAST:event_AlliesButtonMouseDragged
 
     private void AlliesButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlliesButtonMouseClicked
         BattleLayer.setVisible(false);
@@ -828,19 +630,6 @@ public class CharacterModGUI extends javax.swing.JFrame {
         BattleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/battle_button_hover.png")));
     }//GEN-LAST:event_BattleButtonMouseReleased
 
-    private void HomeButtonMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HomeButtonMouseDragged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_HomeButtonMouseDragged
-
-    private void HomeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HomeButtonMouseClicked
-        BattleLayer.setVisible(false);
-        AlliesLayer.setVisible(false);
-        EditStatsLayer.setVisible(false);
-        AlliesOptionsLayer.setVisible(true);
-        MainStatsLayer.setVisible(true);
-        HomeLayer.setVisible(true);
-    }//GEN-LAST:event_HomeButtonMouseClicked
-
     private void HomeButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HomeButtonMouseEntered
         HomeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/home_button_hover.png")));
     }//GEN-LAST:event_HomeButtonMouseEntered
@@ -857,22 +646,6 @@ public class CharacterModGUI extends javax.swing.JFrame {
         HomeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/home_button_idle.png")));
     }//GEN-LAST:event_HomeButtonMouseReleased
 
-    private void BattleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BattleButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BattleButtonActionPerformed
-
-    private void HomeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_HomeButtonActionPerformed
-
-    private void StoryMapsButtonMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StoryMapsButtonMouseDragged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_StoryMapsButtonMouseDragged
-
-    private void StoryMapsButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StoryMapsButtonMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_StoryMapsButtonMouseClicked
-
     private void StoryMapsButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StoryMapsButtonMouseEntered
         StoryMapsPNG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/main_story_button_hover.png")));
     }//GEN-LAST:event_StoryMapsButtonMouseEntered
@@ -881,27 +654,11 @@ public class CharacterModGUI extends javax.swing.JFrame {
         StoryMapsPNG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/main_story_button_idle.png")));
     }//GEN-LAST:event_StoryMapsButtonMouseExited
 
-    private void StoryMapsButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StoryMapsButtonMousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_StoryMapsButtonMousePressed
-
-    private void StoryMapsButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StoryMapsButtonMouseReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_StoryMapsButtonMouseReleased
-
     private void StoryMapsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StoryMapsButtonActionPerformed
         MapGUI mapGUI = new MapGUI();
         mapGUI.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_StoryMapsButtonActionPerformed
-
-    private void AlliesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlliesButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AlliesButtonActionPerformed
-
-    private void EditTeamsButtonMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditTeamsButtonMouseDragged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EditTeamsButtonMouseDragged
 
     private void EditTeamsButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditTeamsButtonMouseClicked
         MainStatsLayer.setVisible(false);
@@ -918,26 +675,6 @@ public class CharacterModGUI extends javax.swing.JFrame {
         EditTeamsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/allies_option_button_idle.png")));
     }//GEN-LAST:event_EditTeamsButtonMouseExited
 
-    private void EditTeamsButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditTeamsButtonMousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EditTeamsButtonMousePressed
-
-    private void EditTeamsButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditTeamsButtonMouseReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EditTeamsButtonMouseReleased
-
-    private void EditTeamsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditTeamsButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EditTeamsButtonActionPerformed
-
-    private void LearnSkillsButtonMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LearnSkillsButtonMouseDragged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_LearnSkillsButtonMouseDragged
-
-    private void LearnSkillsButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LearnSkillsButtonMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_LearnSkillsButtonMouseClicked
-
     private void LearnSkillsButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LearnSkillsButtonMouseEntered
         LearnSkillsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/allies_option_button_hover.png")));
     }//GEN-LAST:event_LearnSkillsButtonMouseEntered
@@ -946,26 +683,6 @@ public class CharacterModGUI extends javax.swing.JFrame {
         LearnSkillsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/allies_option_button_idle.png")));
     }//GEN-LAST:event_LearnSkillsButtonMouseExited
 
-    private void LearnSkillsButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LearnSkillsButtonMousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_LearnSkillsButtonMousePressed
-
-    private void LearnSkillsButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LearnSkillsButtonMouseReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_LearnSkillsButtonMouseReleased
-
-    private void LearnSkillsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LearnSkillsButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_LearnSkillsButtonActionPerformed
-
-    private void EquipSkillsButtonMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EquipSkillsButtonMouseDragged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EquipSkillsButtonMouseDragged
-
-    private void EquipSkillsButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EquipSkillsButtonMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EquipSkillsButtonMouseClicked
-
     private void EquipSkillsButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EquipSkillsButtonMouseEntered
         EquipSkillsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/allies_option_button_hover.png")));
     }//GEN-LAST:event_EquipSkillsButtonMouseEntered
@@ -973,22 +690,6 @@ public class CharacterModGUI extends javax.swing.JFrame {
     private void EquipSkillsButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EquipSkillsButtonMouseExited
         EquipSkillsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/allies_option_button_idle.png")));
     }//GEN-LAST:event_EquipSkillsButtonMouseExited
-
-    private void EquipSkillsButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EquipSkillsButtonMousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EquipSkillsButtonMousePressed
-
-    private void EquipSkillsButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EquipSkillsButtonMouseReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EquipSkillsButtonMouseReleased
-
-    private void EquipSkillsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EquipSkillsButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EquipSkillsButtonActionPerformed
-
-    private void EditTeamsBackButtonMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditTeamsBackButtonMouseDragged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EditTeamsBackButtonMouseDragged
 
     private void EditTeamsBackButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditTeamsBackButtonMouseClicked
         EditTeamsLayer.setVisible(false);
@@ -1005,137 +706,34 @@ public class CharacterModGUI extends javax.swing.JFrame {
         EditTeamsBackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/back_button_idle.png")));
     }//GEN-LAST:event_EditTeamsBackButtonMouseExited
 
-    private void EditTeamsBackButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditTeamsBackButtonMousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EditTeamsBackButtonMousePressed
-
-    private void EditTeamsBackButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditTeamsBackButtonMouseReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EditTeamsBackButtonMouseReleased
-
-    private void EditTeamsBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditTeamsBackButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EditTeamsBackButtonActionPerformed
-
     private void CharacterButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton1MouseClicked
         editTeam(CharacterButton1,"/img/portraits/anna_silver_portrait_idle.png","/img/portraits/anna_silver_portrait_clicked.png");
     }//GEN-LAST:event_CharacterButton1MouseClicked
-
-    private void CharacterButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton1MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CharacterButton1MouseEntered
-
-    private void CharacterButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton1MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CharacterButton1MouseExited
-
-    private void CharacterButton1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton1MousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CharacterButton1MousePressed
-
-    private void CharacterButton1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton1MouseReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CharacterButton1MouseReleased
-
-    private void CharacterButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CharacterButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CharacterButton1ActionPerformed
 
     private void CharacterButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton2MouseClicked
         editTeam(CharacterButton2,"/img/portraits/alfonse_silver_portrait_idle.png","/img/portraits/alfonse_silver_portrait_clicked.png");
     }//GEN-LAST:event_CharacterButton2MouseClicked
 
-    private void CharacterButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton2MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CharacterButton2MouseEntered
-
-    private void CharacterButton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton2MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CharacterButton2MouseExited
-
-    private void CharacterButton2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton2MousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CharacterButton2MousePressed
-
-    private void CharacterButton2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton2MouseReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CharacterButton2MouseReleased
-
-    private void CharacterButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CharacterButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CharacterButton2ActionPerformed
-
     private void CharacterButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton3MouseClicked
-        // TODO add your handling code here:
+        editTeam(CharacterButton3,"/img/portraits/soleil_silver_portrait_idle.png","/img/portraits/soleil_silver_portrait_clicked.png");
     }//GEN-LAST:event_CharacterButton3MouseClicked
 
-    private void CharacterButton3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton3MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CharacterButton3MouseEntered
-
-    private void CharacterButton3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton3MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CharacterButton3MouseExited
-
-    private void CharacterButton3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton3MousePressed
-        editTeam(CharacterButton3,"/img/portraits/soleil_silver_portrait_idle.png","/img/portraits/soleil_silver_portrait_clicked.png");
-    }//GEN-LAST:event_CharacterButton3MousePressed
-
-    private void CharacterButton3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton3MouseReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CharacterButton3MouseReleased
-
-    private void CharacterButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CharacterButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CharacterButton3ActionPerformed
-
     private void CharacterButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton4MouseClicked
-        // TODO add your handling code here:
+        editTeam(CharacterButton4,"/img/portraits/roy_silver_portrait_idle.png","/img/portraits/roy_silver_portrait_clicked.png");
     }//GEN-LAST:event_CharacterButton4MouseClicked
 
-    private void CharacterButton4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton4MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CharacterButton4MouseEntered
-
-    private void CharacterButton4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton4MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CharacterButton4MouseExited
-
-    private void CharacterButton4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton4MousePressed
-        editTeam(CharacterButton4,"/img/portraits/roy_silver_portrait_idle.png","/img/portraits/roy_silver_portrait_clicked.png");
-    }//GEN-LAST:event_CharacterButton4MousePressed
-
-    private void CharacterButton4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton4MouseReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CharacterButton4MouseReleased
-
-    private void CharacterButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CharacterButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CharacterButton4ActionPerformed
-
     private void CharacterButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton5MouseClicked
-        // TODO add your handling code here:
+        editTeam(CharacterButton5,"/img/portraits/selena_silver_portrait_idle.png","/img/portraits/selena_silver_portrait_clicked.png");
     }//GEN-LAST:event_CharacterButton5MouseClicked
 
-    private void CharacterButton5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton5MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CharacterButton5MouseEntered
-
-    private void CharacterButton5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton5MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CharacterButton5MouseExited
-
-    private void CharacterButton5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton5MousePressed
-        editTeam(CharacterButton5,"/img/portraits/selena_silver_portrait_idle.png","/img/portraits/selena_silver_portrait_clicked.png");
-    }//GEN-LAST:event_CharacterButton5MousePressed
-
-    private void CharacterButton5MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton5MouseReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CharacterButton5MouseReleased
-
-    private void CharacterButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CharacterButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CharacterButton5ActionPerformed
+    private void HomeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HomeButtonMouseClicked
+        
+        AlliesOptionsLayer.setVisible(false);
+        AlliesLayer.setVisible(false);
+        EditStatsLayer.setVisible(false);
+        MainStatsLayer.setVisible(true);
+        HomeLayer.setVisible(true);
+    }//GEN-LAST:event_HomeButtonMouseClicked
 
     private void editTeam(JButton characterButton, String idleImg, String clickImg) {
         if(characterButton.getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource(clickImg)).toString())){
