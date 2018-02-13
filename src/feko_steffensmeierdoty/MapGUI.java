@@ -30,7 +30,6 @@ public class MapGUI extends javax.swing.JFrame {
                                   pos50, pos51, pos52, pos53, pos54, pos55, 
                                   pos60, pos61, pos62, pos63, pos64, pos65, 
                                   pos70, pos71, pos72, pos73, pos74, pos75};
-
     }
 
     /**
@@ -156,7 +155,7 @@ public class MapGUI extends javax.swing.JFrame {
                 Character7ActionPerformed(evt);
             }
         });
-        MapLayer.add(Character7, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, 90, 90));
+        MapLayer.add(Character7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 90, 90));
 
         Character6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/characters/hawkeye.png"))); // NOI18N
         Character6.setBorderPainted(false);
@@ -186,7 +185,7 @@ public class MapGUI extends javax.swing.JFrame {
                 Character6ActionPerformed(evt);
             }
         });
-        MapLayer.add(Character6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 750, 90, 90));
+        MapLayer.add(Character6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 660, 90, 90));
 
         Character5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/characters/roy.png"))); // NOI18N
         Character5.setBorderPainted(false);
@@ -216,7 +215,7 @@ public class MapGUI extends javax.swing.JFrame {
                 Character5ActionPerformed(evt);
             }
         });
-        MapLayer.add(Character5, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 210, 90, 90));
+        MapLayer.add(Character5, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 210, 90, 90));
 
         Character4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/characters/soleil.png"))); // NOI18N
         Character4.setBorderPainted(false);
@@ -246,7 +245,7 @@ public class MapGUI extends javax.swing.JFrame {
                 Character4ActionPerformed(evt);
             }
         });
-        MapLayer.add(Character4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 210, 90, 90));
+        MapLayer.add(Character4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 90, 90));
 
         Character3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/characters/alfonse.png"))); // NOI18N
         Character3.setBorderPainted(false);
@@ -271,7 +270,7 @@ public class MapGUI extends javax.swing.JFrame {
                 Character3MouseReleased(evt);
             }
         });
-        MapLayer.add(Character3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 90, 90));
+        MapLayer.add(Character3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 90, 90));
 
         Character2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/characters/zeph.png"))); // NOI18N
         Character2.setBorderPainted(false);
@@ -332,7 +331,7 @@ public class MapGUI extends javax.swing.JFrame {
         });
         MapLayer.add(Character1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 90, 90));
 
-        Map.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/game_background.png"))); // NOI18N
+        Map.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/backgrounds/level1_map.png"))); // NOI18N
         Map.setToolTipText("");
         MapLayer.add(Map, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 540, -1));
 
