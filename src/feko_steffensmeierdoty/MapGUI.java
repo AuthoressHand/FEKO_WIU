@@ -42,6 +42,8 @@ public class MapGUI extends javax.swing.JFrame {
 
         MainContainer = new javax.swing.JLayeredPane();
         MapLayer = new javax.swing.JLayeredPane();
+        Character6 = new javax.swing.JToggleButton();
+        Character5 = new javax.swing.JToggleButton();
         Character4 = new javax.swing.JToggleButton();
         Character3 = new javax.swing.JToggleButton();
         Character2 = new javax.swing.JToggleButton();
@@ -124,6 +126,66 @@ public class MapGUI extends javax.swing.JFrame {
 
         MapLayer.setEnabled(false);
         MapLayer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Character6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/characters/hawkeye.png"))); // NOI18N
+        Character6.setBorderPainted(false);
+        Character6.setContentAreaFilled(false);
+        Character6.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        Character6.setFocusPainted(false);
+        Character6.setHideActionText(true);
+        Character6.setMaximumSize(new java.awt.Dimension(90, 90));
+        Character6.setMinimumSize(new java.awt.Dimension(90, 90));
+        Character6.setPreferredSize(new java.awt.Dimension(90, 90));
+        Character6.setRequestFocusEnabled(false);
+        Character6.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                Character6MouseDragged(evt);
+            }
+        });
+        Character6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                Character6MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                Character6MouseReleased(evt);
+            }
+        });
+        Character6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Character6ActionPerformed(evt);
+            }
+        });
+        MapLayer.add(Character6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 750, 90, 90));
+
+        Character5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/characters/roy.png"))); // NOI18N
+        Character5.setBorderPainted(false);
+        Character5.setContentAreaFilled(false);
+        Character5.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        Character5.setFocusPainted(false);
+        Character5.setHideActionText(true);
+        Character5.setMaximumSize(new java.awt.Dimension(90, 90));
+        Character5.setMinimumSize(new java.awt.Dimension(90, 90));
+        Character5.setPreferredSize(new java.awt.Dimension(90, 90));
+        Character5.setRequestFocusEnabled(false);
+        Character5.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                Character5MouseDragged(evt);
+            }
+        });
+        Character5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                Character5MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                Character5MouseReleased(evt);
+            }
+        });
+        Character5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Character5ActionPerformed(evt);
+            }
+        });
+        MapLayer.add(Character5, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 210, 90, 90));
 
         Character4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/characters/soleil.png"))); // NOI18N
         Character4.setBorderPainted(false);
@@ -674,6 +736,44 @@ public class MapGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Character4ActionPerformed
 
+    private void Character5MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character5MouseDragged
+        moveCharacter(Character5);
+    }//GEN-LAST:event_Character5MouseDragged
+
+    private void Character5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character5MousePressed
+        StatsLayer.setVisible(true);
+        charInitialPoint = Character5.getLocation();
+        CharacterPortrait.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/roy_battle_portrait.png")));
+        NamePlateText.setText("Roy");
+    }//GEN-LAST:event_Character5MousePressed
+
+    private void Character5MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character5MouseReleased
+        checkForValidMove(Grid,Character5);
+    }//GEN-LAST:event_Character5MouseReleased
+
+    private void Character5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Character5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Character5ActionPerformed
+
+    private void Character6MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character6MouseDragged
+        moveCharacter(Character6);
+    }//GEN-LAST:event_Character6MouseDragged
+
+    private void Character6MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character6MousePressed
+        StatsLayer.setVisible(true);
+        charInitialPoint = Character6.getLocation();
+        CharacterPortrait.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/hawkeye_battle_portrait.png")));
+        NamePlateText.setText("Hawkeye");
+    }//GEN-LAST:event_Character6MousePressed
+
+    private void Character6MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character6MouseReleased
+        checkForValidMove(Grid,Character6);
+    }//GEN-LAST:event_Character6MouseReleased
+
+    private void Character6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Character6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Character6ActionPerformed
+
     private boolean isMouseWithinComponent(Component c) {
         mouseLocation = MouseInfo.getPointerInfo().getLocation();
         bounds = c.getBounds();
@@ -748,6 +848,8 @@ public class MapGUI extends javax.swing.JFrame {
     private javax.swing.JToggleButton Character2;
     private javax.swing.JToggleButton Character3;
     private javax.swing.JToggleButton Character4;
+    private javax.swing.JToggleButton Character5;
+    private javax.swing.JToggleButton Character6;
     private javax.swing.JLabel CharacterPortrait;
     private javax.swing.JButton DangerAreaButton;
     private javax.swing.JButton EndTurnButton;

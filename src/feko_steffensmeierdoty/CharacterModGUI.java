@@ -20,7 +20,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
      */
     public CharacterModGUI() {
         initComponents();
-        initEditTeamsSlots();
+        initEditTeamSlots();
     }
     
     /**
@@ -1123,7 +1123,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
         }
     }
     
-    private void initEditTeamsSlots() {
+    private void initEditTeamSlots() {
         teamSlots[0] = Slot1;
         teamSlots[1] = Slot2;
         teamSlots[2] = Slot3;
