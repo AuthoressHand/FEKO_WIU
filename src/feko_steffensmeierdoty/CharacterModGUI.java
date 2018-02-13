@@ -5,7 +5,6 @@
  */
 package feko_steffensmeierdoty;
 
-import java.util.LinkedList;
 import javax.swing.JButton;
 
 /**
@@ -21,12 +20,9 @@ public class CharacterModGUI extends javax.swing.JFrame {
      */
     public CharacterModGUI() {
         initComponents();
-        teamSlots[0] = Slot1;
-        teamSlots[1] = Slot2;
-        teamSlots[2] = Slot3;
-        teamSlots[3] = Slot4;
+        initEditTeamsSlots();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -1092,7 +1088,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_UndoButtonMouseExited
 
     private void UndoButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UndoButtonMousePressed
-        // TODO add your handling code here:
+        // TODO add your handling code here:    `````````````
     }//GEN-LAST:event_UndoButtonMousePressed
 
     private void UndoButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UndoButtonMouseReleased
@@ -1125,6 +1121,13 @@ public class CharacterModGUI extends javax.swing.JFrame {
                 }
             }
         }
+    }
+    
+    private void initEditTeamsSlots() {
+        teamSlots[0] = Slot1;
+        teamSlots[1] = Slot2;
+        teamSlots[2] = Slot3;
+        teamSlots[3] = Slot4;
     }
     
     /**
