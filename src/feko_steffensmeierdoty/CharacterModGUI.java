@@ -460,7 +460,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
                 EditTeamsBackButtonMouseExited(evt);
             }
         });
-        EditTeamsLayer.add(EditTeamsBackButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 90, 100));
+        EditTeamsLayer.add(EditTeamsBackButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 80, 80));
 
         EditTeamsBannerText.setFont(new java.awt.Font("Franklin Gothic Book", 1, 36)); // NOI18N
         EditTeamsBannerText.setForeground(new java.awt.Color(51, 51, 51));

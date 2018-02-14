@@ -19,7 +19,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLayeredPane1 = new javax.swing.JLayeredPane();
+        MainMenu = new javax.swing.JLayeredPane();
         FireEmblemLogo = new javax.swing.JLabel();
         TheKnockOffLogo = new javax.swing.JLabel();
         LoadGameText = new javax.swing.JLabel();
@@ -36,30 +36,30 @@ public class MainMenuGUI extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
 
-        jLayeredPane1.setMaximumSize(new java.awt.Dimension(1024, 612));
-        jLayeredPane1.setMinimumSize(new java.awt.Dimension(1024, 612));
-        jLayeredPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        MainMenu.setMaximumSize(new java.awt.Dimension(1024, 612));
+        MainMenu.setMinimumSize(new java.awt.Dimension(1024, 612));
+        MainMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         FireEmblemLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/logo.png"))); // NOI18N
-        jLayeredPane1.add(FireEmblemLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, -1, -1));
+        MainMenu.add(FireEmblemLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, -1, -1));
 
         TheKnockOffLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/custom_logo.png"))); // NOI18N
-        jLayeredPane1.add(TheKnockOffLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, -1, -1));
+        MainMenu.add(TheKnockOffLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, -1, -1));
 
         LoadGameText.setFont(new java.awt.Font("Calibri Light", 1, 18)); // NOI18N
         LoadGameText.setForeground(new java.awt.Color(255, 255, 255));
         LoadGameText.setText("Load Game");
-        jLayeredPane1.add(LoadGameText, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, -1, -1));
+        MainMenu.add(LoadGameText, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, -1, -1));
 
         OptionsText.setFont(new java.awt.Font("Calibri Light", 1, 18)); // NOI18N
         OptionsText.setForeground(new java.awt.Color(255, 255, 255));
         OptionsText.setText("Options");
-        jLayeredPane1.add(OptionsText, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 390, -1, -1));
+        MainMenu.add(OptionsText, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 390, -1, -1));
 
         ExitGameText.setFont(new java.awt.Font("Calibri Light", 1, 18)); // NOI18N
         ExitGameText.setForeground(new java.awt.Color(255, 255, 255));
         ExitGameText.setText("Exit Game");
-        jLayeredPane1.add(ExitGameText, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 470, -1, -1));
+        MainMenu.add(ExitGameText, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 470, -1, -1));
 
         LoadGameButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/main_menu_button2.png"))); // NOI18N
         LoadGameButton.setBorderPainted(false);
@@ -79,7 +79,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
                 LoadGameButtonActionPerformed(evt);
             }
         });
-        jLayeredPane1.add(LoadGameButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, 290, 60));
+        MainMenu.add(LoadGameButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, 290, 60));
 
         OptionsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/main_menu_button2.png"))); // NOI18N
         OptionsButton.setBorderPainted(false);
@@ -93,7 +93,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
                 OptionsButtonMouseExited(evt);
             }
         });
-        jLayeredPane1.add(OptionsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, 290, 60));
+        MainMenu.add(OptionsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, 290, 60));
 
         ExitGameButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/main_menu_button2.png"))); // NOI18N
         ExitGameButton.setBorderPainted(false);
@@ -112,20 +112,20 @@ public class MainMenuGUI extends javax.swing.JFrame {
                 ExitGameButtonActionPerformed(evt);
             }
         });
-        jLayeredPane1.add(ExitGameButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 450, 290, 60));
+        MainMenu.add(ExitGameButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 450, 290, 60));
 
         Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/backgrounds/main_menu_background.png"))); // NOI18N
-        jLayeredPane1.add(Background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        MainMenu.add(Background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(MainMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(MainMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -209,9 +209,9 @@ public class MainMenuGUI extends javax.swing.JFrame {
     private javax.swing.JLabel FireEmblemLogo;
     private javax.swing.JButton LoadGameButton;
     private javax.swing.JLabel LoadGameText;
+    private javax.swing.JLayeredPane MainMenu;
     private javax.swing.JButton OptionsButton;
     private javax.swing.JLabel OptionsText;
     private javax.swing.JLabel TheKnockOffLogo;
-    private javax.swing.JLayeredPane jLayeredPane1;
     // End of variables declaration//GEN-END:variables
 }

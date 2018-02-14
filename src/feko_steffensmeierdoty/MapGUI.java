@@ -41,6 +41,7 @@ public class MapGUI extends javax.swing.JFrame {
 
         MainContainer = new javax.swing.JLayeredPane();
         MapLayer = new javax.swing.JLayeredPane();
+        Character8 = new javax.swing.JToggleButton();
         Character7 = new javax.swing.JToggleButton();
         Character6 = new javax.swing.JToggleButton();
         Character5 = new javax.swing.JToggleButton();
@@ -126,6 +127,31 @@ public class MapGUI extends javax.swing.JFrame {
 
         MapLayer.setEnabled(false);
         MapLayer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Character8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/characters/blackknight.png"))); // NOI18N
+        Character8.setBorderPainted(false);
+        Character8.setContentAreaFilled(false);
+        Character8.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        Character8.setFocusPainted(false);
+        Character8.setHideActionText(true);
+        Character8.setMaximumSize(new java.awt.Dimension(90, 90));
+        Character8.setMinimumSize(new java.awt.Dimension(90, 90));
+        Character8.setPreferredSize(new java.awt.Dimension(90, 90));
+        Character8.setRequestFocusEnabled(false);
+        Character8.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                Character8MouseDragged(evt);
+            }
+        });
+        Character8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                Character8MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                Character8MouseReleased(evt);
+            }
+        });
+        MapLayer.add(Character8, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 660, 90, 90));
 
         Character7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/characters/selena.png"))); // NOI18N
         Character7.setBorderPainted(false);
@@ -769,6 +795,21 @@ public class MapGUI extends javax.swing.JFrame {
         checkForValidMove(Grid,Character7);
     }//GEN-LAST:event_Character7MouseReleased
 
+    private void Character8MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character8MouseDragged
+        moveCharacter(Character8);
+    }//GEN-LAST:event_Character8MouseDragged
+
+    private void Character8MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character8MousePressed
+        StatsLayer.setVisible(true);
+        charInitialPoint = Character8.getLocation();
+        CharacterPortrait.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/blackknight_battle_portrait.png")));
+        NamePlateText.setText("Black Knight");
+    }//GEN-LAST:event_Character8MousePressed
+
+    private void Character8MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character8MouseReleased
+        checkForValidMove(Grid,Character8);
+    }//GEN-LAST:event_Character8MouseReleased
+
     private boolean isMouseWithinComponent(Component c) {
         mouseLocation = MouseInfo.getPointerInfo().getLocation();
         bounds = c.getBounds();
@@ -846,6 +887,7 @@ public class MapGUI extends javax.swing.JFrame {
     private javax.swing.JToggleButton Character5;
     private javax.swing.JToggleButton Character6;
     private javax.swing.JToggleButton Character7;
+    private javax.swing.JToggleButton Character8;
     private javax.swing.JLabel CharacterPortrait;
     private javax.swing.JButton DangerAreaButton;
     private javax.swing.JButton EndTurnButton;
