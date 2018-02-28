@@ -18,6 +18,7 @@ public class Skill extends Effect {
     private int spCost;
     private String description;
     
+    //create a skill
     public Skill(Stat stat, int effect, String name, int spCost, String description) {
         super(stat, effect);
         this.name = name;
@@ -25,14 +26,17 @@ public class Skill extends Effect {
         this.description = description;
     }
     
+    //returns the name of the skill
     public String getName() {
         return name;
     }
     
+    //returns the cost of the skill
     public int getSPCost() {
         return spCost;
     }
     
+    //returns the description of the skill
     public String getDescription() {
         return description;
     }

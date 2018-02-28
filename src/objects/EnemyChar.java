@@ -14,6 +14,7 @@ import java.awt.Image;
  * @author Rose Steffensmeier
  * @dateCreated 12/6/2017
  * The main object that the player controls and fights against during the game, lists out everything the character needs
+ * @updated 2/27/2018 - made sure all methods had comment
  */
 public class EnemyChar extends Character {
     private MoveType moveType;
@@ -28,6 +29,7 @@ public class EnemyChar extends Character {
         this.moveType = moveType;
     }
     
+    //returns the movetype of the enemy
     public MoveType getMoveType() {
         return moveType;
     }

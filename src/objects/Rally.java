@@ -17,11 +17,13 @@ import java.util.ArrayList;
 public class Rally extends Skill {
     private int range;
     
+    //creates a new rally
     public Rally(Stat stat, int effect, String name, int spCost, String description, int range) {
         super(stat, effect, name, spCost, description);
         this.range = range;
     }
     
+    //returns the range of the rally
     public int getRange() {
         return range;
     }
