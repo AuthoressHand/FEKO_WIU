@@ -13,36 +13,41 @@ import common.WeaponType;
  *
  * @author Rose Steffensmeier
  * @dateCreated 12/5/2017
+ * Holds the weapon that is used to attack or heal other players
  * 
  */
-public class Weapon {
+public class Weapon extends Skill{
     private WeaponType type;
     private int dmg;
-    //private int range;
-    //private DamageType dmgType;
+    private int range;
+    private DamageType dmgType;
     
-    public Weapon(WeaponType type) {
+    //creates the weapon
+    public Weapon(Stat stat, int effect, String name, int spCost, String description, WeaponType type, int dmg, int range, DamageType dmgType) {
+        super(stat, effect, name, spCost, description);
         this.type = type;
-        if(this.type.equals(WeaponType.Sword)){
-            this.dmg = 2;
-        }
-        //this.range = range;
-        //this.dmgType = dmgType;
+        this.dmg = dmg;
+        this.range = range;
+        this.dmgType = dmgType;
     }
     
-    /*public int checkRange() {
-        return range;
+    //returns the range of the weapon
+    public int checkRange() {
+        return this.range;
     }
     
+    //returns the damage type of the weapon (either physical or magical)
     public DamageType getDmgType() {
-        return dmgType;
-    }*/
-    
-    public int getDmg() {
-        return dmg;
+        return this.dmgType;
     }
     
+    //returns the amount of damage the weapon can do
+    public int getDmg() {
+        return this.dmg;
+    }
+    
+    //returns the type of the weapon
     public WeaponType getType() {
-        return type;
+        return this.type;
     }
 }

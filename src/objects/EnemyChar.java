@@ -8,12 +8,14 @@ package objects;
 import common.CharType;
 import common.MoveType;
 import java.awt.Image;
+import javax.swing.ImageIcon;
 
 /**
  *
  * @author Rose Steffensmeier
  * @dateCreated 12/6/2017
  * The main object that the player controls and fights against during the game, lists out everything the character needs
+ * @updated 2/27/2018 - made sure all methods had comment
  */
 public class EnemyChar extends Character {
     private MoveType moveType;
@@ -22,16 +24,17 @@ public class EnemyChar extends Character {
         //do base attributes accordingly
     
     
-    public EnemyChar(String name, int maxHP, Weapon weapon, int level, int attack, int defense, int resistance, int speed, Skill[] skills, Rally rally, Image charImg, CharType charType, MoveType moveType) {
+    public EnemyChar(String name, int maxHP, Weapon weapon, int level, int attack, int defense, int resistance, int speed, Skill[] skills, Rally rally, ImageIcon charImg, CharType charType, MoveType moveType) {
         super(name, maxHP, weapon, level, attack, defense, resistance, speed, skills, rally, charImg, charType);
         this.moveType = moveType;
     }
     
-    public EnemyChar(String name, int maxHP, Weapon weapon, int level, int attack, int defense, int resistance, int speed, int tempAttack, int tempDefense, int tempResistance, int tempSpeed, Skill[] skills, Rally rally, Image charImg, boolean active, CharType charType, MoveType moveType) {
+    public EnemyChar(String name, int maxHP, Weapon weapon, int level, int attack, int defense, int resistance, int speed, int tempAttack, int tempDefense, int tempResistance, int tempSpeed, Skill[] skills, Rally rally, ImageIcon charImg, boolean active, CharType charType, MoveType moveType) {
         super(name, maxHP, weapon, level, attack, defense, resistance, speed, tempAttack, tempDefense, tempResistance, tempSpeed, skills, rally, charImg, active, charType);
         this.moveType = moveType;
     }
     
+    //returns the movetype of the enemy
     public MoveType getMoveType() {
         return moveType;
     }

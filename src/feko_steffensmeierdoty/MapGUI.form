@@ -297,7 +297,7 @@
             <Component class="javax.swing.JToggleButton" name="Character1">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/gameplay/anna.png"/>
+                  <Image iconType="3" name="/img/characters/anna.png"/>
                 </Property>
                 <Property name="borderPainted" type="boolean" value="false"/>
                 <Property name="contentAreaFilled" type="boolean" value="false"/>
@@ -318,6 +318,7 @@
                 <EventHandler event="mouseDragged" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="Character1MouseDragged"/>
                 <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="Character1MousePressed"/>
                 <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="Character1MouseReleased"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Character1ActionPerformed"/>
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="MapGUI_jToggleButton1"/>
@@ -838,7 +839,7 @@
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/gameplay/name_plate.png"/>
+                  <Image iconType="3" name="/img/UIMenu/name_plate.png"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -850,7 +851,7 @@
             <Component class="javax.swing.JLabel" name="StatsInterface">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/gameplay/stats_border.png"/>
+                  <Image iconType="3" name="/img/UIMenu/stats_border.png"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -899,7 +900,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/gameplay/top_banner_waiting.png"/>
+                  <Image iconType="3" name="/img/UIMenu/top_banner_waiting.png"/>
                 </Property>
               </Properties>
               <Constraints>

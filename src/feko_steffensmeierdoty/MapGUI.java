@@ -308,7 +308,7 @@ public class MapGUI extends javax.swing.JFrame {
         });
         MapLayer.add(Character2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 660, 90, 90));
 
-        Character1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/anna.png"))); // NOI18N
+        Character1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/characters/anna.png"))); // NOI18N
         Character1.setBorderPainted(false);
         Character1.setContentAreaFilled(false);
         Character1.setFocusPainted(false);
@@ -328,6 +328,11 @@ public class MapGUI extends javax.swing.JFrame {
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 Character1MouseReleased(evt);
+            }
+        });
+        Character1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Character1ActionPerformed(evt);
             }
         });
         MapLayer.add(Character1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 90, 90));
@@ -618,10 +623,10 @@ public class MapGUI extends javax.swing.JFrame {
 
         NamePlate.setForeground(new java.awt.Color(255, 255, 255));
         NamePlate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        NamePlate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/name_plate.png"))); // NOI18N
+        NamePlate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/name_plate.png"))); // NOI18N
         StatsLayer.add(NamePlate, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, -1));
 
-        StatsInterface.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/stats_border.png"))); // NOI18N
+        StatsInterface.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/stats_border.png"))); // NOI18N
         StatsLayer.add(StatsInterface, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, -1, -1));
 
         TopBorderStats.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -636,7 +641,7 @@ public class MapGUI extends javax.swing.JFrame {
 
         TopBorderWaiting.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         TopBorderWaiting.setForeground(new java.awt.Color(255, 255, 255));
-        TopBorderWaiting.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gameplay/top_banner_waiting.png"))); // NOI18N
+        TopBorderWaiting.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/top_banner_waiting.png"))); // NOI18N
         WaitingStatsLayer.add(TopBorderWaiting, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 120));
 
         MainContainer.add(WaitingStatsLayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 120));
@@ -809,6 +814,10 @@ public class MapGUI extends javax.swing.JFrame {
     private void Character8MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character8MouseReleased
         checkForValidMove(Grid,Character8);
     }//GEN-LAST:event_Character8MouseReleased
+
+    private void Character1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Character1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Character1ActionPerformed
 
     private boolean isMouseWithinComponent(Component c) {
         mouseLocation = MouseInfo.getPointerInfo().getLocation();
