@@ -16,20 +16,11 @@ public class MapGUI extends javax.swing.JFrame {
     private static Point componentLocation;
     private static Rectangle bounds;
     private static Point charInitialPoint;
-    private final JButton[] grid;
+    private JButton[] grid;
 
     public MapGUI() {
-        
         initComponents();
-        
-        this.grid = new JButton[]{pos00, pos01, pos02, pos03, pos04, pos05, 
-                                  pos10, pos11, pos12, pos13, pos14, pos15, 
-                                  pos20, pos21, pos22, pos23, pos24, pos25, 
-                                  pos30, pos31, pos32, pos33, pos34, pos35, 
-                                  pos40, pos41, pos42, pos43, pos44, pos45, 
-                                  pos50, pos51, pos52, pos53, pos54, pos55, 
-                                  pos60, pos61, pos62, pos63, pos64, pos65, 
-                                  pos70, pos71, pos72, pos73, pos74, pos75};
+        initGrid();
     }
 
     /**
@@ -848,6 +839,17 @@ public class MapGUI extends javax.swing.JFrame {
 
             character.setLocation(mouseLocation);
         }
+    }
+    
+    private void initGrid() {
+        this.grid = new JButton[]{pos00, pos01, pos02, pos03, pos04, pos05, 
+                                  pos10, pos11, pos12, pos13, pos14, pos15, 
+                                  pos20, pos21, pos22, pos23, pos24, pos25, 
+                                  pos30, pos31, pos32, pos33, pos34, pos35, 
+                                  pos40, pos41, pos42, pos43, pos44, pos45, 
+                                  pos50, pos51, pos52, pos53, pos54, pos55, 
+                                  pos60, pos61, pos62, pos63, pos64, pos65, 
+                                  pos70, pos71, pos72, pos73, pos74, pos75};
     }
 
     /**
