@@ -13,7 +13,7 @@ import javax.swing.JButton;
  */
 public class CharacterModGUI extends javax.swing.JFrame {
 
-    private JButton[] teamSlots = new JButton[4];
+    private final JButton[] teamSlots = new JButton[4];
     
     /**
      * Creates new form CharacterModGUI
@@ -559,11 +559,13 @@ public class CharacterModGUI extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    //Sets hover picture for Misc Button
     private void MiscButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MiscButtonMouseEntered
         MiscButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/misc_button_hover.png")));
     }//GEN-LAST:event_MiscButtonMouseEntered
-
+   
+    //Sets idle picture for Misc Button
     private void MiscButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MiscButtonMouseExited
         MiscButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/misc_button_idle.png")));
     }//GEN-LAST:event_MiscButtonMouseExited
@@ -572,10 +574,12 @@ public class CharacterModGUI extends javax.swing.JFrame {
         //TODO
     }//GEN-LAST:event_MiscButtonMouseClicked
 
+    //Sets click picture for Misc Button
     private void MiscButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MiscButtonMousePressed
         MiscButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/misc_button_click.png")));
     }//GEN-LAST:event_MiscButtonMousePressed
 
+    //Enables only the Battle Layer to be seen
     private void BattleButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BattleButtonMouseClicked
         HomeLayer.setVisible(false);
         AlliesLayer.setVisible(false);
@@ -585,18 +589,22 @@ public class CharacterModGUI extends javax.swing.JFrame {
         BattleLayer.setVisible(true);
     }//GEN-LAST:event_BattleButtonMouseClicked
 
+    //Sets hover picture for Battle Button
     private void BattleButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BattleButtonMouseEntered
         BattleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/battle_button_hover.png")));
     }//GEN-LAST:event_BattleButtonMouseEntered
 
+    //Sets idle picture for Battle Button
     private void BattleButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BattleButtonMouseExited
         BattleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/battle_button_idle.png")));
     }//GEN-LAST:event_BattleButtonMouseExited
 
+    //Sets click picture for Battle Button
     private void BattleButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BattleButtonMousePressed
         BattleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/battle_button_click.png")));
     }//GEN-LAST:event_BattleButtonMousePressed
 
+    //Enables only the Allies Layer to be seen
     private void AlliesButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlliesButtonMouseClicked
         BattleLayer.setVisible(false);
         HomeLayer.setVisible(false);
@@ -606,60 +614,74 @@ public class CharacterModGUI extends javax.swing.JFrame {
         AlliesLayer.setVisible(true);
     }//GEN-LAST:event_AlliesButtonMouseClicked
 
+    //Sets hover picture for Allies Button
     private void AlliesButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlliesButtonMouseEntered
         AlliesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/allies_button_hover.png")));
     }//GEN-LAST:event_AlliesButtonMouseEntered
 
+    //Sets idle picture for Allies Button
     private void AlliesButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlliesButtonMouseExited
         AlliesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/allies_button_idle.png")));
     }//GEN-LAST:event_AlliesButtonMouseExited
 
+    //Sets click picture for Allies Button
     private void AlliesButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlliesButtonMousePressed
         AlliesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/allies_button_click.png")));
     }//GEN-LAST:event_AlliesButtonMousePressed
 
+    //Sets hover picture for Misc Button
     private void MiscButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MiscButtonMouseReleased
         MiscButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/misc_button_hover.png")));
     }//GEN-LAST:event_MiscButtonMouseReleased
 
+    //Sets hover picture for Allies Button
     private void AlliesButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlliesButtonMouseReleased
         AlliesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/allies_button_hover.png")));
     }//GEN-LAST:event_AlliesButtonMouseReleased
 
+    //Sets hover picture for Battle Button
     private void BattleButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BattleButtonMouseReleased
         BattleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/battle_button_hover.png")));
     }//GEN-LAST:event_BattleButtonMouseReleased
 
+    //Sets hover picture for Home Button
     private void HomeButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HomeButtonMouseEntered
         HomeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/home_button_hover.png")));
     }//GEN-LAST:event_HomeButtonMouseEntered
 
+    //Sets idle picture for Home Button
     private void HomeButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HomeButtonMouseExited
         HomeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/home_button_idle.png")));
     }//GEN-LAST:event_HomeButtonMouseExited
 
+    //Sets click picture for Home Button
     private void HomeButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HomeButtonMousePressed
         HomeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/home_button_click.png")));
     }//GEN-LAST:event_HomeButtonMousePressed
 
+    //Sets idle picture for Home Button
     private void HomeButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HomeButtonMouseReleased
         HomeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/home_button_idle.png")));
     }//GEN-LAST:event_HomeButtonMouseReleased
 
+    //Sets hover picture for Story Maps Button
     private void StoryMapsButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StoryMapsButtonMouseEntered
         StoryMapsPNG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/main_story_button_hover.png")));
     }//GEN-LAST:event_StoryMapsButtonMouseEntered
 
+    //Sets idle picture for Story Maps Button
     private void StoryMapsButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StoryMapsButtonMouseExited
         StoryMapsPNG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/main_story_button_idle.png")));
     }//GEN-LAST:event_StoryMapsButtonMouseExited
 
+    //Sets the CharacterModGUI frame to inivisible, and creates and displays the MapGUI (level)
     private void StoryMapsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StoryMapsButtonActionPerformed
         MapGUI mapGUI = new MapGUI();
         mapGUI.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_StoryMapsButtonActionPerformed
 
+    //Enables only the Edit Teams Layer to be seen
     private void EditTeamsButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditTeamsButtonMouseClicked
         MainStatsLayer.setVisible(false);
         AlliesOptionsLayer.setVisible(false);
@@ -667,30 +689,37 @@ public class CharacterModGUI extends javax.swing.JFrame {
         EditTeamsLayer.setVisible(true);
     }//GEN-LAST:event_EditTeamsButtonMouseClicked
 
+    //Sets hover picture for Edit Teams Button
     private void EditTeamsButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditTeamsButtonMouseEntered
         EditTeamsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/allies_option_button_hover.png")));
     }//GEN-LAST:event_EditTeamsButtonMouseEntered
 
+    //Sets idle picture for Edit Teams Button
     private void EditTeamsButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditTeamsButtonMouseExited
         EditTeamsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/allies_option_button_idle.png")));
     }//GEN-LAST:event_EditTeamsButtonMouseExited
 
+    //Sets hover picture for Learn Skills Button
     private void LearnSkillsButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LearnSkillsButtonMouseEntered
         LearnSkillsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/allies_option_button_hover.png")));
     }//GEN-LAST:event_LearnSkillsButtonMouseEntered
 
+    //Sets idle picture for Learn Skills Button
     private void LearnSkillsButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LearnSkillsButtonMouseExited
         LearnSkillsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/allies_option_button_idle.png")));
     }//GEN-LAST:event_LearnSkillsButtonMouseExited
 
+    //Sets hover picture for Equip Skills Button
     private void EquipSkillsButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EquipSkillsButtonMouseEntered
         EquipSkillsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/allies_option_button_hover.png")));
     }//GEN-LAST:event_EquipSkillsButtonMouseEntered
 
+    //Sets idle picture for Equip Skills Button
     private void EquipSkillsButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EquipSkillsButtonMouseExited
         EquipSkillsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/allies_option_button_idle.png")));
     }//GEN-LAST:event_EquipSkillsButtonMouseExited
 
+    //Enables only the Edit Teams Layer to be visible
     private void EditTeamsBackButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditTeamsBackButtonMouseClicked
         EditTeamsLayer.setVisible(false);
         EditStatsLayer.setVisible(false);
@@ -698,36 +727,43 @@ public class CharacterModGUI extends javax.swing.JFrame {
         MainStatsLayer.setVisible(true);
     }//GEN-LAST:event_EditTeamsBackButtonMouseClicked
 
+    //Sets hover picture for Edit Teams Button
     private void EditTeamsBackButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditTeamsBackButtonMouseEntered
         EditTeamsBackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/back_button_hover.png")));
     }//GEN-LAST:event_EditTeamsBackButtonMouseEntered
 
+    //Sets idle picture for Edit Teams Button
     private void EditTeamsBackButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditTeamsBackButtonMouseExited
         EditTeamsBackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/back_button_idle.png")));
     }//GEN-LAST:event_EditTeamsBackButtonMouseExited
 
+    //Sets clicked picture for Character Button1 in Edit Teams Layer
     private void CharacterButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton1MouseClicked
         editTeam(CharacterButton1,"/img/portraits/anna_silver_portrait_idle.png","/img/portraits/anna_silver_portrait_clicked.png");
     }//GEN-LAST:event_CharacterButton1MouseClicked
 
+    //Sets clicked picture for Character Button2 in Edit Teams Layer
     private void CharacterButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton2MouseClicked
         editTeam(CharacterButton2,"/img/portraits/alfonse_silver_portrait_idle.png","/img/portraits/alfonse_silver_portrait_clicked.png");
     }//GEN-LAST:event_CharacterButton2MouseClicked
 
+    //Sets clicked picture for Character Button3 in Edit Teams Layer
     private void CharacterButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton3MouseClicked
         editTeam(CharacterButton3,"/img/portraits/soleil_silver_portrait_idle.png","/img/portraits/soleil_silver_portrait_clicked.png");
     }//GEN-LAST:event_CharacterButton3MouseClicked
 
+    //Sets clicked picture for Character Button4 in Edit Teams Layer
     private void CharacterButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton4MouseClicked
         editTeam(CharacterButton4,"/img/portraits/roy_silver_portrait_idle.png","/img/portraits/roy_silver_portrait_clicked.png");
     }//GEN-LAST:event_CharacterButton4MouseClicked
 
+    //Sets clicked picture for Character Button5 in Edit Teams Layer
     private void CharacterButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton5MouseClicked
         editTeam(CharacterButton5,"/img/portraits/selena_silver_portrait_idle.png","/img/portraits/selena_silver_portrait_clicked.png");
     }//GEN-LAST:event_CharacterButton5MouseClicked
 
+    //Enables only the Home Layer is seen
     private void HomeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HomeButtonMouseClicked
-        
         AlliesOptionsLayer.setVisible(false);
         AlliesLayer.setVisible(false);
         EditStatsLayer.setVisible(false);
@@ -735,6 +771,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
         HomeLayer.setVisible(true);
     }//GEN-LAST:event_HomeButtonMouseClicked
 
+    //Removes or adds character to the team. It also updates the GUI to show current team
     private void editTeam(JButton characterButton, String idleImg, String clickImg) {
         if(characterButton.getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource(clickImg)).toString())){
             characterButton.setIcon(new javax.swing.ImageIcon(getClass().getResource(idleImg)));
@@ -766,6 +803,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
         }
     }
     
+    //Checks to see if the 4 slots of a player's team is full
     private boolean isTeamFull() {
         for(JButton jb: teamSlots){
             if(jb.getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/empty_portrait.png")).toString()))
@@ -774,6 +812,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
         return true;
     }
     
+    //Returns the amount of characters in a player's current team
     private int getTeamSize() {
         int counter = 0;
         for(JButton jb: teamSlots){
@@ -783,6 +822,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
         return counter;
     }
     
+    //Connects GUI representation of character slots to logical representation
     private void initEditTeamSlots() {
         teamSlots[0] = Slot1;
         teamSlots[1] = Slot2;
