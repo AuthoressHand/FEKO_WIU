@@ -612,6 +612,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
         BattleLayer.setVisible(false);
         HomeLayer.setVisible(false);
         EditStatsLayer.setVisible(false);
+        EditTeamsLayer.setVisible(false);
         AlliesOptionsLayer.setVisible(true);
         MainStatsLayer.setVisible(true);
         AlliesLayer.setVisible(true);
@@ -773,6 +774,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
         AlliesOptionsLayer.setVisible(false);
         AlliesLayer.setVisible(false);
         EditStatsLayer.setVisible(false);
+        BattleLayer.setVisible(false);
         MainStatsLayer.setVisible(true);
         HomeLayer.setVisible(true);
     }//GEN-LAST:event_HomeButtonMouseClicked
