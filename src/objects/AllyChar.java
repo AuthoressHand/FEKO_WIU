@@ -132,4 +132,6 @@ public class AllyChar extends Character {
         this.givePermBoost(weapon.getStat(), -(weapon.getEffect()));
         this.setWeapon(weapon);
     }
+    
+    
 }

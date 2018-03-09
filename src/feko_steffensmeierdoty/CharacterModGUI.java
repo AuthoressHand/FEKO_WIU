@@ -17,6 +17,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
     private final JButton[] teamSlots = new JButton[4];
     private final JButton[] characterOptions = new JButton[5];
     private final JLabel[] charsHomeLayer = new JLabel[4];
+    private final AllyChar[] allyOptions = new AllyChar[5];
     private final Party team = new Party();
     
     /**
@@ -781,6 +782,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
 
             for(int i = 0; i < teamSlots.length; i++){
                 if(teamSlots[i].getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource(idleImg)).toString())) {
+                    team.removeFromArmy(i);
                     if(i == teamSlots.length-1){
                         teamSlots[i].setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/empty_portrait.png")));
                         return;
@@ -797,9 +799,14 @@ public class CharacterModGUI extends javax.swing.JFrame {
             if(isTeamFull())
                 return;
             characterButton.setIcon(new javax.swing.ImageIcon(getClass().getResource(clickImg)));
-            for(JButton jb: teamSlots){
-                if(jb.getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/empty_portrait.png")).toString())) {
-                    jb.setIcon(new javax.swing.ImageIcon(getClass().getResource(idleImg)));
+            for (JButton teamSlot : teamSlots) {
+                if (teamSlot.getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/empty_portrait.png")).toString())) {
+                    for(AllyChar ac: allyOptions){
+                        if(ac.getPortaitImageIdle().toString().equals(characterButton.getIcon().toString())||ac.getPortaitImageClicked().toString().equals(characterButton.getIcon().toString())) {
+                            team.addToArmy(ac);
+                        }
+                    }
+                    teamSlot.setIcon(new javax.swing.ImageIcon(getClass().getResource(idleImg)));
                     return;
                 }
             }
@@ -826,8 +833,11 @@ public class CharacterModGUI extends javax.swing.JFrame {
     }
     
     private void populateHomeLayerTeam() {
-        for(int i = 0; i < team.getArmySize(); i++) {
-            charsHomeLayer[i].setIcon(team.getArmyChar(i).getImg());
+        for(int i = 0; i < charsHomeLayer.length; i++) {
+            if(i < team.getArmySize())
+                charsHomeLayer[i].setIcon(team.getArmyChar(i).getImg());
+            else 
+                charsHomeLayer[i].setIcon(null);
         }
     }
     
@@ -837,6 +847,12 @@ public class CharacterModGUI extends javax.swing.JFrame {
         teamSlots[1] = Slot2;
         teamSlots[2] = Slot3;
         teamSlots[3] = Slot4;
+        
+        allyOptions[0] = new AllyChar("Anna");
+        allyOptions[1] = new AllyChar("Alfonse");
+        allyOptions[2] = new AllyChar("Soleil");
+        allyOptions[3] = new AllyChar("Roy");
+        allyOptions[4] = new AllyChar("Selena");
         
         characterOptions[0] = AnnaButton;
         characterOptions[1] = AlfonseButton;
@@ -848,8 +864,6 @@ public class CharacterModGUI extends javax.swing.JFrame {
         charsHomeLayer[1] = Character2;
         charsHomeLayer[2] = Character3;
         charsHomeLayer[3] = Character4;
-        
-        AllyChar c = new AllyChar("Anna");
         
         team.addToArmy(new AllyChar("Anna"));
         teamSlots[0].setIcon(team.getArmyChar(0).getPortaitImageIdle());

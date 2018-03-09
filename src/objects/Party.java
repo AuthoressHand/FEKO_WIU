@@ -69,6 +69,11 @@ public class Party {
         this.party[x] = null;
     }
     
+    //removes a character from the party
+    public void removeFromArmy(int x) {
+        this.army.remove(x);
+    }
+    
     //gets a character from the army
     public Character getArmyChar(int x) {
         return army.get(x);
