@@ -38,6 +38,10 @@ public class Party {
         return this.party.length;
     }
     
+    public int getArmySize() {
+        return this.army.size();
+    }
+    
     //sets the initial party
     private void setParty(Character[] party) {
         for (int i = 0; i < party.length; i++)
@@ -51,7 +55,7 @@ public class Party {
     
     //sets the initial army
     private void setArmy(ArrayList<Character> army) {
-        for (Character character : army)
+        for(Character character : army)
             this.addToArmy(character);
     }
     

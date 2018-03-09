@@ -32,14 +32,8 @@ public class AllyChar extends Character {
     private ArrayList<Skill> lockSkills;
     private Random generator;
     
-    public AllyChar(String name, int maxHP, Weapon weapon, int level, int attack, int defense, int resistance, int speed, Skill[] skills, Rally rally, ImageIcon charImg, CharType charType, int specialPoints, int experience, int hpIncrease, int atkIncrease, int defIncrease, int resIncrease, int spdIncrease, ArrayList<Skill> unlockSkills, ArrayList<Skill> lockSkills) {
-        super(name, maxHP, weapon, level, attack, defense, resistance, speed, skills, rally, charImg, charType);
-        setAlly(specialPoints, experience, hpIncrease, atkIncrease, defIncrease, resIncrease, spdIncrease, unlockSkills, lockSkills);
-    }
-    
-    public AllyChar(String name, int maxHP, Weapon weapon, int level, int attack, int defense, int resistance, int speed, int tempAttack, int tempDefense, int tempResistance, int tempSpeed, Skill[] skills, Rally rally, ImageIcon charImg, boolean active, CharType charType, int specialPoints, int experience, int hpIncrease, int atkIncrease, int defIncrease, int resIncrease, int spdIncrease, ArrayList<Skill> unlockSkills, ArrayList<Skill> lockSkills) {
-        super(name, maxHP, weapon, level, attack, defense, resistance, speed, tempAttack, tempDefense, tempResistance, tempSpeed, skills, rally, charImg, active, charType);
-        setAlly(specialPoints, experience, hpIncrease, atkIncrease, defIncrease, resIncrease, spdIncrease, unlockSkills, lockSkills);
+    public AllyChar(String name) {
+        super(name);
     }
     
     //sets ally information

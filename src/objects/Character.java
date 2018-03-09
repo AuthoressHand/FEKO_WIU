@@ -36,7 +36,9 @@ public abstract class Character {
     private int walkRange;
     private Skill[] skills;
     private Rally rally;
-    private ImageIcon charImg;
+    private ImageIcon img;
+    private ImageIcon portraitImageIdle;
+    private ImageIcon portraitImageClicked;
     private boolean active;
     private CharType charType;
     
@@ -50,46 +52,40 @@ public abstract class Character {
         
         switch(name) {
             case "Anna": 
-                this.charImg = new ImageIcon(getClass().getResource("/img/characters/anna.png"));
+                this.img = new ImageIcon(getClass().getResource("/img/characters/anna.png"));
+                this.portraitImageIdle = new ImageIcon(getClass().getResource("/img/portraits/anna_silver_portrait_idle.png"));
+                this.portraitImageClicked = new ImageIcon(getClass().getResource("/img/portraits/anna_silver_portrait_clicked.png"));
                 break;
             case "Zeph":
-                this.charImg = new ImageIcon(getClass().getResource("/img/characters/zeph.png"));
+                this.img = new ImageIcon(getClass().getResource("/img/characters/zeph.png"));
+                break;
+            case "Alfonse":
+                this.img = new ImageIcon(getClass().getResource("/img/characters/alfonse.png"));
+                this.portraitImageIdle = new ImageIcon(getClass().getResource("/img/portraits/alfonse_silver_portrait_idle.png"));
+                this.portraitImageClicked = new ImageIcon(getClass().getResource("/img/portraits/alfonse_silver_portrait_clicked.png"));
+                break;
+            case "BlackKnight":
+                this.img = new ImageIcon(getClass().getResource("/img/characters/blackknight.png"));
+                break;
+            case "Hawkeye":
+                this.img = new ImageIcon(getClass().getResource("/img/characters/hawkeye.png"));
+                break;
+            case "Roy":
+                this.img = new ImageIcon(getClass().getResource("/img/characters/roy.png"));
+                this.portraitImageIdle = new ImageIcon(getClass().getResource("/img/portraits/roy_silver_portrait_idle.png"));
+                this.portraitImageClicked = new ImageIcon(getClass().getResource("/img/portraits/roy_silver_portrait_clicked.png"));
+                break;
+            case "Selena":
+                this.img = new ImageIcon(getClass().getResource("/img/characters/selena.png"));
+                this.portraitImageIdle = new ImageIcon(getClass().getResource("/img/portraits/selena_silver_portrait_idle.png"));
+                this.portraitImageClicked = new ImageIcon(getClass().getResource("/img/portraits/selena_silver_portrait_clicked.png"));
+                break;
+            case "Soleil":
+                this.img = new ImageIcon(getClass().getResource("/img/characters/soleil.png"));
+                this.portraitImageIdle = new ImageIcon(getClass().getResource("/img/portraits/soleil_silver_portrait_idle.png"));
+                this.portraitImageClicked = new ImageIcon(getClass().getResource("/img/portraits/soleil_silver_portrait_clicked.png"));
                 break;
         }
-        
-    }
-    
-    public Character(String name, int maxHP, Weapon weapon, int level, int attack, int defense, int resistance, int speed, Skill[] skills, Rally rally, ImageIcon charImg, CharType charType) {
-        this.setCharacter(name, maxHP, weapon, level, attack, defense, resistance, speed, skills, rally, charImg, charType);
-    }
-    
-    public Character(String name, int maxHP, Weapon weapon, int level, int attack, int defense, int resistance, int speed, int tempAttack, int tempDefense, int tempResistance, int tempSpeed, Skill[] skills, Rally rally, ImageIcon charImg, boolean active, CharType charType) {
-        this.setCharacter(name, maxHP, weapon, level, attack, defense, resistance, speed, skills, rally, charImg, charType);
-        this.tempAttack = tempAttack;
-        this.tempDefense = tempDefense;
-        this.tempResistance = tempResistance;
-        this.tempSpeed = tempSpeed;
-        this.active = active;
-    }
-    
-    //sets the character's information
-    private void setCharacter(String name, int maxHP, Weapon weapon, int level, int attack, int defense, int resistance, int speed, Skill[] skills, Rally rally, ImageIcon charImg, CharType charType) {
-        this.name = name;
-        this.maxHP = maxHP;
-        this.currentHP = maxHP;
-        this.equipWeapon(weapon);
-        this.level = level;
-        this.attack = attack;
-        this.defense = defense;
-        this.resistance = resistance;
-        this.speed = speed;
-        this.skills = new Skill[3];
-        for (int i = 0; i < skills.length; i++)
-            this.skills[i] = skills[i];
-        this.equipRally(rally);
-        this.charImg = charImg;
-        this.active = true;
-        this.charType = charType;
     }
     
     //used to return information about the character
@@ -149,8 +145,8 @@ public abstract class Character {
     }
     
     //returns the image of a character
-    public ImageIcon getCharImg() {
-        return this.charImg;
+    public ImageIcon getImg() {
+        return img;
     }
     
     //returns if the character is active or not
@@ -231,6 +227,16 @@ public abstract class Character {
     //increases the level of a character
     protected void increaseLevel() {
         this.level += 1;
+    }
+    
+    //returns the idle portrait image of a character
+    public ImageIcon getPortaitImageIdle() {
+        return portraitImageIdle;
+    }
+    
+    //returns the clicked portrait image of a character
+    public ImageIcon getPortaitImageClicked() {
+        return portraitImageClicked;
     }
     
     //goes through if statements to set a permanent boost to the stats 

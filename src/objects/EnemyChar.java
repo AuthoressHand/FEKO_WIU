@@ -23,8 +23,11 @@ public class EnemyChar extends Character {
     //if(charType == ?)
         //do base attributes accordingly
     
+    public EnemyChar(String name) {
+        super(name);
+    }
     
-    public EnemyChar(String name, int maxHP, Weapon weapon, int level, int attack, int defense, int resistance, int speed, Skill[] skills, Rally rally, ImageIcon charImg, CharType charType, MoveType moveType) {
+    /*public EnemyChar(String name, int maxHP, Weapon weapon, int level, int attack, int defense, int resistance, int speed, Skill[] skills, Rally rally, ImageIcon charImg, CharType charType, MoveType moveType) {
         super(name, maxHP, weapon, level, attack, defense, resistance, speed, skills, rally, charImg, charType);
         this.moveType = moveType;
     }
@@ -32,7 +35,7 @@ public class EnemyChar extends Character {
     public EnemyChar(String name, int maxHP, Weapon weapon, int level, int attack, int defense, int resistance, int speed, int tempAttack, int tempDefense, int tempResistance, int tempSpeed, Skill[] skills, Rally rally, ImageIcon charImg, boolean active, CharType charType, MoveType moveType) {
         super(name, maxHP, weapon, level, attack, defense, resistance, speed, tempAttack, tempDefense, tempResistance, tempSpeed, skills, rally, charImg, active, charType);
         this.moveType = moveType;
-    }
+    }*/
     
     //returns the movetype of the enemy
     public MoveType getMoveType() {

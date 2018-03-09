@@ -841,6 +841,7 @@ public class MapGUI extends javax.swing.JFrame {
         }
     }
     
+    //Connects GUI representation of grid tiles to logical representation
     private void initGrid() {
         this.grid = new JButton[]{pos00, pos01, pos02, pos03, pos04, pos05, 
                                   pos10, pos11, pos12, pos13, pos14, pos15, 
