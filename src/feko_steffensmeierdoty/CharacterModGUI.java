@@ -679,9 +679,11 @@ public class CharacterModGUI extends javax.swing.JFrame {
 
     //Sets the CharacterModGUI frame to inivisible, and creates and displays the MapGUI (level)
     private void StoryMapsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StoryMapsButtonActionPerformed
-        MapGUI mapGUI = new MapGUI();
-        mapGUI.setVisible(true);
-        setVisible(false);
+        if(getTeamSize() > 0) {  
+            MapGUI mapGUI = new MapGUI();
+            mapGUI.setVisible(true);
+            setVisible(false);
+        }
     }//GEN-LAST:event_StoryMapsButtonActionPerformed
 
     //Enables only the Edit Teams Layer to be seen
@@ -832,6 +834,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
         return counter;
     }
     
+    //Updates the character in the Home Layer to current team loadout
     private void populateHomeLayerTeam() {
         for(int i = 0; i < charsHomeLayer.length; i++) {
             if(i < team.getArmySize())
