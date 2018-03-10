@@ -47,6 +47,7 @@ public abstract class Character {
         this.name = name;
         this.level = 1;
         this.maxHP = 10 + level;
+        this.currentHP = this.maxHP;
         this.weapon = new Weapon(null, 0, "Bronze Sword", 0, "Basic Sword, starting equipment", WeaponType.Sword, 6, 1, DamageType.Physical);
         this.attack = 2;
         this.defense = 2;
@@ -254,7 +255,7 @@ public abstract class Character {
     }
     
     //goes through if statements to set a permanent boost to the stats 
-    protected void givePermBoost(Stat stat, int effect) {
+    public void givePermBoost(Stat stat, int effect) {
         if (stat != null) 
             switch (stat) {
                 case HP:

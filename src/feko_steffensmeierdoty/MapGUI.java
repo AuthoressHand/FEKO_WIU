@@ -3,6 +3,7 @@
  */
 package feko_steffensmeierdoty;
 
+import common.Stat;
 import java.awt.*;
 import javax.swing.*;
 import objects.*;
@@ -107,6 +108,10 @@ public class MapGUI extends javax.swing.JFrame {
         BottomBorder = new javax.swing.JLabel();
         StatsLayer = new javax.swing.JLayeredPane();
         CharacterPortrait = new javax.swing.JLabel();
+        AttackLevel1 = new javax.swing.JTextField();
+        AttackLevel = new javax.swing.JTextField();
+        MaxHP = new javax.swing.JTextField();
+        CurrentHP = new javax.swing.JTextField();
         NamePlateText = new javax.swing.JTextField();
         NamePlateDecor = new javax.swing.JLabel();
         NamePlate = new javax.swing.JLabel();
@@ -612,6 +617,42 @@ public class MapGUI extends javax.swing.JFrame {
         StatsLayer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         StatsLayer.add(CharacterPortrait, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 1, -1, -1));
 
+        AttackLevel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        AttackLevel1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        AttackLevel1.setBorder(null);
+        AttackLevel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        AttackLevel1.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        AttackLevel1.setEnabled(false);
+        AttackLevel1.setOpaque(false);
+        StatsLayer.add(AttackLevel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 40, 30));
+
+        AttackLevel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        AttackLevel.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        AttackLevel.setBorder(null);
+        AttackLevel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        AttackLevel.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        AttackLevel.setEnabled(false);
+        AttackLevel.setOpaque(false);
+        StatsLayer.add(AttackLevel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 40, 30));
+
+        MaxHP.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        MaxHP.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        MaxHP.setBorder(null);
+        MaxHP.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        MaxHP.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        MaxHP.setEnabled(false);
+        MaxHP.setOpaque(false);
+        StatsLayer.add(MaxHP, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 40, 40, 25));
+
+        CurrentHP.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        CurrentHP.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        CurrentHP.setBorder(null);
+        CurrentHP.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        CurrentHP.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        CurrentHP.setEnabled(false);
+        CurrentHP.setOpaque(false);
+        StatsLayer.add(CurrentHP, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 40, 25));
+
         NamePlateText.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         NamePlateText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         NamePlateText.setBorder(null);
@@ -804,6 +845,7 @@ public class MapGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Character8ActionPerformed
 
+    //Checks to see whether the current mouse position is inside a specific component
     private boolean isMouseWithinComponent(Component c) {
         mouseLocation = MouseInfo.getPointerInfo().getLocation();
         bounds = c.getBounds();
@@ -811,12 +853,14 @@ public class MapGUI extends javax.swing.JFrame {
         return bounds.contains(mouseLocation);
     }
     
+    //Checks to see whether a character is in a specific grid tile
     private boolean isCharacterWithinTile(Component character, Component tile) {
         bounds = tile.getBounds();
         bounds.setBounds((int)bounds.getX(), (int)bounds.getY() + TopBorderStats.getHeight(), (int)bounds.getWidth(), (int)bounds.getWidth());
         return character.getX()==bounds.getX() && character.getY()==bounds.getY() && character.getWidth()==bounds.getWidth() && character.getHeight()==bounds.getHeight();
     }
     
+    //Checks if the character has made a valid move
     private void checkForValidMove(Component boundary, Component character) {
         if (isMouseWithinComponent(boundary)) {
             for (GridTile grid1 : grid) {
@@ -838,6 +882,7 @@ public class MapGUI extends javax.swing.JFrame {
         }
     }
     
+    //Changes the position of the character button relative to the mouse position
     private void moveCharacter(Component character) {
         if (isMouseWithinComponent(MainContainer)) {
             mouseLocation = MouseInfo.getPointerInfo().getLocation();
@@ -849,15 +894,25 @@ public class MapGUI extends javax.swing.JFrame {
         }
     }
     
+    //Updates characters stats in Stats Layer once clicked on. Also gets the characters initial position when first clicked on
     private void updateCharacterStats(JToggleButton jtb, int partyPosition) {
         StatsLayer.setVisible(true);
         charInitialPoint = jtb.getLocation();
         if(partyPosition < 5) {
             CharacterPortrait.setIcon(allyParty.getArmyChar(partyPosition - 1).getBattlePortrait());
             NamePlateText.setText(allyParty.getArmyChar(partyPosition - 1).getName());
+            CurrentHP.setText(allyParty.getArmyChar(partyPosition-1).getCurrentHP() + "");
+            MaxHP.setText(allyParty.getArmyChar(partyPosition-1).getMaxHP() + "");
+            AttackLevel.setText(allyParty.getArmyChar(partyPosition-1).getTotalAtk()+ "");
+            AttackLevel1.setText(allyParty.getArmyChar(partyPosition-1).getTotalDef()+ "");
         } else {
             CharacterPortrait.setIcon(enemyParty.getArmyChar(partyPosition - 5).getBattlePortrait());
             NamePlateText.setText(enemyParty.getArmyChar(partyPosition - 5).getName());
+            NamePlateText.setText(enemyParty.getArmyChar(partyPosition - 5).getName());
+            CurrentHP.setText(enemyParty.getArmyChar(partyPosition-5).getCurrentHP() + "");
+            MaxHP.setText(enemyParty.getArmyChar(partyPosition-5).getMaxHP() + "");
+            AttackLevel.setText(enemyParty.getArmyChar(partyPosition-5).getTotalAtk()+ "");
+            AttackLevel1.setText(enemyParty.getArmyChar(partyPosition-5).getTotalDef()+ "");
         }
     }
     
@@ -947,6 +1002,8 @@ public class MapGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField AttackLevel;
+    private javax.swing.JTextField AttackLevel1;
     private javax.swing.JLabel BattleWheel;
     private javax.swing.JLabel BottomBorder;
     private javax.swing.JToggleButton Character1;
@@ -958,12 +1015,14 @@ public class MapGUI extends javax.swing.JFrame {
     private javax.swing.JToggleButton Character7;
     private javax.swing.JToggleButton Character8;
     private javax.swing.JLabel CharacterPortrait;
+    private javax.swing.JTextField CurrentHP;
     private javax.swing.JButton DangerAreaButton;
     private javax.swing.JButton EndTurnButton;
     private javax.swing.JPanel Grid;
     private javax.swing.JLayeredPane MainContainer;
     private javax.swing.JLabel Map;
     private javax.swing.JLayeredPane MapLayer;
+    private javax.swing.JTextField MaxHP;
     private javax.swing.JLayeredPane MenuButtonLayer;
     private javax.swing.JLabel NamePlate;
     private javax.swing.JLabel NamePlateDecor;
