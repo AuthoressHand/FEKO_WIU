@@ -863,6 +863,8 @@ public class MapGUI extends javax.swing.JFrame {
     
     //Initializes MapGUI variables before user input
     private void initMapGUI() {
+        
+        //Creates Level 1 Grid
         this.grid = new GridTile[]{new GridTile(pos00,true), new GridTile(pos01,false), new GridTile(pos02,false), new GridTile(pos03,true), new GridTile(pos04,true), new GridTile(pos05,false), 
                                    new GridTile(pos10,true), new GridTile(pos11,true), new GridTile(pos12,false), new GridTile(pos13,true), new GridTile(pos14,true), new GridTile(pos15,false), 
                                    new GridTile(pos20,true), new GridTile(pos21,true), new GridTile(pos22,true), new GridTile(pos23,true), new GridTile(pos24,false), new GridTile(pos25,true), 
@@ -872,6 +874,7 @@ public class MapGUI extends javax.swing.JFrame {
                                    new GridTile(pos60,true), new GridTile(pos61,true), new GridTile(pos62,true), new GridTile(pos63,false), new GridTile(pos64,false), new GridTile(pos65,true), 
                                    new GridTile(pos70,false), new GridTile(pos71,false), new GridTile(pos72,false), new GridTile(pos73,true), new GridTile(pos74,true), new GridTile(pos75,true)};
         
+        //Connects the character array with the character buttons
         characters[0] = Character1;
         characters[1] = Character2;
         characters[2] = Character3;
@@ -881,10 +884,12 @@ public class MapGUI extends javax.swing.JFrame {
         characters[6] = Character7;
         characters[7] = Character8;
         
+        //Adds Level 1 enemies into enemy party
         enemyParty.addToArmy(new EnemyChar("Zeph"));
         enemyParty.addToArmy(new EnemyChar("BlackKnight"));
         enemyParty.addToArmy(new EnemyChar("Hawkeye"));
         
+        //Displays the current ally team and enemy team
         for(int i = 0; i < 8; i++) {
             if(i < 4 && i < allyParty.getArmySize()) {
                 characters[i].setVisible(true);
@@ -896,6 +901,7 @@ public class MapGUI extends javax.swing.JFrame {
                 continue;
             }
             
+            //Upates grid for the character positions
             for(GridTile gt: grid) {
                 if(isCharacterWithinTile(characters[i], gt.getTile())) {
                     gt.setAccessible(false);
