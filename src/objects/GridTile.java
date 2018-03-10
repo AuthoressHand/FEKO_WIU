@@ -13,7 +13,19 @@ import javax.swing.*;
  */
 public class GridTile {
     
-    private JLabel tilePosition;
-    private boolean accessible;
-    private Character character;
+    private JButton tile;
+    private boolean isAccessible;
+    
+    public GridTile(JButton tile, boolean isAccessible) {
+        this.tile = tile;
+        this.isAccessible = isAccessible;
+    }
+    
+    public JButton getTile() {
+        return tile;
+    }
+    
+    public boolean isAccessible() {
+        return isAccessible;
+    }
 }

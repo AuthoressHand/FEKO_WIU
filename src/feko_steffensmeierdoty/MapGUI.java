@@ -19,12 +19,11 @@ public class MapGUI extends javax.swing.JFrame {
     private static Point charInitialPoint;
     private static Party allyParty;
     private static Party enemyParty = new Party();
-    private JButton[] grid;
+    private GridTile[] grid;
     private final JToggleButton[] characters = new JToggleButton[8];
 
     public MapGUI() {
         initComponents();
-        
     }
     
     public MapGUI(Party party) {
@@ -814,10 +813,12 @@ public class MapGUI extends javax.swing.JFrame {
     
     private void checkForValidMove(Component boundary, Component character) {
         if (isMouseWithinComponent(boundary)) {
-            for (JButton jl : grid) {
-                if (isMouseWithinComponent(jl)) {
-                    character.setLocation(jl.getX(), jl.getY() + TopBorderStats.getHeight());
+            for (GridTile grid1 : grid) {
+                if(isMouseWithinComponent(grid1.getTile()) && grid1.isAccessible() == true) {
+                    character.setLocation(grid1.getTile().getX(), grid1.getTile().getY() + TopBorderStats.getHeight());
                     break;
+                } else {
+                    character.setLocation(charInitialPoint);
                 }
             }
         } else {
@@ -848,16 +849,16 @@ public class MapGUI extends javax.swing.JFrame {
         }
     }
     
-    //Connects GUI representation of grid tiles to logical representation
+    //Initializes MapGUI variables before user input
     private void initMapGUI() {
-        this.grid = new JButton[]{pos00, pos01, pos02, pos03, pos04, pos05, 
-                                  pos10, pos11, pos12, pos13, pos14, pos15, 
-                                  pos20, pos21, pos22, pos23, pos24, pos25, 
-                                  pos30, pos31, pos32, pos33, pos34, pos35, 
-                                  pos40, pos41, pos42, pos43, pos44, pos45, 
-                                  pos50, pos51, pos52, pos53, pos54, pos55, 
-                                  pos60, pos61, pos62, pos63, pos64, pos65, 
-                                  pos70, pos71, pos72, pos73, pos74, pos75};
+        this.grid = new GridTile[]{new GridTile(pos00,true), new GridTile(pos01,false), new GridTile(pos02,false), new GridTile(pos03,true), new GridTile(pos04,true), new GridTile(pos05,false), 
+                                   new GridTile(pos10,true), new GridTile(pos11,true), new GridTile(pos12,false), new GridTile(pos13,true), new GridTile(pos14,true), new GridTile(pos15,false), 
+                                   new GridTile(pos20,true), new GridTile(pos21,true), new GridTile(pos22,true), new GridTile(pos23,true), new GridTile(pos24,false), new GridTile(pos25,true), 
+                                   new GridTile(pos30,false), new GridTile(pos31,false), new GridTile(pos32,true), new GridTile(pos33,true), new GridTile(pos34,true), new GridTile(pos35,true), 
+                                   new GridTile(pos40,true), new GridTile(pos41,true), new GridTile(pos42,true), new GridTile(pos43,true), new GridTile(pos44,true), new GridTile(pos45,true), 
+                                   new GridTile(pos50,true), new GridTile(pos51,true), new GridTile(pos52,false), new GridTile(pos53,false), new GridTile(pos54,true), new GridTile(pos55,true), 
+                                   new GridTile(pos60,true), new GridTile(pos61,true), new GridTile(pos62,true), new GridTile(pos63,false), new GridTile(pos64,false), new GridTile(pos65,true), 
+                                   new GridTile(pos70,false), new GridTile(pos71,false), new GridTile(pos72,false), new GridTile(pos73,true), new GridTile(pos74,true), new GridTile(pos75,true)};
         
         characters[0] = Character1;
         characters[1] = Character2;
