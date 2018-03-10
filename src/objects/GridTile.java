@@ -28,4 +28,8 @@ public class GridTile {
     public boolean isAccessible() {
         return isAccessible;
     }
+    
+    public void setAccessible(boolean isAccessible) {
+        this.isAccessible = isAccessible;
+    }
 }

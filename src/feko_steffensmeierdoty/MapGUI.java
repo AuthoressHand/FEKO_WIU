@@ -811,11 +811,23 @@ public class MapGUI extends javax.swing.JFrame {
         return bounds.contains(mouseLocation);
     }
     
+    private boolean isCharacterWithinTile(Component character, Component tile) {
+        bounds = tile.getBounds();
+        bounds.setBounds((int)bounds.getX(), (int)bounds.getY() + TopBorderStats.getHeight(), (int)bounds.getWidth(), (int)bounds.getWidth());
+        return character.getX()==bounds.getX() && character.getY()==bounds.getY() && character.getWidth()==bounds.getWidth() && character.getHeight()==bounds.getHeight();
+    }
+    
     private void checkForValidMove(Component boundary, Component character) {
         if (isMouseWithinComponent(boundary)) {
             for (GridTile grid1 : grid) {
                 if(isMouseWithinComponent(grid1.getTile()) && grid1.isAccessible() == true) {
                     character.setLocation(grid1.getTile().getX(), grid1.getTile().getY() + TopBorderStats.getHeight());
+                    grid1.setAccessible(false);
+                    for(GridTile grid2: grid) {
+                        if(grid2.getTile().getX() == charInitialPoint.x && grid2.getTile().getY() + TopBorderStats.getHeight() == charInitialPoint.y) {
+                            grid2.setAccessible(true);
+                        }
+                    }
                     break;
                 } else {
                     character.setLocation(charInitialPoint);
@@ -880,6 +892,14 @@ public class MapGUI extends javax.swing.JFrame {
             } else if(i > 3 && (i-4) < enemyParty.getArmySize()) {
                 characters[i].setIcon(enemyParty.getArmyChar(i-4).getImg());
                 characters[i].setVisible(true);
+            } else {
+                continue;
+            }
+            
+            for(GridTile gt: grid) {
+                if(isCharacterWithinTile(characters[i], gt.getTile())) {
+                    gt.setAccessible(false);
+                }
             }
         }
     }
