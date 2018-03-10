@@ -39,6 +39,7 @@ public abstract class Character {
     private ImageIcon img;
     private ImageIcon portraitImageIdle;
     private ImageIcon portraitImageClicked;
+    private ImageIcon portraitBattle;
     private boolean active;
     private CharType charType;
     
@@ -53,35 +54,43 @@ public abstract class Character {
         switch(name) {
             case "Anna": 
                 this.img = new ImageIcon(getClass().getResource("/img/characters/anna.png"));
+                this.portraitBattle = new ImageIcon(getClass().getResource("/img/portraits/anna_battle_portrait.png"));
                 this.portraitImageIdle = new ImageIcon(getClass().getResource("/img/portraits/anna_silver_portrait_idle.png"));
                 this.portraitImageClicked = new ImageIcon(getClass().getResource("/img/portraits/anna_silver_portrait_clicked.png"));
                 break;
             case "Zeph":
                 this.img = new ImageIcon(getClass().getResource("/img/characters/zeph.png"));
+                this.portraitBattle = new ImageIcon(getClass().getResource("/img/portraits/zeph_battle_portrait.png"));
                 break;
             case "Alfonse":
                 this.img = new ImageIcon(getClass().getResource("/img/characters/alfonse.png"));
+                this.portraitBattle = new ImageIcon(getClass().getResource("/img/portraits/alfonse_battle_portrait.png"));
                 this.portraitImageIdle = new ImageIcon(getClass().getResource("/img/portraits/alfonse_silver_portrait_idle.png"));
                 this.portraitImageClicked = new ImageIcon(getClass().getResource("/img/portraits/alfonse_silver_portrait_clicked.png"));
                 break;
             case "BlackKnight":
                 this.img = new ImageIcon(getClass().getResource("/img/characters/blackknight.png"));
+                this.portraitBattle = new ImageIcon(getClass().getResource("/img/portraits/blackknight_battle_portrait.png"));
                 break;
             case "Hawkeye":
                 this.img = new ImageIcon(getClass().getResource("/img/characters/hawkeye.png"));
+                this.portraitBattle = new ImageIcon(getClass().getResource("/img/portraits/hawkeye_battle_portrait.png"));
                 break;
             case "Roy":
                 this.img = new ImageIcon(getClass().getResource("/img/characters/roy.png"));
+                this.portraitBattle = new ImageIcon(getClass().getResource("/img/portraits/roy_battle_portrait.png"));
                 this.portraitImageIdle = new ImageIcon(getClass().getResource("/img/portraits/roy_silver_portrait_idle.png"));
                 this.portraitImageClicked = new ImageIcon(getClass().getResource("/img/portraits/roy_silver_portrait_clicked.png"));
                 break;
             case "Selena":
                 this.img = new ImageIcon(getClass().getResource("/img/characters/selena.png"));
+                this.portraitBattle = new ImageIcon(getClass().getResource("/img/portraits/selena_battle_portrait.png"));
                 this.portraitImageIdle = new ImageIcon(getClass().getResource("/img/portraits/selena_silver_portrait_idle.png"));
                 this.portraitImageClicked = new ImageIcon(getClass().getResource("/img/portraits/selena_silver_portrait_clicked.png"));
                 break;
             case "Soleil":
                 this.img = new ImageIcon(getClass().getResource("/img/characters/soleil.png"));
+                this.portraitBattle = new ImageIcon(getClass().getResource("/img/portraits/soleil_battle_portrait.png"));
                 this.portraitImageIdle = new ImageIcon(getClass().getResource("/img/portraits/soleil_silver_portrait_idle.png"));
                 this.portraitImageClicked = new ImageIcon(getClass().getResource("/img/portraits/soleil_silver_portrait_clicked.png"));
                 break;
@@ -237,6 +246,11 @@ public abstract class Character {
     //returns the clicked portrait image of a character
     public ImageIcon getPortaitImageClicked() {
         return portraitImageClicked;
+    }
+    
+    //returns the clicked portrait image of a character
+    public ImageIcon getBattlePortrait() {
+        return portraitBattle;
     }
     
     //goes through if statements to set a permanent boost to the stats 

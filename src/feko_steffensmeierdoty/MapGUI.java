@@ -5,6 +5,7 @@ package feko_steffensmeierdoty;
 
 import java.awt.*;
 import javax.swing.*;
+import objects.*;
 
 /**
  *
@@ -16,11 +17,20 @@ public class MapGUI extends javax.swing.JFrame {
     private static Point componentLocation;
     private static Rectangle bounds;
     private static Point charInitialPoint;
+    private static Party allyParty;
+    private static Party enemyParty = new Party();
     private JButton[] grid;
+    private final JToggleButton[] characters = new JToggleButton[8];
 
     public MapGUI() {
         initComponents();
-        initGrid();
+        
+    }
+    
+    public MapGUI(Party party) {
+        initComponents();
+        MapGUI.allyParty = party;
+        initMapGUI();
     }
 
     /**
@@ -119,7 +129,7 @@ public class MapGUI extends javax.swing.JFrame {
         MapLayer.setEnabled(false);
         MapLayer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Character8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/characters/blackknight.png"))); // NOI18N
+        Character8.setVisible(false);
         Character8.setBorderPainted(false);
         Character8.setContentAreaFilled(false);
         Character8.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
@@ -142,9 +152,14 @@ public class MapGUI extends javax.swing.JFrame {
                 Character8MouseReleased(evt);
             }
         });
+        Character8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Character8ActionPerformed(evt);
+            }
+        });
         MapLayer.add(Character8, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 660, 90, 90));
 
-        Character7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/characters/selena.png"))); // NOI18N
+        Character7.setVisible(false);
         Character7.setBorderPainted(false);
         Character7.setContentAreaFilled(false);
         Character7.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
@@ -167,9 +182,9 @@ public class MapGUI extends javax.swing.JFrame {
                 Character7MouseReleased(evt);
             }
         });
-        MapLayer.add(Character7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, 90, 90));
+        MapLayer.add(Character7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 570, 90, 90));
 
-        Character6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/characters/hawkeye.png"))); // NOI18N
+        Character6.setVisible(false);
         Character6.setBorderPainted(false);
         Character6.setContentAreaFilled(false);
         Character6.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
@@ -194,7 +209,7 @@ public class MapGUI extends javax.swing.JFrame {
         });
         MapLayer.add(Character6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 660, 90, 90));
 
-        Character5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/characters/roy.png"))); // NOI18N
+        Character5.setVisible(false);
         Character5.setBorderPainted(false);
         Character5.setContentAreaFilled(false);
         Character5.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
@@ -217,9 +232,9 @@ public class MapGUI extends javax.swing.JFrame {
                 Character5MouseReleased(evt);
             }
         });
-        MapLayer.add(Character5, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 210, 90, 90));
+        MapLayer.add(Character5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 660, 90, 90));
 
-        Character4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/characters/soleil.png"))); // NOI18N
+        Character4.setVisible(false);
         Character4.setBorderPainted(false);
         Character4.setContentAreaFilled(false);
         Character4.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
@@ -244,7 +259,7 @@ public class MapGUI extends javax.swing.JFrame {
         });
         MapLayer.add(Character4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, 90, 90));
 
-        Character3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/characters/alfonse.png"))); // NOI18N
+        Character3.setVisible(false);
         Character3.setBorderPainted(false);
         Character3.setContentAreaFilled(false);
         Character3.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
@@ -269,7 +284,7 @@ public class MapGUI extends javax.swing.JFrame {
         });
         MapLayer.add(Character3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 90, 90));
 
-        Character2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/characters/zeph.png"))); // NOI18N
+        Character2.setVisible(false);
         Character2.setBorderPainted(false);
         Character2.setContentAreaFilled(false);
         Character2.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
@@ -297,9 +312,9 @@ public class MapGUI extends javax.swing.JFrame {
                 Character2ActionPerformed(evt);
             }
         });
-        MapLayer.add(Character2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 660, 90, 90));
+        MapLayer.add(Character2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, 90, 90));
 
-        Character1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/characters/anna.png"))); // NOI18N
+        Character1.setVisible(false);
         Character1.setBorderPainted(false);
         Character1.setContentAreaFilled(false);
         Character1.setFocusPainted(false);
@@ -691,17 +706,11 @@ public class MapGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_Character2MouseDragged
 
     private void Character1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character1MousePressed
-        StatsLayer.setVisible(true);
-        charInitialPoint = Character1.getLocation();
-        CharacterPortrait.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/anna_battle_portrait.png")));
-        NamePlateText.setText("Anna");
+        updateCharacterStats(Character1,1);
     }//GEN-LAST:event_Character1MousePressed
 
     private void Character2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character2MousePressed
-        StatsLayer.setVisible(true);
-        charInitialPoint = Character2.getLocation();
-        CharacterPortrait.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/zeph_battle_portrait.png")));
-        NamePlateText.setText("Zephiel");
+        updateCharacterStats(Character2,2);
     }//GEN-LAST:event_Character2MousePressed
 
     private void Character1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character1MouseReleased
@@ -717,10 +726,7 @@ public class MapGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_Character3MouseDragged
 
     private void Character3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character3MousePressed
-        StatsLayer.setVisible(true);
-        charInitialPoint = Character3.getLocation();
-        CharacterPortrait.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/alfonse_battle_portrait.png")));
-        NamePlateText.setText("Alfonse");
+        updateCharacterStats(Character3,3);
     }//GEN-LAST:event_Character3MousePressed
 
     private void Character3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character3MouseReleased
@@ -732,10 +738,7 @@ public class MapGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_Character4MouseDragged
 
     private void Character4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character4MousePressed
-        StatsLayer.setVisible(true);
-        charInitialPoint = Character4.getLocation();
-        CharacterPortrait.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/soleil_battle_portrait.png")));
-        NamePlateText.setText("Soleil");
+        updateCharacterStats(Character4,4);
     }//GEN-LAST:event_Character4MousePressed
 
     private void Character4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character4MouseReleased
@@ -751,10 +754,7 @@ public class MapGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_Character5MouseDragged
 
     private void Character5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character5MousePressed
-        StatsLayer.setVisible(true);
-        charInitialPoint = Character5.getLocation();
-        CharacterPortrait.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/roy_battle_portrait.png")));
-        NamePlateText.setText("Roy");
+        updateCharacterStats(Character5,5);
     }//GEN-LAST:event_Character5MousePressed
 
     private void Character5MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character5MouseReleased
@@ -766,10 +766,7 @@ public class MapGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_Character6MouseDragged
 
     private void Character6MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character6MousePressed
-        StatsLayer.setVisible(true);
-        charInitialPoint = Character6.getLocation();
-        CharacterPortrait.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/hawkeye_battle_portrait.png")));
-        NamePlateText.setText("Hawkeye");
+        updateCharacterStats(Character6,6);
     }//GEN-LAST:event_Character6MousePressed
 
     private void Character6MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character6MouseReleased
@@ -781,10 +778,7 @@ public class MapGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_Character7MouseDragged
 
     private void Character7MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character7MousePressed
-        StatsLayer.setVisible(true);
-        charInitialPoint = Character7.getLocation();
-        CharacterPortrait.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/selena_battle_portrait.png")));
-        NamePlateText.setText("Selena");
+        updateCharacterStats(Character7,7);
     }//GEN-LAST:event_Character7MousePressed
 
     private void Character7MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character7MouseReleased
@@ -796,10 +790,7 @@ public class MapGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_Character8MouseDragged
 
     private void Character8MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character8MousePressed
-        StatsLayer.setVisible(true);
-        charInitialPoint = Character8.getLocation();
-        CharacterPortrait.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/blackknight_battle_portrait.png")));
-        NamePlateText.setText("Black Knight");
+        updateCharacterStats(Character8,8);
     }//GEN-LAST:event_Character8MousePressed
 
     private void Character8MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character8MouseReleased
@@ -809,6 +800,10 @@ public class MapGUI extends javax.swing.JFrame {
     private void Character1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Character1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Character1ActionPerformed
+
+    private void Character8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Character8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Character8ActionPerformed
 
     private boolean isMouseWithinComponent(Component c) {
         mouseLocation = MouseInfo.getPointerInfo().getLocation();
@@ -841,8 +836,20 @@ public class MapGUI extends javax.swing.JFrame {
         }
     }
     
+    private void updateCharacterStats(JToggleButton jtb, int partyPosition) {
+        StatsLayer.setVisible(true);
+        charInitialPoint = jtb.getLocation();
+        if(partyPosition < 5) {
+            CharacterPortrait.setIcon(allyParty.getArmyChar(partyPosition - 1).getBattlePortrait());
+            NamePlateText.setText(allyParty.getArmyChar(partyPosition - 1).getName());
+        } else {
+            CharacterPortrait.setIcon(enemyParty.getArmyChar(partyPosition - 5).getBattlePortrait());
+            NamePlateText.setText(enemyParty.getArmyChar(partyPosition - 5).getName());
+        }
+    }
+    
     //Connects GUI representation of grid tiles to logical representation
-    private void initGrid() {
+    private void initMapGUI() {
         this.grid = new JButton[]{pos00, pos01, pos02, pos03, pos04, pos05, 
                                   pos10, pos11, pos12, pos13, pos14, pos15, 
                                   pos20, pos21, pos22, pos23, pos24, pos25, 
@@ -851,6 +858,29 @@ public class MapGUI extends javax.swing.JFrame {
                                   pos50, pos51, pos52, pos53, pos54, pos55, 
                                   pos60, pos61, pos62, pos63, pos64, pos65, 
                                   pos70, pos71, pos72, pos73, pos74, pos75};
+        
+        characters[0] = Character1;
+        characters[1] = Character2;
+        characters[2] = Character3;
+        characters[3] = Character4;
+        characters[4] = Character5;
+        characters[5] = Character6;
+        characters[6] = Character7;
+        characters[7] = Character8;
+        
+        enemyParty.addToArmy(new EnemyChar("Zeph"));
+        enemyParty.addToArmy(new EnemyChar("BlackKnight"));
+        enemyParty.addToArmy(new EnemyChar("Hawkeye"));
+        
+        for(int i = 0; i < 8; i++) {
+            if(i < 4 && i < allyParty.getArmySize()) {
+                characters[i].setVisible(true);
+                characters[i].setIcon(allyParty.getArmyChar(i).getImg());
+            } else if(i > 3 && (i-4) < enemyParty.getArmySize()) {
+                characters[i].setIcon(enemyParty.getArmyChar(i-4).getImg());
+                characters[i].setVisible(true);
+            }
+        }
     }
 
     /**

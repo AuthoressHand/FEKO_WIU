@@ -19,12 +19,12 @@ public class Party {
     private ArrayList<Character> army;
     
     public Party() {
-        army = new ArrayList<Character>();
+        army = new ArrayList<>();
         party = new Character[4];
     }
     
     public Party(int x) {
-        army = new ArrayList<Character>();
+        army = new ArrayList<>();
         party = new Character[x];
     }
     
@@ -55,8 +55,9 @@ public class Party {
     
     //sets the initial army
     private void setArmy(ArrayList<Character> army) {
-        for(Character character : army)
+        army.forEach((character) -> {
             this.addToArmy(character);
+        });
     }
     
     //adds a character to the army
@@ -76,7 +77,11 @@ public class Party {
     
     //gets a character from the army
     public Character getArmyChar(int x) {
-        return army.get(x);
+        try{
+            return army.get(x);
+        } catch(NullPointerException e){
+            return null;
+        }
     }
     
     //gets a character from the army
