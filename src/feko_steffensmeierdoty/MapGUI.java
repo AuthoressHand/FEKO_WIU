@@ -2,8 +2,6 @@
  * This class is the Map GUI.
  */
 package feko_steffensmeierdoty;
-
-import common.Stat;
 import java.awt.*;
 import javax.swing.*;
 import objects.*;
@@ -747,6 +745,7 @@ public class MapGUI extends javax.swing.JFrame {
 
     private void Character1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character1MousePressed
         updateCharacterStats(Character1,1);
+        
     }//GEN-LAST:event_Character1MousePressed
 
     private void Character2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character2MousePressed
@@ -897,6 +896,7 @@ public class MapGUI extends javax.swing.JFrame {
     //Updates characters stats in Stats Layer once clicked on. Also gets the characters initial position when first clicked on
     private void updateCharacterStats(JToggleButton jtb, int partyPosition) {
         StatsLayer.setVisible(true);
+        MapLayer.moveToFront(jtb);
         charInitialPoint = jtb.getLocation();
         if(partyPosition < 5) {
             CharacterPortrait.setIcon(allyParty.getArmyChar(partyPosition - 1).getBattlePortrait());
@@ -998,7 +998,6 @@ public class MapGUI extends javax.swing.JFrame {
                 new MapGUI().setVisible(true);
             }
         });
-        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
