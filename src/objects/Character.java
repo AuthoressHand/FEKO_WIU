@@ -59,7 +59,7 @@ public abstract class Character {
                 this.portraitImageIdle = new ImageIcon(getClass().getResource("/img/portraits/anna_silver_portrait_idle.png"));
                 this.portraitImageClicked = new ImageIcon(getClass().getResource("/img/portraits/anna_silver_portrait_clicked.png"));
                 break;
-            case "Zeph":
+            case "Zephiel":
                 this.img = new ImageIcon(getClass().getResource("/img/characters/zeph.png"));
                 this.portraitBattle = new ImageIcon(getClass().getResource("/img/portraits/zeph_battle_portrait.png"));
                 break;
@@ -69,7 +69,7 @@ public abstract class Character {
                 this.portraitImageIdle = new ImageIcon(getClass().getResource("/img/portraits/alfonse_silver_portrait_idle.png"));
                 this.portraitImageClicked = new ImageIcon(getClass().getResource("/img/portraits/alfonse_silver_portrait_clicked.png"));
                 break;
-            case "BlackKnight":
+            case "Black Knight":
                 this.img = new ImageIcon(getClass().getResource("/img/characters/blackknight.png"));
                 this.portraitBattle = new ImageIcon(getClass().getResource("/img/portraits/blackknight_battle_portrait.png"));
                 break;
@@ -216,8 +216,8 @@ public abstract class Character {
     //sets the weapon of a character
     protected void setWeapon(Weapon weapon) {
         this.weapon = weapon;
-        /*if (weapon.getStat() != null)
-            givePermBoost(weapon.getStat(), weapon.getEffect());*/
+        if(weapon.getStat() != null)
+            givePermBoost(weapon.getStat(), weapon.getEffect());
     }
     
     //sets the rally of a character
@@ -241,12 +241,16 @@ public abstract class Character {
     
     //returns the idle portrait image of a character
     public ImageIcon getPortaitImageIdle() {
-        return portraitImageIdle;
+        if(portraitImageIdle != null)    
+            return portraitImageIdle;
+        return null;
     }
     
     //returns the clicked portrait image of a character
     public ImageIcon getPortaitImageClicked() {
-        return portraitImageClicked;
+        if(portraitImageClicked != null)     
+            return portraitImageClicked;
+        return null;
     }
     
     //returns the clicked portrait image of a character

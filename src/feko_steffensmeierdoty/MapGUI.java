@@ -2,6 +2,7 @@
  * This class is the Map GUI.
  */
 package feko_steffensmeierdoty;
+import common.Stat;
 import java.awt.*;
 import javax.swing.*;
 import objects.*;
@@ -753,11 +754,11 @@ public class MapGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_Character2MousePressed
 
     private void Character1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character1MouseReleased
-        checkForValidMove(Grid,Character1);        
+        checkForValidMove(Grid,Character1, 0);        
     }//GEN-LAST:event_Character1MouseReleased
 
     private void Character2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character2MouseReleased
-        checkForValidMove(Grid,Character2);
+        checkForValidMove(Grid,Character2, 1);
     }//GEN-LAST:event_Character2MouseReleased
 
     private void Character3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character3MouseDragged
@@ -769,7 +770,7 @@ public class MapGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_Character3MousePressed
 
     private void Character3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character3MouseReleased
-        checkForValidMove(Grid,Character3);
+        checkForValidMove(Grid,Character3, 2);
     }//GEN-LAST:event_Character3MouseReleased
 
     private void Character4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character4MouseDragged
@@ -781,7 +782,7 @@ public class MapGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_Character4MousePressed
 
     private void Character4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character4MouseReleased
-        checkForValidMove(Grid,Character4);
+        checkForValidMove(Grid,Character4, 3);
     }//GEN-LAST:event_Character4MouseReleased
 
     private void Character2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Character2ActionPerformed
@@ -797,7 +798,7 @@ public class MapGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_Character5MousePressed
 
     private void Character5MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character5MouseReleased
-        checkForValidMove(Grid,Character5);
+        checkForValidMove(Grid,Character5, 4);
     }//GEN-LAST:event_Character5MouseReleased
 
     private void Character6MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character6MouseDragged
@@ -809,7 +810,7 @@ public class MapGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_Character6MousePressed
 
     private void Character6MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character6MouseReleased
-        checkForValidMove(Grid,Character6);
+        checkForValidMove(Grid,Character6, 5);
     }//GEN-LAST:event_Character6MouseReleased
 
     private void Character7MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character7MouseDragged
@@ -821,7 +822,7 @@ public class MapGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_Character7MousePressed
 
     private void Character7MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character7MouseReleased
-        checkForValidMove(Grid,Character7);
+        checkForValidMove(Grid,Character7, 6);
     }//GEN-LAST:event_Character7MouseReleased
 
     private void Character8MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character8MouseDragged
@@ -833,7 +834,7 @@ public class MapGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_Character8MousePressed
 
     private void Character8MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character8MouseReleased
-        checkForValidMove(Grid,Character8);
+        checkForValidMove(Grid,Character8, 7);
     }//GEN-LAST:event_Character8MouseReleased
 
     private void Character1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Character1ActionPerformed
@@ -860,21 +861,34 @@ public class MapGUI extends javax.swing.JFrame {
     }
     
     //Checks if the character has made a valid move
-    private void checkForValidMove(Component boundary, Component character) {
+    private void checkForValidMove(Component boundary, Component character, int armyPos) {
         if (isMouseWithinComponent(boundary)) {
-            for (GridTile grid1 : grid) {
+            for(GridTile grid1 : grid) {
                 if(isMouseWithinComponent(grid1.getTile()) && grid1.isAccessible() == true) {
                     character.setLocation(grid1.getTile().getX(), grid1.getTile().getY() + TopBorderStats.getHeight());
-                    grid1.setAccessible(false);
+                    if(armyPos < 4) {    
+                        grid1.addCharacter(allyParty.getArmyChar(armyPos));
+                    } else {
+                        grid1.addCharacter(enemyParty.getArmyChar(armyPos-4));
+                    }
                     for(GridTile grid2: grid) {
                         if(grid2.getTile().getX() == charInitialPoint.x && grid2.getTile().getY() + TopBorderStats.getHeight() == charInitialPoint.y) {
-                            grid2.setAccessible(true);
+                            grid2.removeCharacter();
                         }
                     }
                     break;
-                } else {
-                    character.setLocation(charInitialPoint);
+                } else if((isMouseWithinComponent(grid1.getTile())) && grid1.isAccessible() == false && grid1.isOccupied()) {
+                    if(armyPos < 4) {
+                        if(!grid1.getCharacter().equals(allyParty.getArmyChar(armyPos))) {
+                            grid1.getCharacter().changeHP(2);
+                        }
+                    } else {
+                        if(!grid1.getCharacter().equals(enemyParty.getArmyChar(armyPos-4))) {
+                            grid1.getCharacter().changeHP(2);
+                        }
+                    }
                 }
+                character.setLocation(charInitialPoint);
             }
         } else {
             character.setLocation(charInitialPoint);
@@ -908,7 +922,6 @@ public class MapGUI extends javax.swing.JFrame {
         } else {
             CharacterPortrait.setIcon(enemyParty.getArmyChar(partyPosition - 5).getBattlePortrait());
             NamePlateText.setText(enemyParty.getArmyChar(partyPosition - 5).getName());
-            NamePlateText.setText(enemyParty.getArmyChar(partyPosition - 5).getName());
             CurrentHP.setText(enemyParty.getArmyChar(partyPosition-5).getCurrentHP() + "");
             MaxHP.setText(enemyParty.getArmyChar(partyPosition-5).getMaxHP() + "");
             AttackLevel.setText(enemyParty.getArmyChar(partyPosition-5).getTotalAtk()+ "");
@@ -940,8 +953,8 @@ public class MapGUI extends javax.swing.JFrame {
         characters[7] = Character8;
         
         //Adds Level 1 enemies into enemy party
-        enemyParty.addToArmy(new EnemyChar("Zeph"));
-        enemyParty.addToArmy(new EnemyChar("BlackKnight"));
+        enemyParty.addToArmy(new EnemyChar("Zephiel"));
+        enemyParty.addToArmy(new EnemyChar("Black Knight"));
         enemyParty.addToArmy(new EnemyChar("Hawkeye"));
         
         //Displays the current ally team and enemy team
@@ -959,7 +972,11 @@ public class MapGUI extends javax.swing.JFrame {
             //Upates grid for the character positions
             for(GridTile gt: grid) {
                 if(isCharacterWithinTile(characters[i], gt.getTile())) {
-                    gt.setAccessible(false);
+                    if(i < 4) {
+                        gt.addCharacter(allyParty.getArmyChar(i));
+                    }else {
+                        gt.addCharacter(enemyParty.getArmyChar(i-4));
+                    }
                 }
             }
         }
