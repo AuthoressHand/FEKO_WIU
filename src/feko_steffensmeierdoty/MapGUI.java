@@ -2,7 +2,6 @@
  * This class is the Map GUI.
  */
 package feko_steffensmeierdoty;
-import common.*;
 import java.awt.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,7 +24,8 @@ public class MapGUI extends javax.swing.JFrame {
     private static GridTile[] grid;
     private static boolean turn = true;
     private static boolean animation = false;
-
+    
+    
     public MapGUI() {
         initComponents();
     }
@@ -44,8 +44,8 @@ public class MapGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         MainContainer = new javax.swing.JLayeredPane();
-        MapLayer = new javax.swing.JLayeredPane();
         PhaseLabel = new javax.swing.JLabel();
+        MapLayer = new javax.swing.JLayeredPane();
         Character8 = new javax.swing.JToggleButton();
         Character7 = new javax.swing.JToggleButton();
         Character6 = new javax.swing.JToggleButton();
@@ -145,12 +145,13 @@ public class MapGUI extends javax.swing.JFrame {
         MainContainer.setMinimumSize(new java.awt.Dimension(540, 925));
         MainContainer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        MapLayer.setEnabled(false);
-        MapLayer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
+        PhaseLabel.setVisible(false);
         PhaseLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         PhaseLabel.setForeground(new java.awt.Color(255, 255, 255));
-        MapLayer.add(PhaseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, -1, -1));
+        MainContainer.add(PhaseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, -1, -1));
+
+        MapLayer.setEnabled(false);
+        MapLayer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Character8.setVisible(false);
         Character8.setBorderPainted(false);
@@ -1356,18 +1357,18 @@ public class MapGUI extends javax.swing.JFrame {
     }
 
     //Begins the phase animation
-    private void startPhase() {
-        animation = true;
-        PhaseLabel.setVisible(true);
-        if(turn == true) {
-            PhaseLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/playerPhase.png")));
-        } else {
-            PhaseLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/enemyPhase.png")));
-        }
-        Thread t = new Thread(){
+    private void startPhase() {Thread t = new Thread(){
+        @Override
         public void run() {
             try {
-                Thread.sleep(2000);
+                animation = true;
+                PhaseLabel.setVisible(true);
+                if(turn == true) {
+                    PhaseLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/playerPhase.png")));
+                } else {
+                    PhaseLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/enemyPhase.png")));
+                }
+                Thread.sleep(1500);
                 PhaseLabel.setVisible(false);
                 animation = false;
             } catch (InterruptedException ex) {
