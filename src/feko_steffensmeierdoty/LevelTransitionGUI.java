@@ -124,14 +124,12 @@ public class LevelTransitionGUI extends javax.swing.JFrame {
         Thread levelTransitionThread = new Thread() {    
             public void run() {
                 try {
-                    Thread.sleep(800);
+                    LevelNamePlatform.setVisible(true);
                     ChapterPlatform.setVisible(true);
-                    Thread.sleep(50);
+                    Thread.sleep(850);
                     ChapterText.setVisible(true);
                     ChapterText.setText("Level 1");
-                    Thread.sleep(1500);
-                    LevelNamePlatform.setVisible(true);
-                    Thread.sleep(50);
+                    Thread.sleep(1000);
                     LevelNameText.setVisible(true);
                     LevelNameText.setText("The Beginning");
                     Thread.sleep(1750);
