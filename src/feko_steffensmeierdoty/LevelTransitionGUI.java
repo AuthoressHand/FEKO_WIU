@@ -128,7 +128,7 @@ public class LevelTransitionGUI extends javax.swing.JFrame {
                     ChapterPlatform.setVisible(true);
                     Thread.sleep(850);
                     ChapterText.setVisible(true);
-                    ChapterText.setText("Level 1");
+                    ChapterText.setText("Stage 1");
                     Thread.sleep(1000);
                     LevelNameText.setVisible(true);
                     LevelNameText.setText("The Beginning");

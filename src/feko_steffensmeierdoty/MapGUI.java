@@ -982,6 +982,9 @@ public class MapGUI extends javax.swing.JFrame {
 
     private void EndTurnButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EndTurnButtonMouseClicked
 
+        for(JToggleButton jtb: characters) {
+            jtb.setEnabled(true);
+        }
         turn = turn != true;
         startPhase();
     }//GEN-LAST:event_EndTurnButtonMouseClicked
@@ -1115,7 +1118,7 @@ public class MapGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_Character1ActionPerformed
 
     private void Character1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character1MouseReleased
-        if(turn == true)
+        if(turn == true && Character1.isEnabled())
             checkForValidMove(Grid,Character1, 0);
     }//GEN-LAST:event_Character1MouseReleased
 
@@ -1124,7 +1127,7 @@ public class MapGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_Character1MousePressed
 
     private void Character1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character1MouseDragged
-        if(turn == true)
+        if(turn == true && Character1.isEnabled())
             moveCharacter(Character1);
     }//GEN-LAST:event_Character1MouseDragged
 
@@ -1133,7 +1136,7 @@ public class MapGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_Character2ActionPerformed
 
     private void Character2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character2MouseReleased
-        if(turn == true)
+        if(turn == true && Character2.isEnabled())
             checkForValidMove(Grid,Character2, 1);
     }//GEN-LAST:event_Character2MouseReleased
 
@@ -1142,12 +1145,12 @@ public class MapGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_Character2MousePressed
 
     private void Character2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character2MouseDragged
-        if(turn == true)
+        if(turn == true && Character2.isEnabled())
             moveCharacter(Character2);
     }//GEN-LAST:event_Character2MouseDragged
 
     private void Character3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character3MouseReleased
-        if(turn == true)
+        if(turn == true && Character3.isEnabled())
             checkForValidMove(Grid,Character3, 2);
     }//GEN-LAST:event_Character3MouseReleased
 
@@ -1156,12 +1159,12 @@ public class MapGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_Character3MousePressed
 
     private void Character3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character3MouseDragged
-        if(turn == true)
+        if(turn == true && Character3.isEnabled())
             moveCharacter(Character3);
     }//GEN-LAST:event_Character3MouseDragged
 
     private void Character4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character4MouseReleased
-        if(turn == true)
+        if(turn == true && Character4.isEnabled())
             checkForValidMove(Grid,Character4, 3);
     }//GEN-LAST:event_Character4MouseReleased
 
@@ -1170,12 +1173,12 @@ public class MapGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_Character4MousePressed
 
     private void Character4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character4MouseDragged
-        if(turn == true)
+        if(turn == true && Character4.isEnabled())
         moveCharacter(Character4);
     }//GEN-LAST:event_Character4MouseDragged
 
     private void Character5MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character5MouseReleased
-        if(turn == false)
+        if(turn == false && Character5.isEnabled())
             checkForValidMove(Grid,Character5, 4);
     }//GEN-LAST:event_Character5MouseReleased
 
@@ -1184,13 +1187,13 @@ public class MapGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_Character5MousePressed
 
     private void Character5MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character5MouseDragged
-        if(turn == false) {
+        if(turn == false && Character5.isEnabled()) {
             moveCharacter(Character5);
         }
     }//GEN-LAST:event_Character5MouseDragged
 
     private void Character6MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character6MouseReleased
-        if(turn == false)
+        if(turn == false && Character6.isEnabled())
             checkForValidMove(Grid,Character6, 5);
     }//GEN-LAST:event_Character6MouseReleased
 
@@ -1199,12 +1202,12 @@ public class MapGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_Character6MousePressed
 
     private void Character6MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character6MouseDragged
-        if(turn == false)
+        if(turn == false && Character6.isEnabled())
             moveCharacter(Character6);
     }//GEN-LAST:event_Character6MouseDragged
 
     private void Character7MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character7MouseReleased
-        if(turn == false)
+        if(turn == false && Character7.isEnabled())
             checkForValidMove(Grid,Character7, 6);
     }//GEN-LAST:event_Character7MouseReleased
 
@@ -1213,7 +1216,7 @@ public class MapGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_Character7MousePressed
 
     private void Character7MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character7MouseDragged
-        if(turn == false)
+        if(turn == false && Character7.isEnabled())
             moveCharacter(Character7);
     }//GEN-LAST:event_Character7MouseDragged
 
@@ -1222,7 +1225,7 @@ public class MapGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_Character8ActionPerformed
 
     private void Character8MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character8MouseReleased
-        if(turn == false)
+        if(turn == false && Character8.isEnabled())
             checkForValidMove(Grid,Character8, 7);
     }//GEN-LAST:event_Character8MouseReleased
 
@@ -1231,7 +1234,7 @@ public class MapGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_Character8MousePressed
 
     private void Character8MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character8MouseDragged
-        if(turn == false)
+        if(turn == false && Character8.isEnabled())
             moveCharacter(Character8);
     }//GEN-LAST:event_Character8MouseDragged
        
@@ -1273,14 +1276,62 @@ public class MapGUI extends javax.swing.JFrame {
                     break;
                 } else if((isMouseWithinComponent(grid1.getTile())) && grid1.isAccessible() == false && grid1.isOccupied()) {
                     if(armyPos < 4) {
+                        for(int i=0; i < allyParty.getArmySize(); i++) {
+                            if(grid1.getCharacter() == allyParty.getArmyChar(i)) {
+                                character.setLocation(charInitialPoint);
+                                return;
+                            }
+                        }
                         if(!grid1.getCharacter().equals(allyParty.getArmyChar(armyPos))) {
                             grid1.getCharacter().changeHP(allyParty.getArmyChar(armyPos).getTotalAtk());
                             applyDamage(grid1.getCharacter(), grid1);
+                            character.setEnabled(false);
+                            int i = 0;
+                            for(JToggleButton jtb: characters) {
+                                if(i < 4 && jtb.isVisible()) {
+                                    if(jtb.isEnabled() == true) {
+                                        i = -1;
+                                        break;
+                                    }
+                                }
+                                i++;
+                            }
+                            if(i != -1) {
+                                for(JToggleButton jtbs: characters) {
+                                    jtbs.setEnabled(true);
+                                }
+                                turn = turn != true;
+                                startPhase();
+                            }
                         }
                     } else {
+                        for(int i=0; i < enemyParty.getArmySize(); i++) {
+                            if(grid1.getCharacter() == enemyParty.getArmyChar(i)) {
+                                character.setLocation(charInitialPoint);
+                                return;
+                            }
+                        }
                         if(!grid1.getCharacter().equals(enemyParty.getArmyChar(armyPos-4))) {
                             grid1.getCharacter().changeHP(enemyParty.getArmyChar(armyPos-4).getTotalAtk());
                             applyDamage(grid1.getCharacter(), grid1);
+                            character.setEnabled(false);
+                            int i = 0;
+                            for(JToggleButton jtb: characters) {
+                                if(i > 3 && jtb.isVisible()) {
+                                    if(jtb.isEnabled() == true) {
+                                        i = -1;
+                                        break;
+                                    }
+                                }
+                                i++;
+                            }
+                            if(i != -1) {
+                                for(JToggleButton jtbs: characters) {
+                                    jtbs.setEnabled(true);
+                                }
+                                turn = turn != true;
+                                startPhase();
+                            }
                         }
                     }
                     if(grid1.getCharacter().getCurrentHP() < 1) {
@@ -1311,7 +1362,6 @@ public class MapGUI extends javax.swing.JFrame {
                         }   
                         i++;
                     }
-                    
                     character.setLocation(charInitialPoint);
                 } else if(grid1.isAccessible() == false){
                     character.setLocation(charInitialPoint);
@@ -1396,7 +1446,7 @@ public class MapGUI extends javax.swing.JFrame {
                 continue;
             }
             
-            //Upates grid for the character positions
+            //Updates grid for the character positions
             for(GridTile gt: grid) {
                 if(isCharacterWithinTile(characters[i], gt.getTile())) {
                     if(i < 4) {
