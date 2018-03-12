@@ -3,6 +3,7 @@
  */
 package feko_steffensmeierdoty;
 import java.awt.*;
+import java.awt.event.ComponentListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
@@ -14,25 +15,30 @@ import objects.*;
  */
 public class MapGUI extends javax.swing.JFrame {
 
+    private static CharacterModGUI cmGUI;
     private final JToggleButton[] characters = new JToggleButton[8];
-    private static Point mouseLocation;
-    private static Point componentLocation;
-    private static Rectangle bounds;
-    private static Point charInitialPoint;
-    private static Party allyParty;
-    private static Party enemyParty = new Party();
+    private Point mouseLocation;
+    private Point componentLocation;
+    private Rectangle bounds;
+    private Point charInitialPoint;
+    private Party allyParty;
+    private Party enemyParty = new Party();
     private static GridTile[] grid;
-    private static boolean turn = true;
-    private static boolean animation = false;
-    private static int damage;
-    private static String[] damageFonts = {"red0.png","red1.png","red2.png","red3.png","red4.png","red5.png","red6.png","red7.png","red8.png","red9.png"};
+    private boolean turn = true;
+    private boolean animation = false;
+    private int damage;
+    private Thread startPhaseThread;
+    private Thread applyDamageThread;
+    private String[] damageFonts = {"red0.png","red1.png","red2.png","red3.png","red4.png","red5.png","red6.png","red7.png","red8.png","red9.png"};
     
     
     public MapGUI() {
         initComponents();
     }
     
-    public MapGUI(Party party) {
+    public MapGUI(Party party, CharacterModGUI cmGUI) {
+        this.cmGUI = cmGUI;
+        this.allyParty = party;
         initComponents();
         initMapGUI(party);
     }
@@ -1189,8 +1195,9 @@ public class MapGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_Character5MousePressed
 
     private void Character5MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character5MouseDragged
-        if(turn == false && animation == false)
+        if(turn == false && animation == false) {
             moveCharacter(Character5);
+        }
     }//GEN-LAST:event_Character5MouseDragged
 
     private void Character6MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character6MouseReleased
@@ -1281,13 +1288,14 @@ public class MapGUI extends javax.swing.JFrame {
                     if(armyPos < 4) {
                         if(!grid1.getCharacter().equals(allyParty.getArmyChar(armyPos))) {
                             grid1.getCharacter().changeHP(allyParty.getArmyChar(armyPos).getTotalAtk());
+                            applyDamage(grid1.getCharacter(), grid1);
                         }
                     } else {
                         if(!grid1.getCharacter().equals(enemyParty.getArmyChar(armyPos-4))) {
                             grid1.getCharacter().changeHP(enemyParty.getArmyChar(armyPos-4).getTotalAtk());
+                            applyDamage(grid1.getCharacter(), grid1);
                         }
                     }
-                    applyDamage(grid1.getCharacter(), grid1);
                     if(grid1.getCharacter().getCurrentHP() < 1) {
                         for(JToggleButton jtb: characters) {
                             if(jtb.getIcon() != null && grid1.getCharacter() != null && jtb.getIcon().toString().equals(grid1.getCharacter().getImg().toString())) {
@@ -1297,8 +1305,25 @@ public class MapGUI extends javax.swing.JFrame {
                             }
                         }
                     }
+                    int i = 0;
+                    int allyCounter = 0;
+                    int enemyCounter = 0;
+                    for(JToggleButton jtb: characters) {
+                        if(jtb.isVisible() && i<4){
+                            allyCounter++;
+                        } else if(jtb.isVisible() && i>3) {
+                            enemyCounter++;
+                        }
+                        if(i==4 && allyCounter == 0) {
+                            GameOverGUI goGUI= new GameOverGUI(cmGUI);
+                            goGUI.setVisible(true);
+                            setVisible(false);
+                        }   
+                        i++;
+                    }
+                    
                     character.setLocation(charInitialPoint);
-                } else {
+                } else if(grid1.isAccessible() == false){
                     character.setLocation(charInitialPoint);
                 }
             }
@@ -1343,8 +1368,6 @@ public class MapGUI extends javax.swing.JFrame {
     
     //Initializes MapGUI variables before user input
     private void initMapGUI(Party party) {
-        
-        MapGUI.allyParty = party;
         
         //Creates Level 1 Grid
         MapGUI.grid = new GridTile[]{new GridTile(pos00,true), new GridTile(pos01,false), new GridTile(pos02,false), new GridTile(pos03,true), new GridTile(pos04,true), new GridTile(pos05,false), 
@@ -1398,7 +1421,7 @@ public class MapGUI extends javax.swing.JFrame {
     }
     
     private void applyDamage(Char damageDealer, GridTile gridTile) {
-        Thread applyDamage = new Thread(){
+        applyDamageThread = new Thread(){
         @Override
         public void run() {
             try {
@@ -1416,12 +1439,12 @@ public class MapGUI extends javax.swing.JFrame {
                 Logger.getLogger(MapGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
         }};
-        applyDamage.start();
+        applyDamageThread.start();
     }
 
     //Begins the phase animation
     private void startPhase() {
-        Thread startPhaseThread = new Thread(){
+        startPhaseThread = new Thread(){
         @Override
         public void run() {
             try {

@@ -16,14 +16,16 @@ import objects.Party;
 public class LevelTransitionGUI extends javax.swing.JFrame {
 
     private Party party;
+    private CharacterModGUI cmGUI;
     
     public LevelTransitionGUI() {
         initComponents();
         levelTransition();
     }
     
-    public LevelTransitionGUI(Party party) {
+    public LevelTransitionGUI(Party party, CharacterModGUI cmGUI) {
         this.party = party;
+        this.cmGUI = cmGUI;
         initComponents();
         levelTransition();
     }
@@ -90,7 +92,7 @@ public class LevelTransitionGUI extends javax.swing.JFrame {
                 LevelNameTextActionPerformed(evt);
             }
         });
-        LevelTransition.add(LevelNameText, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 450, 430, 60));
+        LevelTransition.add(LevelNameText, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 450, 410, 60));
 
         ChapterPlatform.setVisible(false);
         ChapterPlatform.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/chapterPlatform.png"))); // NOI18N
@@ -138,7 +140,7 @@ public class LevelTransitionGUI extends javax.swing.JFrame {
                     ChapterText.setVisible(false);
                     LevelNamePlatform.setVisible(false);
                     LevelNameText.setVisible(false);
-                    MapGUI mGUI = new MapGUI(party);
+                    MapGUI mGUI = new MapGUI(party,cmGUI);
                     mGUI.setVisible(true);
                     setVisible(false);
                 } catch (InterruptedException ex) {

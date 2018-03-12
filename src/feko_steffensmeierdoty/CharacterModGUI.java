@@ -18,12 +18,17 @@ public class CharacterModGUI extends javax.swing.JFrame {
     private final JButton[] characterOptions = new JButton[5];
     private final JLabel[] charsHomeLayer = new JLabel[4];
     private final AllyChar[] allyOptions = new AllyChar[5];
-    private final Party team = new Party();
+    private static Party team = new Party();
     
     /**
      * Creates new form CharacterModGUI
      */
     public CharacterModGUI() {
+        initComponents();
+        initCharacterModGUI();
+    }
+    
+    public CharacterModGUI(Party team) {
         initComponents();
         initCharacterModGUI();
     }
@@ -681,7 +686,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
     //Sets the CharacterModGUI frame to inivisible, and creates and displays the MapGUI (level)
     private void StoryMapsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StoryMapsButtonActionPerformed
         if(getTeamSize() > 0) {  
-            LevelTransitionGUI ltGUI = new LevelTransitionGUI(team);
+            LevelTransitionGUI ltGUI = new LevelTransitionGUI(team,this);
             ltGUI.setVisible(true);
             setVisible(false);
         }
