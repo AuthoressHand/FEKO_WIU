@@ -976,12 +976,7 @@ public class MapGUI extends javax.swing.JFrame {
 
     private void EndTurnButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EndTurnButtonMouseClicked
         if(animation == false) {
-            if(turn == true) {
-                turn = false;
-            } else {
-                turn = true;
-            }
-
+            turn = turn != true;
             startPhase();
         }
     }//GEN-LAST:event_EndTurnButtonMouseClicked
@@ -1116,7 +1111,7 @@ public class MapGUI extends javax.swing.JFrame {
 
     private void Character1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character1MouseReleased
         if(turn == true && animation == false)
-        checkForValidMove(Grid,Character1, 0);
+            checkForValidMove(Grid,Character1, 0);
     }//GEN-LAST:event_Character1MouseReleased
 
     private void Character1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character1MousePressed
@@ -1127,7 +1122,7 @@ public class MapGUI extends javax.swing.JFrame {
 
     private void Character1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character1MouseDragged
         if(turn == true && animation == false)
-        moveCharacter(Character1);
+            moveCharacter(Character1);
     }//GEN-LAST:event_Character1MouseDragged
 
     private void Character2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Character2ActionPerformed
@@ -1136,7 +1131,7 @@ public class MapGUI extends javax.swing.JFrame {
 
     private void Character2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character2MouseReleased
         if(turn == true && animation == false)
-        checkForValidMove(Grid,Character2, 1);
+            checkForValidMove(Grid,Character2, 1);
     }//GEN-LAST:event_Character2MouseReleased
 
     private void Character2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character2MousePressed
@@ -1147,12 +1142,12 @@ public class MapGUI extends javax.swing.JFrame {
 
     private void Character2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character2MouseDragged
         if(turn == true && animation == false)
-        moveCharacter(Character2);
+            moveCharacter(Character2);
     }//GEN-LAST:event_Character2MouseDragged
 
     private void Character3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character3MouseReleased
         if(turn == true && animation == false)
-        checkForValidMove(Grid,Character3, 2);
+            checkForValidMove(Grid,Character3, 2);
     }//GEN-LAST:event_Character3MouseReleased
 
     private void Character3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character3MousePressed
@@ -1163,12 +1158,12 @@ public class MapGUI extends javax.swing.JFrame {
 
     private void Character3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character3MouseDragged
         if(turn == true && animation == false)
-        moveCharacter(Character3);
+            moveCharacter(Character3);
     }//GEN-LAST:event_Character3MouseDragged
 
     private void Character4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character4MouseReleased
         if(turn == true && animation == false)
-        checkForValidMove(Grid,Character4, 3);
+            checkForValidMove(Grid,Character4, 3);
     }//GEN-LAST:event_Character4MouseReleased
 
     private void Character4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character4MousePressed
@@ -1184,7 +1179,7 @@ public class MapGUI extends javax.swing.JFrame {
 
     private void Character5MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character5MouseReleased
         if(turn == false && animation == false)
-        checkForValidMove(Grid,Character5, 4);
+            checkForValidMove(Grid,Character5, 4);
     }//GEN-LAST:event_Character5MouseReleased
 
     private void Character5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character5MousePressed
@@ -1195,12 +1190,12 @@ public class MapGUI extends javax.swing.JFrame {
 
     private void Character5MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character5MouseDragged
         if(turn == false && animation == false)
-        moveCharacter(Character5);
+            moveCharacter(Character5);
     }//GEN-LAST:event_Character5MouseDragged
 
     private void Character6MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character6MouseReleased
         if(turn == false && animation == false)
-        checkForValidMove(Grid,Character6, 5);
+            checkForValidMove(Grid,Character6, 5);
     }//GEN-LAST:event_Character6MouseReleased
 
     private void Character6MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character6MousePressed
@@ -1211,12 +1206,12 @@ public class MapGUI extends javax.swing.JFrame {
 
     private void Character6MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character6MouseDragged
         if(turn == false && animation == false)
-        moveCharacter(Character6);
+            moveCharacter(Character6);
     }//GEN-LAST:event_Character6MouseDragged
 
     private void Character7MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character7MouseReleased
         if(turn == false && animation == false)
-        checkForValidMove(Grid,Character7, 6);
+            checkForValidMove(Grid,Character7, 6);
     }//GEN-LAST:event_Character7MouseReleased
 
     private void Character7MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character7MousePressed
@@ -1227,7 +1222,7 @@ public class MapGUI extends javax.swing.JFrame {
 
     private void Character7MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character7MouseDragged
         if(turn == false && animation == false)
-        moveCharacter(Character7);
+            moveCharacter(Character7);
     }//GEN-LAST:event_Character7MouseDragged
 
     private void Character8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Character8ActionPerformed
@@ -1236,7 +1231,7 @@ public class MapGUI extends javax.swing.JFrame {
 
     private void Character8MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character8MouseReleased
         if(turn == false && animation == false)
-        checkForValidMove(Grid,Character8, 7);
+            checkForValidMove(Grid,Character8, 7);
     }//GEN-LAST:event_Character8MouseReleased
 
     private void Character8MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character8MousePressed
@@ -1247,7 +1242,7 @@ public class MapGUI extends javax.swing.JFrame {
 
     private void Character8MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character8MouseDragged
         if(turn == false && animation == false)
-        moveCharacter(Character8);
+            moveCharacter(Character8);
     }//GEN-LAST:event_Character8MouseDragged
        
     //Checks to see whether the current mouse position is inside a specific component
@@ -1283,36 +1278,28 @@ public class MapGUI extends javax.swing.JFrame {
                     }
                     break;
                 } else if((isMouseWithinComponent(grid1.getTile())) && grid1.isAccessible() == false && grid1.isOccupied()) {
-                    character.setLocation(charInitialPoint);
                     if(armyPos < 4) {
                         if(!grid1.getCharacter().equals(allyParty.getArmyChar(armyPos))) {
                             grid1.getCharacter().changeHP(allyParty.getArmyChar(armyPos).getTotalAtk());
-                            applyDamage(grid1.getCharacter(), grid1);
-                            if(grid1.getCharacter().getCurrentHP() < 1) {
-                                for(JToggleButton jtb: characters) {
-                                    if(jtb.getIcon() != null && grid1.getCharacter() != null && jtb.getIcon().toString().equals(grid1.getCharacter().getImg().toString())) {
-                                        jtb.setVisible(false);
-                                        grid1.setAccessible(true);
-                                        grid1.setOccupied(null);
-                                    }
-                                }
-                            }
                         }
                     } else {
                         if(!grid1.getCharacter().equals(enemyParty.getArmyChar(armyPos-4))) {
                             grid1.getCharacter().changeHP(enemyParty.getArmyChar(armyPos-4).getTotalAtk());
-                            applyDamage(grid1.getCharacter(),grid1);
-                            if(grid1.getCharacter().getCurrentHP() < 1) {
-                                for(JToggleButton jtb: characters) {
-                                    if(jtb.getIcon() != null && grid1.getCharacter() != null && jtb.getIcon().toString().equals(grid1.getCharacter().getImg().toString())) {
-                                        jtb.setVisible(false);
-                                        grid1.setAccessible(true);
-                                        grid1.setOccupied(null);
-                                    }
-                                }
+                        }
+                    }
+                    applyDamage(grid1.getCharacter(), grid1);
+                    if(grid1.getCharacter().getCurrentHP() < 1) {
+                        for(JToggleButton jtb: characters) {
+                            if(jtb.getIcon() != null && grid1.getCharacter() != null && jtb.getIcon().toString().equals(grid1.getCharacter().getImg().toString())) {
+                                jtb.setVisible(false);
+                                grid1.setAccessible(true);
+                                grid1.setOccupied(null);
                             }
                         }
                     }
+                    character.setLocation(charInitialPoint);
+                } else {
+                    character.setLocation(charInitialPoint);
                 }
             }
         } else {
@@ -1322,7 +1309,7 @@ public class MapGUI extends javax.swing.JFrame {
     
     //Changes the position of the character button relative to the mouse position
     private void moveCharacter(Component character) {
-        if (isMouseWithinComponent(MainContainer)) {
+        if(isMouseWithinComponent(MainContainer)) {
             mouseLocation = MouseInfo.getPointerInfo().getLocation();
             componentLocation = MainContainer.getLocationOnScreen();
             mouseLocation.x = mouseLocation.x - componentLocation.x - character.getWidth() / 2;
