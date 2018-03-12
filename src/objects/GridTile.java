@@ -15,7 +15,7 @@ import objects.*;
 public class GridTile {
     
     private JButton tile;
-    private Character character;
+    private Char character;
     private boolean isAccessible;
     private boolean isOccupied;
     
@@ -41,7 +41,7 @@ public class GridTile {
         this.isAccessible = isAccessible;
     }
     
-    public void setOccupied(Character character) {
+    public void setOccupied(Char character) {
         this.character = character;
     }
     
@@ -50,12 +50,12 @@ public class GridTile {
         setOccupied(null);
     }
     
-    public void addCharacter(Character character) {
+    public void addCharacter(Char character) {
         setAccessible(false);
         setOccupied(character);
     }
     
-    public Character getCharacter() {
+    public Char getCharacter() {
         if(character != null)
             return character;
         return null;

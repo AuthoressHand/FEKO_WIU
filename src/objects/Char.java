@@ -19,7 +19,7 @@ import javax.swing.ImageIcon;
  * @updated 2/23/2018 - added new methods (getName), made edits to existing classes (givePermBoost), and comments for existing ones
  * The main object that the player controls and fights against during the game, lists out everything the character needs
  */
-public abstract class Character {
+public abstract class Char {
     private String name;
     private int maxHP;
     private int currentHP;
@@ -43,14 +43,14 @@ public abstract class Character {
     private boolean active;
     private CharType charType;
     
-    public Character(String name) {
+    public Char(String name) {
         this.name = name;
         this.level = 1;
         this.maxHP = 10 + level;
         this.currentHP = this.maxHP;
-        this.weapon = new Weapon(null, 0, "Bronze Sword", 0, "Basic Sword, starting equipment", WeaponType.Sword, 6, 1, DamageType.Physical);
-        this.attack = 2;
-        this.defense = 2;
+        this.weapon = new Weapon(null, 0, "Bronze Sword", 0, "Basic Sword, starting equipment", WeaponType.Sword, 0, 1, DamageType.Physical);
+        this.attack = 1;
+        this.defense = 1;
         
         switch(name) {
             case "Anna": 

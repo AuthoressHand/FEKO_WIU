@@ -24,6 +24,8 @@ public class MapGUI extends javax.swing.JFrame {
     private static GridTile[] grid;
     private static boolean turn = true;
     private static boolean animation = false;
+    private static int damage;
+    private static String[] damageFonts = {"red0.png","red1.png","red2.png","red3.png","red4.png","red5.png","red6.png","red7.png","red8.png","red9.png"};
     
     
     public MapGUI() {
@@ -32,8 +34,7 @@ public class MapGUI extends javax.swing.JFrame {
     
     public MapGUI(Party party) {
         initComponents();
-        MapGUI.allyParty = party;
-        initMapGUI();
+        initMapGUI(party);
     }
 
     /**
@@ -46,6 +47,7 @@ public class MapGUI extends javax.swing.JFrame {
         MainContainer = new javax.swing.JLayeredPane();
         PhaseLabel = new javax.swing.JLabel();
         MapLayer = new javax.swing.JLayeredPane();
+        DamageLabel = new javax.swing.JLabel();
         Character8 = new javax.swing.JToggleButton();
         Character7 = new javax.swing.JToggleButton();
         Character6 = new javax.swing.JToggleButton();
@@ -151,7 +153,12 @@ public class MapGUI extends javax.swing.JFrame {
         MainContainer.add(PhaseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, -1, -1));
 
         MapLayer.setEnabled(false);
-        MapLayer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        PhaseLabel.setVisible(false);
+        DamageLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        DamageLabel.setForeground(new java.awt.Color(255, 255, 255));
+        MapLayer.add(DamageLabel);
+        DamageLabel.setBounds(490, 870, 50, 60);
 
         Character8.setVisible(false);
         Character8.setBorderPainted(false);
@@ -181,7 +188,8 @@ public class MapGUI extends javax.swing.JFrame {
                 Character8ActionPerformed(evt);
             }
         });
-        MapLayer.add(Character8, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 660, 90, 90));
+        MapLayer.add(Character8);
+        Character8.setBounds(180, 660, 90, 90);
 
         Character7.setVisible(false);
         Character7.setBorderPainted(false);
@@ -206,7 +214,8 @@ public class MapGUI extends javax.swing.JFrame {
                 Character7MouseReleased(evt);
             }
         });
-        MapLayer.add(Character7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 570, 90, 90));
+        MapLayer.add(Character7);
+        Character7.setBounds(0, 570, 90, 90);
 
         Character6.setVisible(false);
         Character6.setBorderPainted(false);
@@ -231,7 +240,8 @@ public class MapGUI extends javax.swing.JFrame {
                 Character6MouseReleased(evt);
             }
         });
-        MapLayer.add(Character6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 660, 90, 90));
+        MapLayer.add(Character6);
+        Character6.setBounds(0, 660, 90, 90);
 
         Character5.setVisible(false);
         Character5.setBorderPainted(false);
@@ -256,7 +266,8 @@ public class MapGUI extends javax.swing.JFrame {
                 Character5MouseReleased(evt);
             }
         });
-        MapLayer.add(Character5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 660, 90, 90));
+        MapLayer.add(Character5);
+        Character5.setBounds(90, 660, 90, 90);
 
         Character4.setVisible(false);
         Character4.setBorderPainted(false);
@@ -281,7 +292,8 @@ public class MapGUI extends javax.swing.JFrame {
                 Character4MouseReleased(evt);
             }
         });
-        MapLayer.add(Character4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, 90, 90));
+        MapLayer.add(Character4);
+        Character4.setBounds(270, 210, 90, 90);
 
         Character3.setVisible(false);
         Character3.setBorderPainted(false);
@@ -306,7 +318,8 @@ public class MapGUI extends javax.swing.JFrame {
                 Character3MouseReleased(evt);
             }
         });
-        MapLayer.add(Character3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 90, 90));
+        MapLayer.add(Character3);
+        Character3.setBounds(0, 210, 90, 90);
 
         Character2.setVisible(false);
         Character2.setBorderPainted(false);
@@ -336,7 +349,8 @@ public class MapGUI extends javax.swing.JFrame {
                 Character2ActionPerformed(evt);
             }
         });
-        MapLayer.add(Character2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, 90, 90));
+        MapLayer.add(Character2);
+        Character2.setBounds(90, 300, 90, 90);
 
         Character1.setVisible(false);
         Character1.setBorderPainted(false);
@@ -365,13 +379,15 @@ public class MapGUI extends javax.swing.JFrame {
                 Character1ActionPerformed(evt);
             }
         });
-        MapLayer.add(Character1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 90, 90));
+        MapLayer.add(Character1);
+        Character1.setBounds(0, 120, 90, 90);
 
         Map.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/backgrounds/level1_map.png"))); // NOI18N
         Map.setToolTipText("");
-        MapLayer.add(Map, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 540, -1));
+        MapLayer.add(Map);
+        Map.setBounds(0, 120, 540, 720);
 
-        MainContainer.add(MapLayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 930));
+        MainContainer.add(MapLayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 930));
 
         Grid.setOpaque(false);
         Grid.setLayout(new java.awt.GridLayout(8, 6));
@@ -949,33 +965,17 @@ public class MapGUI extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-    
-    private void SettingsButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SettingsButtonMouseEntered
-        SettingsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/settings_button_hover.png")));
-    }//GEN-LAST:event_SettingsButtonMouseEntered
-
-    private void SettingsButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SettingsButtonMouseExited
-        SettingsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/settings_button_idle.png")));
-    }//GEN-LAST:event_SettingsButtonMouseExited
-
-    private void EndTurnButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EndTurnButtonMouseEntered
-        EndTurnButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/endturn_button_active.png")));
-    }//GEN-LAST:event_EndTurnButtonMouseEntered
 
     private void EndTurnButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EndTurnButtonMouseExited
         EndTurnButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/endturn_button_idle.png")));
     }//GEN-LAST:event_EndTurnButtonMouseExited
 
-    private void DangerAreaButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DangerAreaButtonMouseEntered
-        DangerAreaButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/dangerarea_button_active.png")));
-    }//GEN-LAST:event_DangerAreaButtonMouseEntered
-
-    private void DangerAreaButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DangerAreaButtonMouseExited
-        DangerAreaButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/dangerarea_button_idle.png")));
-    }//GEN-LAST:event_DangerAreaButtonMouseExited
+    private void EndTurnButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EndTurnButtonMouseEntered
+        EndTurnButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/endturn_button_active.png")));
+    }//GEN-LAST:event_EndTurnButtonMouseEntered
 
     private void EndTurnButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EndTurnButtonMouseClicked
-        if(animation == false) { 
+        if(animation == false) {
             if(turn == true) {
                 turn = false;
             } else {
@@ -985,239 +985,271 @@ public class MapGUI extends javax.swing.JFrame {
             startPhase();
         }
     }//GEN-LAST:event_EndTurnButtonMouseClicked
-   
-    private void Character1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character1MouseDragged
-        if(turn == true && animation == false)     
-            moveCharacter(Character1);
-    }//GEN-LAST:event_Character1MouseDragged
 
-    private void Character2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character2MouseDragged
-        if(turn == true && animation == false) 
-            moveCharacter(Character2);
-    }//GEN-LAST:event_Character2MouseDragged
+    private void SettingsButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SettingsButtonMouseExited
+        SettingsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/settings_button_idle.png")));
+    }//GEN-LAST:event_SettingsButtonMouseExited
 
-    private void Character1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character1MousePressed
-        updateCharacterStats(Character1,1);
-    }//GEN-LAST:event_Character1MousePressed
+    private void SettingsButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SettingsButtonMouseEntered
+        SettingsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/settings_button_hover.png")));
+    }//GEN-LAST:event_SettingsButtonMouseEntered
 
-    private void Character2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character2MousePressed
-        updateCharacterStats(Character2,2);
-    }//GEN-LAST:event_Character2MousePressed
+    private void DangerAreaButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DangerAreaButtonMouseExited
+        DangerAreaButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/dangerarea_button_idle.png")));
+    }//GEN-LAST:event_DangerAreaButtonMouseExited
 
-    private void Character1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character1MouseReleased
-        if(turn == true && animation == false) 
-            checkForValidMove(Grid,Character1, 0);        
-    }//GEN-LAST:event_Character1MouseReleased
-
-    private void Character2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character2MouseReleased
-        if(turn == true && animation == false) 
-            checkForValidMove(Grid,Character2, 1);
-    }//GEN-LAST:event_Character2MouseReleased
-
-    private void Character3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character3MouseDragged
-        if(turn == true && animation == false) 
-            moveCharacter(Character3);
-    }//GEN-LAST:event_Character3MouseDragged
-
-    private void Character3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character3MousePressed
-        updateCharacterStats(Character3,3);
-    }//GEN-LAST:event_Character3MousePressed
-
-    private void Character3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character3MouseReleased
-        if(turn == true && animation == false) 
-            checkForValidMove(Grid,Character3, 2);
-    }//GEN-LAST:event_Character3MouseReleased
-
-    private void Character4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character4MouseDragged
-        if(turn == true && animation == false) 
-            moveCharacter(Character4);
-    }//GEN-LAST:event_Character4MouseDragged
-
-    private void Character4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character4MousePressed
-        updateCharacterStats(Character4,4);
-    }//GEN-LAST:event_Character4MousePressed
-
-    private void Character4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character4MouseReleased
-        if(turn == true && animation == false) 
-            checkForValidMove(Grid,Character4, 3);
-    }//GEN-LAST:event_Character4MouseReleased
-
-    private void Character2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Character2ActionPerformed
-        
-    }//GEN-LAST:event_Character2ActionPerformed
-
-    private void Character5MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character5MouseDragged
-        if(turn == false && animation == false) 
-            moveCharacter(Character5);
-    }//GEN-LAST:event_Character5MouseDragged
-
-    private void Character5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character5MousePressed
-        updateCharacterStats(Character5,5);
-    }//GEN-LAST:event_Character5MousePressed
-
-    private void Character5MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character5MouseReleased
-        if(turn == false && animation == false) 
-            checkForValidMove(Grid,Character5, 4);
-    }//GEN-LAST:event_Character5MouseReleased
-
-    private void Character6MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character6MouseDragged
-        if(turn == false && animation == false)
-            moveCharacter(Character6);
-    }//GEN-LAST:event_Character6MouseDragged
-
-    private void Character6MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character6MousePressed
-        updateCharacterStats(Character6,6);
-    }//GEN-LAST:event_Character6MousePressed
-
-    private void Character6MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character6MouseReleased
-        if(turn == false && animation == false) 
-            checkForValidMove(Grid,Character6, 5);
-    }//GEN-LAST:event_Character6MouseReleased
-
-    private void Character7MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character7MouseDragged
-        if(turn == false && animation == false)
-            moveCharacter(Character7);
-    }//GEN-LAST:event_Character7MouseDragged
-
-    private void Character7MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character7MousePressed
-        updateCharacterStats(Character7,7);
-    }//GEN-LAST:event_Character7MousePressed
-
-    private void Character7MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character7MouseReleased
-        if(turn == false && animation == false) 
-            checkForValidMove(Grid,Character7, 6);
-    }//GEN-LAST:event_Character7MouseReleased
-
-    private void Character8MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character8MouseDragged
-        if(turn == false && animation == false)
-            moveCharacter(Character8);
-    }//GEN-LAST:event_Character8MouseDragged
-
-    private void Character8MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character8MousePressed
-        updateCharacterStats(Character8,8);
-    }//GEN-LAST:event_Character8MousePressed
-
-    private void Character8MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character8MouseReleased
-        if(turn == false && animation == false) 
-            checkForValidMove(Grid,Character8, 7);
-    }//GEN-LAST:event_Character8MouseReleased
-
-    private void Character1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Character1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Character1ActionPerformed
-
-    private void Character8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Character8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Character8ActionPerformed
-
-    private void Character9MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character9MouseDragged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Character9MouseDragged
-
-    private void Character9MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character9MousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Character9MousePressed
-
-    private void Character9MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character9MouseReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Character9MouseReleased
-
-    private void Character9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Character9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Character9ActionPerformed
-
-    private void Character10MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character10MouseDragged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Character10MouseDragged
-
-    private void Character10MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character10MousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Character10MousePressed
-
-    private void Character10MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character10MouseReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Character10MouseReleased
-
-    private void Character11MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character11MouseDragged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Character11MouseDragged
-
-    private void Character11MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character11MousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Character11MousePressed
-
-    private void Character11MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character11MouseReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Character11MouseReleased
-
-    private void Character12MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character12MouseDragged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Character12MouseDragged
-
-    private void Character12MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character12MousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Character12MousePressed
-
-    private void Character12MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character12MouseReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Character12MouseReleased
-
-    private void Character13MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character13MouseDragged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Character13MouseDragged
-
-    private void Character13MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character13MousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Character13MousePressed
-
-    private void Character13MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character13MouseReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Character13MouseReleased
-
-    private void Character14MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character14MouseDragged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Character14MouseDragged
-
-    private void Character14MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character14MousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Character14MousePressed
-
-    private void Character14MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character14MouseReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Character14MouseReleased
-
-    private void Character15MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character15MouseDragged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Character15MouseDragged
-
-    private void Character15MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character15MousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Character15MousePressed
-
-    private void Character15MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character15MouseReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Character15MouseReleased
-
-    private void Character15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Character15ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Character15ActionPerformed
-
-    private void Character16MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character16MouseDragged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Character16MouseDragged
-
-    private void Character16MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character16MousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Character16MousePressed
-
-    private void Character16MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character16MouseReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Character16MouseReleased
+    private void DangerAreaButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DangerAreaButtonMouseEntered
+        DangerAreaButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/dangerarea_button_active.png")));
+    }//GEN-LAST:event_DangerAreaButtonMouseEntered
 
     private void Character16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Character16ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Character16ActionPerformed
 
+    private void Character16MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character16MouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Character16MouseReleased
+
+    private void Character16MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character16MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Character16MousePressed
+
+    private void Character16MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character16MouseDragged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Character16MouseDragged
+
+    private void Character15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Character15ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Character15ActionPerformed
+
+    private void Character15MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character15MouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Character15MouseReleased
+
+    private void Character15MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character15MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Character15MousePressed
+
+    private void Character15MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character15MouseDragged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Character15MouseDragged
+
+    private void Character14MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character14MouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Character14MouseReleased
+
+    private void Character14MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character14MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Character14MousePressed
+
+    private void Character14MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character14MouseDragged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Character14MouseDragged
+
+    private void Character13MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character13MouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Character13MouseReleased
+
+    private void Character13MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character13MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Character13MousePressed
+
+    private void Character13MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character13MouseDragged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Character13MouseDragged
+
+    private void Character12MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character12MouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Character12MouseReleased
+
+    private void Character12MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character12MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Character12MousePressed
+
+    private void Character12MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character12MouseDragged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Character12MouseDragged
+
+    private void Character11MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character11MouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Character11MouseReleased
+
+    private void Character11MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character11MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Character11MousePressed
+
+    private void Character11MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character11MouseDragged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Character11MouseDragged
+
+    private void Character10MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character10MouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Character10MouseReleased
+
+    private void Character10MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character10MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Character10MousePressed
+
+    private void Character10MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character10MouseDragged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Character10MouseDragged
+
+    private void Character9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Character9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Character9ActionPerformed
+
+    private void Character9MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character9MouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Character9MouseReleased
+
+    private void Character9MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character9MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Character9MousePressed
+
+    private void Character9MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character9MouseDragged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Character9MouseDragged
+
+    private void Character1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Character1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Character1ActionPerformed
+
+    private void Character1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character1MouseReleased
+        if(turn == true && animation == false)
+        checkForValidMove(Grid,Character1, 0);
+    }//GEN-LAST:event_Character1MouseReleased
+
+    private void Character1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character1MousePressed
+        if(animation == false) {
+            updateCharacterStats(Character1,1);
+        }
+    }//GEN-LAST:event_Character1MousePressed
+
+    private void Character1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character1MouseDragged
+        if(turn == true && animation == false)
+        moveCharacter(Character1);
+    }//GEN-LAST:event_Character1MouseDragged
+
+    private void Character2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Character2ActionPerformed
+
+    }//GEN-LAST:event_Character2ActionPerformed
+
+    private void Character2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character2MouseReleased
+        if(turn == true && animation == false)
+        checkForValidMove(Grid,Character2, 1);
+    }//GEN-LAST:event_Character2MouseReleased
+
+    private void Character2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character2MousePressed
+        if(animation == false) {
+            updateCharacterStats(Character2,2);
+        }
+    }//GEN-LAST:event_Character2MousePressed
+
+    private void Character2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character2MouseDragged
+        if(turn == true && animation == false)
+        moveCharacter(Character2);
+    }//GEN-LAST:event_Character2MouseDragged
+
+    private void Character3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character3MouseReleased
+        if(turn == true && animation == false)
+        checkForValidMove(Grid,Character3, 2);
+    }//GEN-LAST:event_Character3MouseReleased
+
+    private void Character3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character3MousePressed
+        if(animation == false) {
+            updateCharacterStats(Character3,3);
+        }
+    }//GEN-LAST:event_Character3MousePressed
+
+    private void Character3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character3MouseDragged
+        if(turn == true && animation == false)
+        moveCharacter(Character3);
+    }//GEN-LAST:event_Character3MouseDragged
+
+    private void Character4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character4MouseReleased
+        if(turn == true && animation == false)
+        checkForValidMove(Grid,Character4, 3);
+    }//GEN-LAST:event_Character4MouseReleased
+
+    private void Character4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character4MousePressed
+        if(animation == false) {
+            updateCharacterStats(Character4,4);
+        }
+    }//GEN-LAST:event_Character4MousePressed
+
+    private void Character4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character4MouseDragged
+        if(turn == true && animation == false)
+        moveCharacter(Character4);
+    }//GEN-LAST:event_Character4MouseDragged
+
+    private void Character5MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character5MouseReleased
+        if(turn == false && animation == false)
+        checkForValidMove(Grid,Character5, 4);
+    }//GEN-LAST:event_Character5MouseReleased
+
+    private void Character5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character5MousePressed
+        if(animation == false) {
+            updateCharacterStats(Character5,5);
+        }
+    }//GEN-LAST:event_Character5MousePressed
+
+    private void Character5MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character5MouseDragged
+        if(turn == false && animation == false)
+        moveCharacter(Character5);
+    }//GEN-LAST:event_Character5MouseDragged
+
+    private void Character6MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character6MouseReleased
+        if(turn == false && animation == false)
+        checkForValidMove(Grid,Character6, 5);
+    }//GEN-LAST:event_Character6MouseReleased
+
+    private void Character6MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character6MousePressed
+        if(animation == false) {
+            updateCharacterStats(Character6,6);
+        }
+    }//GEN-LAST:event_Character6MousePressed
+
+    private void Character6MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character6MouseDragged
+        if(turn == false && animation == false)
+        moveCharacter(Character6);
+    }//GEN-LAST:event_Character6MouseDragged
+
+    private void Character7MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character7MouseReleased
+        if(turn == false && animation == false)
+        checkForValidMove(Grid,Character7, 6);
+    }//GEN-LAST:event_Character7MouseReleased
+
+    private void Character7MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character7MousePressed
+        if(animation == false) {
+            updateCharacterStats(Character7,7);
+        }
+    }//GEN-LAST:event_Character7MousePressed
+
+    private void Character7MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character7MouseDragged
+        if(turn == false && animation == false)
+        moveCharacter(Character7);
+    }//GEN-LAST:event_Character7MouseDragged
+
+    private void Character8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Character8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Character8ActionPerformed
+
+    private void Character8MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character8MouseReleased
+        if(turn == false && animation == false)
+        checkForValidMove(Grid,Character8, 7);
+    }//GEN-LAST:event_Character8MouseReleased
+
+    private void Character8MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character8MousePressed
+        if(animation == false) {
+            updateCharacterStats(Character8,8);
+        }
+    }//GEN-LAST:event_Character8MousePressed
+
+    private void Character8MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character8MouseDragged
+        if(turn == false && animation == false)
+        moveCharacter(Character8);
+    }//GEN-LAST:event_Character8MouseDragged
+       
     //Checks to see whether the current mouse position is inside a specific component
     private boolean isMouseWithinComponent(Component c) {
         mouseLocation = MouseInfo.getPointerInfo().getLocation();
@@ -1251,17 +1283,37 @@ public class MapGUI extends javax.swing.JFrame {
                     }
                     break;
                 } else if((isMouseWithinComponent(grid1.getTile())) && grid1.isAccessible() == false && grid1.isOccupied()) {
+                    character.setLocation(charInitialPoint);
                     if(armyPos < 4) {
                         if(!grid1.getCharacter().equals(allyParty.getArmyChar(armyPos))) {
-                            grid1.getCharacter().changeHP(2);
+                            grid1.getCharacter().changeHP(allyParty.getArmyChar(armyPos).getTotalAtk());
+                            applyDamage(grid1.getCharacter(), grid1);
+                            if(grid1.getCharacter().getCurrentHP() < 1) {
+                                for(JToggleButton jtb: characters) {
+                                    if(jtb.getIcon() != null && grid1.getCharacter() != null && jtb.getIcon().toString().equals(grid1.getCharacter().getImg().toString())) {
+                                        jtb.setVisible(false);
+                                        grid1.setAccessible(true);
+                                        grid1.setOccupied(null);
+                                    }
+                                }
+                            }
                         }
                     } else {
                         if(!grid1.getCharacter().equals(enemyParty.getArmyChar(armyPos-4))) {
-                            grid1.getCharacter().changeHP(2);
+                            grid1.getCharacter().changeHP(enemyParty.getArmyChar(armyPos-4).getTotalAtk());
+                            applyDamage(grid1.getCharacter(),grid1);
+                            if(grid1.getCharacter().getCurrentHP() < 1) {
+                                for(JToggleButton jtb: characters) {
+                                    if(jtb.getIcon() != null && grid1.getCharacter() != null && jtb.getIcon().toString().equals(grid1.getCharacter().getImg().toString())) {
+                                        jtb.setVisible(false);
+                                        grid1.setAccessible(true);
+                                        grid1.setOccupied(null);
+                                    }
+                                }
+                            }
                         }
                     }
                 }
-                character.setLocation(charInitialPoint);
             }
         } else {
             character.setLocation(charInitialPoint);
@@ -1303,7 +1355,9 @@ public class MapGUI extends javax.swing.JFrame {
     }
     
     //Initializes MapGUI variables before user input
-    private void initMapGUI() {
+    private void initMapGUI(Party party) {
+        
+        MapGUI.allyParty = party;
         
         //Creates Level 1 Grid
         MapGUI.grid = new GridTile[]{new GridTile(pos00,true), new GridTile(pos01,false), new GridTile(pos02,false), new GridTile(pos03,true), new GridTile(pos04,true), new GridTile(pos05,false), 
@@ -1355,9 +1409,32 @@ public class MapGUI extends javax.swing.JFrame {
         }
         startPhase();
     }
+    
+    private void applyDamage(Char damageDealer, GridTile gridTile) {
+        Thread applyDamage = new Thread(){
+        @Override
+        public void run() {
+            try {
+                animation = true;
+                MapLayer.moveToFront(DamageLabel);
+                DamageLabel.setLocation(gridTile.getTile().getX() + Character1.getWidth()/3, gridTile.getTile().getY() + TopBorderStats.getHeight() + Character1.getHeight()/3);
+                damage = damageDealer.getTotalAtk();
+                DamageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fonts/" + damageFonts[damage])));
+                DamageLabel.setVisible(true);
+                Thread.sleep(750);
+                DamageLabel.setVisible(false);
+                animation = false;
+                
+            } catch (InterruptedException ex) {
+                Logger.getLogger(MapGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }};
+        applyDamage.start();
+    }
 
     //Begins the phase animation
-    private void startPhase() {Thread t = new Thread(){
+    private void startPhase() {
+        Thread startPhaseThread = new Thread(){
         @Override
         public void run() {
             try {
@@ -1371,11 +1448,12 @@ public class MapGUI extends javax.swing.JFrame {
                 Thread.sleep(1500);
                 PhaseLabel.setVisible(false);
                 animation = false;
+                
             } catch (InterruptedException ex) {
                 Logger.getLogger(MapGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
         }};
-        t.start();
+        startPhaseThread.start();
     }
     
     /**
@@ -1436,6 +1514,7 @@ public class MapGUI extends javax.swing.JFrame {
     private javax.swing.JToggleButton Character9;
     private javax.swing.JLabel CharacterPortrait;
     private javax.swing.JTextField CurrentHP;
+    private javax.swing.JLabel DamageLabel;
     private javax.swing.JButton DangerAreaButton;
     private javax.swing.JButton EndTurnButton;
     private javax.swing.JPanel Grid;

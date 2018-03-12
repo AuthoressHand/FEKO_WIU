@@ -20,7 +20,7 @@ import javax.swing.ImageIcon;
  * This one is specifically the one the player controls
  * @updated 2/27/2018 - updated methods with comments, added new methods
  */
-public class AllyChar extends Character {
+public class AllyChar extends Char {
     private int specialPoints;
     private int experience;
     private int hpIncrease;

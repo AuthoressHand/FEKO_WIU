@@ -17,7 +17,7 @@ import javax.swing.ImageIcon;
  * The main object that the player controls and fights against during the game, lists out everything the character needs
  * @updated 2/27/2018 - made sure all methods had comment
  */
-public class EnemyChar extends Character {
+public class EnemyChar extends Char {
     private MoveType moveType;
     
     //if(charType == ?)

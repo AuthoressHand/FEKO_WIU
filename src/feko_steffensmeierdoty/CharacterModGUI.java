@@ -681,8 +681,8 @@ public class CharacterModGUI extends javax.swing.JFrame {
     //Sets the CharacterModGUI frame to inivisible, and creates and displays the MapGUI (level)
     private void StoryMapsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StoryMapsButtonActionPerformed
         if(getTeamSize() > 0) {  
-            MapGUI mapGUI = new MapGUI(team);
-            mapGUI.setVisible(true);
+            LevelTransitionGUI ltGUI = new LevelTransitionGUI(team);
+            ltGUI.setVisible(true);
             setVisible(false);
         }
     }//GEN-LAST:event_StoryMapsButtonActionPerformed

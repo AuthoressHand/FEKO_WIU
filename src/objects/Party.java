@@ -15,20 +15,20 @@ import java.util.ArrayList;
  * @updated 2/27/2018 - created new constructor, made sure all methods have comments
  */
 public class Party {
-    private Character[] party;
-    private ArrayList<Character> army;
+    private Char[] party;
+    private ArrayList<Char> army;
     
     public Party() {
         army = new ArrayList<>();
-        party = new Character[4];
+        party = new Char[4];
     }
     
     public Party(int x) {
         army = new ArrayList<>();
-        party = new Character[x];
+        party = new Char[x];
     }
     
-    public Party(ArrayList<Character> army, Character[] party) {
+    public Party(ArrayList<Char> army, Char[] party) {
         this.setParty(party);
         this.setArmy(army);
     }
@@ -43,25 +43,25 @@ public class Party {
     }
     
     //sets the initial party
-    private void setParty(Character[] party) {
+    private void setParty(Char[] party) {
         for (int i = 0; i < party.length; i++)
             this.addToParty(party[i], i);
     }
     
     //adds a character to a specific slot in the party
-    public void addToParty(Character character, int x) {
+    public void addToParty(Char character, int x) {
         this.party[x] = character;
     }
     
     //sets the initial army
-    private void setArmy(ArrayList<Character> army) {
+    private void setArmy(ArrayList<Char> army) {
         army.forEach((character) -> {
             this.addToArmy(character);
         });
     }
     
     //adds a character to the army
-    public void addToArmy(Character character) {
+    public void addToArmy(Char character) {
         this.army.add(character);
     }
     
@@ -76,7 +76,7 @@ public class Party {
     }
     
     //gets a character from the army
-    public Character getArmyChar(int x) {
+    public Char getArmyChar(int x) {
         try{
             return army.get(x);
         } catch(NullPointerException e){
@@ -85,8 +85,8 @@ public class Party {
     }
     
     //gets a character from the army
-    public Character getArmyChar(String name) {
-        for (Character character : army) {
+    public Char getArmyChar(String name) {
+        for (Char character : army) {
             if (character.getName().compareTo(name) == 0) {
                 return character;
             }
@@ -96,7 +96,7 @@ public class Party {
     }
     
     //returns a character from the party
-    public Character getPartyChar(int x) {
+    public Char getPartyChar(int x) {
         return party[x];
     }
 }
