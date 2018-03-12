@@ -1254,10 +1254,14 @@ public class MapGUI extends javax.swing.JFrame {
        
     //Checks to see whether the current mouse position is inside a specific component
     private boolean isMouseWithinComponent(Component c) {
-        mouseLocation = MouseInfo.getPointerInfo().getLocation();
-        bounds = c.getBounds();
-        bounds.setLocation(c.getLocationOnScreen());
-        return bounds.contains(mouseLocation);
+        try {    
+            mouseLocation = MouseInfo.getPointerInfo().getLocation();
+            bounds = c.getBounds();
+            bounds.setLocation(c.getLocationOnScreen());
+            return bounds.contains(mouseLocation);
+        } catch(IllegalComponentStateException e) {
+            return false;
+        }
     }
     
     //Checks to see whether a character is in a specific grid tile
@@ -1315,9 +1319,12 @@ public class MapGUI extends javax.swing.JFrame {
                             enemyCounter++;
                         }
                         if(i==4 && allyCounter == 0) {
+                            for(int j = 0; j < allyParty.getArmySize(); j++) {
+                                allyParty.getArmyChar(j).resetHP();
+                            }
                             GameOverGUI goGUI= new GameOverGUI(cmGUI);
                             goGUI.setVisible(true);
-                            setVisible(false);
+                            dispose();
                         }   
                         i++;
                     }

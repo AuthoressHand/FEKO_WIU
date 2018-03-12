@@ -76,9 +76,8 @@ public class GameOverGUI extends javax.swing.JFrame {
                 try {
                     Thread.sleep(800);
                     GameOverText.setVisible(true);
-                    Thread.sleep(1500);
                     Feather.setVisible(true);
-                    Thread.sleep(1750);
+                    Thread.sleep(2750);
                     GameOverBackground.setVisible(false);
                     Feather.setVisible(false);
                     GameOverText.setVisible(false);

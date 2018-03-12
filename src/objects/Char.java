@@ -239,6 +239,10 @@ public abstract class Char {
         this.level += 1;
     }
     
+    public void resetHP() {
+        currentHP = maxHP;
+    }
+    
     //returns the idle portrait image of a character
     public ImageIcon getPortaitImageIdle() {
         if(portraitImageIdle != null)    
