@@ -3,7 +3,6 @@
  */
 package feko_steffensmeierdoty;
 import java.awt.*;
-import java.awt.event.ComponentListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
@@ -26,8 +25,8 @@ public class MapGUI extends javax.swing.JFrame {
     private static GridTile[] grid;
     private boolean turn = true;
     private int damage;
-    private Thread startPhaseThread;
-    private Thread applyDamageThread;
+    private Thread startPhaseAnimationThread;
+    private Thread applyDamageAnimationThread;
     private String[] damageFonts;
     
     
@@ -54,14 +53,14 @@ public class MapGUI extends javax.swing.JFrame {
         PhaseLabel = new javax.swing.JLabel();
         MapLayer = new javax.swing.JLayeredPane();
         DamageLabel = new javax.swing.JLabel();
-        Character8 = new javax.swing.JToggleButton();
-        Character7 = new javax.swing.JToggleButton();
-        Character6 = new javax.swing.JToggleButton();
-        Character5 = new javax.swing.JToggleButton();
-        Character4 = new javax.swing.JToggleButton();
-        Character3 = new javax.swing.JToggleButton();
-        Character2 = new javax.swing.JToggleButton();
-        Character1 = new javax.swing.JToggleButton();
+        EnemyCharacter4 = new javax.swing.JToggleButton();
+        EnemyCharacter3 = new javax.swing.JToggleButton();
+        EnemyCharacter2 = new javax.swing.JToggleButton();
+        EnemyCharacter1 = new javax.swing.JToggleButton();
+        AllyCharacter4 = new javax.swing.JToggleButton();
+        AllyCharacter3 = new javax.swing.JToggleButton();
+        AllyCharacter2 = new javax.swing.JToggleButton();
+        AllyCharacter1 = new javax.swing.JToggleButton();
         Map = new javax.swing.JLabel();
         Grid = new javax.swing.JPanel();
         pos00 = new javax.swing.JButton();
@@ -166,227 +165,227 @@ public class MapGUI extends javax.swing.JFrame {
         MapLayer.add(DamageLabel);
         DamageLabel.setBounds(490, 870, 50, 60);
 
-        Character8.setVisible(false);
-        Character8.setBorderPainted(false);
-        Character8.setContentAreaFilled(false);
-        Character8.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        Character8.setFocusPainted(false);
-        Character8.setHideActionText(true);
-        Character8.setMaximumSize(new java.awt.Dimension(90, 90));
-        Character8.setMinimumSize(new java.awt.Dimension(90, 90));
-        Character8.setPreferredSize(new java.awt.Dimension(90, 90));
-        Character8.setRequestFocusEnabled(false);
-        Character8.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        EnemyCharacter4.setVisible(false);
+        EnemyCharacter4.setBorderPainted(false);
+        EnemyCharacter4.setContentAreaFilled(false);
+        EnemyCharacter4.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        EnemyCharacter4.setFocusPainted(false);
+        EnemyCharacter4.setHideActionText(true);
+        EnemyCharacter4.setMaximumSize(new java.awt.Dimension(90, 90));
+        EnemyCharacter4.setMinimumSize(new java.awt.Dimension(90, 90));
+        EnemyCharacter4.setPreferredSize(new java.awt.Dimension(90, 90));
+        EnemyCharacter4.setRequestFocusEnabled(false);
+        EnemyCharacter4.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
-                Character8MouseDragged(evt);
+                EnemyCharacter4MouseDragged(evt);
             }
         });
-        Character8.addMouseListener(new java.awt.event.MouseAdapter() {
+        EnemyCharacter4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                Character8MousePressed(evt);
+                EnemyCharacter4MousePressed(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                Character8MouseReleased(evt);
+                EnemyCharacter4MouseReleased(evt);
             }
         });
-        Character8.addActionListener(new java.awt.event.ActionListener() {
+        EnemyCharacter4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Character8ActionPerformed(evt);
+                EnemyCharacter4ActionPerformed(evt);
             }
         });
-        MapLayer.add(Character8);
-        Character8.setBounds(180, 660, 90, 90);
+        MapLayer.add(EnemyCharacter4);
+        EnemyCharacter4.setBounds(180, 660, 90, 90);
 
-        Character7.setVisible(false);
-        Character7.setBorderPainted(false);
-        Character7.setContentAreaFilled(false);
-        Character7.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        Character7.setFocusPainted(false);
-        Character7.setHideActionText(true);
-        Character7.setMaximumSize(new java.awt.Dimension(90, 90));
-        Character7.setMinimumSize(new java.awt.Dimension(90, 90));
-        Character7.setPreferredSize(new java.awt.Dimension(90, 90));
-        Character7.setRequestFocusEnabled(false);
-        Character7.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        EnemyCharacter3.setVisible(false);
+        EnemyCharacter3.setBorderPainted(false);
+        EnemyCharacter3.setContentAreaFilled(false);
+        EnemyCharacter3.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        EnemyCharacter3.setFocusPainted(false);
+        EnemyCharacter3.setHideActionText(true);
+        EnemyCharacter3.setMaximumSize(new java.awt.Dimension(90, 90));
+        EnemyCharacter3.setMinimumSize(new java.awt.Dimension(90, 90));
+        EnemyCharacter3.setPreferredSize(new java.awt.Dimension(90, 90));
+        EnemyCharacter3.setRequestFocusEnabled(false);
+        EnemyCharacter3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
-                Character7MouseDragged(evt);
+                EnemyCharacter3MouseDragged(evt);
             }
         });
-        Character7.addMouseListener(new java.awt.event.MouseAdapter() {
+        EnemyCharacter3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                Character7MousePressed(evt);
+                EnemyCharacter3MousePressed(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                Character7MouseReleased(evt);
+                EnemyCharacter3MouseReleased(evt);
             }
         });
-        MapLayer.add(Character7);
-        Character7.setBounds(0, 570, 90, 90);
+        MapLayer.add(EnemyCharacter3);
+        EnemyCharacter3.setBounds(0, 570, 90, 90);
 
-        Character6.setVisible(false);
-        Character6.setBorderPainted(false);
-        Character6.setContentAreaFilled(false);
-        Character6.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        Character6.setFocusPainted(false);
-        Character6.setHideActionText(true);
-        Character6.setMaximumSize(new java.awt.Dimension(90, 90));
-        Character6.setMinimumSize(new java.awt.Dimension(90, 90));
-        Character6.setPreferredSize(new java.awt.Dimension(90, 90));
-        Character6.setRequestFocusEnabled(false);
-        Character6.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        EnemyCharacter2.setVisible(false);
+        EnemyCharacter2.setBorderPainted(false);
+        EnemyCharacter2.setContentAreaFilled(false);
+        EnemyCharacter2.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        EnemyCharacter2.setFocusPainted(false);
+        EnemyCharacter2.setHideActionText(true);
+        EnemyCharacter2.setMaximumSize(new java.awt.Dimension(90, 90));
+        EnemyCharacter2.setMinimumSize(new java.awt.Dimension(90, 90));
+        EnemyCharacter2.setPreferredSize(new java.awt.Dimension(90, 90));
+        EnemyCharacter2.setRequestFocusEnabled(false);
+        EnemyCharacter2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
-                Character6MouseDragged(evt);
+                EnemyCharacter2MouseDragged(evt);
             }
         });
-        Character6.addMouseListener(new java.awt.event.MouseAdapter() {
+        EnemyCharacter2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                Character6MousePressed(evt);
+                EnemyCharacter2MousePressed(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                Character6MouseReleased(evt);
+                EnemyCharacter2MouseReleased(evt);
             }
         });
-        MapLayer.add(Character6);
-        Character6.setBounds(0, 660, 90, 90);
+        MapLayer.add(EnemyCharacter2);
+        EnemyCharacter2.setBounds(0, 660, 90, 90);
 
-        Character5.setVisible(false);
-        Character5.setBorderPainted(false);
-        Character5.setContentAreaFilled(false);
-        Character5.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        Character5.setFocusPainted(false);
-        Character5.setHideActionText(true);
-        Character5.setMaximumSize(new java.awt.Dimension(90, 90));
-        Character5.setMinimumSize(new java.awt.Dimension(90, 90));
-        Character5.setPreferredSize(new java.awt.Dimension(90, 90));
-        Character5.setRequestFocusEnabled(false);
-        Character5.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        EnemyCharacter1.setVisible(false);
+        EnemyCharacter1.setBorderPainted(false);
+        EnemyCharacter1.setContentAreaFilled(false);
+        EnemyCharacter1.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        EnemyCharacter1.setFocusPainted(false);
+        EnemyCharacter1.setHideActionText(true);
+        EnemyCharacter1.setMaximumSize(new java.awt.Dimension(90, 90));
+        EnemyCharacter1.setMinimumSize(new java.awt.Dimension(90, 90));
+        EnemyCharacter1.setPreferredSize(new java.awt.Dimension(90, 90));
+        EnemyCharacter1.setRequestFocusEnabled(false);
+        EnemyCharacter1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
-                Character5MouseDragged(evt);
+                EnemyCharacter1MouseDragged(evt);
             }
         });
-        Character5.addMouseListener(new java.awt.event.MouseAdapter() {
+        EnemyCharacter1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                Character5MousePressed(evt);
+                EnemyCharacter1MousePressed(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                Character5MouseReleased(evt);
+                EnemyCharacter1MouseReleased(evt);
             }
         });
-        MapLayer.add(Character5);
-        Character5.setBounds(90, 660, 90, 90);
+        MapLayer.add(EnemyCharacter1);
+        EnemyCharacter1.setBounds(90, 660, 90, 90);
 
-        Character4.setVisible(false);
-        Character4.setBorderPainted(false);
-        Character4.setContentAreaFilled(false);
-        Character4.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        Character4.setFocusPainted(false);
-        Character4.setHideActionText(true);
-        Character4.setMaximumSize(new java.awt.Dimension(90, 90));
-        Character4.setMinimumSize(new java.awt.Dimension(90, 90));
-        Character4.setPreferredSize(new java.awt.Dimension(90, 90));
-        Character4.setRequestFocusEnabled(false);
-        Character4.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        AllyCharacter4.setVisible(false);
+        AllyCharacter4.setBorderPainted(false);
+        AllyCharacter4.setContentAreaFilled(false);
+        AllyCharacter4.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        AllyCharacter4.setFocusPainted(false);
+        AllyCharacter4.setHideActionText(true);
+        AllyCharacter4.setMaximumSize(new java.awt.Dimension(90, 90));
+        AllyCharacter4.setMinimumSize(new java.awt.Dimension(90, 90));
+        AllyCharacter4.setPreferredSize(new java.awt.Dimension(90, 90));
+        AllyCharacter4.setRequestFocusEnabled(false);
+        AllyCharacter4.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
-                Character4MouseDragged(evt);
+                AllyCharacter4MouseDragged(evt);
             }
         });
-        Character4.addMouseListener(new java.awt.event.MouseAdapter() {
+        AllyCharacter4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                Character4MousePressed(evt);
+                AllyCharacter4MousePressed(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                Character4MouseReleased(evt);
+                AllyCharacter4MouseReleased(evt);
             }
         });
-        MapLayer.add(Character4);
-        Character4.setBounds(270, 210, 90, 90);
+        MapLayer.add(AllyCharacter4);
+        AllyCharacter4.setBounds(270, 210, 90, 90);
 
-        Character3.setVisible(false);
-        Character3.setBorderPainted(false);
-        Character3.setContentAreaFilled(false);
-        Character3.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        Character3.setFocusPainted(false);
-        Character3.setHideActionText(true);
-        Character3.setMaximumSize(new java.awt.Dimension(90, 90));
-        Character3.setMinimumSize(new java.awt.Dimension(90, 90));
-        Character3.setPreferredSize(new java.awt.Dimension(90, 90));
-        Character3.setRequestFocusEnabled(false);
-        Character3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        AllyCharacter3.setVisible(false);
+        AllyCharacter3.setBorderPainted(false);
+        AllyCharacter3.setContentAreaFilled(false);
+        AllyCharacter3.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        AllyCharacter3.setFocusPainted(false);
+        AllyCharacter3.setHideActionText(true);
+        AllyCharacter3.setMaximumSize(new java.awt.Dimension(90, 90));
+        AllyCharacter3.setMinimumSize(new java.awt.Dimension(90, 90));
+        AllyCharacter3.setPreferredSize(new java.awt.Dimension(90, 90));
+        AllyCharacter3.setRequestFocusEnabled(false);
+        AllyCharacter3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
-                Character3MouseDragged(evt);
+                AllyCharacter3MouseDragged(evt);
             }
         });
-        Character3.addMouseListener(new java.awt.event.MouseAdapter() {
+        AllyCharacter3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                Character3MousePressed(evt);
+                AllyCharacter3MousePressed(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                Character3MouseReleased(evt);
+                AllyCharacter3MouseReleased(evt);
             }
         });
-        MapLayer.add(Character3);
-        Character3.setBounds(0, 210, 90, 90);
+        MapLayer.add(AllyCharacter3);
+        AllyCharacter3.setBounds(0, 210, 90, 90);
 
-        Character2.setVisible(false);
-        Character2.setBorderPainted(false);
-        Character2.setContentAreaFilled(false);
-        Character2.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        Character2.setFocusPainted(false);
-        Character2.setHideActionText(true);
-        Character2.setMaximumSize(new java.awt.Dimension(90, 90));
-        Character2.setMinimumSize(new java.awt.Dimension(90, 90));
-        Character2.setPreferredSize(new java.awt.Dimension(90, 90));
-        Character2.setRequestFocusEnabled(false);
-        Character2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        AllyCharacter2.setVisible(false);
+        AllyCharacter2.setBorderPainted(false);
+        AllyCharacter2.setContentAreaFilled(false);
+        AllyCharacter2.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        AllyCharacter2.setFocusPainted(false);
+        AllyCharacter2.setHideActionText(true);
+        AllyCharacter2.setMaximumSize(new java.awt.Dimension(90, 90));
+        AllyCharacter2.setMinimumSize(new java.awt.Dimension(90, 90));
+        AllyCharacter2.setPreferredSize(new java.awt.Dimension(90, 90));
+        AllyCharacter2.setRequestFocusEnabled(false);
+        AllyCharacter2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
-                Character2MouseDragged(evt);
+                AllyCharacter2MouseDragged(evt);
             }
         });
-        Character2.addMouseListener(new java.awt.event.MouseAdapter() {
+        AllyCharacter2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                Character2MousePressed(evt);
+                AllyCharacter2MousePressed(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                Character2MouseReleased(evt);
+                AllyCharacter2MouseReleased(evt);
             }
         });
-        Character2.addActionListener(new java.awt.event.ActionListener() {
+        AllyCharacter2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Character2ActionPerformed(evt);
+                AllyCharacter2ActionPerformed(evt);
             }
         });
-        MapLayer.add(Character2);
-        Character2.setBounds(90, 300, 90, 90);
+        MapLayer.add(AllyCharacter2);
+        AllyCharacter2.setBounds(90, 300, 90, 90);
 
-        Character1.setVisible(false);
-        Character1.setBorderPainted(false);
-        Character1.setContentAreaFilled(false);
-        Character1.setFocusPainted(false);
-        Character1.setHideActionText(true);
-        Character1.setMaximumSize(new java.awt.Dimension(90, 90));
-        Character1.setMinimumSize(new java.awt.Dimension(90, 90));
-        Character1.setPreferredSize(new java.awt.Dimension(90, 90));
-        Character1.setRequestFocusEnabled(false);
-        Character1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        AllyCharacter1.setVisible(false);
+        AllyCharacter1.setBorderPainted(false);
+        AllyCharacter1.setContentAreaFilled(false);
+        AllyCharacter1.setFocusPainted(false);
+        AllyCharacter1.setHideActionText(true);
+        AllyCharacter1.setMaximumSize(new java.awt.Dimension(90, 90));
+        AllyCharacter1.setMinimumSize(new java.awt.Dimension(90, 90));
+        AllyCharacter1.setPreferredSize(new java.awt.Dimension(90, 90));
+        AllyCharacter1.setRequestFocusEnabled(false);
+        AllyCharacter1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
-                Character1MouseDragged(evt);
+                AllyCharacter1MouseDragged(evt);
             }
         });
-        Character1.addMouseListener(new java.awt.event.MouseAdapter() {
+        AllyCharacter1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                Character1MousePressed(evt);
+                AllyCharacter1MousePressed(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                Character1MouseReleased(evt);
+                AllyCharacter1MouseReleased(evt);
             }
         });
-        Character1.addActionListener(new java.awt.event.ActionListener() {
+        AllyCharacter1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Character1ActionPerformed(evt);
+                AllyCharacter1ActionPerformed(evt);
             }
         });
-        MapLayer.add(Character1);
-        Character1.setBounds(0, 120, 90, 90);
+        MapLayer.add(AllyCharacter1);
+        AllyCharacter1.setBounds(0, 120, 90, 90);
 
         Map.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/backgrounds/level1_map.png"))); // NOI18N
         Map.setToolTipText("");
@@ -725,7 +724,7 @@ public class MapGUI extends javax.swing.JFrame {
         MapLayer1.setEnabled(false);
         MapLayer1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Character8.setVisible(false);
+        EnemyCharacter4.setVisible(false);
         Character9.setBorderPainted(false);
         Character9.setContentAreaFilled(false);
         Character9.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
@@ -755,7 +754,7 @@ public class MapGUI extends javax.swing.JFrame {
         });
         MapLayer1.add(Character9, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 660, 90, 90));
 
-        Character7.setVisible(false);
+        EnemyCharacter3.setVisible(false);
         Character10.setBorderPainted(false);
         Character10.setContentAreaFilled(false);
         Character10.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
@@ -780,7 +779,7 @@ public class MapGUI extends javax.swing.JFrame {
         });
         MapLayer1.add(Character10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 570, 90, 90));
 
-        Character6.setVisible(false);
+        EnemyCharacter2.setVisible(false);
         Character11.setBorderPainted(false);
         Character11.setContentAreaFilled(false);
         Character11.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
@@ -805,7 +804,7 @@ public class MapGUI extends javax.swing.JFrame {
         });
         MapLayer1.add(Character11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 660, 90, 90));
 
-        Character5.setVisible(false);
+        EnemyCharacter1.setVisible(false);
         Character12.setBorderPainted(false);
         Character12.setContentAreaFilled(false);
         Character12.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
@@ -830,7 +829,7 @@ public class MapGUI extends javax.swing.JFrame {
         });
         MapLayer1.add(Character12, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 660, 90, 90));
 
-        Character4.setVisible(false);
+        AllyCharacter4.setVisible(false);
         Character13.setBorderPainted(false);
         Character13.setContentAreaFilled(false);
         Character13.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
@@ -855,7 +854,7 @@ public class MapGUI extends javax.swing.JFrame {
         });
         MapLayer1.add(Character13, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, 90, 90));
 
-        Character3.setVisible(false);
+        AllyCharacter3.setVisible(false);
         Character14.setBorderPainted(false);
         Character14.setContentAreaFilled(false);
         Character14.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
@@ -880,7 +879,7 @@ public class MapGUI extends javax.swing.JFrame {
         });
         MapLayer1.add(Character14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 90, 90));
 
-        Character2.setVisible(false);
+        AllyCharacter2.setVisible(false);
         Character15.setBorderPainted(false);
         Character15.setContentAreaFilled(false);
         Character15.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
@@ -910,7 +909,7 @@ public class MapGUI extends javax.swing.JFrame {
         });
         MapLayer1.add(Character15, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, 90, 90));
 
-        Character1.setVisible(false);
+        AllyCharacter1.setVisible(false);
         Character16.setBorderPainted(false);
         Character16.setContentAreaFilled(false);
         Character16.setFocusPainted(false);
@@ -986,7 +985,7 @@ public class MapGUI extends javax.swing.JFrame {
             jtb.setEnabled(true);
         }
         turn = turn != true;
-        startPhase();
+        startPhaseAnimation();
     }//GEN-LAST:event_EndTurnButtonMouseClicked
 
     private void SettingsButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SettingsButtonMouseExited
@@ -1113,130 +1112,130 @@ public class MapGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Character9MouseDragged
 
-    private void Character1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Character1ActionPerformed
+    private void AllyCharacter1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AllyCharacter1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Character1ActionPerformed
+    }//GEN-LAST:event_AllyCharacter1ActionPerformed
 
-    private void Character1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character1MouseReleased
-        if(turn == true && Character1.isEnabled())
-            checkForValidMove(Grid,Character1, 0);
-    }//GEN-LAST:event_Character1MouseReleased
+    private void AllyCharacter1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter1MouseReleased
+        if(turn == true && AllyCharacter1.isEnabled())
+            performAction(Grid,AllyCharacter1, allyParty, 0);
+    }//GEN-LAST:event_AllyCharacter1MouseReleased
 
-    private void Character1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character1MousePressed
-        updateCharacterStats(Character1,1);
-    }//GEN-LAST:event_Character1MousePressed
+    private void AllyCharacter1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter1MousePressed
+        updateCharacterStats(AllyCharacter1,1);
+    }//GEN-LAST:event_AllyCharacter1MousePressed
 
-    private void Character1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character1MouseDragged
-        if(turn == true && Character1.isEnabled())
-            moveCharacter(Character1);
-    }//GEN-LAST:event_Character1MouseDragged
+    private void AllyCharacter1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter1MouseDragged
+        if(turn == true && AllyCharacter1.isEnabled())
+            moveCharacter(AllyCharacter1);
+    }//GEN-LAST:event_AllyCharacter1MouseDragged
 
-    private void Character2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Character2ActionPerformed
+    private void AllyCharacter2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AllyCharacter2ActionPerformed
 
-    }//GEN-LAST:event_Character2ActionPerformed
+    }//GEN-LAST:event_AllyCharacter2ActionPerformed
 
-    private void Character2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character2MouseReleased
-        if(turn == true && Character2.isEnabled())
-            checkForValidMove(Grid,Character2, 1);
-    }//GEN-LAST:event_Character2MouseReleased
+    private void AllyCharacter2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter2MouseReleased
+        if(turn == true && AllyCharacter2.isEnabled())
+            performAction(Grid,AllyCharacter2, allyParty, 1);
+    }//GEN-LAST:event_AllyCharacter2MouseReleased
 
-    private void Character2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character2MousePressed
-        updateCharacterStats(Character2,2);
-    }//GEN-LAST:event_Character2MousePressed
+    private void AllyCharacter2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter2MousePressed
+        updateCharacterStats(AllyCharacter2,2);
+    }//GEN-LAST:event_AllyCharacter2MousePressed
 
-    private void Character2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character2MouseDragged
-        if(turn == true && Character2.isEnabled())
-            moveCharacter(Character2);
-    }//GEN-LAST:event_Character2MouseDragged
+    private void AllyCharacter2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter2MouseDragged
+        if(turn == true && AllyCharacter2.isEnabled())
+            moveCharacter(AllyCharacter2);
+    }//GEN-LAST:event_AllyCharacter2MouseDragged
 
-    private void Character3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character3MouseReleased
-        if(turn == true && Character3.isEnabled())
-            checkForValidMove(Grid,Character3, 2);
-    }//GEN-LAST:event_Character3MouseReleased
+    private void AllyCharacter3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter3MouseReleased
+        if(turn == true && AllyCharacter3.isEnabled())
+            performAction(Grid,AllyCharacter3, allyParty, 2);
+    }//GEN-LAST:event_AllyCharacter3MouseReleased
 
-    private void Character3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character3MousePressed
-        updateCharacterStats(Character3,3);
-    }//GEN-LAST:event_Character3MousePressed
+    private void AllyCharacter3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter3MousePressed
+        updateCharacterStats(AllyCharacter3,3);
+    }//GEN-LAST:event_AllyCharacter3MousePressed
 
-    private void Character3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character3MouseDragged
-        if(turn == true && Character3.isEnabled())
-            moveCharacter(Character3);
-    }//GEN-LAST:event_Character3MouseDragged
+    private void AllyCharacter3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter3MouseDragged
+        if(turn == true && AllyCharacter3.isEnabled())
+            moveCharacter(AllyCharacter3);
+    }//GEN-LAST:event_AllyCharacter3MouseDragged
 
-    private void Character4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character4MouseReleased
-        if(turn == true && Character4.isEnabled())
-            checkForValidMove(Grid,Character4, 3);
-    }//GEN-LAST:event_Character4MouseReleased
+    private void AllyCharacter4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter4MouseReleased
+        if(turn == true && AllyCharacter4.isEnabled())
+            performAction(Grid,AllyCharacter4, allyParty, 3);
+    }//GEN-LAST:event_AllyCharacter4MouseReleased
 
-    private void Character4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character4MousePressed
-        updateCharacterStats(Character4,4);
-    }//GEN-LAST:event_Character4MousePressed
+    private void AllyCharacter4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter4MousePressed
+        updateCharacterStats(AllyCharacter4,4);
+    }//GEN-LAST:event_AllyCharacter4MousePressed
 
-    private void Character4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character4MouseDragged
-        if(turn == true && Character4.isEnabled())
-        moveCharacter(Character4);
-    }//GEN-LAST:event_Character4MouseDragged
+    private void AllyCharacter4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter4MouseDragged
+        if(turn == true && AllyCharacter4.isEnabled())
+        moveCharacter(AllyCharacter4);
+    }//GEN-LAST:event_AllyCharacter4MouseDragged
 
-    private void Character5MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character5MouseReleased
-        if(turn == false && Character5.isEnabled())
-            checkForValidMove(Grid,Character5, 4);
-    }//GEN-LAST:event_Character5MouseReleased
+    private void EnemyCharacter1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter1MouseReleased
+        if(turn == false && EnemyCharacter1.isEnabled())
+            performAction(Grid,EnemyCharacter1, enemyParty, 0);
+    }//GEN-LAST:event_EnemyCharacter1MouseReleased
 
-    private void Character5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character5MousePressed
-        updateCharacterStats(Character5,5);
-    }//GEN-LAST:event_Character5MousePressed
+    private void EnemyCharacter1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter1MousePressed
+        updateCharacterStats(EnemyCharacter1,5);
+    }//GEN-LAST:event_EnemyCharacter1MousePressed
 
-    private void Character5MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character5MouseDragged
-        if(turn == false && Character5.isEnabled()) {
-            moveCharacter(Character5);
+    private void EnemyCharacter1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter1MouseDragged
+        if(turn == false && EnemyCharacter1.isEnabled()) {
+            moveCharacter(EnemyCharacter1);
         }
-    }//GEN-LAST:event_Character5MouseDragged
+    }//GEN-LAST:event_EnemyCharacter1MouseDragged
 
-    private void Character6MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character6MouseReleased
-        if(turn == false && Character6.isEnabled())
-            checkForValidMove(Grid,Character6, 5);
-    }//GEN-LAST:event_Character6MouseReleased
+    private void EnemyCharacter2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter2MouseReleased
+        if(turn == false && EnemyCharacter2.isEnabled())
+            performAction(Grid,EnemyCharacter2, enemyParty, 1);
+    }//GEN-LAST:event_EnemyCharacter2MouseReleased
 
-    private void Character6MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character6MousePressed
-        updateCharacterStats(Character6,6);
-    }//GEN-LAST:event_Character6MousePressed
+    private void EnemyCharacter2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter2MousePressed
+        updateCharacterStats(EnemyCharacter2,6);
+    }//GEN-LAST:event_EnemyCharacter2MousePressed
 
-    private void Character6MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character6MouseDragged
-        if(turn == false && Character6.isEnabled())
-            moveCharacter(Character6);
-    }//GEN-LAST:event_Character6MouseDragged
+    private void EnemyCharacter2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter2MouseDragged
+        if(turn == false && EnemyCharacter2.isEnabled())
+            moveCharacter(EnemyCharacter2);
+    }//GEN-LAST:event_EnemyCharacter2MouseDragged
 
-    private void Character7MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character7MouseReleased
-        if(turn == false && Character7.isEnabled())
-            checkForValidMove(Grid,Character7, 6);
-    }//GEN-LAST:event_Character7MouseReleased
+    private void EnemyCharacter3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter3MouseReleased
+        if(turn == false && EnemyCharacter3.isEnabled())
+            performAction(Grid,EnemyCharacter3, enemyParty, 2);
+    }//GEN-LAST:event_EnemyCharacter3MouseReleased
 
-    private void Character7MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character7MousePressed
-        updateCharacterStats(Character7,7);
-    }//GEN-LAST:event_Character7MousePressed
+    private void EnemyCharacter3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter3MousePressed
+        updateCharacterStats(EnemyCharacter3,7);
+    }//GEN-LAST:event_EnemyCharacter3MousePressed
 
-    private void Character7MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character7MouseDragged
-        if(turn == false && Character7.isEnabled())
-            moveCharacter(Character7);
-    }//GEN-LAST:event_Character7MouseDragged
+    private void EnemyCharacter3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter3MouseDragged
+        if(turn == false && EnemyCharacter3.isEnabled())
+            moveCharacter(EnemyCharacter3);
+    }//GEN-LAST:event_EnemyCharacter3MouseDragged
 
-    private void Character8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Character8ActionPerformed
+    private void EnemyCharacter4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnemyCharacter4ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Character8ActionPerformed
+    }//GEN-LAST:event_EnemyCharacter4ActionPerformed
 
-    private void Character8MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character8MouseReleased
-        if(turn == false && Character8.isEnabled())
-            checkForValidMove(Grid,Character8, 7);
-    }//GEN-LAST:event_Character8MouseReleased
+    private void EnemyCharacter4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter4MouseReleased
+        if(turn == false && EnemyCharacter4.isEnabled())
+            performAction(Grid,EnemyCharacter4, enemyParty, 3);
+    }//GEN-LAST:event_EnemyCharacter4MouseReleased
 
-    private void Character8MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character8MousePressed
-        updateCharacterStats(Character8,8);
-    }//GEN-LAST:event_Character8MousePressed
+    private void EnemyCharacter4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter4MousePressed
+        updateCharacterStats(EnemyCharacter4,8);
+    }//GEN-LAST:event_EnemyCharacter4MousePressed
 
-    private void Character8MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Character8MouseDragged
-        if(turn == false && Character8.isEnabled())
-            moveCharacter(Character8);
-    }//GEN-LAST:event_Character8MouseDragged
+    private void EnemyCharacter4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter4MouseDragged
+        if(turn == false && EnemyCharacter4.isEnabled())
+            moveCharacter(EnemyCharacter4);
+    }//GEN-LAST:event_EnemyCharacter4MouseDragged
        
     //Checks to see whether the current mouse position is inside a specific component
     private boolean isMouseWithinComponent(Component c) {
@@ -1258,116 +1257,40 @@ public class MapGUI extends javax.swing.JFrame {
     }
     
     //Checks if the character has made a valid move
-    private void checkForValidMove(Component boundary, Component character, int armyPos) {
-        if (isMouseWithinComponent(boundary)) {
+    private void performAction(Component mapBoundary, Component character, Party party, int armyPos) {
+        //Checks if the mouse location is within the boundaries of the Map.
+        if(isMouseWithinComponent(mapBoundary)) {
+            //Iterates through and evaluates every GridTile
             for(GridTile grid1 : grid) {
-                if(isMouseWithinComponent(grid1.getTile()) && grid1.isAccessible() == true) {
+                //If the mouse is within the GridTile and it is accessible, move Character to the GridTile and clean up its trace
+                if(isMouseWithinComponent(grid1.getTile()) && grid1.isAccessible()) {
+                    //Sets Character location and adds Character to the GridTile
                     character.setLocation(grid1.getTile().getX(), grid1.getTile().getY() + TopBorderStats.getHeight());
-                    if(armyPos < 4) {    
-                        grid1.addCharacter(allyParty.getArmyChar(armyPos));
-                    } else {
-                        grid1.addCharacter(enemyParty.getArmyChar(armyPos-4));
-                    }
+                    grid1.addCharacter(party.getArmyChar(armyPos));
+                    
+                    //Cleans up Character trace
                     for(GridTile grid2: grid) {
                         if(grid2.getTile().getX() == charInitialPoint.x && grid2.getTile().getY() + TopBorderStats.getHeight() == charInitialPoint.y) {
                             grid2.removeCharacter();
                         }
                     }
                     break;
-                } else if((isMouseWithinComponent(grid1.getTile())) && grid1.isAccessible() == false && grid1.isOccupied()) {
-                    if(armyPos < 4) {
-                        for(int i=0; i < allyParty.getArmySize(); i++) {
-                            if(grid1.getCharacter() == allyParty.getArmyChar(i)) {
-                                character.setLocation(charInitialPoint);
-                                return;
-                            }
-                        }
-                        if(!grid1.getCharacter().equals(allyParty.getArmyChar(armyPos))) {
-                            grid1.getCharacter().changeHP(allyParty.getArmyChar(armyPos).getTotalAtk());
-                            applyDamage(grid1.getCharacter(), grid1);
-                            character.setEnabled(false);
-                            int i = 0;
-                            for(JToggleButton jtb: characters) {
-                                if(i < 4 && jtb.isVisible()) {
-                                    if(jtb.isEnabled() == true) {
-                                        i = -1;
-                                        break;
-                                    }
-                                }
-                                i++;
-                            }
-                            if(i != -1) {
-                                for(JToggleButton jtbs: characters) {
-                                    jtbs.setEnabled(true);
-                                }
-                                turn = turn != true;
-                                startPhase();
-                            }
-                        }
-                    } else {
-                        for(int i=0; i < enemyParty.getArmySize(); i++) {
-                            if(grid1.getCharacter() == enemyParty.getArmyChar(i)) {
-                                character.setLocation(charInitialPoint);
-                                return;
-                            }
-                        }
-                        if(!grid1.getCharacter().equals(enemyParty.getArmyChar(armyPos-4))) {
-                            grid1.getCharacter().changeHP(enemyParty.getArmyChar(armyPos-4).getTotalAtk());
-                            applyDamage(grid1.getCharacter(), grid1);
-                            character.setEnabled(false);
-                            int i = 0;
-                            for(JToggleButton jtb: characters) {
-                                if(i > 3 && jtb.isVisible()) {
-                                    if(jtb.isEnabled() == true) {
-                                        i = -1;
-                                        break;
-                                    }
-                                }
-                                i++;
-                            }
-                            if(i != -1) {
-                                for(JToggleButton jtbs: characters) {
-                                    jtbs.setEnabled(true);
-                                }
-                                turn = turn != true;
-                                startPhase();
-                            }
-                        }
-                    }
-                    if(grid1.getCharacter().getCurrentHP() < 1) {
-                        for(JToggleButton jtb: characters) {
-                            if(jtb.getIcon() != null && grid1.getCharacter() != null && jtb.getIcon().toString().equals(grid1.getCharacter().getImg().toString())) {
-                                jtb.setVisible(false);
-                                grid1.setAccessible(true);
-                                grid1.setOccupied(null);
-                            }
-                        }
-                    }
-                    int i = 0;
-                    int allyCounter = 0;
-                    int enemyCounter = 0;
-                    for(JToggleButton jtb: characters) {
-                        if(jtb.isVisible() && i<4){
-                            allyCounter++;
-                        } else if(jtb.isVisible() && i>3) {
-                            enemyCounter++;
-                        }
-                        if(i==4 && allyCounter == 0) {
-                            for(int j = 0; j < allyParty.getArmySize(); j++) {
-                                allyParty.getArmyChar(j).resetHP();
-                            }
-                            GameOverGUI goGUI= new GameOverGUI(cmGUI);
-                            goGUI.setVisible(true);
-                            dispose();
-                        }   
-                        i++;
-                    }
+                } 
+                //If the mouse is within the GridTile, not accessible, and is occupied, check for damage, death, and stage over.
+                else if((isMouseWithinComponent(grid1.getTile())) && grid1.isAccessible() == false && grid1.isOccupied()) {
+                    checkCharacterDamage(party, grid1, character, armyPos);
+                    checkCharacterDeath(grid1);
+                    checkStageOver();
                     character.setLocation(charInitialPoint);
-                } else if(grid1.isAccessible() == false){
+                } 
+                //Last Condition: If the GridTile is not accessible, reset the position of the Character.
+                else if(grid1.isAccessible() == false){
                     character.setLocation(charInitialPoint);
                 }
             }
-        } else {
+        } 
+        //If mouse location is not within the boundaries of the Map, reset Character position.
+        else {
             character.setLocation(charInitialPoint);
         }
     }
@@ -1381,6 +1304,91 @@ public class MapGUI extends javax.swing.JFrame {
             mouseLocation.y = mouseLocation.y - componentLocation.y - character.getHeight() / 2;
 
             character.setLocation(mouseLocation);
+        }
+    }
+    
+    //Checks if either the allyParty or enemyParty is empty. If so, ends the stage with corresponding result(Win/Lose).
+    private void checkStageOver() {
+        int i = 0;
+        int allyCounter = 0;
+        int enemyCounter = 0;
+        for(JToggleButton jtb: characters) {
+            if(jtb.isVisible() && i<4){
+                allyCounter++;
+            } else if(jtb.isVisible() && i>3) {
+                enemyCounter++;
+            }
+            if(i==4 && allyCounter == 0) {
+                for(int j = 0; j < allyParty.getArmySize(); j++) {
+                    allyParty.getArmyChar(j).resetHP();
+                }
+                GameOverGUI goGUI= new GameOverGUI(cmGUI);
+                goGUI.setVisible(true);
+                dispose();
+            }   
+            i++;
+        }
+    }
+    
+    //Checks if the current Character's HP is below 1. If so, make character not visible and reset GridTile for accessible and not occupied.
+    private void checkCharacterDeath(GridTile grid1) {
+        if(grid1.getCharacter().getCurrentHP() < 1) {
+            for(JToggleButton jtb: characters) {
+                if(jtb.getIcon() != null && grid1.getCharacter() != null && jtb.getIcon().toString().equals(grid1.getCharacter().getImg().toString())) {
+                    jtb.setVisible(false);
+                    grid1.setAccessible(true);
+                    grid1.setOccupied(null);
+                }
+            }
+        }
+    }
+    
+    //Checks whether a Character should deal damage or not.
+    private void checkCharacterDamage(Party party, GridTile grid1, Component character, int armyPos) {
+        //Checks if Character is own teammate. If so, return and don't do damage.
+        for(int i=0; i < party.getArmySize(); i++) {
+            if(grid1.getCharacter() == party.getArmyChar(i)) {
+                character.setLocation(charInitialPoint);
+                return;
+            }
+        }
+        
+        //Checks if Character is not own Character. If so, deal damage and check if turn has ended.
+        if(!grid1.getCharacter().equals(party.getArmyChar(armyPos))) {
+            //Apply damage and disable damage-dealer character
+            grid1.getCharacter().changeHP(party.getArmyChar(armyPos).getTotalAtk());
+            applyDamageAnimation(grid1.getCharacter(), grid1);
+            character.setEnabled(false);
+            
+            checkForEndTurn(party);
+        }
+    }
+    
+    //Checks whether the turn should be automatically give up.
+    private void checkForEndTurn(Party party) {
+        int i = 0;
+        for(JToggleButton jtb: characters) {
+            if(party.equals(allyParty) && i < 4 && jtb.isVisible()) {
+                if(jtb.isEnabled() == true) {
+                    i = -1;
+                    break;
+                }
+            }
+            if(party.equals(enemyParty) && i > 3 && jtb.isVisible()) {
+                if(jtb.isEnabled() == true) {
+                    i = -1;
+                    break;
+                }
+            }
+            i++;
+        }
+        //If no characters in party have a turn left, the turn is given over automically. 
+        if(i != -1) {
+            for(JToggleButton jtbs: characters) {
+                jtbs.setEnabled(true);
+            }
+            turn = turn != true;
+            startPhaseAnimation();
         }
     }
     
@@ -1420,14 +1428,14 @@ public class MapGUI extends javax.swing.JFrame {
                                    new GridTile(pos70,false), new GridTile(pos71,false), new GridTile(pos72,false), new GridTile(pos73,true), new GridTile(pos74,true), new GridTile(pos75,true)};
         
         //Connects the character array with the character buttons
-        characters[0] = Character1;
-        characters[1] = Character2;
-        characters[2] = Character3;
-        characters[3] = Character4;
-        characters[4] = Character5;
-        characters[5] = Character6;
-        characters[6] = Character7;
-        characters[7] = Character8;
+        characters[0] = AllyCharacter1;
+        characters[1] = AllyCharacter2;
+        characters[2] = AllyCharacter3;
+        characters[3] = AllyCharacter4;
+        characters[4] = EnemyCharacter1;
+        characters[5] = EnemyCharacter2;
+        characters[6] = EnemyCharacter3;
+        characters[7] = EnemyCharacter4;
         
         //Adds Level 1 enemies into enemy party
         enemyParty.addToArmy(new EnemyChar("Zephiel"));
@@ -1457,16 +1465,16 @@ public class MapGUI extends javax.swing.JFrame {
                 }
             }
         }
-        startPhase();
+        startPhaseAnimation();
     }
     
-    private void applyDamage(Char damageDealer, GridTile gridTile) {
-        applyDamageThread = new Thread(){
+    private void applyDamageAnimation(Char damageDealer, GridTile gridTile) {
+        applyDamageAnimationThread = new Thread(){
         @Override
         public void run() {
             try {
                 MapLayer.moveToFront(DamageLabel);
-                DamageLabel.setLocation(gridTile.getTile().getX() + Character1.getWidth()/3, gridTile.getTile().getY() + TopBorderStats.getHeight() + Character1.getHeight()/3);
+                DamageLabel.setLocation(gridTile.getTile().getX() + AllyCharacter1.getWidth()/3, gridTile.getTile().getY() + TopBorderStats.getHeight() + AllyCharacter1.getHeight()/3);
                 damage = damageDealer.getTotalAtk();
                 DamageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fonts/" + damageFonts[damage])));
                 DamageLabel.setVisible(true);
@@ -1477,12 +1485,12 @@ public class MapGUI extends javax.swing.JFrame {
                 Logger.getLogger(MapGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
         }};
-        applyDamageThread.start();
+        applyDamageAnimationThread.start();
     }
 
     //Begins the phase animation
-    private void startPhase() {
-        startPhaseThread = new Thread(){
+    private void startPhaseAnimation() {
+        startPhaseAnimationThread = new Thread(){
         @Override
         public void run() {
             try {
@@ -1499,7 +1507,7 @@ public class MapGUI extends javax.swing.JFrame {
                 Logger.getLogger(MapGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
         }};
-        startPhaseThread.start();
+        startPhaseAnimationThread.start();
     }
     
     /**
@@ -1538,11 +1546,14 @@ public class MapGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton AllyCharacter1;
+    private javax.swing.JToggleButton AllyCharacter2;
+    private javax.swing.JToggleButton AllyCharacter3;
+    private javax.swing.JToggleButton AllyCharacter4;
     private javax.swing.JTextField AttackLevel;
     private javax.swing.JTextField AttackLevel1;
     private javax.swing.JLabel BattleWheel;
     private javax.swing.JLabel BottomBorder;
-    private javax.swing.JToggleButton Character1;
     private javax.swing.JToggleButton Character10;
     private javax.swing.JToggleButton Character11;
     private javax.swing.JToggleButton Character12;
@@ -1550,19 +1561,16 @@ public class MapGUI extends javax.swing.JFrame {
     private javax.swing.JToggleButton Character14;
     private javax.swing.JToggleButton Character15;
     private javax.swing.JToggleButton Character16;
-    private javax.swing.JToggleButton Character2;
-    private javax.swing.JToggleButton Character3;
-    private javax.swing.JToggleButton Character4;
-    private javax.swing.JToggleButton Character5;
-    private javax.swing.JToggleButton Character6;
-    private javax.swing.JToggleButton Character7;
-    private javax.swing.JToggleButton Character8;
     private javax.swing.JToggleButton Character9;
     private javax.swing.JLabel CharacterPortrait;
     private javax.swing.JTextField CurrentHP;
     private javax.swing.JLabel DamageLabel;
     private javax.swing.JButton DangerAreaButton;
     private javax.swing.JButton EndTurnButton;
+    private javax.swing.JToggleButton EnemyCharacter1;
+    private javax.swing.JToggleButton EnemyCharacter2;
+    private javax.swing.JToggleButton EnemyCharacter3;
+    private javax.swing.JToggleButton EnemyCharacter4;
     private javax.swing.JPanel Grid;
     private javax.swing.JLayeredPane MainContainer;
     private javax.swing.JLabel Map;
