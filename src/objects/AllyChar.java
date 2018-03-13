@@ -30,10 +30,15 @@ public class AllyChar extends Char {
     private int spdIncrease;
     private ArrayList<Skill> unlockSkills;
     private ArrayList<Skill> lockSkills;
-    private Random generator;
+    private Random generator = new Random();
     
     public AllyChar(String name) {
         super(name);
+        this.experience = 0;
+        this.specialPoints = 0;
+        this.hpIncrease = 100;
+        this.atkIncrease = 100;
+        this.defIncrease = 100;
     }
     
     //sets ally information
@@ -49,7 +54,6 @@ public class AllyChar extends Char {
             this.unlockSkills.add(unlocked);
         for (Skill locked : lockSkills)
             this.lockSkills.add(locked);
-        generator = new Random();
     }
     
     //returns special points
@@ -80,10 +84,10 @@ public class AllyChar extends Char {
             this.givePermBoost(Stat.Attack, 1);
         if (this.generator.nextInt(100) < this.defIncrease)
             this.givePermBoost(Stat.Defense, 1);
-        if (this.generator.nextInt(100) < this.resIncrease)
-            this.givePermBoost(Stat.Resistance, 1);
-        if (this.generator.nextInt(100) < this.spdIncrease)
-            this.givePermBoost(Stat.Speed, 1);
+        //if (this.generator.nextInt(100) < this.resIncrease)
+        //    this.givePermBoost(Stat.Resistance, 1);
+        //if (this.generator.nextInt(100) < this.spdIncrease)
+        //    this.givePermBoost(Stat.Speed, 1);
         this.specialPoints += 12;
         this.increaseLevel();
         this.experience -= 100;
@@ -92,13 +96,13 @@ public class AllyChar extends Char {
     //adds experience to ally, if experience is over 100, ally levels up
     public void gainExperience(int exp) {
         this.experience += exp;
-        if (this.experience >= 100)
+        if(this.experience >= 100)
             levelUp();
     }
     
     //unlocks skills and moves them to unlocked skills list
     public void purchaseSkill(Skill skill) {
-        if (this.lockSkills.contains(skill) && skill.getSPCost() <= this.specialPoints) {
+        if(this.lockSkills.contains(skill) && skill.getSPCost() <= this.specialPoints) {
             this.unlockSkills.add(skill);
             this.lockSkills.remove(skill);
             this.specialPoints -= skill.getSPCost();

@@ -52,12 +52,18 @@ public class CharacterModGUI extends javax.swing.JFrame {
         MainStatsLayer = new javax.swing.JLayeredPane();
         TopBorder = new javax.swing.JLabel();
         AlliesLayer = new javax.swing.JLayeredPane();
-        EditStatsLayer = new javax.swing.JLayeredPane();
-        CharacterPortrait = new javax.swing.JLabel();
-        NamePlateText = new javax.swing.JLabel();
-        NamePlate = new javax.swing.JLabel();
-        StatsInterface = new javax.swing.JLabel();
-        TopBorderStats = new javax.swing.JLabel();
+        StatsLayer = new javax.swing.JLayeredPane();
+        LevelProgresBar = new javax.swing.JProgressBar();
+        CharacterPortrait1 = new javax.swing.JLabel();
+        AttackLevel1 = new javax.swing.JTextField();
+        AttackLevel = new javax.swing.JTextField();
+        MaxHP = new javax.swing.JTextField();
+        CurrentHP = new javax.swing.JTextField();
+        NamePlateText1 = new javax.swing.JTextField();
+        NamePlateDecor = new javax.swing.JLabel();
+        NamePlate1 = new javax.swing.JLabel();
+        StatsInterface1 = new javax.swing.JLabel();
+        TopBorderStats1 = new javax.swing.JLabel();
         AlliesOptionsLayer = new javax.swing.JLayeredPane();
         LearnSkillsText = new javax.swing.JLabel();
         EquipSkillsText = new javax.swing.JLabel();
@@ -233,31 +239,79 @@ public class CharacterModGUI extends javax.swing.JFrame {
         AlliesLayer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         AlliesLayer.setVisible(false);
 
-        EditStatsLayer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        EditStatsLayer.add(CharacterPortrait, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        StatsLayer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        NamePlateText.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        NamePlateText.setForeground(new java.awt.Color(255, 255, 255));
-        NamePlateText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        NamePlateText.setFocusable(false);
-        NamePlateText.setRequestFocusEnabled(false);
-        EditStatsLayer.add(NamePlateText, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 140, 30));
+        LevelProgresBar.setMaximumSize(new java.awt.Dimension(148, 35));
+        LevelProgresBar.setMinimumSize(new java.awt.Dimension(148, 35));
+        LevelProgresBar.setPreferredSize(new java.awt.Dimension(148, 35));
+        StatsLayer.add(LevelProgresBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, 120, 10));
+        StatsLayer.add(CharacterPortrait1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 1, -1, -1));
 
-        NamePlate.setForeground(new java.awt.Color(255, 255, 255));
-        NamePlate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        NamePlate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/name_plate.png"))); // NOI18N
-        EditStatsLayer.add(NamePlate, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, -1));
+        AttackLevel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        AttackLevel1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        AttackLevel1.setBorder(null);
+        AttackLevel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        AttackLevel1.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        AttackLevel1.setEnabled(false);
+        AttackLevel1.setOpaque(false);
+        StatsLayer.add(AttackLevel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 40, 30));
 
-        StatsInterface.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/stats_border.png"))); // NOI18N
-        EditStatsLayer.add(StatsInterface, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, -1, -1));
+        AttackLevel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        AttackLevel.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        AttackLevel.setBorder(null);
+        AttackLevel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        AttackLevel.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        AttackLevel.setEnabled(false);
+        AttackLevel.setOpaque(false);
+        StatsLayer.add(AttackLevel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 40, 30));
 
-        TopBorderStats.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        TopBorderStats.setForeground(new java.awt.Color(255, 255, 255));
-        TopBorderStats.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/top_border_stats.png"))); // NOI18N
-        EditStatsLayer.add(TopBorderStats, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 120));
+        MaxHP.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        MaxHP.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        MaxHP.setBorder(null);
+        MaxHP.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        MaxHP.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        MaxHP.setEnabled(false);
+        MaxHP.setOpaque(false);
+        StatsLayer.add(MaxHP, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 40, 40, 25));
 
-        AlliesLayer.add(EditStatsLayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 120));
-        EditStatsLayer.setVisible(false);
+        CurrentHP.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        CurrentHP.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        CurrentHP.setBorder(null);
+        CurrentHP.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        CurrentHP.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        CurrentHP.setEnabled(false);
+        CurrentHP.setOpaque(false);
+        StatsLayer.add(CurrentHP, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 40, 25));
+
+        NamePlateText1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        NamePlateText1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        NamePlateText1.setBorder(null);
+        NamePlateText1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        NamePlateText1.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        NamePlateText1.setEnabled(false);
+        NamePlateText1.setOpaque(false);
+        StatsLayer.add(NamePlateText1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 140, 25));
+
+        NamePlateDecor.setForeground(new java.awt.Color(255, 255, 255));
+        NamePlateDecor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        NamePlateDecor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/name_plate_decor.png"))); // NOI18N
+        StatsLayer.add(NamePlateDecor, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, -1));
+
+        NamePlate1.setForeground(new java.awt.Color(255, 255, 255));
+        NamePlate1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        NamePlate1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/name_plate.png"))); // NOI18N
+        StatsLayer.add(NamePlate1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, -1));
+
+        StatsInterface1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/stats_border.png"))); // NOI18N
+        StatsLayer.add(StatsInterface1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, -1, -1));
+
+        TopBorderStats1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        TopBorderStats1.setForeground(new java.awt.Color(255, 255, 255));
+        TopBorderStats1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/top_border_stats.png"))); // NOI18N
+        StatsLayer.add(TopBorderStats1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 120));
+
+        AlliesLayer.add(StatsLayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 120));
+        StatsLayer.setVisible(false);
 
         AlliesOptionsLayer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -591,7 +645,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
     private void BattleButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BattleButtonMouseClicked
         HomeLayer.setVisible(false);
         AlliesLayer.setVisible(false);
-        EditStatsLayer.setVisible(false);
+        StatsLayer.setVisible(false);
         AlliesOptionsLayer.setVisible(true);
         MainStatsLayer.setVisible(true);
         BattleLayer.setVisible(true);
@@ -616,7 +670,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
     private void AlliesButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlliesButtonMouseClicked
         BattleLayer.setVisible(false);
         HomeLayer.setVisible(false);
-        EditStatsLayer.setVisible(false);
+        StatsLayer.setVisible(false);
         EditTeamsLayer.setVisible(false);
         AlliesOptionsLayer.setVisible(true);
         MainStatsLayer.setVisible(true);
@@ -696,7 +750,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
     private void EditTeamsButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditTeamsButtonMouseClicked
         MainStatsLayer.setVisible(false);
         AlliesOptionsLayer.setVisible(false);
-        EditStatsLayer.setVisible(true);
+        StatsLayer.setVisible(true);
         EditTeamsLayer.setVisible(true);
     }//GEN-LAST:event_EditTeamsButtonMouseClicked
 
@@ -733,7 +787,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
     //Enables only the Edit Teams Layer to be visible
     private void EditTeamsBackButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditTeamsBackButtonMouseClicked
         EditTeamsLayer.setVisible(false);
-        EditStatsLayer.setVisible(false);
+        StatsLayer.setVisible(false);
         AlliesOptionsLayer.setVisible(true);
         MainStatsLayer.setVisible(true);
     }//GEN-LAST:event_EditTeamsBackButtonMouseClicked
@@ -778,7 +832,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
         populateHomeLayerTeam();
         AlliesOptionsLayer.setVisible(false);
         AlliesLayer.setVisible(false);
-        EditStatsLayer.setVisible(false);
+        StatsLayer.setVisible(false);
         BattleLayer.setVisible(false);
         MainStatsLayer.setVisible(true);
         HomeLayer.setVisible(true);
@@ -930,6 +984,8 @@ public class CharacterModGUI extends javax.swing.JFrame {
     private javax.swing.JLabel AlliesOptionsBackground;
     private javax.swing.JLayeredPane AlliesOptionsLayer;
     private javax.swing.JButton AnnaButton;
+    private javax.swing.JTextField AttackLevel;
+    private javax.swing.JTextField AttackLevel1;
     private javax.swing.JButton BattleButton;
     private javax.swing.JLayeredPane BattleLayer;
     private javax.swing.JLabel BottomBorder;
@@ -938,8 +994,8 @@ public class CharacterModGUI extends javax.swing.JFrame {
     private javax.swing.JLabel Character2;
     private javax.swing.JLabel Character3;
     private javax.swing.JLabel Character4;
-    private javax.swing.JLabel CharacterPortrait;
-    private javax.swing.JLayeredPane EditStatsLayer;
+    private javax.swing.JLabel CharacterPortrait1;
+    private javax.swing.JTextField CurrentHP;
     private javax.swing.JButton EditTeamBanner;
     private javax.swing.JButton EditTeamsBackButton;
     private javax.swing.JLabel EditTeamsBackground;
@@ -954,12 +1010,15 @@ public class CharacterModGUI extends javax.swing.JFrame {
     private javax.swing.JLayeredPane HomeLayer;
     private javax.swing.JButton LearnSkillsButton;
     private javax.swing.JLabel LearnSkillsText;
+    private javax.swing.JProgressBar LevelProgresBar;
     private javax.swing.JLayeredPane MainContainer;
     private javax.swing.JLayeredPane MainStatsLayer;
+    private javax.swing.JTextField MaxHP;
     private javax.swing.JLayeredPane MenuButtonLayer;
     private javax.swing.JButton MiscButton;
-    private javax.swing.JLabel NamePlate;
-    private javax.swing.JLabel NamePlateText;
+    private javax.swing.JLabel NamePlate1;
+    private javax.swing.JLabel NamePlateDecor;
+    private javax.swing.JTextField NamePlateText1;
     private javax.swing.JLabel NewsBoard;
     private javax.swing.JLabel Owl;
     private javax.swing.JButton RoyButton;
@@ -969,7 +1028,8 @@ public class CharacterModGUI extends javax.swing.JFrame {
     private javax.swing.JButton Slot3;
     private javax.swing.JButton Slot4;
     private javax.swing.JButton SoleilButton;
-    private javax.swing.JLabel StatsInterface;
+    private javax.swing.JLabel StatsInterface1;
+    private javax.swing.JLayeredPane StatsLayer;
     private javax.swing.JLabel Stone;
     private javax.swing.JButton StoryMapsButton;
     private javax.swing.JLabel StoryMapsPNG;
@@ -978,7 +1038,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
     private javax.swing.JLabel TeamLoadoutUI;
     private javax.swing.JLabel TeamPickerUI;
     private javax.swing.JLabel TopBorder;
-    private javax.swing.JLabel TopBorderStats;
+    private javax.swing.JLabel TopBorderStats1;
     private javax.swing.JLabel WorldMapBackground;
     // End of variables declaration//GEN-END:variables
 }
