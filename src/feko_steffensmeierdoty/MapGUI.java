@@ -1238,6 +1238,7 @@ public class MapGUI extends javax.swing.JFrame {
         startPhaseAnimationThread.start();
     }
     
+    //Begins the stage cleared animation
     private void stageClearedAnimation() {
         MainContainer.moveToFront(StageClearLogo);
         MainContainer.moveToFront(StageClearText);
@@ -1250,7 +1251,6 @@ public class MapGUI extends javax.swing.JFrame {
                 StageClearLogo.setVisible(true);
                 Thread.sleep(750);
                 StageClearText.setVisible(true);
-                System.out.println("StageClearedRan");
                 
             } catch (InterruptedException ex) {
                 Logger.getLogger(MapGUI.class.getName()).log(Level.SEVERE, null, ex);

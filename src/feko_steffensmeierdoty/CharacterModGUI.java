@@ -53,17 +53,18 @@ public class CharacterModGUI extends javax.swing.JFrame {
         TopBorder = new javax.swing.JLabel();
         AlliesLayer = new javax.swing.JLayeredPane();
         StatsLayer = new javax.swing.JLayeredPane();
+        LevelText = new javax.swing.JTextField();
         LevelProgresBar = new javax.swing.JProgressBar();
-        CharacterPortrait1 = new javax.swing.JLabel();
+        CharacterPortrait = new javax.swing.JLabel();
         AttackLevel1 = new javax.swing.JTextField();
         AttackLevel = new javax.swing.JTextField();
         MaxHP = new javax.swing.JTextField();
         CurrentHP = new javax.swing.JTextField();
-        NamePlateText1 = new javax.swing.JTextField();
+        NamePlateText = new javax.swing.JTextField();
         NamePlateDecor = new javax.swing.JLabel();
-        NamePlate1 = new javax.swing.JLabel();
-        StatsInterface1 = new javax.swing.JLabel();
-        TopBorderStats1 = new javax.swing.JLabel();
+        NamePlate = new javax.swing.JLabel();
+        StatsInterface = new javax.swing.JLabel();
+        TopBorderStats = new javax.swing.JLabel();
         AlliesOptionsLayer = new javax.swing.JLayeredPane();
         LearnSkillsText = new javax.swing.JLabel();
         EquipSkillsText = new javax.swing.JLabel();
@@ -241,11 +242,20 @@ public class CharacterModGUI extends javax.swing.JFrame {
 
         StatsLayer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        LevelText.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        LevelText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        LevelText.setBorder(null);
+        LevelText.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        LevelText.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        LevelText.setEnabled(false);
+        LevelText.setOpaque(false);
+        StatsLayer.add(LevelText, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, 20, 40));
+
         LevelProgresBar.setMaximumSize(new java.awt.Dimension(148, 35));
         LevelProgresBar.setMinimumSize(new java.awt.Dimension(148, 35));
         LevelProgresBar.setPreferredSize(new java.awt.Dimension(148, 35));
         StatsLayer.add(LevelProgresBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, 120, 10));
-        StatsLayer.add(CharacterPortrait1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 1, -1, -1));
+        StatsLayer.add(CharacterPortrait, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 1, -1, -1));
 
         AttackLevel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         AttackLevel1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -283,32 +293,32 @@ public class CharacterModGUI extends javax.swing.JFrame {
         CurrentHP.setOpaque(false);
         StatsLayer.add(CurrentHP, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 40, 25));
 
-        NamePlateText1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        NamePlateText1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        NamePlateText1.setBorder(null);
-        NamePlateText1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        NamePlateText1.setDisabledTextColor(new java.awt.Color(255, 255, 255));
-        NamePlateText1.setEnabled(false);
-        NamePlateText1.setOpaque(false);
-        StatsLayer.add(NamePlateText1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 140, 25));
+        NamePlateText.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        NamePlateText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        NamePlateText.setBorder(null);
+        NamePlateText.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        NamePlateText.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        NamePlateText.setEnabled(false);
+        NamePlateText.setOpaque(false);
+        StatsLayer.add(NamePlateText, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 140, 25));
 
         NamePlateDecor.setForeground(new java.awt.Color(255, 255, 255));
         NamePlateDecor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         NamePlateDecor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/name_plate_decor.png"))); // NOI18N
         StatsLayer.add(NamePlateDecor, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, -1));
 
-        NamePlate1.setForeground(new java.awt.Color(255, 255, 255));
-        NamePlate1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        NamePlate1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/name_plate.png"))); // NOI18N
-        StatsLayer.add(NamePlate1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, -1));
+        NamePlate.setForeground(new java.awt.Color(255, 255, 255));
+        NamePlate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        NamePlate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/name_plate.png"))); // NOI18N
+        StatsLayer.add(NamePlate, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, -1));
 
-        StatsInterface1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/stats_border.png"))); // NOI18N
-        StatsLayer.add(StatsInterface1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, -1, -1));
+        StatsInterface.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/stats_border.png"))); // NOI18N
+        StatsLayer.add(StatsInterface, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, -1, -1));
 
-        TopBorderStats1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        TopBorderStats1.setForeground(new java.awt.Color(255, 255, 255));
-        TopBorderStats1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/top_border_stats.png"))); // NOI18N
-        StatsLayer.add(TopBorderStats1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 120));
+        TopBorderStats.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        TopBorderStats.setForeground(new java.awt.Color(255, 255, 255));
+        TopBorderStats.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/top_border_stats.png"))); // NOI18N
+        StatsLayer.add(TopBorderStats, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 120));
 
         AlliesLayer.add(StatsLayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 120));
         StatsLayer.setVisible(false);
@@ -411,21 +421,41 @@ public class CharacterModGUI extends javax.swing.JFrame {
         Slot1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/empty_portrait.png"))); // NOI18N
         Slot1.setBorder(null);
         Slot1.setContentAreaFilled(false);
+        Slot1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Slot1MouseClicked(evt);
+            }
+        });
         TeamLoadout.add(Slot1);
 
         Slot2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/empty_portrait.png"))); // NOI18N
         Slot2.setBorder(null);
         Slot2.setContentAreaFilled(false);
+        Slot2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Slot2MouseClicked(evt);
+            }
+        });
         TeamLoadout.add(Slot2);
 
         Slot3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/empty_portrait.png"))); // NOI18N
         Slot3.setBorder(null);
         Slot3.setContentAreaFilled(false);
+        Slot3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Slot3MouseClicked(evt);
+            }
+        });
         TeamLoadout.add(Slot3);
 
         Slot4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/empty_portrait.png"))); // NOI18N
         Slot4.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         Slot4.setContentAreaFilled(false);
+        Slot4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Slot4MouseClicked(evt);
+            }
+        });
         TeamLoadout.add(Slot4);
 
         EditTeamsLayer.add(TeamLoadout, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 390, 90));
@@ -805,26 +835,31 @@ public class CharacterModGUI extends javax.swing.JFrame {
     //Sets clicked picture for Character Button1 in Edit Teams Layer
     private void AnnaButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AnnaButtonMouseClicked
         editTeam(AnnaButton,"/img/portraits/anna_silver_portrait_idle.png","/img/portraits/anna_silver_portrait_clicked.png");
+        updateCharacterStats(0);
     }//GEN-LAST:event_AnnaButtonMouseClicked
 
     //Sets clicked picture for Character Button2 in Edit Teams Layer
     private void AlfonseButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlfonseButtonMouseClicked
         editTeam(AlfonseButton,"/img/portraits/alfonse_silver_portrait_idle.png","/img/portraits/alfonse_silver_portrait_clicked.png");
+        updateCharacterStats(1);
     }//GEN-LAST:event_AlfonseButtonMouseClicked
 
     //Sets clicked picture for Character Button3 in Edit Teams Layer
     private void SoleilButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SoleilButtonMouseClicked
         editTeam(SoleilButton,"/img/portraits/soleil_silver_portrait_idle.png","/img/portraits/soleil_silver_portrait_clicked.png");
+        updateCharacterStats(2);
     }//GEN-LAST:event_SoleilButtonMouseClicked
 
     //Sets clicked picture for Character Button4 in Edit Teams Layer
     private void RoyButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RoyButtonMouseClicked
         editTeam(RoyButton,"/img/portraits/roy_silver_portrait_idle.png","/img/portraits/roy_silver_portrait_clicked.png");
+        updateCharacterStats(3);
     }//GEN-LAST:event_RoyButtonMouseClicked
 
     //Sets clicked picture for Character Button5 in Edit Teams Layer
     private void SelenaButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SelenaButtonMouseClicked
         editTeam(SelenaButton,"/img/portraits/selena_silver_portrait_idle.png","/img/portraits/selena_silver_portrait_clicked.png");
+        updateCharacterStats(4);
     }//GEN-LAST:event_SelenaButtonMouseClicked
 
     //Enables only the Home Layer is seen
@@ -837,6 +872,54 @@ public class CharacterModGUI extends javax.swing.JFrame {
         MainStatsLayer.setVisible(true);
         HomeLayer.setVisible(true);
     }//GEN-LAST:event_HomeButtonMouseClicked
+
+    private void Slot1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Slot1MouseClicked
+        if(!Slot1.getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/empty_portrait.png")))) {
+            int i = 0;
+            for(AllyChar ac: allyOptions) {
+                if(Slot1.getIcon().toString().equals(ac.getPortaitImageIdle().toString())) {
+                    updateCharacterStats(i);
+                }
+                i++;
+            }
+        }
+    }//GEN-LAST:event_Slot1MouseClicked
+
+    private void Slot2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Slot2MouseClicked
+        if(!Slot2.getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/empty_portrait.png")))) {
+            int i = 0;
+            for(AllyChar ac: allyOptions) {
+                if(Slot2.getIcon().toString().equals(ac.getPortaitImageIdle().toString())) {
+                    updateCharacterStats(i);
+                }
+                i++;
+            }
+        }
+    }//GEN-LAST:event_Slot2MouseClicked
+
+    private void Slot3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Slot3MouseClicked
+        if(!Slot3.getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/empty_portrait.png")))) {
+            int i = 0;
+            for(AllyChar ac: allyOptions) {
+                if(Slot3.getIcon().toString().equals(ac.getPortaitImageIdle().toString())) {
+                    updateCharacterStats(i);
+                }
+                i++;
+            }
+        }
+    }//GEN-LAST:event_Slot3MouseClicked
+
+    private void Slot4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Slot4MouseClicked
+        if(!Slot4.getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/empty_portrait.png")))) {
+            int i = 0;
+            for(AllyChar ac: allyOptions) {
+                if(Slot4.getIcon().toString().equals(ac.getPortaitImageIdle().toString())) {
+                    updateCharacterStats(i);
+                }
+                i++;
+            }
+        }
+    }//GEN-LAST:event_Slot4MouseClicked
 
     //Removes or adds character to the team. It also updates the GUI to show current team
     private void editTeam(JButton characterButton, String idleImg, String clickImg) {
@@ -940,6 +1023,17 @@ public class CharacterModGUI extends javax.swing.JFrame {
         populateHomeLayerTeam();
     }
     
+    private void updateCharacterStats(int partyPosition) {
+        StatsLayer.setVisible(true);
+        CharacterPortrait.setIcon(allyOptions[partyPosition].getBattlePortrait());
+        LevelText.setText(allyOptions[partyPosition].getLevel() + "");
+        NamePlateText.setText(allyOptions[partyPosition].getName());
+        CurrentHP.setText(allyOptions[partyPosition].getCurrentHP() + "");
+        MaxHP.setText(allyOptions[partyPosition].getMaxHP() + "");
+        AttackLevel.setText(allyOptions[partyPosition].getTotalAtk()+ "");
+        AttackLevel1.setText(allyOptions[partyPosition].getTotalDef()+ "");
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -994,7 +1088,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
     private javax.swing.JLabel Character2;
     private javax.swing.JLabel Character3;
     private javax.swing.JLabel Character4;
-    private javax.swing.JLabel CharacterPortrait1;
+    private javax.swing.JLabel CharacterPortrait;
     private javax.swing.JTextField CurrentHP;
     private javax.swing.JButton EditTeamBanner;
     private javax.swing.JButton EditTeamsBackButton;
@@ -1011,14 +1105,15 @@ public class CharacterModGUI extends javax.swing.JFrame {
     private javax.swing.JButton LearnSkillsButton;
     private javax.swing.JLabel LearnSkillsText;
     private javax.swing.JProgressBar LevelProgresBar;
+    private javax.swing.JTextField LevelText;
     private javax.swing.JLayeredPane MainContainer;
     private javax.swing.JLayeredPane MainStatsLayer;
     private javax.swing.JTextField MaxHP;
     private javax.swing.JLayeredPane MenuButtonLayer;
     private javax.swing.JButton MiscButton;
-    private javax.swing.JLabel NamePlate1;
+    private javax.swing.JLabel NamePlate;
     private javax.swing.JLabel NamePlateDecor;
-    private javax.swing.JTextField NamePlateText1;
+    private javax.swing.JTextField NamePlateText;
     private javax.swing.JLabel NewsBoard;
     private javax.swing.JLabel Owl;
     private javax.swing.JButton RoyButton;
@@ -1028,7 +1123,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
     private javax.swing.JButton Slot3;
     private javax.swing.JButton Slot4;
     private javax.swing.JButton SoleilButton;
-    private javax.swing.JLabel StatsInterface1;
+    private javax.swing.JLabel StatsInterface;
     private javax.swing.JLayeredPane StatsLayer;
     private javax.swing.JLabel Stone;
     private javax.swing.JButton StoryMapsButton;
@@ -1038,7 +1133,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
     private javax.swing.JLabel TeamLoadoutUI;
     private javax.swing.JLabel TeamPickerUI;
     private javax.swing.JLabel TopBorder;
-    private javax.swing.JLabel TopBorderStats1;
+    private javax.swing.JLabel TopBorderStats;
     private javax.swing.JLabel WorldMapBackground;
     // End of variables declaration//GEN-END:variables
 }
