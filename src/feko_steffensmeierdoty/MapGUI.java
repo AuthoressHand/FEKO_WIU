@@ -226,11 +226,6 @@ public class MapGUI extends javax.swing.JFrame {
                 EnemyCharacter4MouseReleased(evt);
             }
         });
-        EnemyCharacter4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EnemyCharacter4ActionPerformed(evt);
-            }
-        });
         MapLayer.add(EnemyCharacter4);
         EnemyCharacter4.setBounds(180, 660, 90, 90);
 
@@ -385,11 +380,6 @@ public class MapGUI extends javax.swing.JFrame {
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 AllyCharacter2MouseReleased(evt);
-            }
-        });
-        AllyCharacter2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AllyCharacter2ActionPerformed(evt);
             }
         });
         MapLayer.add(AllyCharacter2);
@@ -901,10 +891,6 @@ public class MapGUI extends javax.swing.JFrame {
             moveCharacter(AllyCharacter1, allyParty, 0);
     }//GEN-LAST:event_AllyCharacter1MouseDragged
 
-    private void AllyCharacter2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AllyCharacter2ActionPerformed
-
-    }//GEN-LAST:event_AllyCharacter2ActionPerformed
-
     private void AllyCharacter2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter2MouseReleased
         if(turn == true && AllyCharacter2.isEnabled())
             performAction(Grid,AllyCharacter2, allyParty, 1);
@@ -1001,10 +987,6 @@ public class MapGUI extends javax.swing.JFrame {
         if(turn == false && EnemyCharacter3.isEnabled())
             moveCharacter(EnemyCharacter3, enemyParty, 2);
     }//GEN-LAST:event_EnemyCharacter3MouseDragged
-
-    private void EnemyCharacter4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnemyCharacter4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EnemyCharacter4ActionPerformed
 
     private void EnemyCharacter4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter4MouseReleased
         if(turn == false && EnemyCharacter4.isEnabled())
