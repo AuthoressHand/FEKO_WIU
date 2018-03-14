@@ -1066,6 +1066,9 @@ public class MapGUI extends javax.swing.JFrame {
                 //If the mouse is within the GridTile and it is accessible, move Character to the GridTile and clean up its trace
                 if(isMouseWithinComponent(grid1.getTile()) && grid1.isAccessible()) {
                     //Sets Character location and adds Character to the GridTile
+                    character.setEnabled(false);
+                    resetPositionMarkers();
+                    checkForEndTurn(party);
                     character.setLocation(grid1.getTile().getX(), grid1.getTile().getY() + TopBorderStats.getHeight());
                     grid1.addCharacter(party.getArmyChar(armyPos));
                     
@@ -1250,24 +1253,28 @@ public class MapGUI extends javax.swing.JFrame {
         AttackLevel1.setText(party.getArmyChar(partyPosition).getTotalDef()+ "");
     }
     
+    //Very tedious way of showing characters possible moves
     private void showPossibleMoves(Party party, int partyPosition) {
         if(positionMarker == true) {
             resetPositionMarkers();
         }
         
         int initialGridTile = 0;
-        for(int i = 0; i < grid.length - 1; i++) {
+        for(int i = 0; i < grid.length ; i++) {
             if(grid[i].getCharacter() != null && grid[i].getCharacter().equals(party.getArmyChar(partyPosition))) {
                 initialGridTile = i;
             }
         }
         
+        //Not very efficient (hard-coded)
         int walkRange = party.getArmyChar(partyPosition).getWalkRange();
         if(walkRange == 1 || walkRange == 2) {
-            if(initialGridTile + 1 > -1 && initialGridTile + 1 < 48) {
+            if(initialGridTile != 5 && initialGridTile != 11 && initialGridTile != 17 && initialGridTile != 23 && initialGridTile != 29 
+               && initialGridTile != 35 && initialGridTile != 41 && initialGridTile != 47 && initialGridTile + 1 > -1 && initialGridTile + 1 < 48) {
                 setPositionMarker(initialGridTile + 1, 0);
             }
-            if(initialGridTile - 1 > -1 && initialGridTile - 1 < 48) {
+            if(initialGridTile != 0 && initialGridTile != 6 && initialGridTile != 12 && initialGridTile != 18 && initialGridTile != 24 
+               && initialGridTile != 30 && initialGridTile != 36 && initialGridTile != 42 && initialGridTile - 1 > -1 && initialGridTile - 1 < 48) {
                 setPositionMarker(initialGridTile - 1, 0);
             }
             if(initialGridTile - 6 > -1 && initialGridTile - 6 < 48) {
@@ -1278,23 +1285,34 @@ public class MapGUI extends javax.swing.JFrame {
             }
         }
         
+        //Not very efficient (hard-coded)
         if(walkRange == 2) {
-            if(initialGridTile + 2 > -1 && initialGridTile + 2 < 48) {
+            if(initialGridTile != 5 && initialGridTile != 11 && initialGridTile != 17 && initialGridTile != 23 && initialGridTile != 29 
+               && initialGridTile != 35 && initialGridTile != 41 && initialGridTile != 47 && initialGridTile != 4 && initialGridTile != 10 
+               && initialGridTile != 16 && initialGridTile != 22 && initialGridTile != 28 && initialGridTile != 34 && initialGridTile != 40 
+               && initialGridTile != 46 && initialGridTile + 2 > -1 && initialGridTile + 2 < 48) {
                 setPositionMarker(initialGridTile + 2, -1);
             }
-            if(initialGridTile - 2 > -1 && initialGridTile - 2 < 48) {
+            if(initialGridTile != 0 && initialGridTile != 6 && initialGridTile != 12 && initialGridTile != 18 && initialGridTile != 24 
+               && initialGridTile != 30 && initialGridTile != 36 && initialGridTile != 42 && initialGridTile != 1 && initialGridTile != 7 
+               && initialGridTile != 13 && initialGridTile != 19 && initialGridTile != 25 && initialGridTile != 31 && initialGridTile != 37 
+               && initialGridTile != 43 && initialGridTile - 2 > -1 && initialGridTile - 2 < 48) {
                 setPositionMarker(initialGridTile - 2, 1);
             }
-            if(initialGridTile + 7 > -1 && initialGridTile + 7 < 48) {
+            if(initialGridTile != 5 && initialGridTile != 11 && initialGridTile != 17 && initialGridTile != 23 && initialGridTile != 29 
+               && initialGridTile != 35 && initialGridTile != 41 && initialGridTile != 47 && initialGridTile + 7 > -1 && initialGridTile + 7 < 48) {
                 setPositionMarker(initialGridTile + 7, 0);
             }
-            if(initialGridTile - 7 > -1 && initialGridTile - 7 < 48) {
+            if(initialGridTile != 0 && initialGridTile != 6 && initialGridTile != 12 && initialGridTile != 18 && initialGridTile != 24 
+               && initialGridTile != 30 && initialGridTile != 36 && initialGridTile != 42 && initialGridTile - 7 > -1 && initialGridTile - 7 < 48) {
                 setPositionMarker(initialGridTile - 7, 0);
             }
-            if(initialGridTile + 5 > -1 && initialGridTile + 5 < 48) {
+            if(initialGridTile != 0 && initialGridTile != 6 && initialGridTile != 12 && initialGridTile != 18 && initialGridTile != 24 
+               && initialGridTile != 30 && initialGridTile != 36 && initialGridTile != 42 && initialGridTile + 5 > -1 && initialGridTile + 5 < 48) {
                 setPositionMarker(initialGridTile + 5, 0);
             }
-            if(initialGridTile - 5 > -1 && initialGridTile - 5 < 48) {
+            if(initialGridTile != 5 && initialGridTile != 11 && initialGridTile != 17 && initialGridTile != 23 && initialGridTile != 29 
+               && initialGridTile != 35 && initialGridTile != 41 && initialGridTile != 47 && initialGridTile - 5 > -1 && initialGridTile - 5 < 48) {
                 setPositionMarker(initialGridTile - 5, 0);
             }
             if(initialGridTile + 12 > -1 && initialGridTile + 12 < 48) {
