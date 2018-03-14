@@ -37,11 +37,11 @@ public class GridTile {
         return character != null;
     }
     
-    public void setAccessible(boolean isAccessible) {
+    private void setAccessible(boolean isAccessible) {
         this.isAccessible = isAccessible;
     }
     
-    public void setOccupied(Char character) {
+    private void setOccupied(Char character) {
         this.character = character;
     }
     

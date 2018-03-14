@@ -54,6 +54,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
         AlliesLayer = new javax.swing.JLayeredPane();
         StatsLayer = new javax.swing.JLayeredPane();
         LevelText = new javax.swing.JTextField();
+        WeaponNameText = new javax.swing.JTextField();
         LevelProgresBar = new javax.swing.JProgressBar();
         CharacterPortrait = new javax.swing.JLabel();
         AttackLevel1 = new javax.swing.JTextField();
@@ -250,6 +251,15 @@ public class CharacterModGUI extends javax.swing.JFrame {
         LevelText.setEnabled(false);
         LevelText.setOpaque(false);
         StatsLayer.add(LevelText, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, 20, 40));
+
+        WeaponNameText.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        WeaponNameText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        WeaponNameText.setBorder(null);
+        WeaponNameText.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        WeaponNameText.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        WeaponNameText.setEnabled(false);
+        WeaponNameText.setOpaque(false);
+        StatsLayer.add(WeaponNameText, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 35, 140, 30));
 
         LevelProgresBar.setMaximumSize(new java.awt.Dimension(148, 35));
         LevelProgresBar.setMinimumSize(new java.awt.Dimension(148, 35));
@@ -782,6 +792,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
         AlliesOptionsLayer.setVisible(false);
         StatsLayer.setVisible(true);
         EditTeamsLayer.setVisible(true);
+        updateCharacterStats(0);
     }//GEN-LAST:event_EditTeamsButtonMouseClicked
 
     //Sets hover picture for Edit Teams Button
@@ -835,30 +846,35 @@ public class CharacterModGUI extends javax.swing.JFrame {
     //Sets clicked picture for Character Button1 in Edit Teams Layer
     private void AnnaButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AnnaButtonMouseClicked
         editTeam(AnnaButton,"/img/portraits/anna_silver_portrait_idle.png","/img/portraits/anna_silver_portrait_clicked.png");
+        StatsLayer.setVisible(true);
         updateCharacterStats(0);
     }//GEN-LAST:event_AnnaButtonMouseClicked
 
     //Sets clicked picture for Character Button2 in Edit Teams Layer
     private void AlfonseButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlfonseButtonMouseClicked
         editTeam(AlfonseButton,"/img/portraits/alfonse_silver_portrait_idle.png","/img/portraits/alfonse_silver_portrait_clicked.png");
+        StatsLayer.setVisible(true);
         updateCharacterStats(1);
     }//GEN-LAST:event_AlfonseButtonMouseClicked
 
     //Sets clicked picture for Character Button3 in Edit Teams Layer
     private void SoleilButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SoleilButtonMouseClicked
         editTeam(SoleilButton,"/img/portraits/soleil_silver_portrait_idle.png","/img/portraits/soleil_silver_portrait_clicked.png");
+        StatsLayer.setVisible(true);
         updateCharacterStats(2);
     }//GEN-LAST:event_SoleilButtonMouseClicked
 
     //Sets clicked picture for Character Button4 in Edit Teams Layer
     private void RoyButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RoyButtonMouseClicked
         editTeam(RoyButton,"/img/portraits/roy_silver_portrait_idle.png","/img/portraits/roy_silver_portrait_clicked.png");
+        StatsLayer.setVisible(true);
         updateCharacterStats(3);
     }//GEN-LAST:event_RoyButtonMouseClicked
 
     //Sets clicked picture for Character Button5 in Edit Teams Layer
     private void SelenaButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SelenaButtonMouseClicked
         editTeam(SelenaButton,"/img/portraits/selena_silver_portrait_idle.png","/img/portraits/selena_silver_portrait_clicked.png");
+        StatsLayer.setVisible(true);
         updateCharacterStats(4);
     }//GEN-LAST:event_SelenaButtonMouseClicked
 
@@ -878,6 +894,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
             int i = 0;
             for(AllyChar ac: allyOptions) {
                 if(Slot1.getIcon().toString().equals(ac.getPortaitImageIdle().toString())) {
+                    StatsLayer.setVisible(true);
                     updateCharacterStats(i);
                 }
                 i++;
@@ -890,6 +907,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
             int i = 0;
             for(AllyChar ac: allyOptions) {
                 if(Slot2.getIcon().toString().equals(ac.getPortaitImageIdle().toString())) {
+                    StatsLayer.setVisible(true);
                     updateCharacterStats(i);
                 }
                 i++;
@@ -902,6 +920,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
             int i = 0;
             for(AllyChar ac: allyOptions) {
                 if(Slot3.getIcon().toString().equals(ac.getPortaitImageIdle().toString())) {
+                    StatsLayer.setVisible(true);
                     updateCharacterStats(i);
                 }
                 i++;
@@ -914,6 +933,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
             int i = 0;
             for(AllyChar ac: allyOptions) {
                 if(Slot4.getIcon().toString().equals(ac.getPortaitImageIdle().toString())) {
+                    StatsLayer.setVisible(true);
                     updateCharacterStats(i);
                 }
                 i++;
@@ -1014,18 +1034,14 @@ public class CharacterModGUI extends javax.swing.JFrame {
         
         team.addToArmy(new AllyChar("Anna"));
         teamSlots[0].setIcon(team.getArmyChar(0).getPortaitImageIdle());
-        for(JButton jb: characterOptions) {
-            if(jb.getIcon().toString().equals(team.getArmyChar(0).getPortaitImageIdle().toString())) {
-                jb.setIcon(team.getArmyChar(0).getPortaitImageClicked());
-            }
-        }
+        characterOptions[0].setIcon(team.getArmyChar(0).getPortaitImageClicked());
         
         populateHomeLayerTeam();
     }
     
     private void updateCharacterStats(int partyPosition) {
-        StatsLayer.setVisible(true);
         CharacterPortrait.setIcon(allyOptions[partyPosition].getBattlePortrait());
+        WeaponNameText.setText(allyOptions[partyPosition].getWeapon().getName() + "");
         LevelText.setText(allyOptions[partyPosition].getLevel() + "");
         NamePlateText.setText(allyOptions[partyPosition].getName());
         CurrentHP.setText(allyOptions[partyPosition].getCurrentHP() + "");
@@ -1134,6 +1150,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
     private javax.swing.JLabel TeamPickerUI;
     private javax.swing.JLabel TopBorder;
     private javax.swing.JLabel TopBorderStats;
+    private javax.swing.JTextField WeaponNameText;
     private javax.swing.JLabel WorldMapBackground;
     // End of variables declaration//GEN-END:variables
 }
