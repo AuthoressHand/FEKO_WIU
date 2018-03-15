@@ -1345,8 +1345,6 @@ public class MapGUI extends javax.swing.JFrame {
         //Checks if the mouse location is within the boundaries of the Map.
         if(isMouseWithinComponent(mapBoundary)) {
             //Iterates through and evaluates every GridTile
-            //Grid1 : lowerGrid
-            //
             for(int j = 0; j < lowerGrid.length; j++) {
                 //If the mouse is within the GridTile and it is accessible, move Character to the GridTile and clean up its trace
                 if(isMouseWithinComponent(lowerGrid[j].getTile()) && lowerGrid[j].isAccessible() && lowerGrid[j].getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/bluePositionMarker.png")).toString())) {
