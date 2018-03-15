@@ -22,10 +22,10 @@ public class MapGUI extends javax.swing.JFrame {
     private Point charInitialPoint;
     private Party allyParty;
     private Party enemyParty = new Party();
-    private static GridTile[] grid;
+    private static GridTile[] lowerGrid;
+    private static GridTile[] upperGrid;
     private boolean turn = true;
     private boolean positionMarker = false;
-    private int damage;
     private Thread startPhaseAnimationThread;
     private Thread applyDamageAnimationThread;
     private Thread stageClearedAnimationThread;
@@ -52,6 +52,7 @@ public class MapGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         MainContainer = new javax.swing.JLayeredPane();
+        AttackPopUp = new javax.swing.JLabel();
         StageClearText = new javax.swing.JLabel();
         StageClearLogo = new javax.swing.JLabel();
         StageClearButton = new javax.swing.JLabel();
@@ -67,7 +68,56 @@ public class MapGUI extends javax.swing.JFrame {
         AllyCharacter3 = new javax.swing.JToggleButton();
         AllyCharacter2 = new javax.swing.JToggleButton();
         AllyCharacter1 = new javax.swing.JToggleButton();
-        Grid = new javax.swing.JPanel();
+        UpperGrid = new javax.swing.JPanel();
+        pos1 = new javax.swing.JButton();
+        pos2 = new javax.swing.JButton();
+        pos3 = new javax.swing.JButton();
+        pos4 = new javax.swing.JButton();
+        pos5 = new javax.swing.JButton();
+        pos6 = new javax.swing.JButton();
+        pos16 = new javax.swing.JButton();
+        pos17 = new javax.swing.JButton();
+        pos18 = new javax.swing.JButton();
+        pos19 = new javax.swing.JButton();
+        pos26 = new javax.swing.JButton();
+        pos27 = new javax.swing.JButton();
+        pos28 = new javax.swing.JButton();
+        pos29 = new javax.swing.JButton();
+        pos36 = new javax.swing.JButton();
+        pos37 = new javax.swing.JButton();
+        pos38 = new javax.swing.JButton();
+        pos39 = new javax.swing.JButton();
+        pos46 = new javax.swing.JButton();
+        pos47 = new javax.swing.JButton();
+        pos48 = new javax.swing.JButton();
+        pos49 = new javax.swing.JButton();
+        pos56 = new javax.swing.JButton();
+        pos57 = new javax.swing.JButton();
+        pos58 = new javax.swing.JButton();
+        pos59 = new javax.swing.JButton();
+        pos66 = new javax.swing.JButton();
+        pos67 = new javax.swing.JButton();
+        pos68 = new javax.swing.JButton();
+        pos69 = new javax.swing.JButton();
+        pos76 = new javax.swing.JButton();
+        pos77 = new javax.swing.JButton();
+        pos78 = new javax.swing.JButton();
+        pos79 = new javax.swing.JButton();
+        pos80 = new javax.swing.JButton();
+        pos81 = new javax.swing.JButton();
+        pos82 = new javax.swing.JButton();
+        pos83 = new javax.swing.JButton();
+        pos84 = new javax.swing.JButton();
+        pos85 = new javax.swing.JButton();
+        pos86 = new javax.swing.JButton();
+        pos87 = new javax.swing.JButton();
+        pos88 = new javax.swing.JButton();
+        pos89 = new javax.swing.JButton();
+        pos90 = new javax.swing.JButton();
+        pos91 = new javax.swing.JButton();
+        pos92 = new javax.swing.JButton();
+        pos93 = new javax.swing.JButton();
+        LowerGrid = new javax.swing.JPanel();
         pos00 = new javax.swing.JButton();
         pos01 = new javax.swing.JButton();
         pos02 = new javax.swing.JButton();
@@ -150,6 +200,12 @@ public class MapGUI extends javax.swing.JFrame {
         MainContainer.setMaximumSize(new java.awt.Dimension(540, 925));
         MainContainer.setMinimumSize(new java.awt.Dimension(540, 925));
         MainContainer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        AttackPopUp.setVisible(false);
+        AttackPopUp.setForeground(new java.awt.Color(255, 255, 255));
+        AttackPopUp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        AttackPopUp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/attackPopUp.png"))); // NOI18N
+        MainContainer.add(AttackPopUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 880, 50, 50));
 
         StageClearText.setVisible(false);
         StageClearText.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -412,250 +468,495 @@ public class MapGUI extends javax.swing.JFrame {
 
         MainContainer.add(MapLayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 930));
 
-        Grid.setOpaque(false);
-        Grid.setLayout(new java.awt.GridLayout(8, 6));
+        UpperGrid.setOpaque(false);
+        UpperGrid.setLayout(new java.awt.GridLayout(8, 6));
+
+        pos1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
+        pos1.setBorderPainted(false);
+        pos1.setContentAreaFilled(false);
+        UpperGrid.add(pos1);
+
+        pos2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
+        pos2.setBorderPainted(false);
+        pos2.setContentAreaFilled(false);
+        UpperGrid.add(pos2);
+
+        pos3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
+        pos3.setBorderPainted(false);
+        pos3.setContentAreaFilled(false);
+        UpperGrid.add(pos3);
+
+        pos4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
+        pos4.setBorderPainted(false);
+        pos4.setContentAreaFilled(false);
+        UpperGrid.add(pos4);
+
+        pos5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
+        pos5.setBorderPainted(false);
+        pos5.setContentAreaFilled(false);
+        UpperGrid.add(pos5);
+
+        pos6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
+        pos6.setBorderPainted(false);
+        pos6.setContentAreaFilled(false);
+        UpperGrid.add(pos6);
+
+        pos16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
+        pos16.setBorderPainted(false);
+        pos16.setContentAreaFilled(false);
+        UpperGrid.add(pos16);
+
+        pos17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
+        pos17.setBorderPainted(false);
+        pos17.setContentAreaFilled(false);
+        UpperGrid.add(pos17);
+
+        pos18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
+        pos18.setBorderPainted(false);
+        pos18.setContentAreaFilled(false);
+        UpperGrid.add(pos18);
+
+        pos19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
+        pos19.setBorderPainted(false);
+        pos19.setContentAreaFilled(false);
+        UpperGrid.add(pos19);
+
+        pos26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
+        pos26.setBorderPainted(false);
+        pos26.setContentAreaFilled(false);
+        UpperGrid.add(pos26);
+
+        pos27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
+        pos27.setBorderPainted(false);
+        pos27.setContentAreaFilled(false);
+        UpperGrid.add(pos27);
+
+        pos28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
+        pos28.setBorderPainted(false);
+        pos28.setContentAreaFilled(false);
+        UpperGrid.add(pos28);
+
+        pos29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
+        pos29.setBorderPainted(false);
+        pos29.setContentAreaFilled(false);
+        UpperGrid.add(pos29);
+
+        pos36.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
+        pos36.setBorderPainted(false);
+        pos36.setContentAreaFilled(false);
+        UpperGrid.add(pos36);
+
+        pos37.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
+        pos37.setBorderPainted(false);
+        pos37.setContentAreaFilled(false);
+        UpperGrid.add(pos37);
+
+        pos38.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
+        pos38.setBorderPainted(false);
+        pos38.setContentAreaFilled(false);
+        UpperGrid.add(pos38);
+
+        pos39.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
+        pos39.setBorderPainted(false);
+        pos39.setContentAreaFilled(false);
+        UpperGrid.add(pos39);
+
+        pos46.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
+        pos46.setBorderPainted(false);
+        pos46.setContentAreaFilled(false);
+        UpperGrid.add(pos46);
+
+        pos47.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
+        pos47.setBorderPainted(false);
+        pos47.setContentAreaFilled(false);
+        UpperGrid.add(pos47);
+
+        pos48.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
+        pos48.setBorderPainted(false);
+        pos48.setContentAreaFilled(false);
+        UpperGrid.add(pos48);
+
+        pos49.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
+        pos49.setBorderPainted(false);
+        pos49.setContentAreaFilled(false);
+        UpperGrid.add(pos49);
+
+        pos56.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
+        pos56.setBorderPainted(false);
+        pos56.setContentAreaFilled(false);
+        UpperGrid.add(pos56);
+
+        pos57.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
+        pos57.setBorderPainted(false);
+        pos57.setContentAreaFilled(false);
+        UpperGrid.add(pos57);
+
+        pos58.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
+        pos58.setBorderPainted(false);
+        pos58.setContentAreaFilled(false);
+        UpperGrid.add(pos58);
+
+        pos59.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
+        pos59.setBorderPainted(false);
+        pos59.setContentAreaFilled(false);
+        UpperGrid.add(pos59);
+
+        pos66.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
+        pos66.setBorderPainted(false);
+        pos66.setContentAreaFilled(false);
+        UpperGrid.add(pos66);
+
+        pos67.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
+        pos67.setBorderPainted(false);
+        pos67.setContentAreaFilled(false);
+        UpperGrid.add(pos67);
+
+        pos68.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
+        pos68.setBorderPainted(false);
+        pos68.setContentAreaFilled(false);
+        UpperGrid.add(pos68);
+
+        pos69.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
+        pos69.setBorderPainted(false);
+        pos69.setContentAreaFilled(false);
+        UpperGrid.add(pos69);
+
+        pos76.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
+        pos76.setBorderPainted(false);
+        pos76.setContentAreaFilled(false);
+        UpperGrid.add(pos76);
+
+        pos77.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
+        pos77.setBorderPainted(false);
+        pos77.setContentAreaFilled(false);
+        UpperGrid.add(pos77);
+
+        pos78.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
+        pos78.setBorderPainted(false);
+        pos78.setContentAreaFilled(false);
+        UpperGrid.add(pos78);
+
+        pos79.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
+        pos79.setBorderPainted(false);
+        pos79.setContentAreaFilled(false);
+        UpperGrid.add(pos79);
+
+        pos80.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
+        pos80.setBorderPainted(false);
+        pos80.setContentAreaFilled(false);
+        UpperGrid.add(pos80);
+
+        pos81.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
+        pos81.setBorderPainted(false);
+        pos81.setContentAreaFilled(false);
+        UpperGrid.add(pos81);
+
+        pos82.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
+        pos82.setBorderPainted(false);
+        pos82.setContentAreaFilled(false);
+        UpperGrid.add(pos82);
+
+        pos83.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
+        pos83.setBorderPainted(false);
+        pos83.setContentAreaFilled(false);
+        UpperGrid.add(pos83);
+
+        pos84.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
+        pos84.setBorderPainted(false);
+        pos84.setContentAreaFilled(false);
+        UpperGrid.add(pos84);
+
+        pos85.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
+        pos85.setBorderPainted(false);
+        pos85.setContentAreaFilled(false);
+        UpperGrid.add(pos85);
+
+        pos86.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
+        pos86.setBorderPainted(false);
+        pos86.setContentAreaFilled(false);
+        UpperGrid.add(pos86);
+
+        pos87.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
+        pos87.setBorderPainted(false);
+        pos87.setContentAreaFilled(false);
+        UpperGrid.add(pos87);
+
+        pos88.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
+        pos88.setBorderPainted(false);
+        pos88.setContentAreaFilled(false);
+        UpperGrid.add(pos88);
+
+        pos89.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
+        pos89.setBorderPainted(false);
+        pos89.setContentAreaFilled(false);
+        UpperGrid.add(pos89);
+
+        pos90.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
+        pos90.setBorderPainted(false);
+        pos90.setContentAreaFilled(false);
+        UpperGrid.add(pos90);
+
+        pos91.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
+        pos91.setBorderPainted(false);
+        pos91.setContentAreaFilled(false);
+        UpperGrid.add(pos91);
+
+        pos92.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
+        pos92.setBorderPainted(false);
+        pos92.setContentAreaFilled(false);
+        UpperGrid.add(pos92);
+
+        pos93.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
+        pos93.setBorderPainted(false);
+        pos93.setContentAreaFilled(false);
+        UpperGrid.add(pos93);
+
+        MainContainer.add(UpperGrid, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 540, 720));
+
+        LowerGrid.setOpaque(false);
+        LowerGrid.setLayout(new java.awt.GridLayout(8, 6));
 
         pos00.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
         pos00.setBorderPainted(false);
         pos00.setContentAreaFilled(false);
-        Grid.add(pos00);
+        LowerGrid.add(pos00);
 
         pos01.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
         pos01.setBorderPainted(false);
         pos01.setContentAreaFilled(false);
-        Grid.add(pos01);
+        LowerGrid.add(pos01);
 
         pos02.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
         pos02.setBorderPainted(false);
         pos02.setContentAreaFilled(false);
-        Grid.add(pos02);
+        LowerGrid.add(pos02);
 
         pos03.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
         pos03.setBorderPainted(false);
         pos03.setContentAreaFilled(false);
-        Grid.add(pos03);
+        LowerGrid.add(pos03);
 
         pos04.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
         pos04.setBorderPainted(false);
         pos04.setContentAreaFilled(false);
-        Grid.add(pos04);
+        LowerGrid.add(pos04);
 
         pos05.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
         pos05.setBorderPainted(false);
         pos05.setContentAreaFilled(false);
-        Grid.add(pos05);
+        LowerGrid.add(pos05);
 
         pos10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
         pos10.setBorderPainted(false);
         pos10.setContentAreaFilled(false);
-        Grid.add(pos10);
+        LowerGrid.add(pos10);
 
         pos11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
         pos11.setBorderPainted(false);
         pos11.setContentAreaFilled(false);
-        Grid.add(pos11);
+        LowerGrid.add(pos11);
 
         pos12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
         pos12.setBorderPainted(false);
         pos12.setContentAreaFilled(false);
-        Grid.add(pos12);
+        LowerGrid.add(pos12);
 
         pos13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
         pos13.setBorderPainted(false);
         pos13.setContentAreaFilled(false);
-        Grid.add(pos13);
+        LowerGrid.add(pos13);
 
         pos14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
         pos14.setBorderPainted(false);
         pos14.setContentAreaFilled(false);
-        Grid.add(pos14);
+        LowerGrid.add(pos14);
 
         pos15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
         pos15.setBorderPainted(false);
         pos15.setContentAreaFilled(false);
-        Grid.add(pos15);
+        LowerGrid.add(pos15);
 
         pos20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
         pos20.setBorderPainted(false);
         pos20.setContentAreaFilled(false);
-        Grid.add(pos20);
+        LowerGrid.add(pos20);
 
         pos21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
         pos21.setBorderPainted(false);
         pos21.setContentAreaFilled(false);
-        Grid.add(pos21);
+        LowerGrid.add(pos21);
 
         pos22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
         pos22.setBorderPainted(false);
         pos22.setContentAreaFilled(false);
-        Grid.add(pos22);
+        LowerGrid.add(pos22);
 
         pos23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
         pos23.setBorderPainted(false);
         pos23.setContentAreaFilled(false);
-        Grid.add(pos23);
+        LowerGrid.add(pos23);
 
         pos24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
         pos24.setBorderPainted(false);
         pos24.setContentAreaFilled(false);
-        Grid.add(pos24);
+        LowerGrid.add(pos24);
 
         pos25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
         pos25.setBorderPainted(false);
         pos25.setContentAreaFilled(false);
-        Grid.add(pos25);
+        LowerGrid.add(pos25);
 
         pos30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
         pos30.setBorderPainted(false);
         pos30.setContentAreaFilled(false);
-        Grid.add(pos30);
+        LowerGrid.add(pos30);
 
         pos31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
         pos31.setBorderPainted(false);
         pos31.setContentAreaFilled(false);
-        Grid.add(pos31);
+        LowerGrid.add(pos31);
 
         pos32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
         pos32.setBorderPainted(false);
         pos32.setContentAreaFilled(false);
-        Grid.add(pos32);
+        LowerGrid.add(pos32);
 
         pos33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
         pos33.setBorderPainted(false);
         pos33.setContentAreaFilled(false);
-        Grid.add(pos33);
+        LowerGrid.add(pos33);
 
         pos34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
         pos34.setBorderPainted(false);
         pos34.setContentAreaFilled(false);
-        Grid.add(pos34);
+        LowerGrid.add(pos34);
 
         pos35.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
         pos35.setBorderPainted(false);
         pos35.setContentAreaFilled(false);
-        Grid.add(pos35);
+        LowerGrid.add(pos35);
 
         pos40.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
         pos40.setBorderPainted(false);
         pos40.setContentAreaFilled(false);
-        Grid.add(pos40);
+        LowerGrid.add(pos40);
 
         pos41.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
         pos41.setBorderPainted(false);
         pos41.setContentAreaFilled(false);
-        Grid.add(pos41);
+        LowerGrid.add(pos41);
 
         pos42.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
         pos42.setBorderPainted(false);
         pos42.setContentAreaFilled(false);
-        Grid.add(pos42);
+        LowerGrid.add(pos42);
 
         pos43.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
         pos43.setBorderPainted(false);
         pos43.setContentAreaFilled(false);
-        Grid.add(pos43);
+        LowerGrid.add(pos43);
 
         pos44.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
         pos44.setBorderPainted(false);
         pos44.setContentAreaFilled(false);
-        Grid.add(pos44);
+        LowerGrid.add(pos44);
 
         pos45.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
         pos45.setBorderPainted(false);
         pos45.setContentAreaFilled(false);
-        Grid.add(pos45);
+        LowerGrid.add(pos45);
 
         pos50.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
         pos50.setBorderPainted(false);
         pos50.setContentAreaFilled(false);
-        Grid.add(pos50);
+        LowerGrid.add(pos50);
 
         pos51.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
         pos51.setBorderPainted(false);
         pos51.setContentAreaFilled(false);
-        Grid.add(pos51);
+        LowerGrid.add(pos51);
 
         pos52.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
         pos52.setBorderPainted(false);
         pos52.setContentAreaFilled(false);
-        Grid.add(pos52);
+        LowerGrid.add(pos52);
 
         pos53.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
         pos53.setBorderPainted(false);
         pos53.setContentAreaFilled(false);
-        Grid.add(pos53);
+        LowerGrid.add(pos53);
 
         pos54.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
         pos54.setBorderPainted(false);
         pos54.setContentAreaFilled(false);
-        Grid.add(pos54);
+        LowerGrid.add(pos54);
 
         pos55.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
         pos55.setBorderPainted(false);
         pos55.setContentAreaFilled(false);
-        Grid.add(pos55);
+        LowerGrid.add(pos55);
 
         pos60.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
         pos60.setBorderPainted(false);
         pos60.setContentAreaFilled(false);
-        Grid.add(pos60);
+        LowerGrid.add(pos60);
 
         pos61.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
         pos61.setBorderPainted(false);
         pos61.setContentAreaFilled(false);
-        Grid.add(pos61);
+        LowerGrid.add(pos61);
 
         pos62.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
         pos62.setBorderPainted(false);
         pos62.setContentAreaFilled(false);
-        Grid.add(pos62);
+        LowerGrid.add(pos62);
 
         pos63.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
         pos63.setBorderPainted(false);
         pos63.setContentAreaFilled(false);
-        Grid.add(pos63);
+        LowerGrid.add(pos63);
 
         pos64.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
         pos64.setBorderPainted(false);
         pos64.setContentAreaFilled(false);
-        Grid.add(pos64);
+        LowerGrid.add(pos64);
 
         pos65.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
         pos65.setBorderPainted(false);
         pos65.setContentAreaFilled(false);
-        Grid.add(pos65);
+        LowerGrid.add(pos65);
 
         pos70.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
         pos70.setBorderPainted(false);
         pos70.setContentAreaFilled(false);
-        Grid.add(pos70);
+        LowerGrid.add(pos70);
 
         pos71.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
         pos71.setBorderPainted(false);
         pos71.setContentAreaFilled(false);
-        Grid.add(pos71);
+        LowerGrid.add(pos71);
 
         pos72.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
         pos72.setBorderPainted(false);
         pos72.setContentAreaFilled(false);
-        Grid.add(pos72);
+        LowerGrid.add(pos72);
 
         pos73.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
         pos73.setBorderPainted(false);
         pos73.setContentAreaFilled(false);
-        Grid.add(pos73);
+        LowerGrid.add(pos73);
 
         pos74.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
         pos74.setBorderPainted(false);
         pos74.setContentAreaFilled(false);
-        Grid.add(pos74);
+        LowerGrid.add(pos74);
 
         pos75.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png"))); // NOI18N
         pos75.setBorderPainted(false);
         pos75.setContentAreaFilled(false);
-        Grid.add(pos75);
+        LowerGrid.add(pos75);
 
-        MainContainer.add(Grid, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 540, 720));
+        MainContainer.add(LowerGrid, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 540, 720));
 
         Map.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/backgrounds/level1_map.png"))); // NOI18N
         Map.setToolTipText("");
@@ -806,7 +1107,7 @@ public class MapGUI extends javax.swing.JFrame {
         NamePlate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/name_plate.png"))); // NOI18N
         StatsLayer.add(NamePlate, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, -1));
 
-        StatsInterface.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/stats_border.png"))); // NOI18N
+        StatsInterface.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/stats_border_1.png"))); // NOI18N
         StatsLayer.add(StatsInterface, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, -1, -1));
 
         TopBorderStats.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -877,7 +1178,7 @@ public class MapGUI extends javax.swing.JFrame {
 
     private void AllyCharacter1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter1MouseReleased
         if(turn == true && AllyCharacter1.isEnabled())
-            performAction(Grid,AllyCharacter1, allyParty, 0);
+            performAction(LowerGrid,AllyCharacter1, allyParty, 0);
     }//GEN-LAST:event_AllyCharacter1MouseReleased
 
     private void AllyCharacter1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter1MousePressed
@@ -893,7 +1194,7 @@ public class MapGUI extends javax.swing.JFrame {
 
     private void AllyCharacter2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter2MouseReleased
         if(turn == true && AllyCharacter2.isEnabled())
-            performAction(Grid,AllyCharacter2, allyParty, 1);
+            performAction(LowerGrid,AllyCharacter2, allyParty, 1);
     }//GEN-LAST:event_AllyCharacter2MouseReleased
 
     private void AllyCharacter2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter2MousePressed
@@ -909,7 +1210,7 @@ public class MapGUI extends javax.swing.JFrame {
 
     private void AllyCharacter3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter3MouseReleased
         if(turn == true && AllyCharacter3.isEnabled())
-            performAction(Grid,AllyCharacter3, allyParty, 2);
+            performAction(LowerGrid,AllyCharacter3, allyParty, 2);
     }//GEN-LAST:event_AllyCharacter3MouseReleased
 
     private void AllyCharacter3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter3MousePressed
@@ -925,7 +1226,7 @@ public class MapGUI extends javax.swing.JFrame {
 
     private void AllyCharacter4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter4MouseReleased
         if(turn == true && AllyCharacter4.isEnabled())
-            performAction(Grid,AllyCharacter4, allyParty, 3);
+            performAction(LowerGrid,AllyCharacter4, allyParty, 3);
     }//GEN-LAST:event_AllyCharacter4MouseReleased
 
     private void AllyCharacter4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter4MousePressed
@@ -941,7 +1242,7 @@ public class MapGUI extends javax.swing.JFrame {
 
     private void EnemyCharacter1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter1MouseReleased
         if(turn == false && EnemyCharacter1.isEnabled())
-            performAction(Grid,EnemyCharacter1, enemyParty, 0);
+            performAction(LowerGrid,EnemyCharacter1, enemyParty, 0);
     }//GEN-LAST:event_EnemyCharacter1MouseReleased
 
     private void EnemyCharacter1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter1MousePressed
@@ -958,7 +1259,7 @@ public class MapGUI extends javax.swing.JFrame {
 
     private void EnemyCharacter2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter2MouseReleased
         if(turn == false && EnemyCharacter2.isEnabled())
-            performAction(Grid,EnemyCharacter2, enemyParty, 1);
+            performAction(LowerGrid,EnemyCharacter2, enemyParty, 1);
     }//GEN-LAST:event_EnemyCharacter2MouseReleased
 
     private void EnemyCharacter2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter2MousePressed
@@ -974,7 +1275,7 @@ public class MapGUI extends javax.swing.JFrame {
 
     private void EnemyCharacter3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter3MouseReleased
         if(turn == false && EnemyCharacter3.isEnabled())
-            performAction(Grid,EnemyCharacter3, enemyParty, 2);
+            performAction(LowerGrid,EnemyCharacter3, enemyParty, 2);
     }//GEN-LAST:event_EnemyCharacter3MouseReleased
 
     private void EnemyCharacter3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter3MousePressed
@@ -990,7 +1291,7 @@ public class MapGUI extends javax.swing.JFrame {
 
     private void EnemyCharacter4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter4MouseReleased
         if(turn == false && EnemyCharacter4.isEnabled())
-            performAction(Grid,EnemyCharacter4, enemyParty, 3);
+            performAction(LowerGrid,EnemyCharacter4, enemyParty, 3);
     }//GEN-LAST:event_EnemyCharacter4MouseReleased
 
     private void EnemyCharacter4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter4MousePressed
@@ -1041,48 +1342,88 @@ public class MapGUI extends javax.swing.JFrame {
     //Checks if the character has made a valid move
     private void performAction(Component mapBoundary, Component character, Party party, int armyPos) {
         
+        Party otherParty;
+        if(party == enemyParty) {
+            otherParty = allyParty;
+        } else {
+            otherParty = enemyParty;
+        }
+        
         //Checks if the mouse location is within the boundaries of the Map.
         if(isMouseWithinComponent(mapBoundary)) {
             //Iterates through and evaluates every GridTile
-            for(GridTile grid1 : grid) {
+            for(GridTile grid1 : lowerGrid) {
                 //If the mouse is within the GridTile and it is accessible, move Character to the GridTile and clean up its trace
-                if(isMouseWithinComponent(grid1.getTile()) && grid1.isAccessible()) {
+                if(isMouseWithinComponent(grid1.getTile()) && grid1.isAccessible() && grid1.getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/bluePositionMarker.png")).toString())) {
                     //Sets Character location and adds Character to the GridTile
-                    character.setEnabled(false);
-                    resetPositionMarkers();
                     checkForEndTurn(party);
                     character.setLocation(grid1.getTile().getX(), grid1.getTile().getY() + TopBorderStats.getHeight());
+                    if(character.getLocation() == charInitialPoint) {
+                        break;
+                    }
                     grid1.addCharacter(party.getArmyChar(armyPos));
                     
                     //Cleans up Character trace
-                    for(GridTile grid2: grid) {
+                    for(GridTile grid2: lowerGrid) {
                         if(grid2.getTile().getX() == charInitialPoint.x && grid2.getTile().getY() + TopBorderStats.getHeight() == charInitialPoint.y) {
                             grid2.removeCharacter();
                         }
                     }
+                    resetPositionMarkers();
+                    character.setEnabled(false);
+                    checkForEndTurn(party);
                     break;
                 } 
                 //If the mouse is within the GridTile, not accessible, and is occupied, check for damage, death, and stage over.
-                else if((isMouseWithinComponent(grid1.getTile())) && grid1.isAccessible() == false && grid1.isOccupied()) {
+                else if((isMouseWithinComponent(grid1.getTile())) && grid1.isAccessible() == false && grid1.isOccupied() && !grid1.getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png")).toString())) {
                     checkCharacterDamage(party, grid1, character, armyPos);
+                    resetPositionMarkers();
                     checkCharacterDeath(grid1, party, party.getArmyChar(armyPos), armyPos);
                     checkStageOver();
-                    character.setLocation(charInitialPoint);
                 } 
                 //Last Condition: If the GridTile is not accessible, reset the position of the Character.
                 else if(grid1.isAccessible() == false){
                     character.setLocation(charInitialPoint);
                 }
             }
+            if(party == allyParty) {
+                for(int i = 0; i < upperGrid.length - 1; i++) {
+                    if(upperGrid[i].getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/allyPositionMarker.png")).toString()) && upperGrid[i].getCharacter() != null && upperGrid[i].getCharacter().equals(party.getArmyChar(armyPos))) {
+                        upperGrid[i].getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png")));
+                        upperGrid[i].removeCharacter();
+                    }
+                }
+                for(int i = 0; i < upperGrid.length - 1; i++) {
+                    if(upperGrid[i].getTile().getLocation().equals(new Point(character.getX(), character.getY() - TopBorderStats.getHeight()))) {
+                        upperGrid[i].getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/allyPositionMarker.png")));
+                        
+                        return;
+                    }
+                }
+            }
         } 
         //If mouse location is not within the boundaries of the Map, reset Character position.
         else {
             character.setLocation(charInitialPoint);
+            if(party == allyParty) {
+                for(int i = 0; i < upperGrid.length - 1; i++) {
+                    if(upperGrid[i].getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/allyPositionMarker.png")).toString()) && upperGrid[i].getCharacter() != null && upperGrid[i].getCharacter().equals(party.getArmyChar(armyPos))) {
+                        upperGrid[i].getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png")));
+                        upperGrid[i].removeCharacter();
+                    }
+                }
+                for(int i = 0; i < upperGrid.length - 1; i++) {
+                    if(upperGrid[i].getTile().getLocation().equals(new Point(character.getX(), character.getY() - TopBorderStats.getHeight()))) {
+                        upperGrid[i].getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/allyPositionMarker.png")));
+                        return;
+                    }
+                }
+            }
         }
     }
     
     private void resetPositionMarkers() {
-        for(GridTile gt1: grid) {
+        for(GridTile gt1: lowerGrid) {
             if(gt1.getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/redPositionMarker.png")).toString()) || gt1.getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/bluePositionMarker.png")).toString())) {
                 gt1.getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png")));
             }
@@ -1100,23 +1441,21 @@ public class MapGUI extends javax.swing.JFrame {
 
             //Updates GridTile to show blue marker wherever character goes to
             if(party == allyParty) {    
-                for(GridTile gt: grid) {
-                    if(gt.getTile().getBounds().contains(mouseLocation.x + character.getWidth()/2, mouseLocation.y - TopBorderStats.getHeight() + character.getHeight()/2) && gt.isAccessible()) {
-                        gt.getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/allyPositionMarker.png")));
-                        charInitialPoint = new Point(gt.getTile().getX(), gt.getTile().getY() + TopBorderStats.getHeight());
-                        gt.addCharacter(party.getArmyChar(armyPos));
+                for(int j = 0; j < upperGrid.length - 1; j++) {
+                    if(upperGrid[j].getTile().getBounds().contains(mouseLocation.x + character.getWidth()/2, mouseLocation.y - TopBorderStats.getHeight() + character.getHeight()/2) && upperGrid[j].isAccessible() && !lowerGrid[j].getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/redPositionMarker.png")).toString()) && !lowerGrid[j].getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png")).toString())) {
+                        upperGrid[j].getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/allyPositionMarker.png")));
+                        upperGrid[j].addCharacter(party.getArmyChar(armyPos));
                         
                         //Cleans up character trace
-                        for(GridTile gt1: grid) {
-                            if(gt1.getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/allyPositionMarker.png")).toString()) && !gt1.getTile().equals(gt.getTile()) && gt1.getCharacter().equals(party.getArmyChar(armyPos))) {
-                                gt1.getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png")));
-                                gt1.removeCharacter();
+                        for(int i = 0; i < upperGrid.length - 1; i++) {
+                            if(upperGrid[i].getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/allyPositionMarker.png")).toString()) && !lowerGrid[i].getTile().equals(lowerGrid[j].getTile()) && upperGrid[i].getCharacter() != null && upperGrid[i].getCharacter().equals(party.getArmyChar(armyPos))) {
+                                upperGrid[i].getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png")));
+                                upperGrid[i].removeCharacter();
                             }
                         }
                     }
                 }
             }
-            
             character.setLocation(mouseLocation);
         }
     }
@@ -1224,6 +1563,17 @@ public class MapGUI extends javax.swing.JFrame {
     
     //Updates characters stats in Stats Layer once clicked on. Also gets the characters initial position when first clicked on
     private void updateCharacterStats(Party party, int partyPosition) {
+        
+        if(party == allyParty) {
+            NamePlate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/name_plate.png")));
+            StatsInterface.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/stats_border_1.png")));
+            TopBorderStats.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/top_border_stats.png")));
+        }else {
+            NamePlate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/name_plate_red.png")));
+            StatsInterface.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/stats_border_2.png")));
+            TopBorderStats.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/top_border_stats_enemy.png")));
+        }
+        
         StatsLayer.setVisible(true);
         CharacterPortrait.setIcon(party.getArmyChar(partyPosition).getBattlePortrait());
         WeaponNameText.setText(party.getArmyChar(partyPosition).getWeapon().getName() + "");
@@ -1242,8 +1592,8 @@ public class MapGUI extends javax.swing.JFrame {
         }
         
         int initialGridTile = 0;
-        for(int i = 0; i < grid.length ; i++) {
-            if(grid[i].getCharacter() != null && grid[i].getCharacter().equals(party.getArmyChar(partyPosition))) {
+        for(int i = 0; i < lowerGrid.length ; i++) {
+            if(lowerGrid[i].getCharacter() != null && lowerGrid[i].getCharacter().equals(party.getArmyChar(partyPosition))) {
                 initialGridTile = i;
             }
         }
@@ -1310,15 +1660,13 @@ public class MapGUI extends javax.swing.JFrame {
     }
     
     private void setPositionMarker(int pos, int posRange) {
-        if(grid[pos].getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/allyPositionMarker.png")).toString())) {
-            
-        } else if(grid[pos].isAccessible()) {
-            if(!grid[pos+posRange].getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/redPositionMarker.png")).toString()))
-                grid[pos].getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/bluePositionMarker.png")));
+        if(lowerGrid[pos].isAccessible()) {
+            if(!lowerGrid[pos+posRange].getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/redPositionMarker.png")).toString()))
+                lowerGrid[pos].getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/bluePositionMarker.png")));
             else
-                grid[pos].getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/redPositionMarker.png")));
+                lowerGrid[pos].getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/redPositionMarker.png")));
         } else {
-            grid[pos].getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/redPositionMarker.png")));
+            lowerGrid[pos].getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/redPositionMarker.png")));
         }
     }
     
@@ -1326,7 +1674,7 @@ public class MapGUI extends javax.swing.JFrame {
     private void initMapGUI() {
         
         //Creates Level 1 Grid
-        MapGUI.grid = new GridTile[]{new GridTile(pos00,true), new GridTile(pos01,false), new GridTile(pos02,false), new GridTile(pos03,true), new GridTile(pos04,true), new GridTile(pos05,false), 
+        MapGUI.lowerGrid = new GridTile[]{new GridTile(pos00,true), new GridTile(pos01,false), new GridTile(pos02,false), new GridTile(pos03,true), new GridTile(pos04,true), new GridTile(pos05,false), 
                                      new GridTile(pos10,true), new GridTile(pos11,true), new GridTile(pos12,false), new GridTile(pos13,true), new GridTile(pos14,true), new GridTile(pos15,false), 
                                      new GridTile(pos20,true), new GridTile(pos21,true), new GridTile(pos22,true), new GridTile(pos23,true), new GridTile(pos24,false), new GridTile(pos25,true), 
                                      new GridTile(pos30,false), new GridTile(pos31,false), new GridTile(pos32,true), new GridTile(pos33,true), new GridTile(pos34,true), new GridTile(pos35,true), 
@@ -1334,6 +1682,15 @@ public class MapGUI extends javax.swing.JFrame {
                                      new GridTile(pos50,true), new GridTile(pos51,true), new GridTile(pos52,false), new GridTile(pos53,false), new GridTile(pos54,true), new GridTile(pos55,true), 
                                      new GridTile(pos60,true), new GridTile(pos61,true), new GridTile(pos62,true), new GridTile(pos63,false), new GridTile(pos64,false), new GridTile(pos65,true), 
                                      new GridTile(pos70,false), new GridTile(pos71,false), new GridTile(pos72,false), new GridTile(pos73,true), new GridTile(pos74,true), new GridTile(pos75,true)};
+        
+        MapGUI.upperGrid = new GridTile[]{new GridTile(pos1,true), new GridTile(pos2,false), new GridTile(pos3,false), new GridTile(pos4,true), new GridTile(pos5,true), new GridTile(pos6,false), 
+                                     new GridTile(pos16,true), new GridTile(pos17,true), new GridTile(pos18,false), new GridTile(pos19,true), new GridTile(pos26,true), new GridTile(pos27,false), 
+                                     new GridTile(pos28,true), new GridTile(pos29,true), new GridTile(pos36,true), new GridTile(pos37,true), new GridTile(pos38,false), new GridTile(pos39,true), 
+                                     new GridTile(pos46,false), new GridTile(pos47,false), new GridTile(pos48,true), new GridTile(pos49,true), new GridTile(pos56,true), new GridTile(pos57,true), 
+                                     new GridTile(pos58,true), new GridTile(pos59,true), new GridTile(pos66,true), new GridTile(pos67,true), new GridTile(pos68,true), new GridTile(pos69,true), 
+                                     new GridTile(pos76,true), new GridTile(pos77,true), new GridTile(pos78,false), new GridTile(pos79,false), new GridTile(pos80,true), new GridTile(pos81,true), 
+                                     new GridTile(pos82,true), new GridTile(pos83,true), new GridTile(pos84,true), new GridTile(pos85,false), new GridTile(pos86,false), new GridTile(pos87,true), 
+                                     new GridTile(pos88,false), new GridTile(pos89,false), new GridTile(pos90,false), new GridTile(pos91,true), new GridTile(pos92,true), new GridTile(pos93,true)};
         
         //Connects the character array with the character buttons
         characters[0] = AllyCharacter1;
@@ -1363,13 +1720,13 @@ public class MapGUI extends javax.swing.JFrame {
             }
             
             //Updates grid for the character positions
-            for(GridTile gt: grid) {
-                if(isCharacterWithinTile(characters[i], gt.getTile())) {
+            for(int j = 0; j < lowerGrid.length; j++) {
+                if(isCharacterWithinTile(characters[i], lowerGrid[j].getTile())) {
                     if(i < 4) {
-                        gt.getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/allyPositionMarker.png")));
-                        gt.addCharacter(allyParty.getArmyChar(i));
+                        upperGrid[j].getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/allyPositionMarker.png")));
+                        lowerGrid[j].addCharacter(allyParty.getArmyChar(i));
                     }else {
-                        gt.addCharacter(enemyParty.getArmyChar(i-4));
+                        lowerGrid[j].addCharacter(enemyParty.getArmyChar(i-4));
                     }
                 }
             }
@@ -1497,6 +1854,7 @@ public class MapGUI extends javax.swing.JFrame {
     private javax.swing.JToggleButton AllyCharacter4;
     private javax.swing.JTextField AttackLevel;
     private javax.swing.JTextField AttackLevel1;
+    private javax.swing.JLabel AttackPopUp;
     private javax.swing.JLabel BattleWheel;
     private javax.swing.JLabel BottomBorder;
     private javax.swing.JLabel CharacterPortrait;
@@ -1509,9 +1867,9 @@ public class MapGUI extends javax.swing.JFrame {
     private javax.swing.JToggleButton EnemyCharacter2;
     private javax.swing.JToggleButton EnemyCharacter3;
     private javax.swing.JToggleButton EnemyCharacter4;
-    private javax.swing.JPanel Grid;
     private javax.swing.JProgressBar LevelProgresBar;
     private javax.swing.JTextField LevelText;
+    private javax.swing.JPanel LowerGrid;
     private javax.swing.JLayeredPane MainContainer;
     private javax.swing.JLabel Map;
     private javax.swing.JLayeredPane MapLayer;
@@ -1529,6 +1887,7 @@ public class MapGUI extends javax.swing.JFrame {
     private javax.swing.JLayeredPane StatsLayer;
     private javax.swing.JLabel TopBorderStats;
     private javax.swing.JLabel TopBorderWaiting;
+    private javax.swing.JPanel UpperGrid;
     private javax.swing.JLayeredPane WaitingStatsLayer;
     private javax.swing.JTextField WeaponNameText;
     private javax.swing.JButton pos00;
@@ -1537,47 +1896,95 @@ public class MapGUI extends javax.swing.JFrame {
     private javax.swing.JButton pos03;
     private javax.swing.JButton pos04;
     private javax.swing.JButton pos05;
+    private javax.swing.JButton pos1;
     private javax.swing.JButton pos10;
     private javax.swing.JButton pos11;
     private javax.swing.JButton pos12;
     private javax.swing.JButton pos13;
     private javax.swing.JButton pos14;
     private javax.swing.JButton pos15;
+    private javax.swing.JButton pos16;
+    private javax.swing.JButton pos17;
+    private javax.swing.JButton pos18;
+    private javax.swing.JButton pos19;
+    private javax.swing.JButton pos2;
     private javax.swing.JButton pos20;
     private javax.swing.JButton pos21;
     private javax.swing.JButton pos22;
     private javax.swing.JButton pos23;
     private javax.swing.JButton pos24;
     private javax.swing.JButton pos25;
+    private javax.swing.JButton pos26;
+    private javax.swing.JButton pos27;
+    private javax.swing.JButton pos28;
+    private javax.swing.JButton pos29;
+    private javax.swing.JButton pos3;
     private javax.swing.JButton pos30;
     private javax.swing.JButton pos31;
     private javax.swing.JButton pos32;
     private javax.swing.JButton pos33;
     private javax.swing.JButton pos34;
     private javax.swing.JButton pos35;
+    private javax.swing.JButton pos36;
+    private javax.swing.JButton pos37;
+    private javax.swing.JButton pos38;
+    private javax.swing.JButton pos39;
+    private javax.swing.JButton pos4;
     private javax.swing.JButton pos40;
     private javax.swing.JButton pos41;
     private javax.swing.JButton pos42;
     private javax.swing.JButton pos43;
     private javax.swing.JButton pos44;
     private javax.swing.JButton pos45;
+    private javax.swing.JButton pos46;
+    private javax.swing.JButton pos47;
+    private javax.swing.JButton pos48;
+    private javax.swing.JButton pos49;
+    private javax.swing.JButton pos5;
     private javax.swing.JButton pos50;
     private javax.swing.JButton pos51;
     private javax.swing.JButton pos52;
     private javax.swing.JButton pos53;
     private javax.swing.JButton pos54;
     private javax.swing.JButton pos55;
+    private javax.swing.JButton pos56;
+    private javax.swing.JButton pos57;
+    private javax.swing.JButton pos58;
+    private javax.swing.JButton pos59;
+    private javax.swing.JButton pos6;
     private javax.swing.JButton pos60;
     private javax.swing.JButton pos61;
     private javax.swing.JButton pos62;
     private javax.swing.JButton pos63;
     private javax.swing.JButton pos64;
     private javax.swing.JButton pos65;
+    private javax.swing.JButton pos66;
+    private javax.swing.JButton pos67;
+    private javax.swing.JButton pos68;
+    private javax.swing.JButton pos69;
     private javax.swing.JButton pos70;
     private javax.swing.JButton pos71;
     private javax.swing.JButton pos72;
     private javax.swing.JButton pos73;
     private javax.swing.JButton pos74;
     private javax.swing.JButton pos75;
+    private javax.swing.JButton pos76;
+    private javax.swing.JButton pos77;
+    private javax.swing.JButton pos78;
+    private javax.swing.JButton pos79;
+    private javax.swing.JButton pos80;
+    private javax.swing.JButton pos81;
+    private javax.swing.JButton pos82;
+    private javax.swing.JButton pos83;
+    private javax.swing.JButton pos84;
+    private javax.swing.JButton pos85;
+    private javax.swing.JButton pos86;
+    private javax.swing.JButton pos87;
+    private javax.swing.JButton pos88;
+    private javax.swing.JButton pos89;
+    private javax.swing.JButton pos90;
+    private javax.swing.JButton pos91;
+    private javax.swing.JButton pos92;
+    private javax.swing.JButton pos93;
     // End of variables declaration//GEN-END:variables
 }
