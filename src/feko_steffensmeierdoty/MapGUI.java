@@ -1699,9 +1699,7 @@ public class MapGUI extends javax.swing.JFrame {
                 setPositionMarker(party, initialGridTile - 12, 6);
             }
         }
-        
         positionMarker = true;
-        
     }
     
     private void setPositionMarker(Party party, int pos, int posRange) {
