@@ -322,7 +322,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
         NamePlate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/name_plate.png"))); // NOI18N
         StatsLayer.add(NamePlate, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, -1));
 
-        StatsInterface.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/stats_border.png"))); // NOI18N
+        StatsInterface.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/stats_border_1.png"))); // NOI18N
         StatsLayer.add(StatsInterface, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, -1, -1));
 
         TopBorderStats.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -432,8 +432,8 @@ public class CharacterModGUI extends javax.swing.JFrame {
         Slot1.setBorder(null);
         Slot1.setContentAreaFilled(false);
         Slot1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Slot1MouseClicked(evt);
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                Slot1MouseEntered(evt);
             }
         });
         TeamLoadout.add(Slot1);
@@ -442,8 +442,8 @@ public class CharacterModGUI extends javax.swing.JFrame {
         Slot2.setBorder(null);
         Slot2.setContentAreaFilled(false);
         Slot2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Slot2MouseClicked(evt);
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                Slot2MouseEntered(evt);
             }
         });
         TeamLoadout.add(Slot2);
@@ -452,8 +452,8 @@ public class CharacterModGUI extends javax.swing.JFrame {
         Slot3.setBorder(null);
         Slot3.setContentAreaFilled(false);
         Slot3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Slot3MouseClicked(evt);
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                Slot3MouseEntered(evt);
             }
         });
         TeamLoadout.add(Slot3);
@@ -462,8 +462,8 @@ public class CharacterModGUI extends javax.swing.JFrame {
         Slot4.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         Slot4.setContentAreaFilled(false);
         Slot4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Slot4MouseClicked(evt);
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                Slot4MouseEntered(evt);
             }
         });
         TeamLoadout.add(Slot4);
@@ -481,6 +481,9 @@ public class CharacterModGUI extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 SelenaButtonMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                SelenaButtonMouseEntered(evt);
+            }
         });
         EditTeamsLayer.add(SelenaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 460, 90, 90));
 
@@ -494,6 +497,9 @@ public class CharacterModGUI extends javax.swing.JFrame {
         RoyButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 RoyButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                RoyButtonMouseEntered(evt);
             }
         });
         EditTeamsLayer.add(RoyButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 340, 90, 90));
@@ -509,6 +515,9 @@ public class CharacterModGUI extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 SoleilButtonMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                SoleilButtonMouseEntered(evt);
+            }
         });
         EditTeamsLayer.add(SoleilButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 340, 90, 90));
 
@@ -523,6 +532,9 @@ public class CharacterModGUI extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 AlfonseButtonMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                AlfonseButtonMouseEntered(evt);
+            }
         });
         EditTeamsLayer.add(AlfonseButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 340, 90, 90));
 
@@ -536,6 +548,9 @@ public class CharacterModGUI extends javax.swing.JFrame {
         AnnaButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 AnnaButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                AnnaButtonMouseEntered(evt);
             }
         });
         EditTeamsLayer.add(AnnaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 90, 90));
@@ -846,36 +861,26 @@ public class CharacterModGUI extends javax.swing.JFrame {
     //Sets clicked picture for Character Button1 in Edit Teams Layer
     private void AnnaButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AnnaButtonMouseClicked
         editTeam(AnnaButton,"/img/portraits/anna_silver_portrait_idle.png","/img/portraits/anna_silver_portrait_clicked.png");
-        StatsLayer.setVisible(true);
-        updateCharacterStats(0);
     }//GEN-LAST:event_AnnaButtonMouseClicked
 
     //Sets clicked picture for Character Button2 in Edit Teams Layer
     private void AlfonseButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlfonseButtonMouseClicked
         editTeam(AlfonseButton,"/img/portraits/alfonse_silver_portrait_idle.png","/img/portraits/alfonse_silver_portrait_clicked.png");
-        StatsLayer.setVisible(true);
-        updateCharacterStats(1);
     }//GEN-LAST:event_AlfonseButtonMouseClicked
 
     //Sets clicked picture for Character Button3 in Edit Teams Layer
     private void SoleilButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SoleilButtonMouseClicked
-        editTeam(SoleilButton,"/img/portraits/soleil_silver_portrait_idle.png","/img/portraits/soleil_silver_portrait_clicked.png");
-        StatsLayer.setVisible(true);
-        updateCharacterStats(2);
+        editTeam(SoleilButton,"/img/portraits/soleil_silver_portrait_idle.png","/img/portraits/soleil_silver_portrait_clicked.png");  
     }//GEN-LAST:event_SoleilButtonMouseClicked
 
     //Sets clicked picture for Character Button4 in Edit Teams Layer
     private void RoyButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RoyButtonMouseClicked
         editTeam(RoyButton,"/img/portraits/roy_silver_portrait_idle.png","/img/portraits/roy_silver_portrait_clicked.png");
-        StatsLayer.setVisible(true);
-        updateCharacterStats(3);
     }//GEN-LAST:event_RoyButtonMouseClicked
 
     //Sets clicked picture for Character Button5 in Edit Teams Layer
     private void SelenaButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SelenaButtonMouseClicked
         editTeam(SelenaButton,"/img/portraits/selena_silver_portrait_idle.png","/img/portraits/selena_silver_portrait_clicked.png");
-        StatsLayer.setVisible(true);
-        updateCharacterStats(4);
     }//GEN-LAST:event_SelenaButtonMouseClicked
 
     //Enables only the Home Layer is seen
@@ -889,7 +894,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
         HomeLayer.setVisible(true);
     }//GEN-LAST:event_HomeButtonMouseClicked
 
-    private void Slot1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Slot1MouseClicked
+    private void Slot1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Slot1MouseEntered
         if(!Slot1.getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/empty_portrait.png")))) {
             int i = 0;
             for(AllyChar ac: allyOptions) {
@@ -900,9 +905,9 @@ public class CharacterModGUI extends javax.swing.JFrame {
                 i++;
             }
         }
-    }//GEN-LAST:event_Slot1MouseClicked
+    }//GEN-LAST:event_Slot1MouseEntered
 
-    private void Slot2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Slot2MouseClicked
+    private void Slot2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Slot2MouseEntered
         if(!Slot2.getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/empty_portrait.png")))) {
             int i = 0;
             for(AllyChar ac: allyOptions) {
@@ -913,9 +918,9 @@ public class CharacterModGUI extends javax.swing.JFrame {
                 i++;
             }
         }
-    }//GEN-LAST:event_Slot2MouseClicked
+    }//GEN-LAST:event_Slot2MouseEntered
 
-    private void Slot3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Slot3MouseClicked
+    private void Slot3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Slot3MouseEntered
         if(!Slot3.getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/empty_portrait.png")))) {
             int i = 0;
             for(AllyChar ac: allyOptions) {
@@ -926,9 +931,9 @@ public class CharacterModGUI extends javax.swing.JFrame {
                 i++;
             }
         }
-    }//GEN-LAST:event_Slot3MouseClicked
+    }//GEN-LAST:event_Slot3MouseEntered
 
-    private void Slot4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Slot4MouseClicked
+    private void Slot4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Slot4MouseEntered
         if(!Slot4.getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/empty_portrait.png")))) {
             int i = 0;
             for(AllyChar ac: allyOptions) {
@@ -939,7 +944,27 @@ public class CharacterModGUI extends javax.swing.JFrame {
                 i++;
             }
         }
-    }//GEN-LAST:event_Slot4MouseClicked
+    }//GEN-LAST:event_Slot4MouseEntered
+
+    private void AnnaButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AnnaButtonMouseEntered
+        updateCharacterStats(0);
+    }//GEN-LAST:event_AnnaButtonMouseEntered
+
+    private void AlfonseButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlfonseButtonMouseEntered
+        updateCharacterStats(1);
+    }//GEN-LAST:event_AlfonseButtonMouseEntered
+
+    private void SoleilButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SoleilButtonMouseEntered
+        updateCharacterStats(2);
+    }//GEN-LAST:event_SoleilButtonMouseEntered
+
+    private void RoyButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RoyButtonMouseEntered
+        updateCharacterStats(3);
+    }//GEN-LAST:event_RoyButtonMouseEntered
+
+    private void SelenaButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SelenaButtonMouseEntered
+        updateCharacterStats(4);
+    }//GEN-LAST:event_SelenaButtonMouseEntered
 
     //Removes or adds character to the team. It also updates the GUI to show current team
     private void editTeam(JButton characterButton, String idleImg, String clickImg) {

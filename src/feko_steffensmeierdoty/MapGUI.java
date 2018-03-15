@@ -52,12 +52,12 @@ public class MapGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         MainContainer = new javax.swing.JLayeredPane();
-        AttackPopUp = new javax.swing.JLabel();
         StageClearText = new javax.swing.JLabel();
         StageClearLogo = new javax.swing.JLabel();
         StageClearButton = new javax.swing.JLabel();
         PhaseLabel = new javax.swing.JLabel();
         MapLayer = new javax.swing.JLayeredPane();
+        AttackPopUp = new javax.swing.JLabel();
         DamageLabelTens = new javax.swing.JLabel();
         DamageLabelOnes = new javax.swing.JLabel();
         EnemyCharacter4 = new javax.swing.JToggleButton();
@@ -201,12 +201,6 @@ public class MapGUI extends javax.swing.JFrame {
         MainContainer.setMinimumSize(new java.awt.Dimension(540, 925));
         MainContainer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        AttackPopUp.setVisible(false);
-        AttackPopUp.setForeground(new java.awt.Color(255, 255, 255));
-        AttackPopUp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        AttackPopUp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/attackPopUp.png"))); // NOI18N
-        MainContainer.add(AttackPopUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 880, 50, 50));
-
         StageClearText.setVisible(false);
         StageClearText.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         StageClearText.setForeground(new java.awt.Color(255, 255, 255));
@@ -246,6 +240,13 @@ public class MapGUI extends javax.swing.JFrame {
         MainContainer.add(PhaseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, -1, -1));
 
         MapLayer.setEnabled(false);
+
+        AttackPopUp.setVisible(false);
+        AttackPopUp.setForeground(new java.awt.Color(255, 255, 255));
+        AttackPopUp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        AttackPopUp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/attackPopUp.png"))); // NOI18N
+        MapLayer.add(AttackPopUp);
+        AttackPopUp.setBounds(490, 880, 46, 45);
 
         PhaseLabel.setVisible(false);
         DamageLabelTens.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -1342,10 +1343,13 @@ public class MapGUI extends javax.swing.JFrame {
     //Checks if the character has made a valid move
     private void performAction(Component mapBoundary, Component character, Party party, int armyPos) {
         
+        AttackPopUp.setVisible(false);
+        
         //Checks if the mouse location is within the boundaries of the Map.
         if(isMouseWithinComponent(mapBoundary)) {
             //Iterates through and evaluates every GridTile
             for(int j = 0; j < lowerGrid.length; j++) {
+                cleanUpEnemyTrace(j);
                 //If the mouse is within the GridTile and it is accessible, move Character to the GridTile and clean up its trace
                 if(isMouseWithinComponent(lowerGrid[j].getTile()) && lowerGrid[j].isAccessible() && lowerGrid[j].getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/bluePositionMarker.png")).toString())) {
                     //Sets Character location and adds Character to the GridTile
@@ -1354,7 +1358,7 @@ public class MapGUI extends javax.swing.JFrame {
                     if(character.getLocation() == charInitialPoint) {
                         break;
                     }
-                    lowerGrid[j].addCharacter(party.getArmyChar(armyPos));
+                    lowerGrid[j].addCharacter(party.getArmyChar(armyPos), party);
                     
                     //Cleans up Character trace
                     for(GridTile grid2: lowerGrid) {
@@ -1368,7 +1372,7 @@ public class MapGUI extends javax.swing.JFrame {
                     break;
                 } 
                 //If the mouse is within the GridTile, not accessible, and is occupied, check for damage, death, and stage over.
-                else if((isMouseWithinComponent(lowerGrid[j].getTile())) && lowerGrid[j].isAccessible() == false && lowerGrid[j].isOccupied() && !lowerGrid[j].getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png")).toString())) {
+                else if((isMouseWithinComponent(lowerGrid[j].getTile())) && lowerGrid[j].isAccessible() == false && lowerGrid[j].isOccupied() && !lowerGrid[j].getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png")).toString()) && !lowerGrid[j].getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/redPositionMarker.png")).toString())) {
                     checkCharacterDamage(party, lowerGrid[j], character, armyPos);
                     resetPositionMarkers();
                     checkCharacterDeath(j, party, party.getArmyChar(armyPos), armyPos);
@@ -1406,9 +1410,15 @@ public class MapGUI extends javax.swing.JFrame {
         }
     }
     
+    private void cleanUpEnemyTrace(int j) {
+        if(upperGrid[j].getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/enemyPositionMarker.png")).toString())) {
+            upperGrid[j].getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png")));
+        }
+    }
+    
     private void resetPositionMarkers() {
         for(GridTile gt1: lowerGrid) {
-            if(gt1.getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/redPositionMarker.png")).toString()) || gt1.getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/bluePositionMarker.png")).toString())) {
+            if(!gt1.getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png")).toString())) {
                 gt1.getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png")));
             }
         }
@@ -1416,6 +1426,7 @@ public class MapGUI extends javax.swing.JFrame {
     
     //Changes the position of the character button relative to the mouse position
     private void moveCharacter(Component character, Party party, int armyPos) {
+        AttackPopUp.setVisible(false);
         MapLayer.moveToFront(character);
         if(isMouseWithinComponent(MainContainer)) {
             mouseLocation = MouseInfo.getPointerInfo().getLocation();
@@ -1426,18 +1437,61 @@ public class MapGUI extends javax.swing.JFrame {
             //Updates GridTile to show blue marker wherever character goes to
             if(party == allyParty) {    
                 for(int j = 0; j < upperGrid.length - 1; j++) {
-                    if(upperGrid[j].getTile().getBounds().contains(mouseLocation.x + character.getWidth()/2, mouseLocation.y - TopBorderStats.getHeight() + character.getHeight()/2) && upperGrid[j].isAccessible() && !lowerGrid[j].getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/redPositionMarker.png")).toString()) && !lowerGrid[j].getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png")).toString())) {
+                    cleanUpEnemyTrace(j);
+                    //Moves ally marker
+                    if(upperGrid[j].getTile().getBounds().contains(mouseLocation.x + character.getWidth()/2, mouseLocation.y - TopBorderStats.getHeight() + character.getHeight()/2) && upperGrid[j].isAccessible() && lowerGrid[j].getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/bluePositionMarker.png")).toString())) {
                         upperGrid[j].getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/allyPositionMarker.png")));
-                        upperGrid[j].addCharacter(party.getArmyChar(armyPos));
+                        upperGrid[j].addCharacter(party.getArmyChar(armyPos), party);
                         
                         //Cleans up character trace
                         for(int i = 0; i < upperGrid.length - 1; i++) {
-                            if(upperGrid[i].getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/allyPositionMarker.png")).toString()) && !lowerGrid[i].getTile().equals(lowerGrid[j].getTile()) && upperGrid[i].getCharacter() != null && upperGrid[i].getCharacter().equals(party.getArmyChar(armyPos))) {
+                            if((upperGrid[i].getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/enemyPositionMarker.png")).toString())||upperGrid[i].getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/allyPositionMarker.png")).toString())) && !lowerGrid[i].getTile().equals(lowerGrid[j].getTile()) && upperGrid[i].getCharacter() != null && upperGrid[i].getCharacter().equals(party.getArmyChar(armyPos))) {
                                 upperGrid[i].getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png")));
                                 upperGrid[i].removeCharacter();
                             }
                         }
                     }
+                    //Adds battle icon above enemies when hovered over
+                    else if(upperGrid[j].getTile().getBounds().contains(mouseLocation.x + character.getWidth()/2, mouseLocation.y - TopBorderStats.getHeight() + character.getHeight()/2) && lowerGrid[j].getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/darkRedPositionMarker.png")).toString())) {
+                        for(GridTile gt: upperGrid) {
+                            if(gt.getTile().getLocation().equals(new Point(charInitialPoint.x,charInitialPoint.y - TopBorderStats.getHeight()))) {
+                                gt.getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/allyPositionMarker.png")));
+                                gt.addCharacter(party.getArmyChar(armyPos), party);
+                                break;
+                            }
+                        }
+                        
+                        MapLayer.moveToFront(AttackPopUp);
+                        AttackPopUp.setVisible(true);
+                        AttackPopUp.setLocation(new Point(upperGrid[j].getTile().getX() + character.getWidth()/4, upperGrid[j].getTile().getY() + TopBorderStats.getHeight() - character.getHeight()/2));
+                        upperGrid[j].getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/enemyPositionMarker.png")));
+                        
+                        //Cleans up character trace
+                        for(int i = 0; i < upperGrid.length - 1; i++) {
+                            if(!upperGrid[i].getTile().getLocation().equals(new Point(charInitialPoint.x,charInitialPoint.y - TopBorderStats.getHeight())) && upperGrid[i].getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/allyPositionMarker.png")).toString()) && !lowerGrid[i].getTile().equals(lowerGrid[j].getTile()) && upperGrid[i].getCharacter() != null && upperGrid[i].getCharacter().equals(party.getArmyChar(armyPos))) {
+                                upperGrid[i].getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png")));
+                                upperGrid[i].removeCharacter();
+                            }
+                        }
+                    } 
+                    //Resets ally marker to character initial point when the mouse cursor is outside of valid positions to move
+                    else if(upperGrid[j].getTile().getBounds().contains(mouseLocation.x + character.getWidth()/2, mouseLocation.y - TopBorderStats.getHeight() + character.getHeight()/2) && (lowerGrid[j].getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png")).toString()) || lowerGrid[j].getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/redPositionMarker.png")).toString()))) {
+                        for(GridTile gt: upperGrid) {
+                            if(gt.getTile().getLocation().equals(new Point(charInitialPoint.x,charInitialPoint.y - TopBorderStats.getHeight()))) {
+                                gt.getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/allyPositionMarker.png")));
+                                gt.addCharacter(party.getArmyChar(armyPos), party);
+                                break;
+                            }
+                        }
+                        
+                        //Cleans up character trace
+                        for(int i = 0; i < upperGrid.length - 1; i++) {
+                            if(!upperGrid[i].getTile().getLocation().equals(new Point(charInitialPoint.x,charInitialPoint.y - TopBorderStats.getHeight())) && upperGrid[i].getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/allyPositionMarker.png")).toString()) && !lowerGrid[i].getTile().equals(lowerGrid[j].getTile()) && upperGrid[i].getCharacter() != null && upperGrid[i].getCharacter().equals(party.getArmyChar(armyPos))) {
+                                upperGrid[i].getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png")));
+                                upperGrid[i].removeCharacter();
+                            }
+                        }
+                    } 
                 }
             }
             character.setLocation(mouseLocation);
@@ -1466,6 +1520,9 @@ public class MapGUI extends javax.swing.JFrame {
             if(i==7 && enemyCounter == 0) {
                 for(int j = 0; j < allyParty.getArmySize(); j++) {
                     allyParty.getArmyChar(j).resetHP();
+                }
+                for(JToggleButton jtb1: characters) {
+                    jtb1.setEnabled(true);
                 }
                 PhaseLabel.setVisible(false);
                 resetPositionMarkers();
@@ -1591,17 +1648,17 @@ public class MapGUI extends javax.swing.JFrame {
         if(walkRange == 1 || walkRange == 2) {
             if(initialGridTile != 5 && initialGridTile != 11 && initialGridTile != 17 && initialGridTile != 23 && initialGridTile != 29 
                && initialGridTile != 35 && initialGridTile != 41 && initialGridTile != 47 && initialGridTile + 1 > -1 && initialGridTile + 1 < 48) {
-                setPositionMarker(initialGridTile + 1, 0);
+                setPositionMarker(party, initialGridTile + 1, 0);
             }
             if(initialGridTile != 0 && initialGridTile != 6 && initialGridTile != 12 && initialGridTile != 18 && initialGridTile != 24 
                && initialGridTile != 30 && initialGridTile != 36 && initialGridTile != 42 && initialGridTile - 1 > -1 && initialGridTile - 1 < 48) {
-                setPositionMarker(initialGridTile - 1, 0);
+                setPositionMarker(party, initialGridTile - 1, 0);
             }
             if(initialGridTile - 6 > -1 && initialGridTile - 6 < 48) {
-                setPositionMarker(initialGridTile - 6, 0);
+                setPositionMarker(party, initialGridTile - 6, 0);
             }
             if(initialGridTile + 6 > -1 && initialGridTile + 6 < 48) {
-                setPositionMarker(initialGridTile + 6, 0);
+                setPositionMarker(party, initialGridTile + 6, 0);
             }
         }
         
@@ -1611,35 +1668,35 @@ public class MapGUI extends javax.swing.JFrame {
                && initialGridTile != 35 && initialGridTile != 41 && initialGridTile != 47 && initialGridTile != 4 && initialGridTile != 10 
                && initialGridTile != 16 && initialGridTile != 22 && initialGridTile != 28 && initialGridTile != 34 && initialGridTile != 40 
                && initialGridTile != 46 && initialGridTile + 2 > -1 && initialGridTile + 2 < 48) {
-                setPositionMarker(initialGridTile + 2, -1);
+                setPositionMarker(party, initialGridTile + 2, -1);
             }
             if(initialGridTile != 0 && initialGridTile != 6 && initialGridTile != 12 && initialGridTile != 18 && initialGridTile != 24 
                && initialGridTile != 30 && initialGridTile != 36 && initialGridTile != 42 && initialGridTile != 1 && initialGridTile != 7 
                && initialGridTile != 13 && initialGridTile != 19 && initialGridTile != 25 && initialGridTile != 31 && initialGridTile != 37 
                && initialGridTile != 43 && initialGridTile - 2 > -1 && initialGridTile - 2 < 48) {
-                setPositionMarker(initialGridTile - 2, 1);
+                setPositionMarker(party, initialGridTile - 2, 1);
             }
             if(initialGridTile != 5 && initialGridTile != 11 && initialGridTile != 17 && initialGridTile != 23 && initialGridTile != 29 
                && initialGridTile != 35 && initialGridTile != 41 && initialGridTile != 47 && initialGridTile + 7 > -1 && initialGridTile + 7 < 48) {
-                setPositionMarker(initialGridTile + 7, 0);
+                setPositionMarker(party, initialGridTile + 7, 0);
             }
             if(initialGridTile != 0 && initialGridTile != 6 && initialGridTile != 12 && initialGridTile != 18 && initialGridTile != 24 
                && initialGridTile != 30 && initialGridTile != 36 && initialGridTile != 42 && initialGridTile - 7 > -1 && initialGridTile - 7 < 48) {
-                setPositionMarker(initialGridTile - 7, 0);
+                setPositionMarker(party, initialGridTile - 7, 0);
             }
             if(initialGridTile != 0 && initialGridTile != 6 && initialGridTile != 12 && initialGridTile != 18 && initialGridTile != 24 
                && initialGridTile != 30 && initialGridTile != 36 && initialGridTile != 42 && initialGridTile + 5 > -1 && initialGridTile + 5 < 48) {
-                setPositionMarker(initialGridTile + 5, 0);
+                setPositionMarker(party, initialGridTile + 5, 0);
             }
             if(initialGridTile != 5 && initialGridTile != 11 && initialGridTile != 17 && initialGridTile != 23 && initialGridTile != 29 
                && initialGridTile != 35 && initialGridTile != 41 && initialGridTile != 47 && initialGridTile - 5 > -1 && initialGridTile - 5 < 48) {
-                setPositionMarker(initialGridTile - 5, 0);
+                setPositionMarker(party, initialGridTile - 5, 0);
             }
             if(initialGridTile + 12 > -1 && initialGridTile + 12 < 48) {
-                setPositionMarker(initialGridTile + 12, -6);
+                setPositionMarker(party, initialGridTile + 12, -6);
             }
             if(initialGridTile - 12 > -1 && initialGridTile - 12 < 48) {
-                setPositionMarker(initialGridTile - 12, 6);
+                setPositionMarker(party, initialGridTile - 12, 6);
             }
         }
         
@@ -1647,13 +1704,27 @@ public class MapGUI extends javax.swing.JFrame {
         
     }
     
-    private void setPositionMarker(int pos, int posRange) {
-        if(lowerGrid[pos].isAccessible()) {
-            if(!lowerGrid[pos+posRange].getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/redPositionMarker.png")).toString()))
+    private void setPositionMarker(Party party, int pos, int posRange) {
+        Party otherParty;
+        if(party == allyParty) {
+            otherParty = enemyParty;
+        } else {
+            otherParty = allyParty;
+        }
+        if(lowerGrid[pos].isAccessible() && lowerGrid[pos].getCharacter() == null) {
+            if(!lowerGrid[pos+posRange].getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/redPositionMarker.png")).toString()) && !lowerGrid[pos+posRange].getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/darkRedPositionMarker.png")).toString()))
                 lowerGrid[pos].getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/bluePositionMarker.png")));
             else
                 lowerGrid[pos].getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/redPositionMarker.png")));
-        } else {
+        } else if(!lowerGrid[pos].isAccessible() && lowerGrid[pos].getParty() != null && lowerGrid[pos].getParty().equals(otherParty)) {
+            if(!lowerGrid[pos+posRange].getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/redPositionMarker.png")).toString()) && !lowerGrid[pos+posRange].getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/darkRedPositionMarker.png")).toString()))
+                lowerGrid[pos].getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/darkRedPositionMarker.png")));
+            else
+                lowerGrid[pos].getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/redPositionMarker.png")));
+            
+        } else if(!lowerGrid[pos].isAccessible() && lowerGrid[pos].getParty() != null && lowerGrid[pos].getParty().equals(party)) {
+            lowerGrid[pos].getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/darkBluePositionMarker.png")));
+        } else if(!lowerGrid[pos].isAccessible() && lowerGrid[pos].getCharacter() == null){
             lowerGrid[pos].getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/redPositionMarker.png")));
         }
     }
@@ -1661,7 +1732,7 @@ public class MapGUI extends javax.swing.JFrame {
     //Initializes MapGUI variables before user input
     private void initMapGUI() {
         
-        //Creates Level 1 Grid
+        //Creates Level 1 Grids
         MapGUI.lowerGrid = new GridTile[]{new GridTile(pos00,true), new GridTile(pos01,false), new GridTile(pos02,false), new GridTile(pos03,true), new GridTile(pos04,true), new GridTile(pos05,false), 
                                      new GridTile(pos10,true), new GridTile(pos11,true), new GridTile(pos12,false), new GridTile(pos13,true), new GridTile(pos14,true), new GridTile(pos15,false), 
                                      new GridTile(pos20,true), new GridTile(pos21,true), new GridTile(pos22,true), new GridTile(pos23,true), new GridTile(pos24,false), new GridTile(pos25,true), 
@@ -1712,9 +1783,9 @@ public class MapGUI extends javax.swing.JFrame {
                 if(isCharacterWithinTile(characters[i], lowerGrid[j].getTile())) {
                     if(i < 4) {
                         upperGrid[j].getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/allyPositionMarker.png")));
-                        lowerGrid[j].addCharacter(allyParty.getArmyChar(i));
+                        lowerGrid[j].addCharacter(allyParty.getArmyChar(i), allyParty);
                     }else {
-                        lowerGrid[j].addCharacter(enemyParty.getArmyChar(i-4));
+                        lowerGrid[j].addCharacter(enemyParty.getArmyChar(i-4), enemyParty);
                     }
                 }
             }

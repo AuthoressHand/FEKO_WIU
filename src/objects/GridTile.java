@@ -15,6 +15,7 @@ import objects.*;
 public class GridTile {
     
     private JButton tile;
+    private Party party;
     private Char character;
     private boolean isAccessible;
     private boolean isOccupied;
@@ -48,11 +49,17 @@ public class GridTile {
     public void removeCharacter() {
         setAccessible(true);
         setOccupied(null);
+        this.party = null;
     }
     
-    public void addCharacter(Char character) {
+    public Party getParty() {
+        return party;
+    }
+    
+    public void addCharacter(Char character, Party party) {
         setAccessible(false);
         setOccupied(character);
+        this.party = party;
     }
     
     public Char getCharacter() {
