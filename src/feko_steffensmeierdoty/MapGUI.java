@@ -1342,13 +1342,6 @@ public class MapGUI extends javax.swing.JFrame {
     //Checks if the character has made a valid move
     private void performAction(Component mapBoundary, Component character, Party party, int armyPos) {
         
-        Party otherParty;
-        if(party == enemyParty) {
-            otherParty = allyParty;
-        } else {
-            otherParty = enemyParty;
-        }
-        
         //Checks if the mouse location is within the boundaries of the Map.
         if(isMouseWithinComponent(mapBoundary)) {
             //Iterates through and evaluates every GridTile
@@ -1396,7 +1389,6 @@ public class MapGUI extends javax.swing.JFrame {
                 for(int i = 0; i < upperGrid.length - 1; i++) {
                     if(upperGrid[i].getTile().getLocation().equals(new Point(character.getX(), character.getY() - TopBorderStats.getHeight()))) {
                         upperGrid[i].getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/allyPositionMarker.png")));
-                        
                         return;
                     }
                 }
@@ -1600,6 +1592,9 @@ public class MapGUI extends javax.swing.JFrame {
         
         //Not very efficient (hard-coded)
         int walkRange = party.getArmyChar(partyPosition).getWalkRange();
+        
+        lowerGrid[initialGridTile].getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/bluePositionMarker.png")));
+        
         if(walkRange == 1 || walkRange == 2) {
             if(initialGridTile != 5 && initialGridTile != 11 && initialGridTile != 17 && initialGridTile != 23 && initialGridTile != 29 
                && initialGridTile != 35 && initialGridTile != 41 && initialGridTile != 47 && initialGridTile + 1 > -1 && initialGridTile + 1 < 48) {
