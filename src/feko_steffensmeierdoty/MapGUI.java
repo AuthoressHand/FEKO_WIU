@@ -1702,6 +1702,7 @@ public class MapGUI extends javax.swing.JFrame {
         positionMarker = true;
     }
     
+    //Sets the specific gridtile corresponding to the move type of the gridtile
     private void setPositionMarker(Party party, int pos, int posRange) {
         Party otherParty;
         if(party == allyParty) {
