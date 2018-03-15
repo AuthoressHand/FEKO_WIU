@@ -1345,16 +1345,18 @@ public class MapGUI extends javax.swing.JFrame {
         //Checks if the mouse location is within the boundaries of the Map.
         if(isMouseWithinComponent(mapBoundary)) {
             //Iterates through and evaluates every GridTile
-            for(GridTile grid1 : lowerGrid) {
+            //Grid1 : lowerGrid
+            //
+            for(int j = 0; j < lowerGrid.length; j++) {
                 //If the mouse is within the GridTile and it is accessible, move Character to the GridTile and clean up its trace
-                if(isMouseWithinComponent(grid1.getTile()) && grid1.isAccessible() && grid1.getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/bluePositionMarker.png")).toString())) {
+                if(isMouseWithinComponent(lowerGrid[j].getTile()) && lowerGrid[j].isAccessible() && lowerGrid[j].getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/bluePositionMarker.png")).toString())) {
                     //Sets Character location and adds Character to the GridTile
                     checkForEndTurn(party);
-                    character.setLocation(grid1.getTile().getX(), grid1.getTile().getY() + TopBorderStats.getHeight());
+                    character.setLocation(lowerGrid[j].getTile().getX(), lowerGrid[j].getTile().getY() + TopBorderStats.getHeight());
                     if(character.getLocation() == charInitialPoint) {
                         break;
                     }
-                    grid1.addCharacter(party.getArmyChar(armyPos));
+                    lowerGrid[j].addCharacter(party.getArmyChar(armyPos));
                     
                     //Cleans up Character trace
                     for(GridTile grid2: lowerGrid) {
@@ -1368,47 +1370,39 @@ public class MapGUI extends javax.swing.JFrame {
                     break;
                 } 
                 //If the mouse is within the GridTile, not accessible, and is occupied, check for damage, death, and stage over.
-                else if((isMouseWithinComponent(grid1.getTile())) && grid1.isAccessible() == false && grid1.isOccupied() && !grid1.getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png")).toString())) {
-                    checkCharacterDamage(party, grid1, character, armyPos);
+                else if((isMouseWithinComponent(lowerGrid[j].getTile())) && lowerGrid[j].isAccessible() == false && lowerGrid[j].isOccupied() && !lowerGrid[j].getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png")).toString())) {
+                    checkCharacterDamage(party, lowerGrid[j], character, armyPos);
                     resetPositionMarkers();
-                    checkCharacterDeath(grid1, party, party.getArmyChar(armyPos), armyPos);
+                    checkCharacterDeath(j, party, party.getArmyChar(armyPos), armyPos);
                     checkStageOver();
                 } 
                 //Last Condition: If the GridTile is not accessible, reset the position of the Character.
-                else if(grid1.isAccessible() == false){
+                else if(lowerGrid[j].isAccessible() == false){
                     character.setLocation(charInitialPoint);
                 }
             }
-            if(party == allyParty) {
-                for(int i = 0; i < upperGrid.length - 1; i++) {
-                    if(upperGrid[i].getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/allyPositionMarker.png")).toString()) && upperGrid[i].getCharacter() != null && upperGrid[i].getCharacter().equals(party.getArmyChar(armyPos))) {
-                        upperGrid[i].getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png")));
-                        upperGrid[i].removeCharacter();
-                    }
-                }
-                for(int i = 0; i < upperGrid.length - 1; i++) {
-                    if(upperGrid[i].getTile().getLocation().equals(new Point(character.getX(), character.getY() - TopBorderStats.getHeight()))) {
-                        upperGrid[i].getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/allyPositionMarker.png")));
-                        return;
-                    }
-                }
-            }
+            cleanUpAllyTrace(character, party, armyPos);
+                    
         } 
         //If mouse location is not within the boundaries of the Map, reset Character position.
         else {
             character.setLocation(charInitialPoint);
-            if(party == allyParty) {
-                for(int i = 0; i < upperGrid.length - 1; i++) {
-                    if(upperGrid[i].getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/allyPositionMarker.png")).toString()) && upperGrid[i].getCharacter() != null && upperGrid[i].getCharacter().equals(party.getArmyChar(armyPos))) {
-                        upperGrid[i].getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png")));
-                        upperGrid[i].removeCharacter();
-                    }
+            cleanUpAllyTrace(character, party, armyPos);
+        }
+    }
+    
+    private void cleanUpAllyTrace(Component character, Party party, int armyPos) {
+        if(party == allyParty) {
+            for(int i = 0; i < upperGrid.length - 1; i++) {
+                if(upperGrid[i].getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/allyPositionMarker.png")).toString()) && upperGrid[i].getCharacter() != null && upperGrid[i].getCharacter().equals(party.getArmyChar(armyPos))) {
+                    upperGrid[i].getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png")));
+                    upperGrid[i].removeCharacter();
                 }
-                for(int i = 0; i < upperGrid.length - 1; i++) {
-                    if(upperGrid[i].getTile().getLocation().equals(new Point(character.getX(), character.getY() - TopBorderStats.getHeight()))) {
-                        upperGrid[i].getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/allyPositionMarker.png")));
-                        return;
-                    }
+            }
+            for(int i = 0; i < upperGrid.length - 1; i++) {
+                if(upperGrid[i].getTile().getLocation().equals(new Point(character.getX(), character.getY() - TopBorderStats.getHeight()))) {
+                    upperGrid[i].getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/allyPositionMarker.png")));
+                    return;
                 }
             }
         }
@@ -1484,8 +1478,8 @@ public class MapGUI extends javax.swing.JFrame {
     }
     
     //Checks if the current Character's HP is below 1. If so, make character not visible and reset GridTile for accessible and not occupied.
-    private void checkCharacterDeath(GridTile grid1, Party party, Char damageDealer, int armyPos) {
-        if(grid1.getCharacter().getCurrentHP() < 1) {
+    private void checkCharacterDeath(int gridPos, Party party, Char damageDealer, int armyPos) {
+        if(lowerGrid[gridPos].getCharacter().getCurrentHP() < 1) {
             if(party.equals(allyParty)) {
                 AllyChar allyChar = (AllyChar)damageDealer;
                 allyChar.gainExperience(100);
@@ -1494,10 +1488,11 @@ public class MapGUI extends javax.swing.JFrame {
                 //Add LEVEL UP Animation
             }
             for(JToggleButton jtb: characters) {
-                if(jtb.getIcon() != null && grid1.getCharacter() != null && jtb.getIcon().toString().equals(grid1.getCharacter().getImg().toString())) {
+                if(jtb.getIcon() != null && lowerGrid[gridPos].getCharacter() != null && jtb.getIcon().toString().equals(lowerGrid[gridPos].getCharacter().getImg().toString())) {
                     jtb.setVisible(false);
-                    grid1.getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png")));
-                    grid1.removeCharacter();
+                    lowerGrid[gridPos].getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png")));
+                    upperGrid[gridPos].getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png")));
+                    lowerGrid[gridPos].removeCharacter();
                 }
             }
         }
