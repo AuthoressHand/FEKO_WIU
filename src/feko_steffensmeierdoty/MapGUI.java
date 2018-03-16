@@ -26,6 +26,7 @@ public class MapGUI extends javax.swing.JFrame {
     private Party enemyParty = new Party();
     private static GridTile[] lowerGrid;
     private static GridTile[] upperGrid;
+    private boolean dangerArea = true;
     private boolean turn = true;
     private boolean positionMarker = false;
     private Thread startPhaseAnimationThread;
@@ -57,12 +58,15 @@ public class MapGUI extends javax.swing.JFrame {
         MainContainer = new javax.swing.JLayeredPane();
         StageClearText = new javax.swing.JLabel();
         StageClearLogo = new javax.swing.JLabel();
+        StageClearOrb = new javax.swing.JLabel();
         StageClearButton = new javax.swing.JLabel();
         MapLayer = new javax.swing.JLayeredPane();
         PhaseLabel = new javax.swing.JLabel();
         AttackPopUp = new javax.swing.JLabel();
+        PhaseSeperator = new javax.swing.JLabel();
         DamageLabelTens = new javax.swing.JLabel();
         DamageLabelOnes = new javax.swing.JLabel();
+        DamageSeperator = new javax.swing.JLabel();
         EnemyCharacter4 = new javax.swing.JToggleButton();
         EnemyCharacter3 = new javax.swing.JToggleButton();
         EnemyCharacter2 = new javax.swing.JToggleButton();
@@ -243,7 +247,18 @@ public class MapGUI extends javax.swing.JFrame {
                 StageClearLogoMouseClicked(evt);
             }
         });
-        MainContainer.add(StageClearLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 280, 220, 300));
+        MainContainer.add(StageClearLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 280, 190, 300));
+
+        StageClearOrb.setVisible(false);
+        StageClearOrb.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        StageClearOrb.setForeground(new java.awt.Color(255, 255, 255));
+        StageClearOrb.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/clearStageOrb.png"))); // NOI18N
+        StageClearOrb.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                StageClearOrbMouseClicked(evt);
+            }
+        });
+        MainContainer.add(StageClearOrb, new org.netbeans.lib.awtextra.AbsoluteConstraints(-180, 50, 720, 700));
 
         StageClearButton.setVisible(false);
         StageClearButton.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -272,6 +287,18 @@ public class MapGUI extends javax.swing.JFrame {
         MapLayer.add(AttackPopUp);
         AttackPopUp.setBounds(490, 880, 46, 45);
 
+        PhaseSeperator.setVisible(false);
+        PhaseSeperator.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        PhaseSeperator.setForeground(new java.awt.Color(255, 255, 255));
+        PhaseSeperator.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/backgrounds/blackFilter.png"))); // NOI18N
+        PhaseSeperator.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PhaseSeperatorMouseClicked(evt);
+            }
+        });
+        MapLayer.add(PhaseSeperator);
+        PhaseSeperator.setBounds(0, 0, 540, 930);
+
         PhaseLabel.setVisible(false);
         DamageLabelTens.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         DamageLabelTens.setForeground(new java.awt.Color(255, 255, 255));
@@ -283,6 +310,17 @@ public class MapGUI extends javax.swing.JFrame {
         DamageLabelOnes.setForeground(new java.awt.Color(255, 255, 255));
         MapLayer.add(DamageLabelOnes);
         DamageLabelOnes.setBounds(490, 870, 50, 60);
+
+        DamageSeperator.setVisible(false);
+        DamageSeperator.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        DamageSeperator.setForeground(new java.awt.Color(255, 255, 255));
+        DamageSeperator.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                DamageSeperatorMouseClicked(evt);
+            }
+        });
+        MapLayer.add(DamageSeperator);
+        DamageSeperator.setBounds(0, 0, 540, 930);
 
         EnemyCharacter4.setVisible(false);
         EnemyCharacter4.setBorderPainted(false);
@@ -494,7 +532,7 @@ public class MapGUI extends javax.swing.JFrame {
             }
         });
         MapLayer.add(AllyCharacter1);
-        AllyCharacter1.setBounds(90, 570, 90, 90);
+        AllyCharacter1.setBounds(0, 120, 90, 90);
 
         Fog2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/backgrounds/fog.png"))); // NOI18N
         Fog2.setToolTipText("");
@@ -1335,7 +1373,7 @@ public class MapGUI extends javax.swing.JFrame {
     private void AllyCharacter1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter1MousePressed
         charInitialPoint = AllyCharacter1.getLocation();
         updateCharacterStats(allyParty, 0);
-        showPossibleMoves(allyParty, 0);
+        showPossibleMoves(allyParty, 0, true);
     }//GEN-LAST:event_AllyCharacter1MousePressed
 
     private void AllyCharacter1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter1MouseDragged
@@ -1351,7 +1389,7 @@ public class MapGUI extends javax.swing.JFrame {
     private void AllyCharacter3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter3MousePressed
         charInitialPoint = AllyCharacter3.getLocation();
         updateCharacterStats(allyParty, 2);
-        showPossibleMoves(allyParty, 2);
+        showPossibleMoves(allyParty, 2, true);
     }//GEN-LAST:event_AllyCharacter3MousePressed
 
     private void AllyCharacter3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter3MouseDragged
@@ -1367,7 +1405,7 @@ public class MapGUI extends javax.swing.JFrame {
     private void AllyCharacter4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter4MousePressed
         charInitialPoint = AllyCharacter4.getLocation();
         updateCharacterStats(allyParty, 3);
-        showPossibleMoves(allyParty, 3);
+        showPossibleMoves(allyParty, 3, true);
     }//GEN-LAST:event_AllyCharacter4MousePressed
 
     private void AllyCharacter4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter4MouseDragged
@@ -1383,7 +1421,7 @@ public class MapGUI extends javax.swing.JFrame {
     private void EnemyCharacter1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter1MousePressed
         charInitialPoint = EnemyCharacter1.getLocation();
         updateCharacterStats(enemyParty, 0);
-        showPossibleMoves(enemyParty, 0);
+        showPossibleMoves(enemyParty, 0, true);
     }//GEN-LAST:event_EnemyCharacter1MousePressed
 
     private void EnemyCharacter1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter1MouseDragged
@@ -1400,7 +1438,7 @@ public class MapGUI extends javax.swing.JFrame {
     private void EnemyCharacter2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter2MousePressed
         charInitialPoint = EnemyCharacter2.getLocation();
         updateCharacterStats(enemyParty, 1);
-        showPossibleMoves(enemyParty, 1);
+        showPossibleMoves(enemyParty, 1, true);
     }//GEN-LAST:event_EnemyCharacter2MousePressed
 
     private void EnemyCharacter2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter2MouseDragged
@@ -1416,7 +1454,7 @@ public class MapGUI extends javax.swing.JFrame {
     private void EnemyCharacter3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter3MousePressed
         charInitialPoint = EnemyCharacter3.getLocation();
         updateCharacterStats(enemyParty, 2);
-        showPossibleMoves(enemyParty, 2);
+        showPossibleMoves(enemyParty, 2, true);
     }//GEN-LAST:event_EnemyCharacter3MousePressed
 
     private void EnemyCharacter3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter3MouseDragged
@@ -1432,7 +1470,7 @@ public class MapGUI extends javax.swing.JFrame {
     private void EnemyCharacter4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter4MousePressed
         charInitialPoint = EnemyCharacter4.getLocation();
         updateCharacterStats(enemyParty, 3);
-        showPossibleMoves(enemyParty, 3);
+        showPossibleMoves(enemyParty, 3, true);
     }//GEN-LAST:event_EnemyCharacter4MousePressed
 
     private void EnemyCharacter4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter4MouseDragged
@@ -1456,10 +1494,21 @@ public class MapGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_StageClearTextMouseClicked
 
     private void DangerAreaButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DangerAreaButtonMouseClicked
-        for(int i = 0; i < characters.length -1; i++) {
-           if(i > 3 && characters[i].isVisible()) {
-               showPossibleMoves(enemyParty, i - 4);
-           }
+        if(dangerArea == true) {
+            for(int i = 0; i < characters.length -1; i++) {
+               if(i > 3 && characters[i].isVisible()) {
+                   showPossibleMoves(enemyParty, i - 4, false);
+               }
+            }
+            for(GridTile gt: lowerGrid) {
+                if(!gt.getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/redPositionMarker.png")).toString()) && !gt.getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png")).toString())) {
+                    gt.getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/redPositionMarker.png")));
+                }
+            }
+            dangerArea = false;
+        } else {
+            resetPositionMarkers();
+            dangerArea = true;
         }
     }//GEN-LAST:event_DangerAreaButtonMouseClicked
 
@@ -1471,7 +1520,7 @@ public class MapGUI extends javax.swing.JFrame {
     private void AllyCharacter2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter2MousePressed
         charInitialPoint = AllyCharacter2.getLocation();
         updateCharacterStats(allyParty, 1);
-        showPossibleMoves(allyParty, 1);
+        showPossibleMoves(allyParty, 1, true);
     }//GEN-LAST:event_AllyCharacter2MousePressed
 
     private void AllyCharacter2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter2MouseDragged
@@ -1482,6 +1531,18 @@ public class MapGUI extends javax.swing.JFrame {
     private void AllyCharacter1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AllyCharacter1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_AllyCharacter1ActionPerformed
+
+    private void PhaseSeperatorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PhaseSeperatorMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PhaseSeperatorMouseClicked
+
+    private void DamageSeperatorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DamageSeperatorMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DamageSeperatorMouseClicked
+
+    private void StageClearOrbMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StageClearOrbMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_StageClearOrbMouseClicked
        
     //Checks to see whether the current mouse position is inside a specific component
     private boolean isMouseWithinComponent(Component c) {
@@ -1539,7 +1600,8 @@ public class MapGUI extends javax.swing.JFrame {
                     checkCharacterDamage(party, lowerGrid[j], character, armyPos);
                     resetPositionMarkers();
                     checkCharacterDeath(j, party, party.getArmyChar(armyPos), armyPos);
-                    checkStageOver();
+                    checkStageOver();   
+                    checkForEndTurn(party);
                 } 
                 //Last Condition: If the GridTile is not accessible, reset the position of the Character.
                 else if(lowerGrid[j].isAccessible() == false){
@@ -1748,11 +1810,9 @@ public class MapGUI extends javax.swing.JFrame {
         //Checks if Character is not own Character. If so, deal damage and check if turn has ended.
         if(!grid1.getCharacter().equals(party.getArmyChar(armyPos))) {
             //Apply damage and disable damage-dealer character
-            grid1.getCharacter().changeHP(party.getArmyChar(armyPos).getTotalAtk());
             applyDamageAnimation(party.getArmyChar(armyPos), grid1);
+            grid1.getCharacter().changeHP(party.getArmyChar(armyPos).getTotalAtk());
             character.setEnabled(false);
-            
-            checkForEndTurn(party);
         }
     }
     
@@ -1812,9 +1872,11 @@ public class MapGUI extends javax.swing.JFrame {
     }
     
     //Very tedious way of showing characters possible moves
-    private void showPossibleMoves(Party party, int partyPosition) {
-        if(positionMarker == true) {
-            resetPositionMarkers();
+    private void showPossibleMoves(Party party, int partyPosition, boolean reset) {
+        if(reset == true) {
+            if(positionMarker == true) {
+                resetPositionMarkers();
+            }
         }
         
         int initialGridTile = 0;
@@ -1883,7 +1945,9 @@ public class MapGUI extends javax.swing.JFrame {
                 setPositionMarker(party, initialGridTile - 12, 6);
             }
         }
-        positionMarker = true;
+        if(reset == true) {
+            positionMarker = true;
+        }
     }
     
     //Sets the specific gridtile corresponding to the move type of the gridtile
@@ -1979,12 +2043,15 @@ public class MapGUI extends javax.swing.JFrame {
     
     //Begins the damage Animation
     private void applyDamageAnimation(Char damageDealer, GridTile gridTile) {
+        
         applyDamageAnimationThread = new Thread(){
         @Override
         public void run() {
             try {
+                DamageSeperator.setVisible(true);
                 MapLayer.moveToFront(DamageLabelOnes);
                 MapLayer.moveToFront(DamageLabelTens);
+                MapLayer.moveToFront(DamageSeperator);
                 Integer damage = damageDealer.getTotalAtk();
                 
                 if(damage < 10) {
@@ -2003,6 +2070,7 @@ public class MapGUI extends javax.swing.JFrame {
                 Thread.sleep(750);
                 DamageLabelOnes.setVisible(false);
                 DamageLabelTens.setVisible(false);
+                DamageSeperator.setVisible(false);
                 
             } catch (InterruptedException ex) {
                 Logger.getLogger(MapGUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -2013,32 +2081,53 @@ public class MapGUI extends javax.swing.JFrame {
 
     //Begins the phase animation
     private void startPhaseAnimation() {
-       
         startPhaseAnimationThread = new Thread(){
         @Override
         public void run() {
                 try {
+                    if(stageClearedAnimationThread != null) {
+                        return;
+                    }
+                    if(applyDamageAnimationThread != null)
+                        while(applyDamageAnimationThread.isAlive()) {}
+                    PhaseSeperator.setVisible(true);
+                    MapLayer.moveToFront(PhaseSeperator);
+                    MapLayer.moveToFront(PhaseLabel);
                     PhaseLabel.setVisible(true);
                     if(turn == true) {
                         PhaseLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/playerPhase.png")));
+                        PhaseLabel.setLocation(new Point(-540, PhaseLabel.getY()));
+                        while(PhaseLabel.getX() != 10) {
+                            PhaseLabel.setLocation(new Point(PhaseLabel.getX() + 2, PhaseLabel.getY()));
+                            Thread.sleep(1);
+                        }
+                        while(PhaseLabel.getX() != 40) {
+                            PhaseLabel.setLocation(new Point(PhaseLabel.getX() + 1, PhaseLabel.getY()));
+                            Thread.sleep(36);
+                        }
+                        while(PhaseLabel.getX() != 540) {
+                            PhaseLabel.setLocation(new Point(PhaseLabel.getX() + 2, PhaseLabel.getY()));
+                            Thread.sleep(1);
+                        }
                     } else {
                         PhaseLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/enemyPhase.png")));
+                        PhaseLabel.setLocation(new Point(1080, PhaseLabel.getY()));
+                        while(PhaseLabel.getX() != 40) {
+                            PhaseLabel.setLocation(new Point(PhaseLabel.getX() - 2, PhaseLabel.getY()));
+                            Thread.sleep(1);
+                        }
+                        while(PhaseLabel.getX() != 10) {
+                            PhaseLabel.setLocation(new Point(PhaseLabel.getX() - 1, PhaseLabel.getY()));
+                            Thread.sleep(36);
+                        }
+                        while(PhaseLabel.getX() != -540) {
+                            PhaseLabel.setLocation(new Point(PhaseLabel.getX() - 2, PhaseLabel.getY()));
+                            Thread.sleep(1);
+                        }
                     }
-                    
-                    while(PhaseLabel.getX() != 10) {
-                        PhaseLabel.setLocation(new Point(PhaseLabel.getX() + 2, PhaseLabel.getY()));
-                        Thread.sleep(1);
-                    }
-                    while(PhaseLabel.getX() != 40) {
-                        PhaseLabel.setLocation(new Point(PhaseLabel.getX() + 1, PhaseLabel.getY()));
-                        Thread.sleep(36);
-                    }
-                    while(PhaseLabel.getX() != 540) {
-                        PhaseLabel.setLocation(new Point(PhaseLabel.getX() + 2, PhaseLabel.getY()));
-                        Thread.sleep(1);
-                    }
+                        
                     PhaseLabel.setVisible(false);
-                    PhaseLabel.setLocation(new Point(-540, PhaseLabel.getY()));
+                    PhaseSeperator.setVisible(false);
 
                 } catch (InterruptedException ex) {
                     Logger.getLogger(MapGUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -2049,7 +2138,9 @@ public class MapGUI extends javax.swing.JFrame {
     
     //Begins the stage cleared animation
     private void stageClearedAnimation() {
+        PhaseSeperator.setVisible(false);
         MainContainer.moveToFront(StageClearButton);
+        MainContainer.moveToFront(StageClearOrb); 
         MainContainer.moveToFront(StageClearLogo);
         MainContainer.moveToFront(StageClearText);
         
@@ -2057,9 +2148,12 @@ public class MapGUI extends javax.swing.JFrame {
         @Override
         public void run() {
             try {
+                if(applyDamageAnimationThread != null)
+                        while(applyDamageAnimationThread.isAlive()) {}
                 StageClearButton.setVisible(true);
                 StageClearLogo.setVisible(true);
-                Thread.sleep(750);
+                StageClearOrb.setVisible(true);
+                Thread.sleep(15);
                 StageClearText.setVisible(true);
                 
             } catch (InterruptedException ex) {
@@ -2152,6 +2246,7 @@ public class MapGUI extends javax.swing.JFrame {
     private javax.swing.JTextField CurrentHP;
     private javax.swing.JLabel DamageLabelOnes;
     private javax.swing.JLabel DamageLabelTens;
+    private javax.swing.JLabel DamageSeperator;
     private javax.swing.JButton DangerAreaButton;
     private javax.swing.JButton EndTurnButton;
     private javax.swing.JTextField EnemyAttack;
@@ -2179,9 +2274,11 @@ public class MapGUI extends javax.swing.JFrame {
     private javax.swing.JLabel NamePlateDecor;
     private javax.swing.JTextField NamePlateText;
     private javax.swing.JLabel PhaseLabel;
+    private javax.swing.JLabel PhaseSeperator;
     private javax.swing.JButton SettingsButton;
     private javax.swing.JLabel StageClearButton;
     private javax.swing.JLabel StageClearLogo;
+    private javax.swing.JLabel StageClearOrb;
     private javax.swing.JLabel StageClearText;
     private javax.swing.JLabel StatsInterface;
     private javax.swing.JLayeredPane StatsLayer;
