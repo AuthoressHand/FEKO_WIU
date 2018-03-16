@@ -1057,9 +1057,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
         charsHomeLayer[2] = Character3;
         charsHomeLayer[3] = Character4;
         
-        team.addToArmy(new AllyChar("Anna"));
-        teamSlots[0].setIcon(team.getArmyChar(0).getPortaitImageIdle());
-        characterOptions[0].setIcon(team.getArmyChar(0).getPortaitImageClicked());
+        editTeam(AnnaButton,"/img/portraits/anna_silver_portrait_idle.png","/img/portraits/anna_silver_portrait_clicked.png");
         
         populateHomeLayerTeam();
     }

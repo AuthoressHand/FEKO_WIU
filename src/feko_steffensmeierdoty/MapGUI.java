@@ -173,6 +173,23 @@ public class MapGUI extends javax.swing.JFrame {
         EndTurnButton = new javax.swing.JButton();
         BattleWheel = new javax.swing.JLabel();
         BottomBorder = new javax.swing.JLabel();
+        BattleStatsLayer = new javax.swing.JLayeredPane();
+        EnemyAttack = new javax.swing.JTextField();
+        AllyAttack = new javax.swing.JTextField();
+        EnemyCurrentHP = new javax.swing.JTextField();
+        EnemyEndHP = new javax.swing.JTextField();
+        AllyEndHP = new javax.swing.JTextField();
+        AllyCurrentHP = new javax.swing.JTextField();
+        EnemyNamePlateText = new javax.swing.JTextField();
+        EnemyNamePlateDecor = new javax.swing.JLabel();
+        EnemyNamePlate = new javax.swing.JLabel();
+        AllyNamePlateText = new javax.swing.JTextField();
+        AllyNamePlateDecor = new javax.swing.JLabel();
+        AllyNamePlate = new javax.swing.JLabel();
+        BattleStatsInterface = new javax.swing.JLabel();
+        EnemyCharacterPortrait = new javax.swing.JLabel();
+        AllyCharacterPortrait = new javax.swing.JLabel();
+        TopBattleBorderStats = new javax.swing.JLabel();
         StatsLayer = new javax.swing.JLayeredPane();
         LevelText = new javax.swing.JTextField();
         LevelProgresBar = new javax.swing.JProgressBar();
@@ -1027,6 +1044,129 @@ public class MapGUI extends javax.swing.JFrame {
 
         MainContainer.add(MenuButtonLayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 840, 540, 90));
 
+        BattleStatsLayer.setVisible(false);
+        BattleStatsLayer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        EnemyAttack.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        EnemyAttack.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        EnemyAttack.setBorder(null);
+        EnemyAttack.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        EnemyAttack.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        EnemyAttack.setEnabled(false);
+        EnemyAttack.setOpaque(false);
+        BattleStatsLayer.add(EnemyAttack, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 90, 40, 30));
+
+        AllyAttack.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        AllyAttack.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        AllyAttack.setBorder(null);
+        AllyAttack.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        AllyAttack.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        AllyAttack.setEnabled(false);
+        AllyAttack.setOpaque(false);
+        BattleStatsLayer.add(AllyAttack, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 40, 30));
+
+        EnemyCurrentHP.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        EnemyCurrentHP.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        EnemyCurrentHP.setBorder(null);
+        EnemyCurrentHP.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        EnemyCurrentHP.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        EnemyCurrentHP.setEnabled(false);
+        EnemyCurrentHP.setOpaque(false);
+        BattleStatsLayer.add(EnemyCurrentHP, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, 40, 25));
+
+        EnemyEndHP.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        EnemyEndHP.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        EnemyEndHP.setBorder(null);
+        EnemyEndHP.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        EnemyEndHP.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        EnemyEndHP.setEnabled(false);
+        EnemyEndHP.setOpaque(false);
+        EnemyEndHP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EnemyEndHPActionPerformed(evt);
+            }
+        });
+        BattleStatsLayer.add(EnemyEndHP, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 50, 40, 25));
+
+        AllyEndHP.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        AllyEndHP.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        AllyEndHP.setBorder(null);
+        AllyEndHP.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        AllyEndHP.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        AllyEndHP.setEnabled(false);
+        AllyEndHP.setOpaque(false);
+        AllyEndHP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AllyEndHPActionPerformed(evt);
+            }
+        });
+        BattleStatsLayer.add(AllyEndHP, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 50, 40, 25));
+
+        AllyCurrentHP.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        AllyCurrentHP.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        AllyCurrentHP.setBorder(null);
+        AllyCurrentHP.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        AllyCurrentHP.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        AllyCurrentHP.setEnabled(false);
+        AllyCurrentHP.setOpaque(false);
+        AllyCurrentHP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AllyCurrentHPActionPerformed(evt);
+            }
+        });
+        BattleStatsLayer.add(AllyCurrentHP, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, 40, 25));
+
+        EnemyNamePlateText.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        EnemyNamePlateText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        EnemyNamePlateText.setBorder(null);
+        EnemyNamePlateText.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        EnemyNamePlateText.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        EnemyNamePlateText.setEnabled(false);
+        EnemyNamePlateText.setOpaque(false);
+        BattleStatsLayer.add(EnemyNamePlateText, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, 140, 25));
+
+        EnemyNamePlateDecor.setForeground(new java.awt.Color(255, 255, 255));
+        EnemyNamePlateDecor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        EnemyNamePlateDecor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/enemy_name_plate_decor.png"))); // NOI18N
+        BattleStatsLayer.add(EnemyNamePlateDecor, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, -1, -1));
+
+        EnemyNamePlate.setForeground(new java.awt.Color(255, 255, 255));
+        EnemyNamePlate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        EnemyNamePlate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/name_plate_red.png"))); // NOI18N
+        BattleStatsLayer.add(EnemyNamePlate, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, -1, -1));
+
+        AllyNamePlateText.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        AllyNamePlateText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        AllyNamePlateText.setBorder(null);
+        AllyNamePlateText.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        AllyNamePlateText.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        AllyNamePlateText.setEnabled(false);
+        AllyNamePlateText.setOpaque(false);
+        BattleStatsLayer.add(AllyNamePlateText, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 140, 25));
+
+        AllyNamePlateDecor.setForeground(new java.awt.Color(255, 255, 255));
+        AllyNamePlateDecor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        AllyNamePlateDecor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/name_plate_decor.png"))); // NOI18N
+        BattleStatsLayer.add(AllyNamePlateDecor, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, -1, -1));
+
+        AllyNamePlate.setForeground(new java.awt.Color(255, 255, 255));
+        AllyNamePlate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        AllyNamePlate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/name_plate.png"))); // NOI18N
+        BattleStatsLayer.add(AllyNamePlate, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, -1, -1));
+
+        BattleStatsInterface.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/stats_border_3.png"))); // NOI18N
+        BattleStatsLayer.add(BattleStatsInterface, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, -1, -1));
+        BattleStatsLayer.add(EnemyCharacterPortrait, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, -1, -1));
+        BattleStatsLayer.add(AllyCharacterPortrait, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 1, -1, -1));
+
+        TopBattleBorderStats.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        TopBattleBorderStats.setForeground(new java.awt.Color(255, 255, 255));
+        TopBattleBorderStats.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/top_battle_border_stats.png"))); // NOI18N
+        BattleStatsLayer.add(TopBattleBorderStats, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 120));
+
+        MainContainer.add(BattleStatsLayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 120));
+        StatsLayer.setVisible(false);
+
         StatsLayer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         LevelText.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -1320,6 +1460,18 @@ public class MapGUI extends javax.swing.JFrame {
         cmGUI.setVisible(true);
         dispose();
     }//GEN-LAST:event_StageClearTextMouseClicked
+
+    private void AllyEndHPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AllyEndHPActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AllyEndHPActionPerformed
+
+    private void EnemyEndHPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnemyEndHPActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EnemyEndHPActionPerformed
+
+    private void AllyCurrentHPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AllyCurrentHPActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AllyCurrentHPActionPerformed
        
     //Checks to see whether the current mouse position is inside a specific component
     private boolean isMouseWithinComponent(Component c) {
@@ -1344,6 +1496,7 @@ public class MapGUI extends javax.swing.JFrame {
     private void performAction(Component mapBoundary, Component character, Party party, int armyPos) {
         
         AttackPopUp.setVisible(false);
+        BattleStatsLayer.setVisible(false);
         
         //Checks if the mouse location is within the boundaries of the Map.
         if(isMouseWithinComponent(mapBoundary)) {
@@ -1427,6 +1580,7 @@ public class MapGUI extends javax.swing.JFrame {
     //Changes the position of the character button relative to the mouse position
     private void moveCharacter(Component character, Party party, int armyPos) {
         AttackPopUp.setVisible(false);
+        BattleStatsLayer.setVisible(false);
         MapLayer.moveToFront(character);
         if(isMouseWithinComponent(MainContainer)) {
             mouseLocation = MouseInfo.getPointerInfo().getLocation();
@@ -1460,7 +1614,8 @@ public class MapGUI extends javax.swing.JFrame {
                                 break;
                             }
                         }
-                        
+                        BattleStatsLayer.setVisible(true);
+                        updateBattleStatsLayer(party.getArmyChar(armyPos),lowerGrid[j].getCharacter());
                         MapLayer.moveToFront(AttackPopUp);
                         AttackPopUp.setVisible(true);
                         AttackPopUp.setLocation(new Point(upperGrid[j].getTile().getX() + character.getWidth()/4, upperGrid[j].getTile().getY() + TopBorderStats.getHeight() - character.getHeight()/2));
@@ -1496,6 +1651,23 @@ public class MapGUI extends javax.swing.JFrame {
             }
             character.setLocation(mouseLocation);
         }
+    }
+    
+    private void updateBattleStatsLayer(Char ally, Char enemy) {
+        AllyCharacterPortrait.setIcon(ally.getBattlePortrait());
+        AllyNamePlateText.setText(ally.getName());
+        AllyCurrentHP.setText(ally.getCurrentHP() + "");
+        AllyEndHP.setText(ally.getCurrentHP() + "");
+        AllyAttack.setText(ally.getTotalAtk() + "");
+        
+        EnemyCharacterPortrait.setIcon(enemy.getBattlePortrait());
+        EnemyNamePlateText.setText(enemy.getName());
+        EnemyCurrentHP.setText(enemy.getCurrentHP() + "");
+        if(enemy.getCurrentHP() - ally.getTotalAtk() > 0)
+            EnemyEndHP.setText((enemy.getCurrentHP() - ally.getTotalAtk()) + "");
+        else
+            EnemyEndHP.setText("0");
+        EnemyAttack.setText("0");
     }
     
     //Checks if either the allyParty or enemyParty is empty. If so, ends the stage with corresponding result(Win/Lose).
@@ -1608,10 +1780,12 @@ public class MapGUI extends javax.swing.JFrame {
         
         if(party == allyParty) {
             NamePlate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/name_plate.png")));
+            NamePlateDecor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/name_plate_decor.png")));
             StatsInterface.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/stats_border_1.png")));
             TopBorderStats.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/top_border_stats.png")));
         }else {
             NamePlate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/name_plate_red.png")));
+            NamePlateDecor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/enemy_name_plate_decor.png")));
             StatsInterface.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/stats_border_2.png")));
             TopBorderStats.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/top_border_stats_enemy.png")));
         }
@@ -1906,13 +2080,22 @@ public class MapGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField AllyAttack;
     private javax.swing.JToggleButton AllyCharacter1;
     private javax.swing.JToggleButton AllyCharacter2;
     private javax.swing.JToggleButton AllyCharacter3;
     private javax.swing.JToggleButton AllyCharacter4;
+    private javax.swing.JLabel AllyCharacterPortrait;
+    private javax.swing.JTextField AllyCurrentHP;
+    private javax.swing.JTextField AllyEndHP;
+    private javax.swing.JLabel AllyNamePlate;
+    private javax.swing.JLabel AllyNamePlateDecor;
+    private javax.swing.JTextField AllyNamePlateText;
     private javax.swing.JTextField AttackLevel;
     private javax.swing.JTextField AttackLevel1;
     private javax.swing.JLabel AttackPopUp;
+    private javax.swing.JLabel BattleStatsInterface;
+    private javax.swing.JLayeredPane BattleStatsLayer;
     private javax.swing.JLabel BattleWheel;
     private javax.swing.JLabel BottomBorder;
     private javax.swing.JLabel CharacterPortrait;
@@ -1921,10 +2104,17 @@ public class MapGUI extends javax.swing.JFrame {
     private javax.swing.JLabel DamageLabelTens;
     private javax.swing.JButton DangerAreaButton;
     private javax.swing.JButton EndTurnButton;
+    private javax.swing.JTextField EnemyAttack;
     private javax.swing.JToggleButton EnemyCharacter1;
     private javax.swing.JToggleButton EnemyCharacter2;
     private javax.swing.JToggleButton EnemyCharacter3;
     private javax.swing.JToggleButton EnemyCharacter4;
+    private javax.swing.JLabel EnemyCharacterPortrait;
+    private javax.swing.JTextField EnemyCurrentHP;
+    private javax.swing.JTextField EnemyEndHP;
+    private javax.swing.JLabel EnemyNamePlate;
+    private javax.swing.JLabel EnemyNamePlateDecor;
+    private javax.swing.JTextField EnemyNamePlateText;
     private javax.swing.JProgressBar LevelProgresBar;
     private javax.swing.JTextField LevelText;
     private javax.swing.JPanel LowerGrid;
@@ -1943,6 +2133,7 @@ public class MapGUI extends javax.swing.JFrame {
     private javax.swing.JLabel StageClearText;
     private javax.swing.JLabel StatsInterface;
     private javax.swing.JLayeredPane StatsLayer;
+    private javax.swing.JLabel TopBattleBorderStats;
     private javax.swing.JLabel TopBorderStats;
     private javax.swing.JLabel TopBorderWaiting;
     private javax.swing.JPanel UpperGrid;
