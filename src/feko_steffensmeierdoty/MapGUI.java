@@ -3,6 +3,8 @@
  */
 package feko_steffensmeierdoty;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
@@ -29,6 +31,7 @@ public class MapGUI extends javax.swing.JFrame {
     private Thread startPhaseAnimationThread;
     private Thread applyDamageAnimationThread;
     private Thread stageClearedAnimationThread;
+    private Thread fogAnimationThread;
     private String[] damageFonts;
     
     
@@ -54,8 +57,8 @@ public class MapGUI extends javax.swing.JFrame {
         MainContainer = new javax.swing.JLayeredPane();
         StageClearText = new javax.swing.JLabel();
         StageClearLogo = new javax.swing.JLabel();
-        StageClearButton = new javax.swing.JLabel();
         PhaseLabel = new javax.swing.JLabel();
+        StageClearButton = new javax.swing.JLabel();
         MapLayer = new javax.swing.JLayeredPane();
         AttackPopUp = new javax.swing.JLabel();
         DamageLabelTens = new javax.swing.JLabel();
@@ -68,6 +71,8 @@ public class MapGUI extends javax.swing.JFrame {
         AllyCharacter3 = new javax.swing.JToggleButton();
         AllyCharacter2 = new javax.swing.JToggleButton();
         AllyCharacter1 = new javax.swing.JToggleButton();
+        Fog2 = new javax.swing.JLabel();
+        Fog1 = new javax.swing.JLabel();
         UpperGrid = new javax.swing.JPanel();
         pos1 = new javax.swing.JButton();
         pos2 = new javax.swing.JButton();
@@ -240,6 +245,11 @@ public class MapGUI extends javax.swing.JFrame {
         });
         MainContainer.add(StageClearLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 280, 220, 300));
 
+        PhaseLabel.setVisible(false);
+        PhaseLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        PhaseLabel.setForeground(new java.awt.Color(255, 255, 255));
+        MainContainer.add(PhaseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, -1, -1));
+
         StageClearButton.setVisible(false);
         StageClearButton.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         StageClearButton.setForeground(new java.awt.Color(255, 255, 255));
@@ -250,11 +260,6 @@ public class MapGUI extends javax.swing.JFrame {
             }
         });
         MainContainer.add(StageClearButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 930));
-
-        PhaseLabel.setVisible(false);
-        PhaseLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        PhaseLabel.setForeground(new java.awt.Color(255, 255, 255));
-        MainContainer.add(PhaseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, -1, -1));
 
         MapLayer.setEnabled(false);
 
@@ -481,8 +486,23 @@ public class MapGUI extends javax.swing.JFrame {
                 AllyCharacter1MouseReleased(evt);
             }
         });
+        AllyCharacter1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AllyCharacter1ActionPerformed(evt);
+            }
+        });
         MapLayer.add(AllyCharacter1);
-        AllyCharacter1.setBounds(0, 120, 90, 90);
+        AllyCharacter1.setBounds(90, 570, 90, 90);
+
+        Fog2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/backgrounds/fog.png"))); // NOI18N
+        Fog2.setToolTipText("");
+        MapLayer.add(Fog2);
+        Fog2.setBounds(0, 120, 540, 720);
+
+        Fog1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/backgrounds/fog.png"))); // NOI18N
+        Fog1.setToolTipText("");
+        MapLayer.add(Fog1);
+        Fog1.setBounds(-540, 120, 540, 720);
 
         MainContainer.add(MapLayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 930));
 
@@ -990,6 +1010,9 @@ public class MapGUI extends javax.swing.JFrame {
         DangerAreaButton.setMinimumSize(new java.awt.Dimension(90, 90));
         DangerAreaButton.setPreferredSize(new java.awt.Dimension(90, 90));
         DangerAreaButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                DangerAreaButtonMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 DangerAreaButtonMouseEntered(evt);
             }
@@ -1081,11 +1104,6 @@ public class MapGUI extends javax.swing.JFrame {
         EnemyEndHP.setDisabledTextColor(new java.awt.Color(255, 255, 255));
         EnemyEndHP.setEnabled(false);
         EnemyEndHP.setOpaque(false);
-        EnemyEndHP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EnemyEndHPActionPerformed(evt);
-            }
-        });
         BattleStatsLayer.add(EnemyEndHP, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 50, 40, 25));
 
         AllyEndHP.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -1095,11 +1113,6 @@ public class MapGUI extends javax.swing.JFrame {
         AllyEndHP.setDisabledTextColor(new java.awt.Color(255, 255, 255));
         AllyEndHP.setEnabled(false);
         AllyEndHP.setOpaque(false);
-        AllyEndHP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AllyEndHPActionPerformed(evt);
-            }
-        });
         BattleStatsLayer.add(AllyEndHP, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 50, 40, 25));
 
         AllyCurrentHP.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -1109,11 +1122,6 @@ public class MapGUI extends javax.swing.JFrame {
         AllyCurrentHP.setDisabledTextColor(new java.awt.Color(255, 255, 255));
         AllyCurrentHP.setEnabled(false);
         AllyCurrentHP.setOpaque(false);
-        AllyCurrentHP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AllyCurrentHPActionPerformed(evt);
-            }
-        });
         BattleStatsLayer.add(AllyCurrentHP, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, 40, 25));
 
         EnemyNamePlateText.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -1333,22 +1341,6 @@ public class MapGUI extends javax.swing.JFrame {
             moveCharacter(AllyCharacter1, allyParty, 0);
     }//GEN-LAST:event_AllyCharacter1MouseDragged
 
-    private void AllyCharacter2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter2MouseReleased
-        if(turn == true && AllyCharacter2.isEnabled())
-            performAction(LowerGrid,AllyCharacter2, allyParty, 1);
-    }//GEN-LAST:event_AllyCharacter2MouseReleased
-
-    private void AllyCharacter2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter2MousePressed
-        charInitialPoint = AllyCharacter2.getLocation();
-        updateCharacterStats(allyParty, 1);
-        showPossibleMoves(allyParty, 1);
-    }//GEN-LAST:event_AllyCharacter2MousePressed
-
-    private void AllyCharacter2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter2MouseDragged
-        if(turn == true && AllyCharacter2.isEnabled())
-            moveCharacter(AllyCharacter2, allyParty, 1);
-    }//GEN-LAST:event_AllyCharacter2MouseDragged
-
     private void AllyCharacter3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter3MouseReleased
         if(turn == true && AllyCharacter3.isEnabled())
             performAction(LowerGrid,AllyCharacter3, allyParty, 2);
@@ -1461,17 +1453,33 @@ public class MapGUI extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_StageClearTextMouseClicked
 
-    private void AllyEndHPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AllyEndHPActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AllyEndHPActionPerformed
+    private void DangerAreaButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DangerAreaButtonMouseClicked
+        for(int i = 0; i < characters.length -1; i++) {
+           if(i > 3 && characters[i].isVisible()) {
+               showPossibleMoves(enemyParty, i - 4);
+           }
+        }
+    }//GEN-LAST:event_DangerAreaButtonMouseClicked
 
-    private void EnemyEndHPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnemyEndHPActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EnemyEndHPActionPerformed
+    private void AllyCharacter2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter2MouseReleased
+        if(turn == true && AllyCharacter2.isEnabled())
+        performAction(LowerGrid,AllyCharacter2, allyParty, 1);
+    }//GEN-LAST:event_AllyCharacter2MouseReleased
 
-    private void AllyCurrentHPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AllyCurrentHPActionPerformed
+    private void AllyCharacter2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter2MousePressed
+        charInitialPoint = AllyCharacter2.getLocation();
+        updateCharacterStats(allyParty, 1);
+        showPossibleMoves(allyParty, 1);
+    }//GEN-LAST:event_AllyCharacter2MousePressed
+
+    private void AllyCharacter2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter2MouseDragged
+        if(turn == true && AllyCharacter2.isEnabled())
+        moveCharacter(AllyCharacter2, allyParty, 1);
+    }//GEN-LAST:event_AllyCharacter2MouseDragged
+
+    private void AllyCharacter1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AllyCharacter1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_AllyCurrentHPActionPerformed
+    }//GEN-LAST:event_AllyCharacter1ActionPerformed
        
     //Checks to see whether the current mouse position is inside a specific component
     private boolean isMouseWithinComponent(Component c) {
@@ -1964,6 +1972,7 @@ public class MapGUI extends javax.swing.JFrame {
             }
         }
         startPhaseAnimation();
+        fogAnimation();
     }
     
     //Begins the damage Animation
@@ -2044,6 +2053,31 @@ public class MapGUI extends javax.swing.JFrame {
         stageClearedAnimationThread.start();
     }
     
+    private void fogAnimation() {
+        fogAnimationThread = new Thread(){
+        @Override
+        public void run() {
+            try {
+                while(true) {
+                    Fog2.setLocation(new Point(Fog2.getX() + 1, Fog2.getY()));
+                    Fog1.setLocation(new Point(Fog1.getX() + 1, Fog1.getY()));
+
+                    Thread.sleep(60);
+
+                    if(Fog1.getX() == 540) {
+                        Fog1.setLocation(-540, Fog1.getY());
+                    }
+                    if(Fog2.getX() == 540) {
+                        Fog2.setLocation(-540, Fog2.getY());
+                    }
+                }
+            } catch (InterruptedException ex) {
+                Logger.getLogger(MapGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }};
+        fogAnimationThread.start();
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -2115,6 +2149,8 @@ public class MapGUI extends javax.swing.JFrame {
     private javax.swing.JLabel EnemyNamePlate;
     private javax.swing.JLabel EnemyNamePlateDecor;
     private javax.swing.JTextField EnemyNamePlateText;
+    private javax.swing.JLabel Fog1;
+    private javax.swing.JLabel Fog2;
     private javax.swing.JProgressBar LevelProgresBar;
     private javax.swing.JTextField LevelText;
     private javax.swing.JPanel LowerGrid;
