@@ -57,9 +57,9 @@ public class MapGUI extends javax.swing.JFrame {
         MainContainer = new javax.swing.JLayeredPane();
         StageClearText = new javax.swing.JLabel();
         StageClearLogo = new javax.swing.JLabel();
-        PhaseLabel = new javax.swing.JLabel();
         StageClearButton = new javax.swing.JLabel();
         MapLayer = new javax.swing.JLayeredPane();
+        PhaseLabel = new javax.swing.JLabel();
         AttackPopUp = new javax.swing.JLabel();
         DamageLabelTens = new javax.swing.JLabel();
         DamageLabelOnes = new javax.swing.JLabel();
@@ -245,11 +245,6 @@ public class MapGUI extends javax.swing.JFrame {
         });
         MainContainer.add(StageClearLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 280, 220, 300));
 
-        PhaseLabel.setVisible(false);
-        PhaseLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        PhaseLabel.setForeground(new java.awt.Color(255, 255, 255));
-        MainContainer.add(PhaseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, -1, -1));
-
         StageClearButton.setVisible(false);
         StageClearButton.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         StageClearButton.setForeground(new java.awt.Color(255, 255, 255));
@@ -262,6 +257,13 @@ public class MapGUI extends javax.swing.JFrame {
         MainContainer.add(StageClearButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 930));
 
         MapLayer.setEnabled(false);
+
+        PhaseLabel.setVisible(false);
+        PhaseLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        PhaseLabel.setForeground(new java.awt.Color(255, 255, 255));
+        PhaseLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/enemyPhase.png"))); // NOI18N
+        MapLayer.add(PhaseLabel);
+        PhaseLabel.setBounds(-540, 360, 500, 120);
 
         AttackPopUp.setVisible(false);
         AttackPopUp.setForeground(new java.awt.Color(255, 255, 255));
@@ -2011,6 +2013,7 @@ public class MapGUI extends javax.swing.JFrame {
 
     //Begins the phase animation
     private void startPhaseAnimation() {
+       
         startPhaseAnimationThread = new Thread(){
         @Override
         public void run() {
@@ -2021,8 +2024,21 @@ public class MapGUI extends javax.swing.JFrame {
                     } else {
                         PhaseLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/enemyPhase.png")));
                     }
-                    Thread.sleep(1500);
+                    
+                    while(PhaseLabel.getX() != 10) {
+                        PhaseLabel.setLocation(new Point(PhaseLabel.getX() + 2, PhaseLabel.getY()));
+                        Thread.sleep(1);
+                    }
+                    while(PhaseLabel.getX() != 40) {
+                        PhaseLabel.setLocation(new Point(PhaseLabel.getX() + 1, PhaseLabel.getY()));
+                        Thread.sleep(36);
+                    }
+                    while(PhaseLabel.getX() != 540) {
+                        PhaseLabel.setLocation(new Point(PhaseLabel.getX() + 2, PhaseLabel.getY()));
+                        Thread.sleep(1);
+                    }
                     PhaseLabel.setVisible(false);
+                    PhaseLabel.setLocation(new Point(-540, PhaseLabel.getY()));
 
                 } catch (InterruptedException ex) {
                     Logger.getLogger(MapGUI.class.getName()).log(Level.SEVERE, null, ex);
