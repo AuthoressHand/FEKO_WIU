@@ -258,7 +258,7 @@ public class MapGUI extends javax.swing.JFrame {
                 StageClearOrbMouseClicked(evt);
             }
         });
-        MainContainer.add(StageClearOrb, new org.netbeans.lib.awtextra.AbsoluteConstraints(-180, 50, 720, 700));
+        MainContainer.add(StageClearOrb, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 40, 570, 760));
 
         StageClearButton.setVisible(false);
         StageClearButton.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -2067,6 +2067,7 @@ public class MapGUI extends javax.swing.JFrame {
                     DamageLabelOnes.setVisible(true);
                     DamageLabelTens.setVisible(true);
                 }
+                
                 Thread.sleep(750);
                 DamageLabelOnes.setVisible(false);
                 DamageLabelTens.setVisible(false);
