@@ -2349,6 +2349,11 @@ public class MapGUI extends javax.swing.JFrame {
         if(level == 1) {
             Map.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/backgrounds/level1_map.png")));
             
+            AllyCharacter1.setLocation(0, 120);
+            AllyCharacter2.setLocation(90, 300);
+            AllyCharacter3.setLocation(90, 120);
+            AllyCharacter4.setLocation(270, 210);
+            
             EnemyCharacter1.setLocation(90, 660);
             EnemyCharacter2.setLocation(0, 660);
             EnemyCharacter3.setLocation(0, 570);
@@ -2379,38 +2384,42 @@ public class MapGUI extends javax.swing.JFrame {
             enemyParty.addToArmy(new EnemyChar("Hawkeye"));
         }
         
-        /*if(level == 2) {
-            Map.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/backgrounds/level1_map.png")));
+        if(level == 2) {
+            Map.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/backgrounds/level2_map.png")));
             
-            EnemyCharacter1.setLocation(90, 660);
-            EnemyCharacter2.setLocation(0, 660);
-            EnemyCharacter3.setLocation(0, 570);
-            EnemyCharacter4.setLocation(0, 480);
+            AllyCharacter1.setLocation(180, 120);
+            AllyCharacter2.setLocation(270, 120);
+            AllyCharacter3.setLocation(90, 120);
+            AllyCharacter4.setLocation(360, 120);
+            
+            EnemyCharacter1.setLocation(180 , 750);
+            EnemyCharacter2.setLocation(180, 480);
+            EnemyCharacter3.setLocation(360, 480);
             
             //Creates Level 1 Grids
-            MapGUI.lowerGrid = new GridTile[]{new GridTile(pos00,true), new GridTile(pos01,false), new GridTile(pos02,false), new GridTile(pos03,true), new GridTile(pos04,true), new GridTile(pos05,false), 
-                                         new GridTile(pos10,true), new GridTile(pos11,true), new GridTile(pos12,false), new GridTile(pos13,true), new GridTile(pos14,true), new GridTile(pos15,false), 
-                                         new GridTile(pos20,true), new GridTile(pos21,true), new GridTile(pos22,true), new GridTile(pos23,true), new GridTile(pos24,false), new GridTile(pos25,true), 
-                                         new GridTile(pos30,false), new GridTile(pos31,false), new GridTile(pos32,true), new GridTile(pos33,true), new GridTile(pos34,true), new GridTile(pos35,true), 
+            MapGUI.lowerGrid = new GridTile[]{new GridTile(pos00,false), new GridTile(pos01,true), new GridTile(pos02,true), new GridTile(pos03,true), new GridTile(pos04,true), new GridTile(pos05,false), 
+                                         new GridTile(pos10,true), new GridTile(pos11,true), new GridTile(pos12,true), new GridTile(pos13,true), new GridTile(pos14,true), new GridTile(pos15,true), 
+                                         new GridTile(pos20,true), new GridTile(pos21,true), new GridTile(pos22,true), new GridTile(pos23,true), new GridTile(pos24,true), new GridTile(pos25,true), 
+                                         new GridTile(pos30,true), new GridTile(pos31,true), new GridTile(pos32,true), new GridTile(pos33,true), new GridTile(pos34,true), new GridTile(pos35,true), 
                                          new GridTile(pos40,true), new GridTile(pos41,true), new GridTile(pos42,true), new GridTile(pos43,true), new GridTile(pos44,true), new GridTile(pos45,true), 
-                                         new GridTile(pos50,true), new GridTile(pos51,true), new GridTile(pos52,false), new GridTile(pos53,false), new GridTile(pos54,true), new GridTile(pos55,true), 
-                                         new GridTile(pos60,true), new GridTile(pos61,true), new GridTile(pos62,true), new GridTile(pos63,false), new GridTile(pos64,false), new GridTile(pos65,true), 
-                                         new GridTile(pos70,false), new GridTile(pos71,false), new GridTile(pos72,false), new GridTile(pos73,true), new GridTile(pos74,true), new GridTile(pos75,true)};
+                                         new GridTile(pos50,true), new GridTile(pos51,false), new GridTile(pos52,false), new GridTile(pos53,true), new GridTile(pos54,false), new GridTile(pos55,true), 
+                                         new GridTile(pos60,true), new GridTile(pos61,false), new GridTile(pos62,true), new GridTile(pos63,true), new GridTile(pos64,false), new GridTile(pos65,true), 
+                                         new GridTile(pos70,false), new GridTile(pos71,false), new GridTile(pos72,true), new GridTile(pos73,false), new GridTile(pos74,false), new GridTile(pos75,false)};
 
-            MapGUI.upperGrid = new GridTile[]{new GridTile(pos1,true), new GridTile(pos2,false), new GridTile(pos3,false), new GridTile(pos4,true), new GridTile(pos5,true), new GridTile(pos6,false), 
-                                         new GridTile(pos16,true), new GridTile(pos17,true), new GridTile(pos18,false), new GridTile(pos19,true), new GridTile(pos26,true), new GridTile(pos27,false), 
-                                         new GridTile(pos28,true), new GridTile(pos29,true), new GridTile(pos36,true), new GridTile(pos37,true), new GridTile(pos38,false), new GridTile(pos39,true), 
-                                         new GridTile(pos46,false), new GridTile(pos47,false), new GridTile(pos48,true), new GridTile(pos49,true), new GridTile(pos56,true), new GridTile(pos57,true), 
+            MapGUI.upperGrid = new GridTile[]{new GridTile(pos1,false), new GridTile(pos2,true), new GridTile(pos3,true), new GridTile(pos4,true), new GridTile(pos5,true), new GridTile(pos6,false), 
+                                         new GridTile(pos16,true), new GridTile(pos17,true), new GridTile(pos18,true), new GridTile(pos19,true), new GridTile(pos26,true), new GridTile(pos27,true), 
+                                         new GridTile(pos28,true), new GridTile(pos29,true), new GridTile(pos36,true), new GridTile(pos37,true), new GridTile(pos38,true), new GridTile(pos39,true), 
+                                         new GridTile(pos46,true), new GridTile(pos47,true), new GridTile(pos48,true), new GridTile(pos49,true), new GridTile(pos56,true), new GridTile(pos57,true), 
                                          new GridTile(pos58,true), new GridTile(pos59,true), new GridTile(pos66,true), new GridTile(pos67,true), new GridTile(pos68,true), new GridTile(pos69,true), 
-                                         new GridTile(pos76,true), new GridTile(pos77,true), new GridTile(pos78,false), new GridTile(pos79,false), new GridTile(pos80,true), new GridTile(pos81,true), 
-                                         new GridTile(pos82,true), new GridTile(pos83,true), new GridTile(pos84,true), new GridTile(pos85,false), new GridTile(pos86,false), new GridTile(pos87,true), 
-                                         new GridTile(pos88,false), new GridTile(pos89,false), new GridTile(pos90,false), new GridTile(pos91,true), new GridTile(pos92,true), new GridTile(pos93,true)};
+                                         new GridTile(pos76,true), new GridTile(pos77,false), new GridTile(pos78,false), new GridTile(pos79,true), new GridTile(pos80,false), new GridTile(pos81,true), 
+                                         new GridTile(pos82,true), new GridTile(pos83,false), new GridTile(pos84,true), new GridTile(pos85,true), new GridTile(pos86,false), new GridTile(pos87,true), 
+                                         new GridTile(pos88,false), new GridTile(pos89,false), new GridTile(pos90,true), new GridTile(pos91,false), new GridTile(pos92,false), new GridTile(pos93,false)};
 
             //Adds Level 1 enemies into enemy party
-            enemyParty.addToArmy(new EnemyChar("Zephiel"));
-            enemyParty.addToArmy(new EnemyChar("Black Knight"));
             enemyParty.addToArmy(new EnemyChar("Hawkeye"));
-        }*/
+            enemyParty.addToArmy(new EnemyChar("Black Knight"));
+            enemyParty.addToArmy(new EnemyChar("Zephiel"));
+        }
     }
     
     //Begins the damage Animation

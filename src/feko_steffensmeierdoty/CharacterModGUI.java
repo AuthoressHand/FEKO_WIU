@@ -104,9 +104,12 @@ public class CharacterModGUI extends javax.swing.JFrame {
         Character4 = new javax.swing.JLabel();
         CastleBackground = new javax.swing.JLabel();
         BattleLayer = new javax.swing.JLayeredPane();
-        StoryMapsText = new javax.swing.JLabel();
-        StoryMapsButton = new javax.swing.JButton();
-        StoryMapsPNG = new javax.swing.JLabel();
+        Stage2Text = new javax.swing.JLabel();
+        Stage2Button = new javax.swing.JButton();
+        Stage2PNG = new javax.swing.JLabel();
+        Stage1Text = new javax.swing.JLabel();
+        Stage1Button = new javax.swing.JButton();
+        Stage1PNG = new javax.swing.JLabel();
         WorldMapBackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -628,34 +631,65 @@ public class CharacterModGUI extends javax.swing.JFrame {
         BattleLayer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         BattleLayer.setVisible(false);
 
-        StoryMapsText.setFont(new java.awt.Font("Franklin Gothic Book", 1, 24)); // NOI18N
-        StoryMapsText.setForeground(new java.awt.Color(51, 51, 51));
-        StoryMapsText.setText("Story Maps");
-        BattleLayer.add(StoryMapsText, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 470, 130, 40));
+        Stage2Text.setFont(new java.awt.Font("Franklin Gothic Book", 1, 24)); // NOI18N
+        Stage2Text.setForeground(new java.awt.Color(51, 51, 51));
+        Stage2Text.setText("Stage 2");
+        Stage2Text.setToolTipText("");
+        BattleLayer.add(Stage2Text, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 270, 100, 50));
 
-        StoryMapsButton.setBorderPainted(false);
-        StoryMapsButton.setContentAreaFilled(false);
-        StoryMapsButton.setFocusPainted(false);
-        StoryMapsButton.setMaximumSize(new java.awt.Dimension(90, 90));
-        StoryMapsButton.setMinimumSize(new java.awt.Dimension(90, 90));
-        StoryMapsButton.setPreferredSize(new java.awt.Dimension(90, 90));
-        StoryMapsButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        Stage2Button.setBorderPainted(false);
+        Stage2Button.setContentAreaFilled(false);
+        Stage2Button.setFocusPainted(false);
+        Stage2Button.setMaximumSize(new java.awt.Dimension(90, 90));
+        Stage2Button.setMinimumSize(new java.awt.Dimension(90, 90));
+        Stage2Button.setPreferredSize(new java.awt.Dimension(90, 90));
+        Stage2Button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                StoryMapsButtonMouseEntered(evt);
+                Stage2ButtonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                StoryMapsButtonMouseExited(evt);
+                Stage2ButtonMouseExited(evt);
             }
         });
-        StoryMapsButton.addActionListener(new java.awt.event.ActionListener() {
+        Stage2Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                StoryMapsButtonActionPerformed(evt);
+                Stage2ButtonActionPerformed(evt);
             }
         });
-        BattleLayer.add(StoryMapsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 310, 140, 170));
+        BattleLayer.add(Stage2Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, 140, 170));
 
-        StoryMapsPNG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/main_story_button_idle.png"))); // NOI18N
-        BattleLayer.add(StoryMapsPNG, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, -1));
+        Stage2PNG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/stage2_button_idle.png"))); // NOI18N
+        BattleLayer.add(Stage2PNG, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, -1, -1));
+
+        Stage1Text.setFont(new java.awt.Font("Franklin Gothic Book", 1, 24)); // NOI18N
+        Stage1Text.setForeground(new java.awt.Color(51, 51, 51));
+        Stage1Text.setText("Stage 1");
+        Stage1Text.setToolTipText("");
+        BattleLayer.add(Stage1Text, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 470, 100, 40));
+
+        Stage1Button.setBorderPainted(false);
+        Stage1Button.setContentAreaFilled(false);
+        Stage1Button.setFocusPainted(false);
+        Stage1Button.setMaximumSize(new java.awt.Dimension(90, 90));
+        Stage1Button.setMinimumSize(new java.awt.Dimension(90, 90));
+        Stage1Button.setPreferredSize(new java.awt.Dimension(90, 90));
+        Stage1Button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                Stage1ButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                Stage1ButtonMouseExited(evt);
+            }
+        });
+        Stage1Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Stage1ButtonActionPerformed(evt);
+            }
+        });
+        BattleLayer.add(Stage1Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 310, 140, 170));
+
+        Stage1PNG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/main_story_button_idle.png"))); // NOI18N
+        BattleLayer.add(Stage1PNG, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, -1));
 
         WorldMapBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/backgrounds/world_map.png"))); // NOI18N
         BattleLayer.add(WorldMapBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(-90, 0, 630, 930));
@@ -783,23 +817,23 @@ public class CharacterModGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_HomeButtonMouseReleased
 
     //Sets hover picture for Story Maps Button
-    private void StoryMapsButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StoryMapsButtonMouseEntered
-        StoryMapsPNG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/main_story_button_hover.png")));
-    }//GEN-LAST:event_StoryMapsButtonMouseEntered
+    private void Stage1ButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Stage1ButtonMouseEntered
+        Stage1PNG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/main_story_button_hover.png")));
+    }//GEN-LAST:event_Stage1ButtonMouseEntered
 
     //Sets idle picture for Story Maps Button
-    private void StoryMapsButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StoryMapsButtonMouseExited
-        StoryMapsPNG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/main_story_button_idle.png")));
-    }//GEN-LAST:event_StoryMapsButtonMouseExited
+    private void Stage1ButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Stage1ButtonMouseExited
+        Stage1PNG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/main_story_button_idle.png")));
+    }//GEN-LAST:event_Stage1ButtonMouseExited
 
     //Sets the CharacterModGUI frame to inivisible, and creates and displays the MapGUI (level)
-    private void StoryMapsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StoryMapsButtonActionPerformed
+    private void Stage1ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Stage1ButtonActionPerformed
         if(getTeamSize() > 0) {  
             LevelTransitionGUI ltGUI = new LevelTransitionGUI(1,team,this);
             ltGUI.setVisible(true);
             setVisible(false);
         }
-    }//GEN-LAST:event_StoryMapsButtonActionPerformed
+    }//GEN-LAST:event_Stage1ButtonActionPerformed
 
     //Enables only the Edit Teams Layer to be seen
     private void EditTeamsButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditTeamsButtonMouseClicked
@@ -965,6 +999,22 @@ public class CharacterModGUI extends javax.swing.JFrame {
     private void SelenaButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SelenaButtonMouseEntered
         updateCharacterStats(4);
     }//GEN-LAST:event_SelenaButtonMouseEntered
+
+    private void Stage2ButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Stage2ButtonMouseEntered
+        Stage2PNG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/stage2_button_hover.png")));
+    }//GEN-LAST:event_Stage2ButtonMouseEntered
+
+    private void Stage2ButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Stage2ButtonMouseExited
+        Stage2PNG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/stage2_button_idle.png")));
+    }//GEN-LAST:event_Stage2ButtonMouseExited
+
+    private void Stage2ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Stage2ButtonActionPerformed
+        if(getTeamSize() > 0) {  
+            LevelTransitionGUI ltGUI = new LevelTransitionGUI(2,team,this);
+            ltGUI.setVisible(true);
+            setVisible(false);
+        }
+    }//GEN-LAST:event_Stage2ButtonActionPerformed
 
     //Removes or adds character to the team. It also updates the GUI to show current team
     private void editTeam(JButton characterButton, String idleImg, String clickImg) {
@@ -1163,12 +1213,15 @@ public class CharacterModGUI extends javax.swing.JFrame {
     private javax.swing.JButton Slot3;
     private javax.swing.JButton Slot4;
     private javax.swing.JButton SoleilButton;
+    private javax.swing.JButton Stage1Button;
+    private javax.swing.JLabel Stage1PNG;
+    private javax.swing.JLabel Stage1Text;
+    private javax.swing.JButton Stage2Button;
+    private javax.swing.JLabel Stage2PNG;
+    private javax.swing.JLabel Stage2Text;
     private javax.swing.JLabel StatsInterface;
     private javax.swing.JLayeredPane StatsLayer;
     private javax.swing.JLabel Stone;
-    private javax.swing.JButton StoryMapsButton;
-    private javax.swing.JLabel StoryMapsPNG;
-    private javax.swing.JLabel StoryMapsText;
     private javax.swing.JLayeredPane TeamLoadout;
     private javax.swing.JLabel TeamLoadoutUI;
     private javax.swing.JLabel TeamPickerUI;
