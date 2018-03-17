@@ -104,6 +104,9 @@ public class CharacterModGUI extends javax.swing.JFrame {
         Character4 = new javax.swing.JLabel();
         CastleBackground = new javax.swing.JLabel();
         BattleLayer = new javax.swing.JLayeredPane();
+        Stage3Text = new javax.swing.JLabel();
+        Stage3Button = new javax.swing.JButton();
+        Stage3PNG = new javax.swing.JLabel();
         Stage2Text = new javax.swing.JLabel();
         Stage2Button = new javax.swing.JButton();
         Stage2PNG = new javax.swing.JLabel();
@@ -631,6 +634,36 @@ public class CharacterModGUI extends javax.swing.JFrame {
         BattleLayer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         BattleLayer.setVisible(false);
 
+        Stage3Text.setFont(new java.awt.Font("Franklin Gothic Book", 1, 24)); // NOI18N
+        Stage3Text.setForeground(new java.awt.Color(51, 51, 51));
+        Stage3Text.setText("Stage 3");
+        Stage3Text.setToolTipText("");
+        BattleLayer.add(Stage3Text, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 650, 100, 50));
+
+        Stage3Button.setBorderPainted(false);
+        Stage3Button.setContentAreaFilled(false);
+        Stage3Button.setFocusPainted(false);
+        Stage3Button.setMaximumSize(new java.awt.Dimension(90, 90));
+        Stage3Button.setMinimumSize(new java.awt.Dimension(90, 90));
+        Stage3Button.setPreferredSize(new java.awt.Dimension(90, 90));
+        Stage3Button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                Stage3ButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                Stage3ButtonMouseExited(evt);
+            }
+        });
+        Stage3Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Stage3ButtonActionPerformed(evt);
+            }
+        });
+        BattleLayer.add(Stage3Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 520, 140, 170));
+
+        Stage3PNG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/stage3_button_idle.png"))); // NOI18N
+        BattleLayer.add(Stage3PNG, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 510, -1, -1));
+
         Stage2Text.setFont(new java.awt.Font("Franklin Gothic Book", 1, 24)); // NOI18N
         Stage2Text.setForeground(new java.awt.Color(51, 51, 51));
         Stage2Text.setText("Stage 2");
@@ -1016,6 +1049,22 @@ public class CharacterModGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_Stage2ButtonActionPerformed
 
+    private void Stage3ButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Stage3ButtonMouseEntered
+        Stage3PNG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/stage3_button_hover.png")));
+    }//GEN-LAST:event_Stage3ButtonMouseEntered
+
+    private void Stage3ButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Stage3ButtonMouseExited
+        Stage3PNG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/stage3_button_idle.png")));
+    }//GEN-LAST:event_Stage3ButtonMouseExited
+
+    private void Stage3ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Stage3ButtonActionPerformed
+        if(getTeamSize() > 0) {  
+            LevelTransitionGUI ltGUI = new LevelTransitionGUI(3,team,this);
+            ltGUI.setVisible(true);
+            setVisible(false);
+        }
+    }//GEN-LAST:event_Stage3ButtonActionPerformed
+
     //Removes or adds character to the team. It also updates the GUI to show current team
     private void editTeam(JButton characterButton, String idleImg, String clickImg) {
         if(characterButton.getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource(clickImg)).toString())){
@@ -1219,6 +1268,9 @@ public class CharacterModGUI extends javax.swing.JFrame {
     private javax.swing.JButton Stage2Button;
     private javax.swing.JLabel Stage2PNG;
     private javax.swing.JLabel Stage2Text;
+    private javax.swing.JButton Stage3Button;
+    private javax.swing.JLabel Stage3PNG;
+    private javax.swing.JLabel Stage3Text;
     private javax.swing.JLabel StatsInterface;
     private javax.swing.JLayeredPane StatsLayer;
     private javax.swing.JLabel Stone;
