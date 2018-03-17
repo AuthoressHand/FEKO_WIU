@@ -48,7 +48,7 @@ public abstract class Char {
         this.level = 1;
         this.maxHP = 10;
         this.currentHP = this.maxHP;
-        this.weapon = new Weapon(null, 0, "Bronze Sword", 0, "Basic Sword, starting equipment", WeaponType.Sword, 10, 1, DamageType.Physical);
+        this.weapon = new Weapon(null, 0, "Bronze Sword", 0, "Basic Sword, starting equipment", WeaponType.Sword, 5, 1, DamageType.Physical);
         this.attack = 1;
         this.defense = 1;
         this.walkRange = 2;

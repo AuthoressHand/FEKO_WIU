@@ -17,13 +17,15 @@ public class LevelTransitionGUI extends javax.swing.JFrame {
 
     private Party party;
     private CharacterModGUI cmGUI;
+    private int level;
     
     public LevelTransitionGUI() {
         initComponents();
         levelTransition();
     }
     
-    public LevelTransitionGUI(Party party, CharacterModGUI cmGUI) {
+    public LevelTransitionGUI(int level, Party party, CharacterModGUI cmGUI) {
+        this.level = level;
         this.party = party;
         this.cmGUI = cmGUI;
         initComponents();
@@ -138,7 +140,7 @@ public class LevelTransitionGUI extends javax.swing.JFrame {
                     ChapterText.setVisible(false);
                     LevelNamePlatform.setVisible(false);
                     LevelNameText.setVisible(false);
-                    MapGUI mGUI = new MapGUI(party,cmGUI);
+                    MapGUI mGUI = new MapGUI(level,party,cmGUI);
                     mGUI.setVisible(true);
                     setVisible(false);
                 } catch (InterruptedException ex) {

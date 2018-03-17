@@ -3,8 +3,6 @@
  */
 package feko_steffensmeierdoty;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
@@ -26,6 +24,10 @@ public class MapGUI extends javax.swing.JFrame {
     private Party enemyParty = new Party();
     private static GridTile[] lowerGrid;
     private static GridTile[] upperGrid;
+    private final JLayeredPane[] charactersHP = new JLayeredPane[8];
+    private final JLabel[] charactersHPOnes = new JLabel[8];
+    private final JLabel[] charactersHPTens = new JLabel[8];
+    private final JProgressBar[] characterHPBars = new JProgressBar[8];
     private boolean dangerArea = true;
     private boolean turn = true;
     private boolean positionMarker = false;
@@ -34,14 +36,20 @@ public class MapGUI extends javax.swing.JFrame {
     private Thread stageClearedAnimationThread;
     private Thread fogAnimationThread;
     private String[] damageFonts;
+    private String[] enemyHPFonts;
+    private String[] allyHPFonts;
+    private int level;
     
     
     public MapGUI() {
         initComponents();
     }
     
-    public MapGUI(Party party, CharacterModGUI cmGUI) {
-        this.damageFonts = new String[]{"red0.png", "red1.png", "red2.png", "red3.png", "red4.png", "red5.png", "red6.png", "red7.png", "red8.png", "red9.png"};
+    public MapGUI(int level, Party party, CharacterModGUI cmGUI) {
+        this.damageFonts = new String[]{"red0Dmg.png", "red1Dmg.png", "red2Dmg.png", "red3Dmg.png", "red4Dmg.png", "red5Dmg.png", "red6Dmg.png", "red7Dmg.png", "red8Dmg.png", "red9Dmg.png"};
+        this.allyHPFonts = new String[]{"blue0HP.png", "blue1HP.png", "blue2HP.png", "blue3HP.png", "blue4HP.png", "blue5HP.png", "blue6HP.png", "blue7HP.png", "blue8HP.png", "blue9HP.png"};
+        this.enemyHPFonts = new String[]{"red0HP.png", "red1HP.png", "red2HP.png", "red3HP.png", "red4HP.png", "red5HP.png", "red6HP.png", "red7HP.png", "red8HP.png", "red9HP.png"};
+        this.level = level;
         this.cmGUI = cmGUI;
         this.allyParty = party;
         initComponents();
@@ -67,13 +75,45 @@ public class MapGUI extends javax.swing.JFrame {
         DamageLabelTens = new javax.swing.JLabel();
         DamageLabelOnes = new javax.swing.JLabel();
         DamageSeperator = new javax.swing.JLabel();
+        EnemyChar4HP = new javax.swing.JLayeredPane();
+        EnemyChar4DmgTens = new javax.swing.JLabel();
+        EnemyChar4DmgOnes = new javax.swing.JLabel();
+        EnemyChar4HPBar = new javax.swing.JProgressBar();
         EnemyCharacter4 = new javax.swing.JToggleButton();
+        EnemyChar3HP = new javax.swing.JLayeredPane();
+        EnemyChar3DmgTens = new javax.swing.JLabel();
+        EnemyChar3DmgOnes = new javax.swing.JLabel();
+        EnemyChar3HPBar = new javax.swing.JProgressBar();
         EnemyCharacter3 = new javax.swing.JToggleButton();
+        EnemyChar2HP = new javax.swing.JLayeredPane();
+        EnemyChar2DmgTens = new javax.swing.JLabel();
+        EnemyChar2DmgOnes = new javax.swing.JLabel();
+        EnemyChar2HPBar = new javax.swing.JProgressBar();
         EnemyCharacter2 = new javax.swing.JToggleButton();
+        EnemyChar1HP = new javax.swing.JLayeredPane();
+        EnemyChar1DmgTens = new javax.swing.JLabel();
+        EnemyChar1DmgOnes = new javax.swing.JLabel();
+        EnemyChar1HPBar = new javax.swing.JProgressBar();
         EnemyCharacter1 = new javax.swing.JToggleButton();
+        AllyChar4HP = new javax.swing.JLayeredPane();
+        AllyChar4DmgTens = new javax.swing.JLabel();
+        AllyChar4DmgOnes = new javax.swing.JLabel();
+        AllyChar4HPBar = new javax.swing.JProgressBar();
         AllyCharacter4 = new javax.swing.JToggleButton();
+        AllyChar3HP = new javax.swing.JLayeredPane();
+        AllyChar3DmgTens = new javax.swing.JLabel();
+        AllyChar3DmgOnes = new javax.swing.JLabel();
+        AllyChar3HPBar = new javax.swing.JProgressBar();
         AllyCharacter3 = new javax.swing.JToggleButton();
+        AllyChar2HP = new javax.swing.JLayeredPane();
+        AllyChar2DmgTens = new javax.swing.JLabel();
+        AllyChar2DmgOnes = new javax.swing.JLabel();
+        AllyChar2HPBar = new javax.swing.JProgressBar();
         AllyCharacter2 = new javax.swing.JToggleButton();
+        AllyChar1HP = new javax.swing.JLayeredPane();
+        AllyChar1DmgTens = new javax.swing.JLabel();
+        AllyChar1DmgOnes = new javax.swing.JLabel();
+        AllyChar1HPBar = new javax.swing.JProgressBar();
         AllyCharacter1 = new javax.swing.JToggleButton();
         Fog2 = new javax.swing.JLabel();
         Fog1 = new javax.swing.JLabel();
@@ -201,7 +241,7 @@ public class MapGUI extends javax.swing.JFrame {
         TopBattleBorderStats = new javax.swing.JLabel();
         StatsLayer = new javax.swing.JLayeredPane();
         LevelText = new javax.swing.JTextField();
-        LevelProgresBar = new javax.swing.JProgressBar();
+        LevelProgressBar = new javax.swing.JProgressBar();
         CharacterPortrait = new javax.swing.JLabel();
         WeaponNameText = new javax.swing.JTextField();
         AttackLevel1 = new javax.swing.JTextField();
@@ -322,6 +362,29 @@ public class MapGUI extends javax.swing.JFrame {
         MapLayer.add(DamageSeperator);
         DamageSeperator.setBounds(0, 0, 540, 930);
 
+        EnemyChar4HP.setVisible(false);
+        EnemyChar4HP.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        EnemyChar4DmgTens.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        EnemyChar4DmgTens.setForeground(new java.awt.Color(255, 255, 255));
+        EnemyChar4DmgTens.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fonts/blue3HP.png"))); // NOI18N
+        EnemyChar4HP.add(EnemyChar4DmgTens, new org.netbeans.lib.awtextra.AbsoluteConstraints(3, 0, -1, 20));
+
+        EnemyChar4DmgOnes.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        EnemyChar4DmgOnes.setForeground(new java.awt.Color(255, 255, 255));
+        EnemyChar4DmgOnes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fonts/blue3HP.png"))); // NOI18N
+        EnemyChar4HP.add(EnemyChar4DmgOnes, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 0, -1, 20));
+
+        EnemyChar4HPBar.setBackground(new java.awt.Color(0, 0, 0));
+        EnemyChar4HPBar.setForeground(new java.awt.Color(255, 51, 51));
+        EnemyChar4HPBar.setMaximumSize(new java.awt.Dimension(148, 35));
+        EnemyChar4HPBar.setMinimumSize(new java.awt.Dimension(148, 35));
+        EnemyChar4HPBar.setPreferredSize(new java.awt.Dimension(148, 35));
+        EnemyChar4HP.add(EnemyChar4HPBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 7, 60, 10));
+
+        MapLayer.add(EnemyChar4HP);
+        EnemyChar4HP.setBounds(0, 0, 90, 20);
+
         EnemyCharacter4.setVisible(false);
         EnemyCharacter4.setBorderPainted(false);
         EnemyCharacter4.setContentAreaFilled(false);
@@ -347,6 +410,29 @@ public class MapGUI extends javax.swing.JFrame {
         });
         MapLayer.add(EnemyCharacter4);
         EnemyCharacter4.setBounds(180, 660, 90, 90);
+
+        EnemyChar3HP.setVisible(false);
+        EnemyChar3HP.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        EnemyChar3DmgTens.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        EnemyChar3DmgTens.setForeground(new java.awt.Color(255, 255, 255));
+        EnemyChar3DmgTens.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fonts/blue3HP.png"))); // NOI18N
+        EnemyChar3HP.add(EnemyChar3DmgTens, new org.netbeans.lib.awtextra.AbsoluteConstraints(3, 0, -1, 20));
+
+        EnemyChar3DmgOnes.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        EnemyChar3DmgOnes.setForeground(new java.awt.Color(255, 255, 255));
+        EnemyChar3DmgOnes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fonts/blue3HP.png"))); // NOI18N
+        EnemyChar3HP.add(EnemyChar3DmgOnes, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 0, -1, 20));
+
+        EnemyChar3HPBar.setBackground(new java.awt.Color(0, 0, 0));
+        EnemyChar3HPBar.setForeground(new java.awt.Color(255, 51, 51));
+        EnemyChar3HPBar.setMaximumSize(new java.awt.Dimension(148, 35));
+        EnemyChar3HPBar.setMinimumSize(new java.awt.Dimension(148, 35));
+        EnemyChar3HPBar.setPreferredSize(new java.awt.Dimension(148, 35));
+        EnemyChar3HP.add(EnemyChar3HPBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 7, 60, 10));
+
+        MapLayer.add(EnemyChar3HP);
+        EnemyChar3HP.setBounds(0, 0, 90, 20);
 
         EnemyCharacter3.setVisible(false);
         EnemyCharacter3.setBorderPainted(false);
@@ -374,6 +460,29 @@ public class MapGUI extends javax.swing.JFrame {
         MapLayer.add(EnemyCharacter3);
         EnemyCharacter3.setBounds(0, 570, 90, 90);
 
+        EnemyChar2HP.setVisible(false);
+        EnemyChar2HP.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        EnemyChar2DmgTens.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        EnemyChar2DmgTens.setForeground(new java.awt.Color(255, 255, 255));
+        EnemyChar2DmgTens.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fonts/blue3HP.png"))); // NOI18N
+        EnemyChar2HP.add(EnemyChar2DmgTens, new org.netbeans.lib.awtextra.AbsoluteConstraints(3, 0, -1, 20));
+
+        EnemyChar2DmgOnes.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        EnemyChar2DmgOnes.setForeground(new java.awt.Color(255, 255, 255));
+        EnemyChar2DmgOnes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fonts/blue3HP.png"))); // NOI18N
+        EnemyChar2HP.add(EnemyChar2DmgOnes, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 0, -1, 20));
+
+        EnemyChar2HPBar.setBackground(new java.awt.Color(0, 0, 0));
+        EnemyChar2HPBar.setForeground(new java.awt.Color(255, 51, 51));
+        EnemyChar2HPBar.setMaximumSize(new java.awt.Dimension(148, 35));
+        EnemyChar2HPBar.setMinimumSize(new java.awt.Dimension(148, 35));
+        EnemyChar2HPBar.setPreferredSize(new java.awt.Dimension(148, 35));
+        EnemyChar2HP.add(EnemyChar2HPBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 7, 60, 10));
+
+        MapLayer.add(EnemyChar2HP);
+        EnemyChar2HP.setBounds(0, 0, 90, 20);
+
         EnemyCharacter2.setVisible(false);
         EnemyCharacter2.setBorderPainted(false);
         EnemyCharacter2.setContentAreaFilled(false);
@@ -399,6 +508,29 @@ public class MapGUI extends javax.swing.JFrame {
         });
         MapLayer.add(EnemyCharacter2);
         EnemyCharacter2.setBounds(0, 660, 90, 90);
+
+        EnemyChar1HP.setVisible(false);
+        EnemyChar1HP.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        EnemyChar1DmgTens.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        EnemyChar1DmgTens.setForeground(new java.awt.Color(255, 255, 255));
+        EnemyChar1DmgTens.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fonts/blue3HP.png"))); // NOI18N
+        EnemyChar1HP.add(EnemyChar1DmgTens, new org.netbeans.lib.awtextra.AbsoluteConstraints(3, 0, -1, 20));
+
+        EnemyChar1DmgOnes.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        EnemyChar1DmgOnes.setForeground(new java.awt.Color(255, 255, 255));
+        EnemyChar1DmgOnes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fonts/blue3HP.png"))); // NOI18N
+        EnemyChar1HP.add(EnemyChar1DmgOnes, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 0, -1, 20));
+
+        EnemyChar1HPBar.setBackground(new java.awt.Color(0, 0, 0));
+        EnemyChar1HPBar.setForeground(new java.awt.Color(255, 51, 51));
+        EnemyChar1HPBar.setMaximumSize(new java.awt.Dimension(148, 35));
+        EnemyChar1HPBar.setMinimumSize(new java.awt.Dimension(148, 35));
+        EnemyChar1HPBar.setPreferredSize(new java.awt.Dimension(148, 35));
+        EnemyChar1HP.add(EnemyChar1HPBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 7, 60, 10));
+
+        MapLayer.add(EnemyChar1HP);
+        EnemyChar1HP.setBounds(0, 0, 90, 20);
 
         EnemyCharacter1.setVisible(false);
         EnemyCharacter1.setBorderPainted(false);
@@ -426,6 +558,29 @@ public class MapGUI extends javax.swing.JFrame {
         MapLayer.add(EnemyCharacter1);
         EnemyCharacter1.setBounds(90, 660, 90, 90);
 
+        AllyChar4HP.setVisible(false);
+        AllyChar4HP.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        AllyChar4DmgTens.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        AllyChar4DmgTens.setForeground(new java.awt.Color(255, 255, 255));
+        AllyChar4DmgTens.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fonts/blue3HP.png"))); // NOI18N
+        AllyChar4HP.add(AllyChar4DmgTens, new org.netbeans.lib.awtextra.AbsoluteConstraints(3, 0, -1, 20));
+
+        AllyChar4DmgOnes.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        AllyChar4DmgOnes.setForeground(new java.awt.Color(255, 255, 255));
+        AllyChar4DmgOnes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fonts/blue3HP.png"))); // NOI18N
+        AllyChar4HP.add(AllyChar4DmgOnes, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 0, -1, 20));
+
+        AllyChar4HPBar.setBackground(new java.awt.Color(0, 0, 0));
+        AllyChar4HPBar.setForeground(new java.awt.Color(102, 204, 255));
+        AllyChar4HPBar.setMaximumSize(new java.awt.Dimension(148, 35));
+        AllyChar4HPBar.setMinimumSize(new java.awt.Dimension(148, 35));
+        AllyChar4HPBar.setPreferredSize(new java.awt.Dimension(148, 35));
+        AllyChar4HP.add(AllyChar4HPBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 7, 60, 10));
+
+        MapLayer.add(AllyChar4HP);
+        AllyChar4HP.setBounds(0, 0, 90, 20);
+
         AllyCharacter4.setVisible(false);
         AllyCharacter4.setBorderPainted(false);
         AllyCharacter4.setContentAreaFilled(false);
@@ -451,6 +606,29 @@ public class MapGUI extends javax.swing.JFrame {
         });
         MapLayer.add(AllyCharacter4);
         AllyCharacter4.setBounds(270, 210, 90, 90);
+
+        AllyChar3HP.setVisible(false);
+        AllyChar3HP.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        AllyChar3DmgTens.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        AllyChar3DmgTens.setForeground(new java.awt.Color(255, 255, 255));
+        AllyChar3DmgTens.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fonts/blue3HP.png"))); // NOI18N
+        AllyChar3HP.add(AllyChar3DmgTens, new org.netbeans.lib.awtextra.AbsoluteConstraints(3, 0, -1, 20));
+
+        AllyChar3DmgOnes.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        AllyChar3DmgOnes.setForeground(new java.awt.Color(255, 255, 255));
+        AllyChar3DmgOnes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fonts/blue3HP.png"))); // NOI18N
+        AllyChar3HP.add(AllyChar3DmgOnes, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 0, -1, 20));
+
+        AllyChar3HPBar.setBackground(new java.awt.Color(0, 0, 0));
+        AllyChar3HPBar.setForeground(new java.awt.Color(102, 204, 255));
+        AllyChar3HPBar.setMaximumSize(new java.awt.Dimension(148, 35));
+        AllyChar3HPBar.setMinimumSize(new java.awt.Dimension(148, 35));
+        AllyChar3HPBar.setPreferredSize(new java.awt.Dimension(148, 35));
+        AllyChar3HP.add(AllyChar3HPBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 7, 60, 10));
+
+        MapLayer.add(AllyChar3HP);
+        AllyChar3HP.setBounds(0, 0, 90, 20);
 
         AllyCharacter3.setVisible(false);
         AllyCharacter3.setBorderPainted(false);
@@ -478,6 +656,29 @@ public class MapGUI extends javax.swing.JFrame {
         MapLayer.add(AllyCharacter3);
         AllyCharacter3.setBounds(0, 210, 90, 90);
 
+        AllyChar2HP.setVisible(false);
+        AllyChar2HP.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        AllyChar2DmgTens.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        AllyChar2DmgTens.setForeground(new java.awt.Color(255, 255, 255));
+        AllyChar2DmgTens.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fonts/blue3HP.png"))); // NOI18N
+        AllyChar2HP.add(AllyChar2DmgTens, new org.netbeans.lib.awtextra.AbsoluteConstraints(3, 0, -1, 20));
+
+        AllyChar2DmgOnes.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        AllyChar2DmgOnes.setForeground(new java.awt.Color(255, 255, 255));
+        AllyChar2DmgOnes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fonts/blue3HP.png"))); // NOI18N
+        AllyChar2HP.add(AllyChar2DmgOnes, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 0, -1, 20));
+
+        AllyChar2HPBar.setBackground(new java.awt.Color(0, 0, 0));
+        AllyChar2HPBar.setForeground(new java.awt.Color(102, 204, 255));
+        AllyChar2HPBar.setMaximumSize(new java.awt.Dimension(148, 35));
+        AllyChar2HPBar.setMinimumSize(new java.awt.Dimension(148, 35));
+        AllyChar2HPBar.setPreferredSize(new java.awt.Dimension(148, 35));
+        AllyChar2HP.add(AllyChar2HPBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 7, 60, 10));
+
+        MapLayer.add(AllyChar2HP);
+        AllyChar2HP.setBounds(0, 0, 90, 20);
+
         AllyCharacter2.setVisible(false);
         AllyCharacter2.setBorderPainted(false);
         AllyCharacter2.setContentAreaFilled(false);
@@ -503,6 +704,29 @@ public class MapGUI extends javax.swing.JFrame {
         });
         MapLayer.add(AllyCharacter2);
         AllyCharacter2.setBounds(90, 300, 90, 90);
+
+        AllyChar1HP.setVisible(false);
+        AllyChar1HP.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        AllyChar1DmgTens.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        AllyChar1DmgTens.setForeground(new java.awt.Color(255, 255, 255));
+        AllyChar1DmgTens.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fonts/blue3HP.png"))); // NOI18N
+        AllyChar1HP.add(AllyChar1DmgTens, new org.netbeans.lib.awtextra.AbsoluteConstraints(3, 0, -1, 20));
+
+        AllyChar1DmgOnes.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        AllyChar1DmgOnes.setForeground(new java.awt.Color(255, 255, 255));
+        AllyChar1DmgOnes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fonts/blue3HP.png"))); // NOI18N
+        AllyChar1HP.add(AllyChar1DmgOnes, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 0, -1, 20));
+
+        AllyChar1HPBar.setBackground(new java.awt.Color(0, 0, 0));
+        AllyChar1HPBar.setForeground(new java.awt.Color(102, 204, 255));
+        AllyChar1HPBar.setMaximumSize(new java.awt.Dimension(148, 35));
+        AllyChar1HPBar.setMinimumSize(new java.awt.Dimension(148, 35));
+        AllyChar1HPBar.setPreferredSize(new java.awt.Dimension(148, 35));
+        AllyChar1HP.add(AllyChar1HPBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 7, 60, 10));
+
+        MapLayer.add(AllyChar1HP);
+        AllyChar1HP.setBounds(0, 0, 90, 20);
 
         AllyCharacter1.setVisible(false);
         AllyCharacter1.setBorderPainted(false);
@@ -1226,10 +1450,12 @@ public class MapGUI extends javax.swing.JFrame {
         LevelText.setOpaque(false);
         StatsLayer.add(LevelText, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, 20, 40));
 
-        LevelProgresBar.setMaximumSize(new java.awt.Dimension(148, 35));
-        LevelProgresBar.setMinimumSize(new java.awt.Dimension(148, 35));
-        LevelProgresBar.setPreferredSize(new java.awt.Dimension(148, 35));
-        StatsLayer.add(LevelProgresBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, 120, 10));
+        LevelProgressBar.setBackground(new java.awt.Color(0, 0, 0));
+        LevelProgressBar.setForeground(new java.awt.Color(102, 204, 255));
+        LevelProgressBar.setMaximumSize(new java.awt.Dimension(148, 35));
+        LevelProgressBar.setMinimumSize(new java.awt.Dimension(148, 35));
+        LevelProgressBar.setPreferredSize(new java.awt.Dimension(148, 35));
+        StatsLayer.add(LevelProgressBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, 120, 10));
         StatsLayer.add(CharacterPortrait, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 1, -1, -1));
 
         WeaponNameText.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -1367,7 +1593,7 @@ public class MapGUI extends javax.swing.JFrame {
 
     private void AllyCharacter1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter1MouseReleased
         if(turn == true && AllyCharacter1.isEnabled())
-            performAction(LowerGrid,AllyCharacter1, allyParty, 0);
+            performAction(LowerGrid,AllyCharacter1, AllyChar1HP, allyParty, 0);
     }//GEN-LAST:event_AllyCharacter1MouseReleased
 
     private void AllyCharacter1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter1MousePressed
@@ -1378,12 +1604,12 @@ public class MapGUI extends javax.swing.JFrame {
 
     private void AllyCharacter1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter1MouseDragged
         if(turn == true && AllyCharacter1.isEnabled())
-            moveCharacter(AllyCharacter1, allyParty, 0);
+            moveCharacter(AllyCharacter1, AllyChar1HP, allyParty, 0);
     }//GEN-LAST:event_AllyCharacter1MouseDragged
 
     private void AllyCharacter3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter3MouseReleased
         if(turn == true && AllyCharacter3.isEnabled())
-            performAction(LowerGrid,AllyCharacter3, allyParty, 2);
+            performAction(LowerGrid,AllyCharacter3, AllyChar3HP, allyParty, 2);
     }//GEN-LAST:event_AllyCharacter3MouseReleased
 
     private void AllyCharacter3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter3MousePressed
@@ -1394,12 +1620,12 @@ public class MapGUI extends javax.swing.JFrame {
 
     private void AllyCharacter3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter3MouseDragged
         if(turn == true && AllyCharacter3.isEnabled())
-            moveCharacter(AllyCharacter3, allyParty, 2);
+            moveCharacter(AllyCharacter3, AllyChar3HP,  allyParty, 2);
     }//GEN-LAST:event_AllyCharacter3MouseDragged
 
     private void AllyCharacter4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter4MouseReleased
         if(turn == true && AllyCharacter4.isEnabled())
-            performAction(LowerGrid,AllyCharacter4, allyParty, 3);
+            performAction(LowerGrid,AllyCharacter4, AllyChar4HP, allyParty, 3);
     }//GEN-LAST:event_AllyCharacter4MouseReleased
 
     private void AllyCharacter4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter4MousePressed
@@ -1410,12 +1636,12 @@ public class MapGUI extends javax.swing.JFrame {
 
     private void AllyCharacter4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter4MouseDragged
         if(turn == true && AllyCharacter4.isEnabled())
-        moveCharacter(AllyCharacter4, allyParty, 3);
+        moveCharacter(AllyCharacter4, AllyChar4HP,  allyParty, 3);
     }//GEN-LAST:event_AllyCharacter4MouseDragged
 
     private void EnemyCharacter1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter1MouseReleased
         if(turn == false && EnemyCharacter1.isEnabled())
-            performAction(LowerGrid,EnemyCharacter1, enemyParty, 0);
+            performAction(LowerGrid,EnemyCharacter1,  EnemyChar1HP, enemyParty, 0);
     }//GEN-LAST:event_EnemyCharacter1MouseReleased
 
     private void EnemyCharacter1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter1MousePressed
@@ -1426,13 +1652,13 @@ public class MapGUI extends javax.swing.JFrame {
 
     private void EnemyCharacter1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter1MouseDragged
         if(turn == false && EnemyCharacter1.isEnabled()) {
-            moveCharacter(EnemyCharacter1, enemyParty, 0);
+            moveCharacter(EnemyCharacter1, EnemyChar1HP, enemyParty, 0);
         }
     }//GEN-LAST:event_EnemyCharacter1MouseDragged
 
     private void EnemyCharacter2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter2MouseReleased
         if(turn == false && EnemyCharacter2.isEnabled())
-            performAction(LowerGrid,EnemyCharacter2, enemyParty, 1);
+            performAction(LowerGrid,EnemyCharacter2,  EnemyChar2HP, enemyParty, 1);
     }//GEN-LAST:event_EnemyCharacter2MouseReleased
 
     private void EnemyCharacter2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter2MousePressed
@@ -1443,12 +1669,12 @@ public class MapGUI extends javax.swing.JFrame {
 
     private void EnemyCharacter2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter2MouseDragged
         if(turn == false && EnemyCharacter2.isEnabled())
-            moveCharacter(EnemyCharacter2, enemyParty, 1);
+            moveCharacter(EnemyCharacter2, EnemyChar2HP, enemyParty, 1);
     }//GEN-LAST:event_EnemyCharacter2MouseDragged
 
     private void EnemyCharacter3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter3MouseReleased
         if(turn == false && EnemyCharacter3.isEnabled())
-            performAction(LowerGrid,EnemyCharacter3, enemyParty, 2);
+            performAction(LowerGrid,EnemyCharacter3,  EnemyChar3HP,enemyParty, 2);
     }//GEN-LAST:event_EnemyCharacter3MouseReleased
 
     private void EnemyCharacter3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter3MousePressed
@@ -1459,12 +1685,12 @@ public class MapGUI extends javax.swing.JFrame {
 
     private void EnemyCharacter3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter3MouseDragged
         if(turn == false && EnemyCharacter3.isEnabled())
-            moveCharacter(EnemyCharacter3, enemyParty, 2);
+            moveCharacter(EnemyCharacter3, EnemyChar3HP, enemyParty, 2);
     }//GEN-LAST:event_EnemyCharacter3MouseDragged
 
     private void EnemyCharacter4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter4MouseReleased
         if(turn == false && EnemyCharacter4.isEnabled())
-            performAction(LowerGrid,EnemyCharacter4, enemyParty, 3);
+            performAction(LowerGrid,EnemyCharacter4,  EnemyChar4HP, enemyParty, 3);
     }//GEN-LAST:event_EnemyCharacter4MouseReleased
 
     private void EnemyCharacter4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter4MousePressed
@@ -1475,7 +1701,7 @@ public class MapGUI extends javax.swing.JFrame {
 
     private void EnemyCharacter4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter4MouseDragged
         if(turn == false && EnemyCharacter4.isEnabled())
-            moveCharacter(EnemyCharacter4, enemyParty, 3);
+            moveCharacter(EnemyCharacter4, EnemyChar4HP,  enemyParty, 3);
     }//GEN-LAST:event_EnemyCharacter4MouseDragged
 
     private void StageClearButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StageClearButtonMouseClicked
@@ -1514,7 +1740,7 @@ public class MapGUI extends javax.swing.JFrame {
 
     private void AllyCharacter2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter2MouseReleased
         if(turn == true && AllyCharacter2.isEnabled())
-        performAction(LowerGrid,AllyCharacter2, allyParty, 1);
+        performAction(LowerGrid,AllyCharacter2,  AllyChar2HP, allyParty, 1);
     }//GEN-LAST:event_AllyCharacter2MouseReleased
 
     private void AllyCharacter2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter2MousePressed
@@ -1525,7 +1751,7 @@ public class MapGUI extends javax.swing.JFrame {
 
     private void AllyCharacter2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter2MouseDragged
         if(turn == true && AllyCharacter2.isEnabled())
-        moveCharacter(AllyCharacter2, allyParty, 1);
+        moveCharacter(AllyCharacter2,  AllyChar2HP, allyParty, 1);
     }//GEN-LAST:event_AllyCharacter2MouseDragged
 
     private void AllyCharacter1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AllyCharacter1ActionPerformed
@@ -1564,7 +1790,7 @@ public class MapGUI extends javax.swing.JFrame {
     }
     
     //Checks if the character has made a valid move
-    private void performAction(Component mapBoundary, Component character, Party party, int armyPos) {
+    private void performAction(Component mapBoundary, Component character, JLayeredPane characterHP, Party party, int armyPos) {
         
         AttackPopUp.setVisible(false);
         BattleStatsLayer.setVisible(false);
@@ -1579,6 +1805,8 @@ public class MapGUI extends javax.swing.JFrame {
                     //Sets Character location and adds Character to the GridTile
                     checkForEndTurn(party);
                     character.setLocation(lowerGrid[j].getTile().getX(), lowerGrid[j].getTile().getY() + TopBorderStats.getHeight());
+                    characterHP.setLocation(lowerGrid[j].getTile().getX(), lowerGrid[j].getTile().getY() + TopBorderStats.getHeight() + 70);
+                    
                     if(character.getLocation() == charInitialPoint) {
                         break;
                     }
@@ -1597,7 +1825,7 @@ public class MapGUI extends javax.swing.JFrame {
                 } 
                 //If the mouse is within the GridTile, not accessible, and is occupied, check for damage, death, and stage over.
                 else if((isMouseWithinComponent(lowerGrid[j].getTile())) && lowerGrid[j].isAccessible() == false && lowerGrid[j].isOccupied() && !lowerGrid[j].getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png")).toString()) && !lowerGrid[j].getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/redPositionMarker.png")).toString())) {
-                    checkCharacterDamage(party, lowerGrid[j], character, armyPos);
+                    checkCharacterDamage(party, lowerGrid[j], character, characterHP, armyPos);
                     resetPositionMarkers();
                     checkCharacterDeath(j, party, party.getArmyChar(armyPos), armyPos);
                     checkStageOver();   
@@ -1606,14 +1834,17 @@ public class MapGUI extends javax.swing.JFrame {
                 //Last Condition: If the GridTile is not accessible, reset the position of the Character.
                 else if(lowerGrid[j].isAccessible() == false){
                     character.setLocation(charInitialPoint);
+                    characterHP.setLocation(new Point((int)charInitialPoint.getX(), (int)charInitialPoint.getY() + 70));
                 }
             }
+            updateCharactersHP();
             cleanUpAllyTrace(character, party, armyPos);
                     
         } 
         //If mouse location is not within the boundaries of the Map, reset Character position.
         else {
             character.setLocation(charInitialPoint);
+            characterHP.setLocation(new Point((int)charInitialPoint.getX(), (int)charInitialPoint.getY() + 70));
             cleanUpAllyTrace(character, party, armyPos);
         }
     }
@@ -1650,10 +1881,11 @@ public class MapGUI extends javax.swing.JFrame {
     }
     
     //Changes the position of the character button relative to the mouse position
-    private void moveCharacter(Component character, Party party, int armyPos) {
+    private void moveCharacter(Component character, JLayeredPane characterHP,Party party, int armyPos) {
         AttackPopUp.setVisible(false);
         BattleStatsLayer.setVisible(false);
         MapLayer.moveToFront(character);
+        MapLayer.moveToFront(characterHP);
         if(isMouseWithinComponent(MainContainer)) {
             mouseLocation = MouseInfo.getPointerInfo().getLocation();
             componentLocation = MainContainer.getLocationOnScreen();
@@ -1722,6 +1954,7 @@ public class MapGUI extends javax.swing.JFrame {
                 }
             }
             character.setLocation(mouseLocation);
+            characterHP.setLocation(new Point((int)mouseLocation.getX(), (int)mouseLocation.getY() + 70));
         }
     }
     
@@ -1781,14 +2014,15 @@ public class MapGUI extends javax.swing.JFrame {
         if(lowerGrid[gridPos].getCharacter().getCurrentHP() < 1) {
             if(party.equals(allyParty)) {
                 AllyChar allyChar = (AllyChar)damageDealer;
-                allyChar.gainExperience(100);
+                allyChar.gainExperience(25);
                 
                 updateCharacterStats(party, armyPos);
                 //Add LEVEL UP Animation
             }
-            for(JToggleButton jtb: characters) {
-                if(jtb.getIcon() != null && lowerGrid[gridPos].getCharacter() != null && jtb.getIcon().toString().equals(lowerGrid[gridPos].getCharacter().getImg().toString())) {
-                    jtb.setVisible(false);
+            for(int i = 0; i < characters.length - 1; i++) {
+                if(characters[i].getIcon() != null && lowerGrid[gridPos].getCharacter() != null && characters[i].getIcon().toString().equals(lowerGrid[gridPos].getCharacter().getImg().toString())) {
+                    characters[i].setVisible(false);
+                    charactersHP[i].setVisible(false);
                     lowerGrid[gridPos].getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png")));
                     upperGrid[gridPos].getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png")));
                     lowerGrid[gridPos].removeCharacter();
@@ -1798,11 +2032,12 @@ public class MapGUI extends javax.swing.JFrame {
     }
     
     //Checks whether a Character should deal damage or not.
-    private void checkCharacterDamage(Party party, GridTile grid1, Component character, int armyPos) {
+    private void checkCharacterDamage(Party party, GridTile grid1, Component character, JLayeredPane characterHP, int armyPos) {
         //Checks if Character is own teammate. If so, return and don't do damage.
         for(int i=0; i < party.getArmySize(); i++) {
             if(grid1.getCharacter() == party.getArmyChar(i)) {
                 character.setLocation(charInitialPoint);
+                characterHP.setLocation(new Point((int)charInitialPoint.getX(), (int)charInitialPoint.getY() + 70));
                 return;
             }
         }
@@ -1845,15 +2080,65 @@ public class MapGUI extends javax.swing.JFrame {
         }
     }
     
+    
+    private void updateCharactersHP() {
+        int currHP;
+        for(int i = 0; i < characters.length; i++) {
+            if(characters[i].isVisible() && i < 4) {
+                currHP = allyParty.getArmyChar(i).getCurrentHP();
+                if(currHP < 10) {
+                    charactersHPOnes[i].setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fonts/" + allyHPFonts[currHP])));
+                    charactersHPTens[i].setIcon(null);
+                }else if(currHP > 9 && currHP < 20) {
+                    charactersHPOnes[i].setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fonts/" + allyHPFonts[currHP-10])));
+                    charactersHPTens[i].setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fonts/blue1HP.png")));
+                }
+                else if(currHP > 19 && currHP < 30) {
+                    charactersHPOnes[i].setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fonts/" + allyHPFonts[currHP-20])));
+                    charactersHPTens[i].setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fonts/blue2HP.png")));
+                } else if(currHP > 29 && currHP < 40) {
+                    charactersHPOnes[i].setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fonts/" + allyHPFonts[currHP-30])));
+                    charactersHPTens[i].setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fonts/blue3HP.png")));
+                }
+                
+                 characterHPBars[i].setMaximum(allyParty.getArmyChar(i).getMaxHP());
+                 characterHPBars[i].setValue(allyParty.getArmyChar(i).getCurrentHP());
+                    
+            } else if(characters[i].isVisible() && i > 3) {
+                
+                currHP = enemyParty.getArmyChar(i-4).getCurrentHP();
+                if(currHP < 10) {
+                    charactersHPOnes[i].setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fonts/" + enemyHPFonts[currHP])));
+                    charactersHPTens[i].setIcon(null);
+                }else if(currHP > 9 && currHP < 20) {
+                    charactersHPOnes[i].setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fonts/" + enemyHPFonts[currHP-10])));
+                    charactersHPTens[i].setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fonts/red1HP.png")));
+                }
+                else if(currHP > 19 && currHP < 30) {
+                    charactersHPOnes[i].setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fonts/" + enemyHPFonts[currHP-20])));
+                    charactersHPTens[i].setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fonts/red2HP.png")));
+                } else if(currHP > 29 && currHP < 40) {
+                    charactersHPOnes[i].setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fonts/" + enemyHPFonts[currHP-30])));
+                    charactersHPTens[i].setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fonts/red3HP.png")));
+                }
+                
+                characterHPBars[i].setMaximum(enemyParty.getArmyChar(i-4).getMaxHP());
+                characterHPBars[i].setValue(enemyParty.getArmyChar(i-4).getCurrentHP());
+            }
+        }
+    }
+    
     //Updates characters stats in Stats Layer once clicked on. Also gets the characters initial position when first clicked on
     private void updateCharacterStats(Party party, int partyPosition) {
         
         if(party == allyParty) {
+            LevelProgressBar.setValue((((AllyChar)allyParty.getArmyChar(partyPosition)).getExperience()));
             NamePlate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/name_plate.png")));
             NamePlateDecor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/name_plate_decor.png")));
             StatsInterface.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/stats_border_1.png")));
             TopBorderStats.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/top_border_stats.png")));
         }else {
+            LevelProgressBar.setValue(0);
             NamePlate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/name_plate_red.png")));
             NamePlateDecor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/enemy_name_plate_decor.png")));
             StatsInterface.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/stats_border_2.png")));
@@ -1979,24 +2264,7 @@ public class MapGUI extends javax.swing.JFrame {
     //Initializes MapGUI variables before user input
     private void initMapGUI() {
         
-        //Creates Level 1 Grids
-        MapGUI.lowerGrid = new GridTile[]{new GridTile(pos00,true), new GridTile(pos01,false), new GridTile(pos02,false), new GridTile(pos03,true), new GridTile(pos04,true), new GridTile(pos05,false), 
-                                     new GridTile(pos10,true), new GridTile(pos11,true), new GridTile(pos12,false), new GridTile(pos13,true), new GridTile(pos14,true), new GridTile(pos15,false), 
-                                     new GridTile(pos20,true), new GridTile(pos21,true), new GridTile(pos22,true), new GridTile(pos23,true), new GridTile(pos24,false), new GridTile(pos25,true), 
-                                     new GridTile(pos30,false), new GridTile(pos31,false), new GridTile(pos32,true), new GridTile(pos33,true), new GridTile(pos34,true), new GridTile(pos35,true), 
-                                     new GridTile(pos40,true), new GridTile(pos41,true), new GridTile(pos42,true), new GridTile(pos43,true), new GridTile(pos44,true), new GridTile(pos45,true), 
-                                     new GridTile(pos50,true), new GridTile(pos51,true), new GridTile(pos52,false), new GridTile(pos53,false), new GridTile(pos54,true), new GridTile(pos55,true), 
-                                     new GridTile(pos60,true), new GridTile(pos61,true), new GridTile(pos62,true), new GridTile(pos63,false), new GridTile(pos64,false), new GridTile(pos65,true), 
-                                     new GridTile(pos70,false), new GridTile(pos71,false), new GridTile(pos72,false), new GridTile(pos73,true), new GridTile(pos74,true), new GridTile(pos75,true)};
-        
-        MapGUI.upperGrid = new GridTile[]{new GridTile(pos1,true), new GridTile(pos2,false), new GridTile(pos3,false), new GridTile(pos4,true), new GridTile(pos5,true), new GridTile(pos6,false), 
-                                     new GridTile(pos16,true), new GridTile(pos17,true), new GridTile(pos18,false), new GridTile(pos19,true), new GridTile(pos26,true), new GridTile(pos27,false), 
-                                     new GridTile(pos28,true), new GridTile(pos29,true), new GridTile(pos36,true), new GridTile(pos37,true), new GridTile(pos38,false), new GridTile(pos39,true), 
-                                     new GridTile(pos46,false), new GridTile(pos47,false), new GridTile(pos48,true), new GridTile(pos49,true), new GridTile(pos56,true), new GridTile(pos57,true), 
-                                     new GridTile(pos58,true), new GridTile(pos59,true), new GridTile(pos66,true), new GridTile(pos67,true), new GridTile(pos68,true), new GridTile(pos69,true), 
-                                     new GridTile(pos76,true), new GridTile(pos77,true), new GridTile(pos78,false), new GridTile(pos79,false), new GridTile(pos80,true), new GridTile(pos81,true), 
-                                     new GridTile(pos82,true), new GridTile(pos83,true), new GridTile(pos84,true), new GridTile(pos85,false), new GridTile(pos86,false), new GridTile(pos87,true), 
-                                     new GridTile(pos88,false), new GridTile(pos89,false), new GridTile(pos90,false), new GridTile(pos91,true), new GridTile(pos92,true), new GridTile(pos93,true)};
+        setLevelValues();
         
         //Connects the character array with the character buttons
         characters[0] = AllyCharacter1;
@@ -2008,19 +2276,54 @@ public class MapGUI extends javax.swing.JFrame {
         characters[6] = EnemyCharacter3;
         characters[7] = EnemyCharacter4;
         
-        //Adds Level 1 enemies into enemy party
-        enemyParty.addToArmy(new EnemyChar("Zephiel"));
-        enemyParty.addToArmy(new EnemyChar("Black Knight"));
-        enemyParty.addToArmy(new EnemyChar("Hawkeye"));
+        charactersHP[0] = AllyChar1HP;
+        charactersHP[1] = AllyChar2HP;
+        charactersHP[2] = AllyChar3HP;
+        charactersHP[3] = AllyChar4HP;
+        charactersHP[4] = EnemyChar1HP;
+        charactersHP[5] = EnemyChar2HP;
+        charactersHP[6] = EnemyChar3HP;
+        charactersHP[7] = EnemyChar4HP;
+        
+        charactersHPOnes[0] = AllyChar1DmgOnes;
+        charactersHPOnes[1] = AllyChar2DmgOnes;
+        charactersHPOnes[2] = AllyChar3DmgOnes;
+        charactersHPOnes[3] = AllyChar4DmgOnes;
+        charactersHPOnes[4] = EnemyChar1DmgOnes;
+        charactersHPOnes[5] = EnemyChar2DmgOnes;
+        charactersHPOnes[6] = EnemyChar3DmgOnes;
+        charactersHPOnes[7] = EnemyChar4DmgOnes;
+        
+        charactersHPTens[0] = AllyChar1DmgTens;
+        charactersHPTens[1] = AllyChar2DmgTens;
+        charactersHPTens[2] = AllyChar3DmgTens;
+        charactersHPTens[3] = AllyChar4DmgTens;
+        charactersHPTens[4] = EnemyChar1DmgTens;
+        charactersHPTens[5] = EnemyChar2DmgTens;
+        charactersHPTens[6] = EnemyChar3DmgTens;
+        charactersHPTens[7] = EnemyChar4DmgTens;
+        
+        characterHPBars[0] = AllyChar1HPBar;
+        characterHPBars[1] = AllyChar2HPBar;
+        characterHPBars[2] = AllyChar3HPBar;
+        characterHPBars[3] = AllyChar4HPBar;
+        characterHPBars[4] = EnemyChar1HPBar;
+        characterHPBars[5] = EnemyChar2HPBar;
+        characterHPBars[6] = EnemyChar3HPBar;
+        characterHPBars[7] = EnemyChar4HPBar;
         
         //Displays the current ally team and enemy team
         for(int i = 0; i < 8; i++) {
             if(i < 4 && i < allyParty.getArmySize()) {
-                characters[i].setVisible(true);
                 characters[i].setIcon(allyParty.getArmyChar(i).getImg());
+                characters[i].setVisible(true);
+                charactersHP[i].setVisible(true);
+                charactersHP[i].setLocation(characters[i].getX(), characters[i].getY() + 70);
             } else if(i > 3 && (i-4) < enemyParty.getArmySize()) {
                 characters[i].setIcon(enemyParty.getArmyChar(i-4).getImg());
                 characters[i].setVisible(true);
+                charactersHP[i].setVisible(true);
+                charactersHP[i].setLocation(characters[i].getX(), characters[i].getY() + 70);
             } else {
                 continue;
             }
@@ -2037,8 +2340,77 @@ public class MapGUI extends javax.swing.JFrame {
                 }
             }
         }
+        updateCharactersHP();
         startPhaseAnimation();
         fogAnimation();
+    }
+    
+    private void setLevelValues() {
+        if(level == 1) {
+            Map.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/backgrounds/level1_map.png")));
+            
+            EnemyCharacter1.setLocation(90, 660);
+            EnemyCharacter2.setLocation(0, 660);
+            EnemyCharacter3.setLocation(0, 570);
+            EnemyCharacter4.setLocation(0, 480);
+            
+            //Creates Level 1 Grids
+            MapGUI.lowerGrid = new GridTile[]{new GridTile(pos00,true), new GridTile(pos01,false), new GridTile(pos02,false), new GridTile(pos03,true), new GridTile(pos04,true), new GridTile(pos05,false), 
+                                         new GridTile(pos10,true), new GridTile(pos11,true), new GridTile(pos12,false), new GridTile(pos13,true), new GridTile(pos14,true), new GridTile(pos15,false), 
+                                         new GridTile(pos20,true), new GridTile(pos21,true), new GridTile(pos22,true), new GridTile(pos23,true), new GridTile(pos24,false), new GridTile(pos25,true), 
+                                         new GridTile(pos30,false), new GridTile(pos31,false), new GridTile(pos32,true), new GridTile(pos33,true), new GridTile(pos34,true), new GridTile(pos35,true), 
+                                         new GridTile(pos40,true), new GridTile(pos41,true), new GridTile(pos42,true), new GridTile(pos43,true), new GridTile(pos44,true), new GridTile(pos45,true), 
+                                         new GridTile(pos50,true), new GridTile(pos51,true), new GridTile(pos52,false), new GridTile(pos53,false), new GridTile(pos54,true), new GridTile(pos55,true), 
+                                         new GridTile(pos60,true), new GridTile(pos61,true), new GridTile(pos62,true), new GridTile(pos63,false), new GridTile(pos64,false), new GridTile(pos65,true), 
+                                         new GridTile(pos70,false), new GridTile(pos71,false), new GridTile(pos72,false), new GridTile(pos73,true), new GridTile(pos74,true), new GridTile(pos75,true)};
+
+            MapGUI.upperGrid = new GridTile[]{new GridTile(pos1,true), new GridTile(pos2,false), new GridTile(pos3,false), new GridTile(pos4,true), new GridTile(pos5,true), new GridTile(pos6,false), 
+                                         new GridTile(pos16,true), new GridTile(pos17,true), new GridTile(pos18,false), new GridTile(pos19,true), new GridTile(pos26,true), new GridTile(pos27,false), 
+                                         new GridTile(pos28,true), new GridTile(pos29,true), new GridTile(pos36,true), new GridTile(pos37,true), new GridTile(pos38,false), new GridTile(pos39,true), 
+                                         new GridTile(pos46,false), new GridTile(pos47,false), new GridTile(pos48,true), new GridTile(pos49,true), new GridTile(pos56,true), new GridTile(pos57,true), 
+                                         new GridTile(pos58,true), new GridTile(pos59,true), new GridTile(pos66,true), new GridTile(pos67,true), new GridTile(pos68,true), new GridTile(pos69,true), 
+                                         new GridTile(pos76,true), new GridTile(pos77,true), new GridTile(pos78,false), new GridTile(pos79,false), new GridTile(pos80,true), new GridTile(pos81,true), 
+                                         new GridTile(pos82,true), new GridTile(pos83,true), new GridTile(pos84,true), new GridTile(pos85,false), new GridTile(pos86,false), new GridTile(pos87,true), 
+                                         new GridTile(pos88,false), new GridTile(pos89,false), new GridTile(pos90,false), new GridTile(pos91,true), new GridTile(pos92,true), new GridTile(pos93,true)};
+
+            //Adds Level 1 enemies into enemy party
+            enemyParty.addToArmy(new EnemyChar("Zephiel"));
+            enemyParty.addToArmy(new EnemyChar("Black Knight"));
+            enemyParty.addToArmy(new EnemyChar("Hawkeye"));
+        }
+        
+        /*if(level == 2) {
+            Map.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/backgrounds/level1_map.png")));
+            
+            EnemyCharacter1.setLocation(90, 660);
+            EnemyCharacter2.setLocation(0, 660);
+            EnemyCharacter3.setLocation(0, 570);
+            EnemyCharacter4.setLocation(0, 480);
+            
+            //Creates Level 1 Grids
+            MapGUI.lowerGrid = new GridTile[]{new GridTile(pos00,true), new GridTile(pos01,false), new GridTile(pos02,false), new GridTile(pos03,true), new GridTile(pos04,true), new GridTile(pos05,false), 
+                                         new GridTile(pos10,true), new GridTile(pos11,true), new GridTile(pos12,false), new GridTile(pos13,true), new GridTile(pos14,true), new GridTile(pos15,false), 
+                                         new GridTile(pos20,true), new GridTile(pos21,true), new GridTile(pos22,true), new GridTile(pos23,true), new GridTile(pos24,false), new GridTile(pos25,true), 
+                                         new GridTile(pos30,false), new GridTile(pos31,false), new GridTile(pos32,true), new GridTile(pos33,true), new GridTile(pos34,true), new GridTile(pos35,true), 
+                                         new GridTile(pos40,true), new GridTile(pos41,true), new GridTile(pos42,true), new GridTile(pos43,true), new GridTile(pos44,true), new GridTile(pos45,true), 
+                                         new GridTile(pos50,true), new GridTile(pos51,true), new GridTile(pos52,false), new GridTile(pos53,false), new GridTile(pos54,true), new GridTile(pos55,true), 
+                                         new GridTile(pos60,true), new GridTile(pos61,true), new GridTile(pos62,true), new GridTile(pos63,false), new GridTile(pos64,false), new GridTile(pos65,true), 
+                                         new GridTile(pos70,false), new GridTile(pos71,false), new GridTile(pos72,false), new GridTile(pos73,true), new GridTile(pos74,true), new GridTile(pos75,true)};
+
+            MapGUI.upperGrid = new GridTile[]{new GridTile(pos1,true), new GridTile(pos2,false), new GridTile(pos3,false), new GridTile(pos4,true), new GridTile(pos5,true), new GridTile(pos6,false), 
+                                         new GridTile(pos16,true), new GridTile(pos17,true), new GridTile(pos18,false), new GridTile(pos19,true), new GridTile(pos26,true), new GridTile(pos27,false), 
+                                         new GridTile(pos28,true), new GridTile(pos29,true), new GridTile(pos36,true), new GridTile(pos37,true), new GridTile(pos38,false), new GridTile(pos39,true), 
+                                         new GridTile(pos46,false), new GridTile(pos47,false), new GridTile(pos48,true), new GridTile(pos49,true), new GridTile(pos56,true), new GridTile(pos57,true), 
+                                         new GridTile(pos58,true), new GridTile(pos59,true), new GridTile(pos66,true), new GridTile(pos67,true), new GridTile(pos68,true), new GridTile(pos69,true), 
+                                         new GridTile(pos76,true), new GridTile(pos77,true), new GridTile(pos78,false), new GridTile(pos79,false), new GridTile(pos80,true), new GridTile(pos81,true), 
+                                         new GridTile(pos82,true), new GridTile(pos83,true), new GridTile(pos84,true), new GridTile(pos85,false), new GridTile(pos86,false), new GridTile(pos87,true), 
+                                         new GridTile(pos88,false), new GridTile(pos89,false), new GridTile(pos90,false), new GridTile(pos91,true), new GridTile(pos92,true), new GridTile(pos93,true)};
+
+            //Adds Level 1 enemies into enemy party
+            enemyParty.addToArmy(new EnemyChar("Zephiel"));
+            enemyParty.addToArmy(new EnemyChar("Black Knight"));
+            enemyParty.addToArmy(new EnemyChar("Hawkeye"));
+        }*/
     }
     
     //Begins the damage Animation
@@ -2055,7 +2427,7 @@ public class MapGUI extends javax.swing.JFrame {
                 Integer damage = damageDealer.getTotalAtk();
                 
                 if(damage < 10) {
-                    DamageLabelOnes.setLocation(gridTile.getTile().getX() + AllyCharacter1.getWidth()/3, gridTile.getTile().getY() + TopBorderStats.getHeight() + AllyCharacter1.getHeight()/3);
+                    DamageLabelOnes.setLocation(gridTile.getTile().getX() + AllyCharacter1.getWidth()/3 + 5, gridTile.getTile().getY() + TopBorderStats.getHeight() + AllyCharacter1.getHeight()/3 - 10);
                     DamageLabelOnes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fonts/" + damageFonts[damage])));
                     DamageLabelOnes.setVisible(true);
                 } else if( damage < 20){
@@ -2153,9 +2525,9 @@ public class MapGUI extends javax.swing.JFrame {
                         while(applyDamageAnimationThread.isAlive()) {}
                 StageClearButton.setVisible(true);
                 StageClearLogo.setVisible(true);
-                StageClearOrb.setVisible(true);
-                Thread.sleep(15);
+                Thread.sleep(1000);
                 StageClearText.setVisible(true);
+                StageClearOrb.setVisible(true);
                 
             } catch (InterruptedException ex) {
                 Logger.getLogger(MapGUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -2226,6 +2598,22 @@ public class MapGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField AllyAttack;
+    private javax.swing.JLabel AllyChar1DmgOnes;
+    private javax.swing.JLabel AllyChar1DmgTens;
+    private javax.swing.JLayeredPane AllyChar1HP;
+    private javax.swing.JProgressBar AllyChar1HPBar;
+    private javax.swing.JLabel AllyChar2DmgOnes;
+    private javax.swing.JLabel AllyChar2DmgTens;
+    private javax.swing.JLayeredPane AllyChar2HP;
+    private javax.swing.JProgressBar AllyChar2HPBar;
+    private javax.swing.JLabel AllyChar3DmgOnes;
+    private javax.swing.JLabel AllyChar3DmgTens;
+    private javax.swing.JLayeredPane AllyChar3HP;
+    private javax.swing.JProgressBar AllyChar3HPBar;
+    private javax.swing.JLabel AllyChar4DmgOnes;
+    private javax.swing.JLabel AllyChar4DmgTens;
+    private javax.swing.JLayeredPane AllyChar4HP;
+    private javax.swing.JProgressBar AllyChar4HPBar;
     private javax.swing.JToggleButton AllyCharacter1;
     private javax.swing.JToggleButton AllyCharacter2;
     private javax.swing.JToggleButton AllyCharacter3;
@@ -2251,6 +2639,22 @@ public class MapGUI extends javax.swing.JFrame {
     private javax.swing.JButton DangerAreaButton;
     private javax.swing.JButton EndTurnButton;
     private javax.swing.JTextField EnemyAttack;
+    private javax.swing.JLabel EnemyChar1DmgOnes;
+    private javax.swing.JLabel EnemyChar1DmgTens;
+    private javax.swing.JLayeredPane EnemyChar1HP;
+    private javax.swing.JProgressBar EnemyChar1HPBar;
+    private javax.swing.JLabel EnemyChar2DmgOnes;
+    private javax.swing.JLabel EnemyChar2DmgTens;
+    private javax.swing.JLayeredPane EnemyChar2HP;
+    private javax.swing.JProgressBar EnemyChar2HPBar;
+    private javax.swing.JLabel EnemyChar3DmgOnes;
+    private javax.swing.JLabel EnemyChar3DmgTens;
+    private javax.swing.JLayeredPane EnemyChar3HP;
+    private javax.swing.JProgressBar EnemyChar3HPBar;
+    private javax.swing.JLabel EnemyChar4DmgOnes;
+    private javax.swing.JLabel EnemyChar4DmgTens;
+    private javax.swing.JLayeredPane EnemyChar4HP;
+    private javax.swing.JProgressBar EnemyChar4HPBar;
     private javax.swing.JToggleButton EnemyCharacter1;
     private javax.swing.JToggleButton EnemyCharacter2;
     private javax.swing.JToggleButton EnemyCharacter3;
@@ -2263,7 +2667,7 @@ public class MapGUI extends javax.swing.JFrame {
     private javax.swing.JTextField EnemyNamePlateText;
     private javax.swing.JLabel Fog1;
     private javax.swing.JLabel Fog2;
-    private javax.swing.JProgressBar LevelProgresBar;
+    private javax.swing.JProgressBar LevelProgressBar;
     private javax.swing.JTextField LevelText;
     private javax.swing.JPanel LowerGrid;
     private javax.swing.JLayeredPane MainContainer;
