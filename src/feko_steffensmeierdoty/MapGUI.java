@@ -368,7 +368,7 @@ public class MapGUI extends javax.swing.JFrame {
         EnemyChar4DmgTens.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         EnemyChar4DmgTens.setForeground(new java.awt.Color(255, 255, 255));
         EnemyChar4DmgTens.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fonts/blue3HP.png"))); // NOI18N
-        EnemyChar4HP.add(EnemyChar4DmgTens, new org.netbeans.lib.awtextra.AbsoluteConstraints(3, 0, -1, 20));
+        EnemyChar4HP.add(EnemyChar4DmgTens, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 0, -1, 20));
 
         EnemyChar4DmgOnes.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         EnemyChar4DmgOnes.setForeground(new java.awt.Color(255, 255, 255));
@@ -377,6 +377,7 @@ public class MapGUI extends javax.swing.JFrame {
 
         EnemyChar4HPBar.setBackground(new java.awt.Color(0, 0, 0));
         EnemyChar4HPBar.setForeground(new java.awt.Color(255, 51, 51));
+        EnemyChar4HPBar.setBorderPainted(false);
         EnemyChar4HPBar.setMaximumSize(new java.awt.Dimension(148, 35));
         EnemyChar4HPBar.setMinimumSize(new java.awt.Dimension(148, 35));
         EnemyChar4HPBar.setPreferredSize(new java.awt.Dimension(148, 35));
@@ -417,7 +418,7 @@ public class MapGUI extends javax.swing.JFrame {
         EnemyChar3DmgTens.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         EnemyChar3DmgTens.setForeground(new java.awt.Color(255, 255, 255));
         EnemyChar3DmgTens.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fonts/blue3HP.png"))); // NOI18N
-        EnemyChar3HP.add(EnemyChar3DmgTens, new org.netbeans.lib.awtextra.AbsoluteConstraints(3, 0, -1, 20));
+        EnemyChar3HP.add(EnemyChar3DmgTens, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 0, -1, 20));
 
         EnemyChar3DmgOnes.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         EnemyChar3DmgOnes.setForeground(new java.awt.Color(255, 255, 255));
@@ -426,6 +427,7 @@ public class MapGUI extends javax.swing.JFrame {
 
         EnemyChar3HPBar.setBackground(new java.awt.Color(0, 0, 0));
         EnemyChar3HPBar.setForeground(new java.awt.Color(255, 51, 51));
+        EnemyChar3HPBar.setBorderPainted(false);
         EnemyChar3HPBar.setMaximumSize(new java.awt.Dimension(148, 35));
         EnemyChar3HPBar.setMinimumSize(new java.awt.Dimension(148, 35));
         EnemyChar3HPBar.setPreferredSize(new java.awt.Dimension(148, 35));
@@ -466,7 +468,7 @@ public class MapGUI extends javax.swing.JFrame {
         EnemyChar2DmgTens.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         EnemyChar2DmgTens.setForeground(new java.awt.Color(255, 255, 255));
         EnemyChar2DmgTens.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fonts/blue3HP.png"))); // NOI18N
-        EnemyChar2HP.add(EnemyChar2DmgTens, new org.netbeans.lib.awtextra.AbsoluteConstraints(3, 0, -1, 20));
+        EnemyChar2HP.add(EnemyChar2DmgTens, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 0, -1, 20));
 
         EnemyChar2DmgOnes.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         EnemyChar2DmgOnes.setForeground(new java.awt.Color(255, 255, 255));
@@ -475,6 +477,7 @@ public class MapGUI extends javax.swing.JFrame {
 
         EnemyChar2HPBar.setBackground(new java.awt.Color(0, 0, 0));
         EnemyChar2HPBar.setForeground(new java.awt.Color(255, 51, 51));
+        EnemyChar2HPBar.setBorderPainted(false);
         EnemyChar2HPBar.setMaximumSize(new java.awt.Dimension(148, 35));
         EnemyChar2HPBar.setMinimumSize(new java.awt.Dimension(148, 35));
         EnemyChar2HPBar.setPreferredSize(new java.awt.Dimension(148, 35));
@@ -515,7 +518,7 @@ public class MapGUI extends javax.swing.JFrame {
         EnemyChar1DmgTens.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         EnemyChar1DmgTens.setForeground(new java.awt.Color(255, 255, 255));
         EnemyChar1DmgTens.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fonts/blue3HP.png"))); // NOI18N
-        EnemyChar1HP.add(EnemyChar1DmgTens, new org.netbeans.lib.awtextra.AbsoluteConstraints(3, 0, -1, 20));
+        EnemyChar1HP.add(EnemyChar1DmgTens, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 0, -1, 20));
 
         EnemyChar1DmgOnes.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         EnemyChar1DmgOnes.setForeground(new java.awt.Color(255, 255, 255));
@@ -524,6 +527,7 @@ public class MapGUI extends javax.swing.JFrame {
 
         EnemyChar1HPBar.setBackground(new java.awt.Color(0, 0, 0));
         EnemyChar1HPBar.setForeground(new java.awt.Color(255, 51, 51));
+        EnemyChar1HPBar.setBorderPainted(false);
         EnemyChar1HPBar.setMaximumSize(new java.awt.Dimension(148, 35));
         EnemyChar1HPBar.setMinimumSize(new java.awt.Dimension(148, 35));
         EnemyChar1HPBar.setPreferredSize(new java.awt.Dimension(148, 35));
@@ -564,7 +568,7 @@ public class MapGUI extends javax.swing.JFrame {
         AllyChar4DmgTens.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         AllyChar4DmgTens.setForeground(new java.awt.Color(255, 255, 255));
         AllyChar4DmgTens.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fonts/blue3HP.png"))); // NOI18N
-        AllyChar4HP.add(AllyChar4DmgTens, new org.netbeans.lib.awtextra.AbsoluteConstraints(3, 0, -1, 20));
+        AllyChar4HP.add(AllyChar4DmgTens, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 0, -1, 20));
 
         AllyChar4DmgOnes.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         AllyChar4DmgOnes.setForeground(new java.awt.Color(255, 255, 255));
@@ -573,6 +577,7 @@ public class MapGUI extends javax.swing.JFrame {
 
         AllyChar4HPBar.setBackground(new java.awt.Color(0, 0, 0));
         AllyChar4HPBar.setForeground(new java.awt.Color(102, 204, 255));
+        AllyChar4HPBar.setBorderPainted(false);
         AllyChar4HPBar.setMaximumSize(new java.awt.Dimension(148, 35));
         AllyChar4HPBar.setMinimumSize(new java.awt.Dimension(148, 35));
         AllyChar4HPBar.setPreferredSize(new java.awt.Dimension(148, 35));
@@ -613,7 +618,7 @@ public class MapGUI extends javax.swing.JFrame {
         AllyChar3DmgTens.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         AllyChar3DmgTens.setForeground(new java.awt.Color(255, 255, 255));
         AllyChar3DmgTens.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fonts/blue3HP.png"))); // NOI18N
-        AllyChar3HP.add(AllyChar3DmgTens, new org.netbeans.lib.awtextra.AbsoluteConstraints(3, 0, -1, 20));
+        AllyChar3HP.add(AllyChar3DmgTens, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 0, -1, 20));
 
         AllyChar3DmgOnes.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         AllyChar3DmgOnes.setForeground(new java.awt.Color(255, 255, 255));
@@ -622,6 +627,7 @@ public class MapGUI extends javax.swing.JFrame {
 
         AllyChar3HPBar.setBackground(new java.awt.Color(0, 0, 0));
         AllyChar3HPBar.setForeground(new java.awt.Color(102, 204, 255));
+        AllyChar3HPBar.setBorderPainted(false);
         AllyChar3HPBar.setMaximumSize(new java.awt.Dimension(148, 35));
         AllyChar3HPBar.setMinimumSize(new java.awt.Dimension(148, 35));
         AllyChar3HPBar.setPreferredSize(new java.awt.Dimension(148, 35));
@@ -662,7 +668,7 @@ public class MapGUI extends javax.swing.JFrame {
         AllyChar2DmgTens.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         AllyChar2DmgTens.setForeground(new java.awt.Color(255, 255, 255));
         AllyChar2DmgTens.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fonts/blue3HP.png"))); // NOI18N
-        AllyChar2HP.add(AllyChar2DmgTens, new org.netbeans.lib.awtextra.AbsoluteConstraints(3, 0, -1, 20));
+        AllyChar2HP.add(AllyChar2DmgTens, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 0, -1, 20));
 
         AllyChar2DmgOnes.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         AllyChar2DmgOnes.setForeground(new java.awt.Color(255, 255, 255));
@@ -671,6 +677,7 @@ public class MapGUI extends javax.swing.JFrame {
 
         AllyChar2HPBar.setBackground(new java.awt.Color(0, 0, 0));
         AllyChar2HPBar.setForeground(new java.awt.Color(102, 204, 255));
+        AllyChar2HPBar.setBorderPainted(false);
         AllyChar2HPBar.setMaximumSize(new java.awt.Dimension(148, 35));
         AllyChar2HPBar.setMinimumSize(new java.awt.Dimension(148, 35));
         AllyChar2HPBar.setPreferredSize(new java.awt.Dimension(148, 35));
@@ -711,7 +718,7 @@ public class MapGUI extends javax.swing.JFrame {
         AllyChar1DmgTens.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         AllyChar1DmgTens.setForeground(new java.awt.Color(255, 255, 255));
         AllyChar1DmgTens.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fonts/blue3HP.png"))); // NOI18N
-        AllyChar1HP.add(AllyChar1DmgTens, new org.netbeans.lib.awtextra.AbsoluteConstraints(3, 0, -1, 20));
+        AllyChar1HP.add(AllyChar1DmgTens, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 0, -1, 20));
 
         AllyChar1DmgOnes.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         AllyChar1DmgOnes.setForeground(new java.awt.Color(255, 255, 255));
@@ -720,6 +727,7 @@ public class MapGUI extends javax.swing.JFrame {
 
         AllyChar1HPBar.setBackground(new java.awt.Color(0, 0, 0));
         AllyChar1HPBar.setForeground(new java.awt.Color(102, 204, 255));
+        AllyChar1HPBar.setBorderPainted(false);
         AllyChar1HPBar.setMaximumSize(new java.awt.Dimension(148, 35));
         AllyChar1HPBar.setMinimumSize(new java.awt.Dimension(148, 35));
         AllyChar1HPBar.setPreferredSize(new java.awt.Dimension(148, 35));
@@ -2342,7 +2350,7 @@ public class MapGUI extends javax.swing.JFrame {
         }
         updateCharactersHP();
         startPhaseAnimation();
-        fogAnimation();
+        //fogAnimation();
     }
     
     private void setLevelValues() {
