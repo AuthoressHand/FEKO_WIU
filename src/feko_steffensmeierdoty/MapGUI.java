@@ -2350,7 +2350,7 @@ public class MapGUI extends javax.swing.JFrame {
         }
         updateCharactersHP();
         startPhaseAnimation();
-        //fogAnimation();
+        fogAnimation();
     }
     
     private void setLevelValues() {
