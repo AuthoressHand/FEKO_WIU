@@ -1729,7 +1729,7 @@ public class MapGUI extends javax.swing.JFrame {
 
     private void DangerAreaButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DangerAreaButtonMouseClicked
         if(dangerArea == true) {
-            for(int i = 0; i < characters.length -1; i++) {
+            for(int i = 0; i < characters.length; i++) {
                if(i > 3 && characters[i].isVisible()) {
                    showPossibleMoves(enemyParty, i - 4, false);
                }
@@ -2022,12 +2022,12 @@ public class MapGUI extends javax.swing.JFrame {
         if(lowerGrid[gridPos].getCharacter().getCurrentHP() < 1) {
             if(party.equals(allyParty)) {
                 AllyChar allyChar = (AllyChar)damageDealer;
-                allyChar.gainExperience(25);
+                allyChar.gainExperience(75);
                 
                 updateCharacterStats(party, armyPos);
                 //Add LEVEL UP Animation
             }
-            for(int i = 0; i < characters.length - 1; i++) {
+            for(int i = 0; i < characters.length; i++) {
                 if(characters[i].getIcon() != null && lowerGrid[gridPos].getCharacter() != null && characters[i].getIcon().toString().equals(lowerGrid[gridPos].getCharacter().getImg().toString())) {
                     characters[i].setVisible(false);
                     charactersHP[i].setVisible(false);
@@ -2387,9 +2387,9 @@ public class MapGUI extends javax.swing.JFrame {
                                          new GridTile(pos88,false), new GridTile(pos89,false), new GridTile(pos90,false), new GridTile(pos91,true), new GridTile(pos92,true), new GridTile(pos93,true)};
 
             //Adds Level 1 enemies into enemy party
-            enemyParty.addToArmy(new EnemyChar("Zephiel"));
-            enemyParty.addToArmy(new EnemyChar("Black Knight"));
-            enemyParty.addToArmy(new EnemyChar("Hawkeye"));
+            enemyParty.addToArmy(new EnemyChar("Zephiel", 1));
+            enemyParty.addToArmy(new EnemyChar("Black Knight", 1));
+            enemyParty.addToArmy(new EnemyChar("Hawkeye", 1));
         }
         
         if(level == 2) {
@@ -2424,9 +2424,9 @@ public class MapGUI extends javax.swing.JFrame {
                                          new GridTile(pos88,false), new GridTile(pos89,false), new GridTile(pos90,true), new GridTile(pos91,false), new GridTile(pos92,false), new GridTile(pos93,false)};
 
             //Adds Level 2 enemies into enemy party
-            enemyParty.addToArmy(new EnemyChar("Hawkeye"));
-            enemyParty.addToArmy(new EnemyChar("Black Knight"));
-            enemyParty.addToArmy(new EnemyChar("Zephiel"));
+            enemyParty.addToArmy(new EnemyChar("Hawkeye", 2));
+            enemyParty.addToArmy(new EnemyChar("Black Knight", 2));
+            enemyParty.addToArmy(new EnemyChar("Zephiel", 2));
         }
         
         if(level == 3) {
@@ -2440,6 +2440,7 @@ public class MapGUI extends javax.swing.JFrame {
             EnemyCharacter1.setLocation(270, 660);
             EnemyCharacter2.setLocation(180, 570);
             EnemyCharacter3.setLocation(360, 480);
+            EnemyCharacter3.setLocation(360, 570);
             
             //Creates Level 3 Grids
             MapGUI.lowerGrid = new GridTile[]{new GridTile(pos00,true), new GridTile(pos01,true), new GridTile(pos02,true), new GridTile(pos03,true), new GridTile(pos04,true), new GridTile(pos05,true), 
@@ -2461,9 +2462,9 @@ public class MapGUI extends javax.swing.JFrame {
                                          new GridTile(pos88,true), new GridTile(pos89,true), new GridTile(pos90,true), new GridTile(pos91,true), new GridTile(pos92,true), new GridTile(pos93,true)};
 
             //Adds Level 3 enemies into enemy party
-            enemyParty.addToArmy(new EnemyChar("Black Knight"));
-            enemyParty.addToArmy(new EnemyChar("Hawkeye"));
-            enemyParty.addToArmy(new EnemyChar("Zephiel"));
+            enemyParty.addToArmy(new EnemyChar("Surtr", 5));
+            enemyParty.addToArmy(new EnemyChar("Black Knight", 3));
+            enemyParty.addToArmy(new EnemyChar("Axe Man", 4));
         }
     }
     

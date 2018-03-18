@@ -32,8 +32,8 @@ public class AllyChar extends Char {
     private ArrayList<Skill> lockSkills;
     private Random generator = new Random();
     
-    public AllyChar(String name) {
-        super(name);
+    public AllyChar(String name, int level) {
+        super(name,level);
         this.experience = 0;
         this.specialPoints = 0;
         this.hpIncrease = 100;

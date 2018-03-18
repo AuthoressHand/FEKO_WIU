@@ -23,8 +23,8 @@ public class EnemyChar extends Char {
     //if(charType == ?)
         //do base attributes accordingly
     
-    public EnemyChar(String name) {
-        super(name);
+    public EnemyChar(String name, int level) {
+        super(name, level);
     }
     
     /*public EnemyChar(String name, int maxHP, Weapon weapon, int level, int attack, int defense, int resistance, int speed, Skill[] skills, Rally rally, ImageIcon charImg, CharType charType, MoveType moveType) {

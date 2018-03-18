@@ -1140,11 +1140,11 @@ public class CharacterModGUI extends javax.swing.JFrame {
         teamSlots[2] = Slot3;
         teamSlots[3] = Slot4;
         
-        allyOptions[0] = new AllyChar("Anna");
-        allyOptions[1] = new AllyChar("Alfonse");
-        allyOptions[2] = new AllyChar("Soleil");
-        allyOptions[3] = new AllyChar("Roy");
-        allyOptions[4] = new AllyChar("Selena");
+        allyOptions[0] = new AllyChar("Anna", 1);
+        allyOptions[1] = new AllyChar("Alfonse", 1);
+        allyOptions[2] = new AllyChar("Soleil", 1);
+        allyOptions[3] = new AllyChar("Roy", 1);
+        allyOptions[4] = new AllyChar("Selena", 1);
         
         characterOptions[0] = AnnaButton;
         characterOptions[1] = AlfonseButton;

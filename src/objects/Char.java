@@ -43,10 +43,10 @@ public abstract class Char {
     private boolean active;
     private CharType charType;
     
-    public Char(String name) {
+    public Char(String name, int level) {
         this.name = name;
-        this.level = 1;
-        this.maxHP = 20;
+        this.level = level;
+        this.maxHP = 3;
         this.currentHP = this.maxHP;
         this.weapon = new Weapon(null, 0, "Bronze Sword", 0, "Basic Sword, starting equipment", WeaponType.Sword, 5, 1, DamageType.Physical);
         this.attack = 1;
@@ -63,6 +63,14 @@ public abstract class Char {
             case "Zephiel":
                 this.img = new ImageIcon(getClass().getResource("/img/characters/zeph.png"));
                 this.portraitBattle = new ImageIcon(getClass().getResource("/img/portraits/zeph_battle_portrait.png"));
+                break;
+            case "Axe Man":
+                this.img = new ImageIcon(getClass().getResource("/img/characters/axeMan.png"));
+                this.portraitBattle = new ImageIcon(getClass().getResource("/img/portraits/axeMan_battle_portrait.png"));
+                break;
+            case "Surtr":
+                this.img = new ImageIcon(getClass().getResource("/img/characters/surtr.png"));
+                this.portraitBattle = new ImageIcon(getClass().getResource("/img/portraits/surtr_battle_portrait.png"));
                 break;
             case "Alfonse":
                 this.img = new ImageIcon(getClass().getResource("/img/characters/alfonse.png"));
