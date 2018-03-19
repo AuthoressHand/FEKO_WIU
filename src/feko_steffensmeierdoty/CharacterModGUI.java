@@ -250,7 +250,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
         MainStatsLayer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         TopBorder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/char_mod_border_top.png"))); // NOI18N
-        MainStatsLayer.add(TopBorder, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        MainStatsLayer.add(TopBorder, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -30, -1, 130));
 
         MainContainer.add(MainStatsLayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 80));
 
