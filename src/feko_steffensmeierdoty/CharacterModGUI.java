@@ -880,7 +880,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
         if(getTeamSize() > 0) { 
             mapPickSound();
             try {
-                Thread.sleep(750);
+                Thread.sleep(1000);
             } catch (InterruptedException ex) {
                 Logger.getLogger(CharacterModGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -1076,7 +1076,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
         if(getTeamSize() > 0) {  
             mapPickSound();
             try {
-                Thread.sleep(750);
+                Thread.sleep(1000);
             } catch (InterruptedException ex) {
                 Logger.getLogger(CharacterModGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -1099,7 +1099,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
         if(getTeamSize() > 0) {  
             mapPickSound();
             try {
-                Thread.sleep(750);
+                Thread.sleep(1000);
             } catch (InterruptedException ex) {
                 Logger.getLogger(CharacterModGUI.class.getName()).log(Level.SEVERE, null, ex);
             }

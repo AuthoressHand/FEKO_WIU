@@ -150,14 +150,15 @@ public class LevelTransitionGUI extends javax.swing.JFrame {
                         LevelNameText.setText("Path to Hawkeye");
                     else if(level == 3)
                         LevelNameText.setText("A Day to Remember");
-                    Thread.sleep(1750);
+                    Thread.sleep(3000);
+                    MapGUI mGUI = new MapGUI(level,party,cmGUI);
+                    mGUI.setVisible(true);
                     LevelTransitionBackground.setVisible(false);
                     ChapterPlatform.setVisible(false);
                     ChapterText.setVisible(false);
                     LevelNamePlatform.setVisible(false);
                     LevelNameText.setVisible(false);
-                    MapGUI mGUI = new MapGUI(level,party,cmGUI);
-                    mGUI.setVisible(true);
+                    
                     mediaPlayer.stop();
                     dispose();
                 } catch (InterruptedException ex) {
