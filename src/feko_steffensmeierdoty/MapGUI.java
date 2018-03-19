@@ -38,6 +38,7 @@ public class MapGUI extends javax.swing.JFrame {
     private Thread applyDamageAnimationThread;
     private Thread stageClearedAnimationThread;
     private Thread fogAnimationThread;
+    private Thread deathSound;
     private String[] damageFonts;
     private String[] enemyHPFonts;
     private String[] allyHPFonts;
@@ -50,6 +51,7 @@ public class MapGUI extends javax.swing.JFrame {
     private MediaPlayer selectPlayer;
     private MediaPlayer tilePlayer;
     private MediaPlayer endTurnPlayer;
+    private MediaPlayer deathPlayer;
     
     
     public MapGUI() {
@@ -2044,6 +2046,7 @@ public class MapGUI extends javax.swing.JFrame {
             }
             for(int i = 0; i < characters.length; i++) {
                 if(characters[i].getIcon() != null && lowerGrid[gridPos].getCharacter() != null && characters[i].getIcon().toString().equals(lowerGrid[gridPos].getCharacter().getImg().toString())) {
+                    deathSound();
                     characters[i].setVisible(false);
                     charactersHP[i].setVisible(false);
                     lowerGrid[gridPos].getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png")));
@@ -2533,6 +2536,8 @@ public class MapGUI extends javax.swing.JFrame {
                     }
                     if(applyDamageAnimationThread != null)
                         while(applyDamageAnimationThread.isAlive()) {}
+                    if(deathSound != null)
+                        while(deathSound.isAlive()) {}
                     phaseSound();
                     PhaseSeperator.setVisible(true);
                     MapLayer.moveToFront(PhaseSeperator);
@@ -2737,6 +2742,19 @@ public class MapGUI extends javax.swing.JFrame {
             endTurnPlayer.play();
         }};
         endTurnSound.start();
+    }
+    
+    private void deathSound() {
+        deathSound = new Thread(){
+        @Override
+        public void run() {
+            while(applyDamageAnimationThread.isAlive()){}
+            songFile = new Media(new File("src\\audio\\death.mp3").toURI().toString());
+            deathPlayer = new MediaPlayer(songFile);
+            deathPlayer.setVolume(.6);
+            deathPlayer.play();
+        }};
+        deathSound.start();
     }
     
     /**
