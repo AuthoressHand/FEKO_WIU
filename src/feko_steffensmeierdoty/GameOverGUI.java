@@ -82,6 +82,7 @@ public class GameOverGUI extends javax.swing.JFrame {
                     Feather.setVisible(false);
                     GameOverText.setVisible(false);
                     cmGUI.setVisible(true);
+                    cmGUI.initSong();
                     setVisible(false);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(MapGUI.class.getName()).log(Level.SEVERE, null, ex);

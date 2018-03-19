@@ -5,6 +5,11 @@
  */
 package feko_steffensmeierdoty;
 
+import java.io.File;
+import javafx.application.Platform;
+import javafx.embed.swing.JFXPanel;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javax.swing.*;
 import objects.*;
 
@@ -14,6 +19,10 @@ import objects.*;
  */
 public class CharacterModGUI extends javax.swing.JFrame {
 
+    private Media songFile;
+    private MediaPlayer mediaPlayer;
+    private MediaPlayer selectPlayer;
+    private MediaPlayer damagePlayer;
     private final JButton[] teamSlots = new JButton[4];
     private final JButton[] characterOptions = new JButton[5];
     private final JLabel[] charsHomeLayer = new JLabel[4];
@@ -25,11 +34,14 @@ public class CharacterModGUI extends javax.swing.JFrame {
      */
     public CharacterModGUI() {
         initComponents();
+        initJavaFX();
+        initSong();
         initCharacterModGUI();
     }
     
     public CharacterModGUI(Party team) {
         initComponents();
+        initJavaFX();
         initCharacterModGUI();
     }
     
@@ -746,6 +758,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
     
     //Sets hover picture for Misc Button
     private void MiscButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MiscButtonMouseEntered
+        selectSound();
         MiscButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/misc_button_hover.png")));
     }//GEN-LAST:event_MiscButtonMouseEntered
    
@@ -775,6 +788,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
 
     //Sets hover picture for Battle Button
     private void BattleButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BattleButtonMouseEntered
+        selectSound();
         BattleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/battle_button_hover.png")));
     }//GEN-LAST:event_BattleButtonMouseEntered
 
@@ -801,6 +815,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
 
     //Sets hover picture for Allies Button
     private void AlliesButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlliesButtonMouseEntered
+        selectSound();
         AlliesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/allies_button_hover.png")));
     }//GEN-LAST:event_AlliesButtonMouseEntered
 
@@ -831,6 +846,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
 
     //Sets hover picture for Home Button
     private void HomeButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HomeButtonMouseEntered
+        selectSound();
         HomeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/home_button_hover.png")));
     }//GEN-LAST:event_HomeButtonMouseEntered
 
@@ -851,6 +867,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
 
     //Sets hover picture for Story Maps Button
     private void Stage1ButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Stage1ButtonMouseEntered
+        selectSound();
         Stage1PNG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/main_story_button_hover.png")));
     }//GEN-LAST:event_Stage1ButtonMouseEntered
 
@@ -865,6 +882,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
             LevelTransitionGUI ltGUI = new LevelTransitionGUI(1,team,this);
             ltGUI.setVisible(true);
             setVisible(false);
+            mediaPlayer.stop();
         }
     }//GEN-LAST:event_Stage1ButtonActionPerformed
 
@@ -879,6 +897,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
 
     //Sets hover picture for Edit Teams Button
     private void EditTeamsButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditTeamsButtonMouseEntered
+        selectSound();
         EditTeamsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/allies_option_button_hover.png")));
     }//GEN-LAST:event_EditTeamsButtonMouseEntered
 
@@ -889,6 +908,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
 
     //Sets hover picture for Learn Skills Button
     private void LearnSkillsButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LearnSkillsButtonMouseEntered
+        selectSound();
         LearnSkillsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/allies_option_button_hover.png")));
     }//GEN-LAST:event_LearnSkillsButtonMouseEntered
 
@@ -899,6 +919,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
 
     //Sets hover picture for Equip Skills Button
     private void EquipSkillsButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EquipSkillsButtonMouseEntered
+        selectSound();
         EquipSkillsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/allies_option_button_hover.png")));
     }//GEN-LAST:event_EquipSkillsButtonMouseEntered
 
@@ -917,6 +938,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
 
     //Sets hover picture for Edit Teams Button
     private void EditTeamsBackButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditTeamsBackButtonMouseEntered
+        selectSound();
         EditTeamsBackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/back_button_hover.png")));
     }//GEN-LAST:event_EditTeamsBackButtonMouseEntered
 
@@ -1034,6 +1056,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_SelenaButtonMouseEntered
 
     private void Stage2ButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Stage2ButtonMouseEntered
+        selectSound();
         Stage2PNG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/stage2_button_hover.png")));
     }//GEN-LAST:event_Stage2ButtonMouseEntered
 
@@ -1046,10 +1069,12 @@ public class CharacterModGUI extends javax.swing.JFrame {
             LevelTransitionGUI ltGUI = new LevelTransitionGUI(2,team,this);
             ltGUI.setVisible(true);
             setVisible(false);
+            mediaPlayer.stop();
         }
     }//GEN-LAST:event_Stage2ButtonActionPerformed
 
     private void Stage3ButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Stage3ButtonMouseEntered
+        selectSound();
         Stage3PNG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/stage3_button_hover.png")));
     }//GEN-LAST:event_Stage3ButtonMouseEntered
 
@@ -1062,6 +1087,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
             LevelTransitionGUI ltGUI = new LevelTransitionGUI(3,team,this);
             ltGUI.setVisible(true);
             setVisible(false);
+            mediaPlayer.stop();
         }
     }//GEN-LAST:event_Stage3ButtonActionPerformed
 
@@ -1171,6 +1197,35 @@ public class CharacterModGUI extends javax.swing.JFrame {
         MaxHP.setText(allyOptions[partyPosition].getMaxHP() + "");
         AttackLevel.setText(allyOptions[partyPosition].getTotalAtk()+ "");
         AttackLevel1.setText(allyOptions[partyPosition].getTotalDef()+ "");
+    }
+    
+    private void initJavaFX() {
+        new JFXPanel();
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                
+            }
+        });
+    }
+    
+    protected void initSong() {
+        songFile = new Media(new File("src\\audio\\charModBackground.mp3").toURI().toString());
+        mediaPlayer = new MediaPlayer(songFile);
+        mediaPlayer.setVolume(.6);
+        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        mediaPlayer.play();
+    }
+    
+    private void selectSound() {
+        Thread selectSound = new Thread(){
+        @Override
+        public void run() {
+            songFile = new Media(new File("src\\audio\\select.mp3").toURI().toString());
+            selectPlayer = new MediaPlayer(songFile);
+            selectPlayer.play();
+        }};
+        selectSound.start();
     }
     
     /**

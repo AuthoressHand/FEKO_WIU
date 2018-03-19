@@ -3,8 +3,11 @@
  */
 package feko_steffensmeierdoty;
 import java.awt.*;
+import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javax.swing.*;
 import objects.*;
 
@@ -39,6 +42,9 @@ public class MapGUI extends javax.swing.JFrame {
     private String[] enemyHPFonts;
     private String[] allyHPFonts;
     private int level;
+    private Media songFile;
+    private MediaPlayer mediaPlayer;
+    private MediaPlayer damagePlayer;
     
     
     public MapGUI() {
@@ -52,6 +58,7 @@ public class MapGUI extends javax.swing.JFrame {
         this.level = level;
         this.cmGUI = cmGUI;
         this.allyParty = party;
+        initSong();
         initComponents();
         initMapGUI();
     }
@@ -1724,6 +1731,7 @@ public class MapGUI extends javax.swing.JFrame {
 
     private void StageClearTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StageClearTextMouseClicked
         cmGUI.setVisible(true);
+        cmGUI.initSong();
         dispose();
     }//GEN-LAST:event_StageClearTextMouseClicked
 
@@ -2000,6 +2008,7 @@ public class MapGUI extends javax.swing.JFrame {
                 }
                 GameOverGUI goGUI= new GameOverGUI(cmGUI);
                 goGUI.setVisible(true);
+                mediaPlayer.stop();
                 dispose();
             }
             if(i==7 && enemyCounter == 0) {
@@ -2011,6 +2020,7 @@ public class MapGUI extends javax.swing.JFrame {
                 }
                 PhaseLabel.setVisible(false);
                 resetPositionMarkers();
+                mediaPlayer.stop();
                 stageClearedAnimation();
             }
             i++;
@@ -2470,7 +2480,7 @@ public class MapGUI extends javax.swing.JFrame {
     
     //Begins the damage Animation
     private void applyDamageAnimation(Char damageDealer, GridTile gridTile) {
-        
+        damageSound();
         applyDamageAnimationThread = new Thread(){
         @Override
         public void run() {
@@ -2623,6 +2633,25 @@ public class MapGUI extends javax.swing.JFrame {
             }
         }};
         fogAnimationThread.start();
+    }
+    
+    private void damageSound() {
+        Thread damageSound = new Thread(){
+        @Override
+        public void run() {
+            songFile = new Media(new File("src\\audio\\damage.mp3").toURI().toString());
+            damagePlayer = new MediaPlayer(songFile);
+            damagePlayer.play();
+        }};
+        damageSound.start();
+    }
+    
+    private void initSong() {
+        songFile = new Media(new File("src\\audio\\map1.mp3").toURI().toString());
+        mediaPlayer = new MediaPlayer(songFile);
+        mediaPlayer.setVolume(.6);
+        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        mediaPlayer.play();
     }
     
     /**
