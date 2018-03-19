@@ -5,8 +5,11 @@
  */
 package feko_steffensmeierdoty;
 
+import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import objects.Party;
 
 /**
@@ -15,6 +18,8 @@ import objects.Party;
  */
 public class GameOverGUI extends javax.swing.JFrame {
 
+    private Media songFile;
+    private MediaPlayer mediaPlayer;
     private CharacterModGUI cmGUI;
     
     public GameOverGUI() {
@@ -24,6 +29,7 @@ public class GameOverGUI extends javax.swing.JFrame {
     
     public GameOverGUI(CharacterModGUI cmGUI) {
         this.cmGUI = cmGUI;
+        initSong();
         initComponents();
         gameOverTransition();
     }
@@ -83,12 +89,20 @@ public class GameOverGUI extends javax.swing.JFrame {
                     GameOverText.setVisible(false);
                     cmGUI.setVisible(true);
                     cmGUI.initSong();
-                    setVisible(false);
+                    mediaPlayer.stop();
+                    dispose();
                 } catch (InterruptedException ex) {
                     Logger.getLogger(MapGUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
         }};
         gameOverTransitionThread.start();
+    }
+    
+    protected void initSong() {
+        songFile = new Media(new File("src\\audio\\gameOver.mp3").toURI().toString());
+        mediaPlayer = new MediaPlayer(songFile);
+        mediaPlayer.setVolume(.4);
+        mediaPlayer.play();
     }
     
     /**

@@ -47,6 +47,9 @@ public class MapGUI extends javax.swing.JFrame {
     private MediaPlayer damagePlayer;
     private MediaPlayer phasePlayer;
     private MediaPlayer stageClearPlayer;
+    private MediaPlayer selectPlayer;
+    private MediaPlayer tilePlayer;
+    private MediaPlayer endTurnPlayer;
     
     
     public MapGUI() {
@@ -1732,12 +1735,13 @@ public class MapGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_StageClearLogoMouseClicked
 
     private void StageClearTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StageClearTextMouseClicked
-        cmGUI.setVisible(true);
         cmGUI.initSong();
+        cmGUI.setVisible(true);
         dispose();
     }//GEN-LAST:event_StageClearTextMouseClicked
 
     private void DangerAreaButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DangerAreaButtonMouseClicked
+        selectSound();
         if(dangerArea == true) {
             for(int i = 0; i < characters.length; i++) {
                if(i > 3 && characters[i].isVisible()) {
@@ -1838,6 +1842,7 @@ public class MapGUI extends javax.swing.JFrame {
                     }
                     resetPositionMarkers();
                     character.setEnabled(false);
+                    endTurnSound();
                     checkForEndTurn(party);
                     break;
                 } 
@@ -1918,6 +1923,7 @@ public class MapGUI extends javax.swing.JFrame {
                     if(upperGrid[j].getTile().getBounds().contains(mouseLocation.x + character.getWidth()/2, mouseLocation.y - TopBorderStats.getHeight() + character.getHeight()/2) && upperGrid[j].isAccessible() && lowerGrid[j].getTile().getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/bluePositionMarker.png")).toString())) {
                         upperGrid[j].getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/allyPositionMarker.png")));
                         upperGrid[j].addCharacter(party.getArmyChar(armyPos), party);
+                        tileSound();
                         
                         //Cleans up character trace
                         for(int i = 0; i < upperGrid.length - 1; i++) {
@@ -2008,10 +2014,7 @@ public class MapGUI extends javax.swing.JFrame {
                 for(int j = 0; j < allyParty.getArmySize(); j++) {
                     allyParty.getArmyChar(j).resetHP();
                 }
-                GameOverGUI goGUI= new GameOverGUI(cmGUI);
-                goGUI.setVisible(true);
-                mediaPlayer.stop();
-                dispose();
+                gameOverThread();
             }
             if(i==7 && enemyCounter == 0) {
                 for(int j = 0; j < allyParty.getArmySize(); j++) {
@@ -2371,7 +2374,7 @@ public class MapGUI extends javax.swing.JFrame {
             
             AllyCharacter1.setLocation(0, 120);
             AllyCharacter2.setLocation(90, 300);
-            AllyCharacter3.setLocation(90, 120);
+            AllyCharacter3.setLocation(0, 210);
             AllyCharacter4.setLocation(270, 210);
             
             EnemyCharacter1.setLocation(90, 660);
@@ -2588,19 +2591,13 @@ public class MapGUI extends javax.swing.JFrame {
         stageClearedAnimationThread = new Thread(){
         @Override
         public void run() {
-            try {
-                if(applyDamageAnimationThread != null)
-                        while(applyDamageAnimationThread.isAlive()) {}
-                stageClearSound();
-                StageClearButton.setVisible(true);
-                StageClearLogo.setVisible(true);
-                Thread.sleep(1000);
-                StageClearText.setVisible(true);
-                StageClearOrb.setVisible(true);
-                
-            } catch (InterruptedException ex) {
-                Logger.getLogger(MapGUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            if(applyDamageAnimationThread != null)
+                    while(applyDamageAnimationThread.isAlive()) {}
+            stageClearSound();
+            StageClearButton.setVisible(true);
+            StageClearLogo.setVisible(true);
+            StageClearText.setVisible(true);
+            StageClearOrb.setVisible(true);
         }};
         stageClearedAnimationThread.start();
     }
@@ -2688,9 +2685,58 @@ public class MapGUI extends javax.swing.JFrame {
         }
         
         mediaPlayer = new MediaPlayer(songFile);
-        mediaPlayer.setVolume(.6);
+        mediaPlayer.setVolume(.4);
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         mediaPlayer.play();
+    }
+    
+    private void gameOverThread() {
+        Thread gameOverThread = new Thread(){
+        @Override
+        public void run() {
+            while(applyDamageAnimationThread.isAlive()){}
+            GameOverGUI goGUI= new GameOverGUI(cmGUI);
+            goGUI.setVisible(true);
+            mediaPlayer.stop();
+            dispose();
+        }};
+        gameOverThread.start();
+    }
+    
+    private void selectSound() {
+        Thread selectSound = new Thread(){
+        @Override
+        public void run() {
+            songFile = new Media(new File("src\\audio\\select.mp3").toURI().toString());
+            selectPlayer = new MediaPlayer(songFile);
+            selectPlayer.setVolume(.4);
+            selectPlayer.play();
+        }};
+        selectSound.start();
+    }
+    
+    private void tileSound() {
+        Thread tileSound = new Thread(){
+        @Override
+        public void run() {
+            songFile = new Media(new File("src\\audio\\tile.mp3").toURI().toString());
+            tilePlayer = new MediaPlayer(songFile);
+            tilePlayer.setVolume(.4);
+            tilePlayer.play();
+        }};
+        tileSound.start();
+    }
+    
+    private void endTurnSound() {
+        Thread endTurnSound = new Thread(){
+        @Override
+        public void run() {
+            songFile = new Media(new File("src\\audio\\endTurn.mp3").toURI().toString());
+            endTurnPlayer = new MediaPlayer(songFile);
+            endTurnPlayer.setVolume(.6);
+            endTurnPlayer.play();
+        }};
+        endTurnSound.start();
     }
     
     /**

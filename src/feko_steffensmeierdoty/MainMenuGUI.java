@@ -145,6 +145,12 @@ public class MainMenuGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ExitGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitGameButtonActionPerformed
+        selectSound();
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(MainMenuGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
         System.exit(0);
     }//GEN-LAST:event_ExitGameButtonActionPerformed
 
@@ -153,7 +159,6 @@ public class MainMenuGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_ExitGameButtonMouseExited
 
     private void ExitGameButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitGameButtonMouseEntered
-        selectSound();
         ExitGameButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/main_menu_button1.png")));
     }//GEN-LAST:event_ExitGameButtonMouseEntered
 
@@ -162,11 +167,12 @@ public class MainMenuGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_OptionsButtonMouseExited
 
     private void OptionsButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OptionsButtonMouseEntered
-        selectSound();
+        
         OptionsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/main_menu_button1.png")));
     }//GEN-LAST:event_OptionsButtonMouseEntered
 
     private void LoadGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoadGameButtonActionPerformed
+        selectSound();
         CharacterModGUI charModGUI = new CharacterModGUI();
         charModGUI.setVisible(true);
         mediaPlayer.stop();
@@ -178,7 +184,6 @@ public class MainMenuGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_LoadGameButtonMouseExited
 
     private void LoadGameButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LoadGameButtonMouseEntered
-        selectSound();
         LoadGameButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/main_menu_button1.png")));
     }//GEN-LAST:event_LoadGameButtonMouseEntered
   
@@ -195,7 +200,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
     private void initSong() {
         songFile = new Media(new File("src\\audio\\menuBackground.mp3").toURI().toString());
         mediaPlayer = new MediaPlayer(songFile);
-        mediaPlayer.setVolume(.6);
+        mediaPlayer.setVolume(.4);
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         mediaPlayer.play();
     }
