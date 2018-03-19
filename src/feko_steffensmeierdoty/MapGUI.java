@@ -45,6 +45,8 @@ public class MapGUI extends javax.swing.JFrame {
     private Media songFile;
     private MediaPlayer mediaPlayer;
     private MediaPlayer damagePlayer;
+    private MediaPlayer phasePlayer;
+    private MediaPlayer stageClearPlayer;
     
     
     public MapGUI() {
@@ -2020,8 +2022,8 @@ public class MapGUI extends javax.swing.JFrame {
                 }
                 PhaseLabel.setVisible(false);
                 resetPositionMarkers();
-                mediaPlayer.stop();
                 stageClearedAnimation();
+                mediaPlayer.stop();
             }
             i++;
         }
@@ -2528,6 +2530,7 @@ public class MapGUI extends javax.swing.JFrame {
                     }
                     if(applyDamageAnimationThread != null)
                         while(applyDamageAnimationThread.isAlive()) {}
+                    phaseSound();
                     PhaseSeperator.setVisible(true);
                     MapLayer.moveToFront(PhaseSeperator);
                     MapLayer.moveToFront(PhaseLabel);
@@ -2588,6 +2591,7 @@ public class MapGUI extends javax.swing.JFrame {
             try {
                 if(applyDamageAnimationThread != null)
                         while(applyDamageAnimationThread.isAlive()) {}
+                stageClearSound();
                 StageClearButton.setVisible(true);
                 StageClearLogo.setVisible(true);
                 Thread.sleep(1000);
@@ -2641,13 +2645,48 @@ public class MapGUI extends javax.swing.JFrame {
         public void run() {
             songFile = new Media(new File("src\\audio\\damage.mp3").toURI().toString());
             damagePlayer = new MediaPlayer(songFile);
+            damagePlayer.setVolume(.7);
             damagePlayer.play();
         }};
         damageSound.start();
     }
     
+    private void phaseSound() {
+        Thread phaseSound = new Thread(){
+        @Override
+        public void run() {
+            if(turn == true)
+                songFile = new Media(new File("src\\audio\\playerPhase.mp3").toURI().toString());
+            else
+                songFile = new Media(new File("src\\audio\\enemyPhase.mp3").toURI().toString());
+            phasePlayer = new MediaPlayer(songFile);
+            phasePlayer.setVolume(.9);
+            phasePlayer.play();
+        }};
+        phaseSound.start();
+    }
+    
+    private void stageClearSound() {
+        Thread stageClear = new Thread(){
+        @Override
+        public void run() {
+            songFile = new Media(new File("src\\audio\\stageClear.mp3").toURI().toString());
+            stageClearPlayer = new MediaPlayer(songFile);
+            stageClearPlayer.setVolume(.9);
+            stageClearPlayer.play();
+        }};
+        stageClear.start();
+    }
+    
     private void initSong() {
-        songFile = new Media(new File("src\\audio\\map1.mp3").toURI().toString());
+        if(level == 1) {
+            songFile = new Media(new File("src\\audio\\map1.mp3").toURI().toString());
+        } else if(level == 2) {
+            songFile = new Media(new File("src\\audio\\map2.mp3").toURI().toString());
+        } else if(level == 3) {
+            songFile = new Media(new File("src\\audio\\map3.mp3").toURI().toString());
+        }
+        
         mediaPlayer = new MediaPlayer(songFile);
         mediaPlayer.setVolume(.6);
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);

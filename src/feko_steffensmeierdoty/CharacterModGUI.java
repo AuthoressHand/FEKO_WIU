@@ -6,6 +6,8 @@
 package feko_steffensmeierdoty;
 
 import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.media.Media;
@@ -22,7 +24,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
     private Media songFile;
     private MediaPlayer mediaPlayer;
     private MediaPlayer selectPlayer;
-    private MediaPlayer damagePlayer;
+    private MediaPlayer mapPickPlayer;
     private final JButton[] teamSlots = new JButton[4];
     private final JButton[] characterOptions = new JButton[5];
     private final JLabel[] charsHomeLayer = new JLabel[4];
@@ -878,7 +880,13 @@ public class CharacterModGUI extends javax.swing.JFrame {
 
     //Sets the CharacterModGUI frame to inivisible, and creates and displays the MapGUI (level)
     private void Stage1ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Stage1ButtonActionPerformed
-        if(getTeamSize() > 0) {  
+        if(getTeamSize() > 0) { 
+            mapPickSound();
+            try {
+                Thread.sleep(750);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(CharacterModGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
             LevelTransitionGUI ltGUI = new LevelTransitionGUI(1,team,this);
             ltGUI.setVisible(true);
             setVisible(false);
@@ -1066,6 +1074,12 @@ public class CharacterModGUI extends javax.swing.JFrame {
 
     private void Stage2ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Stage2ButtonActionPerformed
         if(getTeamSize() > 0) {  
+            mapPickSound();
+            try {
+                Thread.sleep(750);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(CharacterModGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
             LevelTransitionGUI ltGUI = new LevelTransitionGUI(2,team,this);
             ltGUI.setVisible(true);
             setVisible(false);
@@ -1084,6 +1098,12 @@ public class CharacterModGUI extends javax.swing.JFrame {
 
     private void Stage3ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Stage3ButtonActionPerformed
         if(getTeamSize() > 0) {  
+            mapPickSound();
+            try {
+                Thread.sleep(750);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(CharacterModGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
             LevelTransitionGUI ltGUI = new LevelTransitionGUI(3,team,this);
             ltGUI.setVisible(true);
             setVisible(false);
@@ -1223,9 +1243,22 @@ public class CharacterModGUI extends javax.swing.JFrame {
         public void run() {
             songFile = new Media(new File("src\\audio\\select.mp3").toURI().toString());
             selectPlayer = new MediaPlayer(songFile);
+            selectPlayer.setVolume(.4);
             selectPlayer.play();
         }};
         selectSound.start();
+    }
+    
+    private void mapPickSound() {
+        Thread mapPickSound = new Thread(){
+        @Override
+        public void run() {
+            songFile = new Media(new File("src\\audio\\mapPick.mp3").toURI().toString());
+            mapPickPlayer = new MediaPlayer(songFile);
+            mapPickPlayer.setVolume(.7);
+            mapPickPlayer.play();
+        }};
+        mapPickSound.start();
     }
     
     /**

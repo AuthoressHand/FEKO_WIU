@@ -206,6 +206,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
         public void run() {
             songFile = new Media(new File("src\\audio\\select.mp3").toURI().toString());
             selectPlayer = new MediaPlayer(songFile);
+            selectPlayer.setVolume(.4);
             selectPlayer.play();
         }};
         selectSound.start();
