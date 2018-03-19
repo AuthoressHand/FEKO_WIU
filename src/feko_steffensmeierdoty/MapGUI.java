@@ -2531,13 +2531,13 @@ public class MapGUI extends javax.swing.JFrame {
         @Override
         public void run() {
                 try {
-                    if(stageClearedAnimationThread != null) {
-                        return;
-                    }
+                    
                     if(applyDamageAnimationThread != null)
                         while(applyDamageAnimationThread.isAlive()) {}
                     if(deathSound != null)
                         while(deathSound.isAlive()) {}
+                    if(stageClearedAnimationThread != null)
+                        return;
                     phaseSound();
                     PhaseSeperator.setVisible(true);
                     MapLayer.moveToFront(PhaseSeperator);
