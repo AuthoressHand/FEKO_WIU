@@ -173,6 +173,7 @@ public class LevelTransitionGUI extends javax.swing.JFrame {
         mediaPlayer = new MediaPlayer(songFile);
         mediaPlayer.setVolume(.4);
         mediaPlayer.play();
+        
     }
     
     /**
