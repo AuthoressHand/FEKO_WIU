@@ -1727,11 +1727,13 @@ public class MapGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_EnemyCharacter4MouseDragged
 
     private void StageClearButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StageClearButtonMouseClicked
+        cmGUI.initSong();
         cmGUI.setVisible(true);
         dispose();
     }//GEN-LAST:event_StageClearButtonMouseClicked
 
     private void StageClearLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StageClearLogoMouseClicked
+        cmGUI.initSong();
         cmGUI.setVisible(true);
         dispose();
     }//GEN-LAST:event_StageClearLogoMouseClicked
@@ -1791,7 +1793,9 @@ public class MapGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_DamageSeperatorMouseClicked
 
     private void StageClearOrbMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StageClearOrbMouseClicked
-        // TODO add your handling code here:
+        cmGUI.initSong();
+        cmGUI.setVisible(true);
+        dispose();
     }//GEN-LAST:event_StageClearOrbMouseClicked
        
     //Checks to see whether the current mouse position is inside a specific component

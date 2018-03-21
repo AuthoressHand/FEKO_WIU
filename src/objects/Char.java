@@ -46,7 +46,7 @@ public abstract class Char {
     public Char(String name, int level) {
         this.name = name;
         this.level = level;
-        this.maxHP = 3;
+        this.maxHP = 1;
         this.currentHP = this.maxHP;
         this.weapon = new Weapon(null, 0, "Bronze Sword", 0, "Basic Sword, starting equipment", WeaponType.Sword, 5, 1, DamageType.Physical);
         this.attack = 1;

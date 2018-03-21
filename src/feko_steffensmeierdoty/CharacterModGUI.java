@@ -879,11 +879,6 @@ public class CharacterModGUI extends javax.swing.JFrame {
     private void Stage1ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Stage1ButtonActionPerformed
         if(getTeamSize() > 0) { 
             mapPickSound();
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(CharacterModGUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
             LevelTransitionGUI ltGUI = new LevelTransitionGUI(1,team,this);
             ltGUI.setVisible(true);
             setVisible(false);
@@ -1073,13 +1068,8 @@ public class CharacterModGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_Stage2ButtonMouseExited
 
     private void Stage2ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Stage2ButtonActionPerformed
-        if(getTeamSize() > 0) {  
+        if(getTeamSize() > 0) {
             mapPickSound();
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(CharacterModGUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
             LevelTransitionGUI ltGUI = new LevelTransitionGUI(2,team,this);
             ltGUI.setVisible(true);
             setVisible(false);
@@ -1098,11 +1088,6 @@ public class CharacterModGUI extends javax.swing.JFrame {
     private void Stage3ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Stage3ButtonActionPerformed
         if(getTeamSize() > 0) {  
             mapPickSound();
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(CharacterModGUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
             LevelTransitionGUI ltGUI = new LevelTransitionGUI(3,team,this);
             ltGUI.setVisible(true);
             setVisible(false);

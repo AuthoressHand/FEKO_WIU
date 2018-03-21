@@ -80,16 +80,16 @@ public class GameOverGUI extends javax.swing.JFrame {
         Thread gameOverTransitionThread = new Thread() {    
             public void run() {
                 try {
-                    Thread.sleep(800);
                     GameOverText.setVisible(true);
                     Feather.setVisible(true);
-                    Thread.sleep(2750);
+                    Thread.sleep(4800);
+                    
+                    mediaPlayer.stop();
+                    cmGUI.initSong();
+                    cmGUI.setVisible(true);
                     GameOverBackground.setVisible(false);
                     Feather.setVisible(false);
                     GameOverText.setVisible(false);
-                    cmGUI.setVisible(true);
-                    cmGUI.initSong();
-                    mediaPlayer.stop();
                     dispose();
                 } catch (InterruptedException ex) {
                     Logger.getLogger(MapGUI.class.getName()).log(Level.SEVERE, null, ex);
