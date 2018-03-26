@@ -16,7 +16,9 @@ import javax.swing.ImageIcon;
  *
  * @author Rose Steffensmeier
  * @dateCreated 12/5/2017
- * @updated 2/23/2018 - added new methods (getName), made edits to existing classes (givePermBoost), and comments for existing ones
+ * @updated 2/23/2018 - added new methods (getName), made edits to existing classes (givePermBoost), and comments for existing ones - Rose
+ * @updated 3/18/2018 - forgot to include walkRange in constructors and getRally method - Rose
+ * @updated 3/21/2018 - added error testing to methods involving arrays, added no skill to constructor to avoid NullPointerException, general debugging - Rose
  * The main object that the player controls and fights against during the game, lists out everything the character needs
  */
 public abstract class Character {
@@ -39,11 +41,13 @@ public abstract class Character {
     private ImageIcon charImg;
     private boolean active;
     private CharType charType;
+    private Skill defaultSkill;
     
     public Character(String name) {
         this.name = name;
         this.level = 1;
         this.maxHP = 10 + level;
+        this.currentHP = this.maxHP;
         this.weapon = new Weapon(null, 0, "Bronze Sword", 0, "Basic Sword, starting equipment", WeaponType.Sword, 6, 1, DamageType.Physical);
         this.attack = 2;
         this.defense = 2;
@@ -59,12 +63,12 @@ public abstract class Character {
         
     }
     
-    public Character(String name, int maxHP, Weapon weapon, int level, int attack, int defense, int resistance, int speed, Skill[] skills, Rally rally, ImageIcon charImg, CharType charType) {
-        this.setCharacter(name, maxHP, weapon, level, attack, defense, resistance, speed, skills, rally, charImg, charType);
+    public Character(String name, int maxHP, Weapon weapon, int level, int attack, int defense, int resistance, int speed, int walkRange, Skill[] skills, Rally rally, ImageIcon charImg, CharType charType) {
+        this.setCharacter(name, maxHP, maxHP, weapon, level, attack, defense, resistance, speed, walkRange, skills, rally, charImg, charType);
     }
     
-    public Character(String name, int maxHP, Weapon weapon, int level, int attack, int defense, int resistance, int speed, int tempAttack, int tempDefense, int tempResistance, int tempSpeed, Skill[] skills, Rally rally, ImageIcon charImg, boolean active, CharType charType) {
-        this.setCharacter(name, maxHP, weapon, level, attack, defense, resistance, speed, skills, rally, charImg, charType);
+    public Character(String name, int maxHP, int currentHP, Weapon weapon, int level, int attack, int defense, int resistance, int speed, int tempAttack, int tempDefense, int tempResistance, int tempSpeed, int walkRange, Skill[] skills, Rally rally, ImageIcon charImg, boolean active, CharType charType) {
+        this.setCharacter(name, maxHP, currentHP, weapon, level, attack, defense, resistance, speed, walkRange, skills, rally, charImg, charType);
         this.tempAttack = tempAttack;
         this.tempDefense = tempDefense;
         this.tempResistance = tempResistance;
@@ -73,19 +77,25 @@ public abstract class Character {
     }
     
     //sets the character's information
-    private void setCharacter(String name, int maxHP, Weapon weapon, int level, int attack, int defense, int resistance, int speed, Skill[] skills, Rally rally, ImageIcon charImg, CharType charType) {
+    private void setCharacter(String name, int maxHP, int currentHP, Weapon weapon, int level, int attack, int defense, int resistance, int speed, int walkRange, Skill[] skills, Rally rally, ImageIcon charImg, CharType charType) {
         this.name = name;
         this.maxHP = maxHP;
-        this.currentHP = maxHP;
+        this.currentHP = currentHP;
         this.equipWeapon(weapon);
         this.level = level;
         this.attack = attack;
         this.defense = defense;
         this.resistance = resistance;
         this.speed = speed;
+        this.walkRange = walkRange;
         this.skills = new Skill[3];
-        for (int i = 0; i < skills.length; i++)
-            this.skills[i] = skills[i];
+        defaultSkill = new Skill(null, 0, "", 0, "Skill not equipped.");
+        for (int i = 0; i < 3; i++) {
+            if (skills[i] == null)
+                this.skills[i] = defaultSkill;
+            else
+                this.skills[i] = skills[i];
+        }
         this.equipRally(rally);
         this.charImg = charImg;
         this.active = true;
@@ -120,12 +130,12 @@ public abstract class Character {
     
     //returns the total attack of a character
     public int getTotalAtk() {
-        return this.attack + weapon.getDmg(); //+ this.tempAttack;
+        return this.attack + weapon.getDmg() + this.tempAttack;
     }
     
     //returns the total defense of a character
     public int getTotalDef() {
-        return this.defense; // + this.tempDefense;
+        return this.defense + this.tempDefense;
     }
     
     //returns the total resistance of a character
@@ -145,7 +155,25 @@ public abstract class Character {
     
     //returns a specific skill of a character
     public Skill getSkill(int x) {
-        return this.skills[x];
+        try {
+            return this.skills[x];
+        }
+        catch (ArrayIndexOutOfBoundsException ex) {
+            return null;
+        }
+        catch (NullPointerException ex) {
+            return null;
+        }
+    }
+    
+    //returns the rally of a charater
+    public Rally getRally() {
+        try {
+            return this.rally;
+        }
+        catch (NullPointerException ex) {
+            return null;
+        }
     }
     
     //returns the image of a character
@@ -203,15 +231,24 @@ public abstract class Character {
     
     //sets a skill of a character, but only from the ones they already have
     protected void setSkill(Skill skill, int x) {
-        this.skills[x].equals(skill);
-        this.givePermBoost(skill.getStat(), skill.getEffect());
+        try {
+            this.skills[x] = skill;
+            this.givePermBoost(skills[x].getStat(), skills[x].getEffect());
+        }
+        catch (ArrayIndexOutOfBoundsException ex) {
+            System.out.println("Array out of bounds. Skill not set.");
+        }
+        catch (NullPointerException ex) {
+            this.skills[x] = defaultSkill;
+            this.givePermBoost(skills[x].getStat(), skills[x].getEffect());
+        }
     }
     
     //sets the weapon of a character
     protected void setWeapon(Weapon weapon) {
         this.weapon = weapon;
-        /*if (weapon.getStat() != null)
-            givePermBoost(weapon.getStat(), weapon.getEffect());*/
+        //if (weapon.getStat() != null)
+            this.givePermBoost(weapon.getStat(), weapon.getEffect());
     }
     
     //sets the rally of a character
@@ -250,7 +287,7 @@ public abstract class Character {
                     this.resistance += effect;
                     break;
                 case Speed:
-                    this.speed = effect;
+                    this.speed += effect;
                     break;
                 default:
                     break;

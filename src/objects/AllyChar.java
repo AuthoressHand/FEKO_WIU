@@ -7,7 +7,6 @@ package objects;
 
 import common.CharType;
 import common.Stat;
-import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.ImageIcon;
@@ -18,7 +17,9 @@ import javax.swing.ImageIcon;
  * @dateCreated 12/6/2017
  * The main object that the player controls and fights against during the game, lists out everything the character needs
  * This one is specifically the one the player controls
- * @updated 2/27/2018 - updated methods with comments, added new methods
+ * @updated 2/27/2018 - updated methods with comments, added new methods - Rose
+ * @updated 3/18/2018 - updated constructors to match change to Character class - Rose
+ * @updated 3/23/2018 - debugging, removed unequipWeapon method - Rose
  */
 public class AllyChar extends Character {
     private int specialPoints;
@@ -32,13 +33,13 @@ public class AllyChar extends Character {
     private ArrayList<Skill> lockSkills;
     private Random generator;
     
-    public AllyChar(String name, int maxHP, Weapon weapon, int level, int attack, int defense, int resistance, int speed, Skill[] skills, Rally rally, ImageIcon charImg, CharType charType, int specialPoints, int experience, int hpIncrease, int atkIncrease, int defIncrease, int resIncrease, int spdIncrease, ArrayList<Skill> unlockSkills, ArrayList<Skill> lockSkills) {
-        super(name, maxHP, weapon, level, attack, defense, resistance, speed, skills, rally, charImg, charType);
+    public AllyChar(String name, int maxHP, Weapon weapon, int level, int attack, int defense, int resistance, int speed, int walkRange, Skill[] skills, Rally rally, ImageIcon charImg, CharType charType, int specialPoints, int experience, int hpIncrease, int atkIncrease, int defIncrease, int resIncrease, int spdIncrease, ArrayList<Skill> unlockSkills, ArrayList<Skill> lockSkills) {
+        super(name, maxHP, weapon, level, attack, defense, resistance, speed, walkRange, skills, rally, charImg, charType);
         setAlly(specialPoints, experience, hpIncrease, atkIncrease, defIncrease, resIncrease, spdIncrease, unlockSkills, lockSkills);
     }
     
-    public AllyChar(String name, int maxHP, Weapon weapon, int level, int attack, int defense, int resistance, int speed, int tempAttack, int tempDefense, int tempResistance, int tempSpeed, Skill[] skills, Rally rally, ImageIcon charImg, boolean active, CharType charType, int specialPoints, int experience, int hpIncrease, int atkIncrease, int defIncrease, int resIncrease, int spdIncrease, ArrayList<Skill> unlockSkills, ArrayList<Skill> lockSkills) {
-        super(name, maxHP, weapon, level, attack, defense, resistance, speed, tempAttack, tempDefense, tempResistance, tempSpeed, skills, rally, charImg, active, charType);
+    public AllyChar(String name, int maxHP, int currentHP, Weapon weapon, int level, int attack, int defense, int resistance, int speed, int tempAttack, int tempDefense, int tempResistance, int tempSpeed, int walkRange, Skill[] skills, Rally rally, ImageIcon charImg, boolean active, CharType charType, int specialPoints, int experience, int hpIncrease, int atkIncrease, int defIncrease, int resIncrease, int spdIncrease, ArrayList<Skill> unlockSkills, ArrayList<Skill> lockSkills) {
+        super(name, maxHP, currentHP, weapon, level, attack, defense, resistance, speed, tempAttack, tempDefense, tempResistance, tempSpeed, walkRange, skills, rally, charImg, active, charType);
         setAlly(specialPoints, experience, hpIncrease, atkIncrease, defIncrease, resIncrease, spdIncrease, unlockSkills, lockSkills);
     }
     
@@ -51,8 +52,10 @@ public class AllyChar extends Character {
         this.defIncrease = defIncrease;
         this.resIncrease = resIncrease;
         this.spdIncrease = spdIncrease;
+        this.unlockSkills = new ArrayList<>();
         for (Skill unlocked : unlockSkills)
             this.unlockSkills.add(unlocked);
+        this.lockSkills = new ArrayList<>();
         for (Skill locked : lockSkills)
             this.lockSkills.add(locked);
         generator = new Random();
@@ -79,7 +82,7 @@ public class AllyChar extends Character {
     }
     
     //increases the ally's stats, add special points, and takes away experience
-    public void levelUp() {
+    protected void levelUp() {
         if (this.generator.nextInt(100) < this.hpIncrease)
             this.givePermBoost(Stat.HP, 1);
         if (this.generator.nextInt(100) < this.atkIncrease)
@@ -98,7 +101,7 @@ public class AllyChar extends Character {
     //adds experience to ally, if experience is over 100, ally levels up
     public void gainExperience(int exp) {
         this.experience += exp;
-        if (this.experience >= 100)
+        while (this.experience >= 100)
             levelUp();
     }
     
@@ -109,6 +112,9 @@ public class AllyChar extends Character {
             this.lockSkills.remove(skill);
             this.specialPoints -= skill.getSPCost();
         }
+        else if (!this.lockSkills.contains(skill)) {
+            System.out.println("The chosen skill is not in this character's locked list.");
+        }
     }
     
     //removes the skill equipped
@@ -117,7 +123,7 @@ public class AllyChar extends Character {
     }
     
     //removes the weapon equipped
-    public void unequipWeapon() {
+    private void unequipWeapon() {
         this.equipWeapon(null);
     }
     
@@ -135,7 +141,8 @@ public class AllyChar extends Character {
     
     @Override
     public void equipWeapon(Weapon weapon) {
-        this.givePermBoost(weapon.getStat(), -(weapon.getEffect()));
+        if (this.getWeapon() != null)
+            this.givePermBoost(this.getWeapon().getStat(), -(this.getWeapon().getEffect()));
         this.setWeapon(weapon);
     }
 }
