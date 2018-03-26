@@ -17,12 +17,15 @@ import javax.swing.ImageIcon;
  * @updated 2/27/2018 - made sure all methods had comment
  * @updated 3/18/2018 - updated constructors to match changes to Character class
  */
-public class EnemyChar extends Character {
+public class EnemyChar extends Char {
     private MoveType moveType;
     
     //if(charType == ?)
         //do base attributes accordingly
     
+    public EnemyChar(String name, int level) {
+        super(name, level);
+    }
     
     public EnemyChar(String name, int maxHP, Weapon weapon, int level, int attack, int defense, int resistance, int speed, int walkRange, Skill[] skills, Rally rally, ImageIcon charImg, CharType charType, MoveType moveType) {
         super(name, maxHP, weapon, level, attack, defense, resistance, speed, walkRange, skills, rally, charImg, charType);

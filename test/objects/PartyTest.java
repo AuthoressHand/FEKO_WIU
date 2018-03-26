@@ -59,14 +59,14 @@ public class PartyTest {
         ally4 = new AllyChar("Ally 4", 10, weapon, 1, 2, 3, 4, 5, 2, skillList, null, charImage, CharType.Ally, 110, 0, 100, 100, 100, 100, 100, unlocked, locked);
         ally5 = new AllyChar("Ally 5", 10, weapon, 1, 2, 3, 4, 5, 2, skillList, null, charImage, CharType.Ally, 110, 0, 100, 100, 100, 100, 100, unlocked, locked);
                 
-        ArrayList<Character> charList = new ArrayList<>();
+        ArrayList<Char> charList = new ArrayList<>();
         charList.add(ally1);
         charList.add(ally2);
         charList.add(ally3);
         charList.add(ally4);
         //charList.add(ally5);
         
-        Character[] partyList = new Character[4];
+        Char[] partyList = new Char[4];
         partyList[0] = ally1;
         partyList[1] = ally2;
         partyList[2] = ally3;
@@ -201,14 +201,14 @@ public class PartyTest {
     //Tests getParty method from Party class.
     @Test
     public void testGetParty() {
-        Character[] characters = allyParty.getParty();
+        Char[] characters = allyParty.getParty();
         assertEquals(characters[0], ally1);
     }
     
     //Tests getArmy method from Party class.
     @Test
     public void testGetArmy() {
-        ArrayList<Character> characters = allyParty.getArmy();
+        ArrayList<Char> characters = allyParty.getArmy();
         assertEquals(characters.get(0), ally1);
     }
 }

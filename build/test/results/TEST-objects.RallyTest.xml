@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="Programming-PC" name="objects.RallyTest" skipped="0" tests="6" time="0.125" timestamp="2018-03-26T16:02:11">
+<testsuite errors="0" failures="0" hostname="Programming-PC" name="objects.RallyTest" skipped="0" tests="6" time="0.091" timestamp="2018-03-26T22:41:21">
   <properties>
     <property name="libs.jsp-compiler.javadoc" value="" />
     <property name="netbeans.autoupdate.country" value="US" />
@@ -55,7 +55,7 @@
     <property name="copylibs.rebase" value="true" />
     <property name="libs.spring-webmvc3.0.maven-pom" value="" />
     <property name="libs.swing-layout.maven-pom" value="" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner objects.RallyTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,F:\School\WIU\Fall 2017\Software Engineering I\FEKO_WIU\build\test\results\TEST-objects.RallyTest.xml crashfile=F:\School\WIU\Fall 2017\Software Engineering I\FEKO_WIU\build\junitvmwatcher6672528760740227540.properties propsfile=F:\School\WIU\Fall 2017\Software Engineering I\FEKO_WIU\build\junit2646256572255057573.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner objects.RallyTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,F:\School\WIU\Fall 2017\Software Engineering I\FEKO_WIU\build\test\results\TEST-objects.RallyTest.xml crashfile=F:\School\WIU\Fall 2017\Software Engineering I\FEKO_WIU\build\junitvmwatcher8840487382446610117.properties propsfile=F:\School\WIU\Fall 2017\Software Engineering I\FEKO_WIU\build\junit6574781752941784653.properties" />
     <property name="build.classes.dir" value="build/classes" />
     <property name="netbeans.accept_license_class" value="org.netbeans.license.AcceptLicense" />
     <property name="build.sysclasspath" value="ignore" />
@@ -97,7 +97,7 @@
     <property name="javadoc.splitindex" value="true" />
     <property name="file.separator" value="\" />
     <property name="libs.Java-EE-GlassFish-v3-Prelude.maven-pom" value="" />
-    <property name="javac.includesfile.binary" value="F:\School\WIU\Fall 2017\Software Engineering I\FEKO_WIU\null948792384" />
+    <property name="javac.includesfile.binary" value="F:\School\WIU\Fall 2017\Software Engineering I\FEKO_WIU\null1279011193" />
     <property name="libs.junit_4.maven-pom" value="" />
     <property name="mkdist.disabled" value="false" />
     <property name="javac.test.processorpath" value="C:\Program Files\NetBeans 8.0.2\java\modules\ext\AbsoluteLayout.jar:C:\Program Files\NetBeans 8.0.2\java\modules\ext\beansbinding-1.2.1.jar:build/classes:C:\Program Files\NetBeans 8.0.2\platform\modules\ext\junit-4.10.jar:${libs.hamcrest.classpath}" />
@@ -396,12 +396,12 @@
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
     <property name="libs.javaee-web-api-7.0.javadoc" value="C:\Program Files\NetBeans 8.0.2\enterprise\docs\javaee-doc-api.jar" />
   </properties>
-  <testcase classname="objects.RallyTest" name="testGetEffect" time="0.0" />
+  <testcase classname="objects.RallyTest" name="testGetDescription" time="0.002" />
+  <testcase classname="objects.RallyTest" name="testGetRange" time="0.001" />
   <testcase classname="objects.RallyTest" name="testGetStat" time="0.0" />
-  <testcase classname="objects.RallyTest" name="testGetRange" time="0.0" />
-  <testcase classname="objects.RallyTest" name="testGetSPCost" time="0.0" />
+  <testcase classname="objects.RallyTest" name="testGetEffect" time="0.0" />
   <testcase classname="objects.RallyTest" name="testGetName" time="0.0" />
-  <testcase classname="objects.RallyTest" name="testGetDescription" time="0.0" />
+  <testcase classname="objects.RallyTest" name="testGetSPCost" time="0.0" />
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

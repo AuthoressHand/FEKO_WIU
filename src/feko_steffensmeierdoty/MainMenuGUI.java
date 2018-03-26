@@ -4,15 +4,27 @@
  * and open the template in the editor.
  */
 package feko_steffensmeierdoty;
-
+import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.application.Platform;
+import javafx.embed.swing.JFXPanel;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 /**
  *
  * @author 
  */
 public class MainMenuGUI extends javax.swing.JFrame {
     
+    private Media songFile;
+    private MediaPlayer mediaPlayer;
+    private MediaPlayer selectPlayer;
+    
     public MainMenuGUI() {
         initComponents();
+        initJavaFX();
+        initSong();
     }
 
     @SuppressWarnings("unchecked")
@@ -133,6 +145,12 @@ public class MainMenuGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ExitGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitGameButtonActionPerformed
+        selectSound();
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(MainMenuGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
         System.exit(0);
     }//GEN-LAST:event_ExitGameButtonActionPerformed
 
@@ -149,13 +167,15 @@ public class MainMenuGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_OptionsButtonMouseExited
 
     private void OptionsButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OptionsButtonMouseEntered
+        
         OptionsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/main_menu_button1.png")));
     }//GEN-LAST:event_OptionsButtonMouseEntered
 
     private void LoadGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoadGameButtonActionPerformed
+        selectSound();
         CharacterModGUI charModGUI = new CharacterModGUI();
-
         charModGUI.setVisible(true);
+        mediaPlayer.stop();
         dispose();
     }//GEN-LAST:event_LoadGameButtonActionPerformed
 
@@ -167,6 +187,36 @@ public class MainMenuGUI extends javax.swing.JFrame {
         LoadGameButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/main_menu_button1.png")));
     }//GEN-LAST:event_LoadGameButtonMouseEntered
   
+    private void initJavaFX() {
+        new JFXPanel();
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                
+            }
+        });
+    }
+    
+    private void initSong() {
+        songFile = new Media(new File("src\\audio\\menuBackground.mp3").toURI().toString());
+        mediaPlayer = new MediaPlayer(songFile);
+        mediaPlayer.setVolume(.4);
+        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        mediaPlayer.play();
+    }
+    
+    private void selectSound() {
+        Thread selectSound = new Thread(){
+        @Override
+        public void run() {
+            songFile = new Media(new File("src\\audio\\select.mp3").toURI().toString());
+            selectPlayer = new MediaPlayer(songFile);
+            selectPlayer.setVolume(.4);
+            selectPlayer.play();
+        }};
+        selectSound.start();
+    }
+    
     /**
      * @param args the command line arguments
      */

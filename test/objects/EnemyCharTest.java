@@ -130,10 +130,10 @@ public class EnemyCharTest {
         assertEquals(null, enemy.getRally());
     }
     
-    //Tests getCharImg of class Character which EnemyChar comes from.
+    //Tests getImg of class Character which EnemyChar comes from.
     @Test
-    public void testGetCharImg() {
-        assertEquals(charImage, enemy.getCharImg());
+    public void testGetImg() {
+        assertEquals(charImage, enemy.getImg());
     }
     
     //Tests getActive of class Character which EnemyChar comes from.

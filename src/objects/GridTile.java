@@ -6,6 +6,7 @@
 package objects;
 
 import javax.swing.*;
+import objects.*;
 
 /**
  *
@@ -13,7 +14,57 @@ import javax.swing.*;
  */
 public class GridTile {
     
-    private JLabel tilePosition;
-    private boolean accessible;
-    private Character character;
+    private JButton tile;
+    private Party party;
+    private Char character;
+    private boolean isAccessible;
+    private boolean isOccupied;
+    
+    public GridTile(JButton tile, boolean isAccessible) {
+        this.tile = tile;
+        this.isAccessible = isAccessible;
+        this.isOccupied = false;
+    }
+    
+    public JButton getTile() {
+        return tile;
+    }
+    
+    public boolean isAccessible() {
+        return isAccessible;
+    }
+    
+    public boolean isOccupied() {
+        return character != null;
+    }
+    
+    private void setAccessible(boolean isAccessible) {
+        this.isAccessible = isAccessible;
+    }
+    
+    private void setOccupied(Char character) {
+        this.character = character;
+    }
+    
+    public void removeCharacter() {
+        setAccessible(true);
+        setOccupied(null);
+        this.party = null;
+    }
+    
+    public Party getParty() {
+        return party;
+    }
+    
+    public void addCharacter(Char character, Party party) {
+        setAccessible(false);
+        setOccupied(character);
+        this.party = party;
+    }
+    
+    public Char getCharacter() {
+        if(character != null)
+            return character;
+        return null;
+    }
 }

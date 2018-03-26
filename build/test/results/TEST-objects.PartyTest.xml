@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="Programming-PC" name="objects.PartyTest" skipped="0" tests="21" time="0.171" timestamp="2018-03-26T16:02:00">
+<testsuite errors="0" failures="0" hostname="Programming-PC" name="objects.PartyTest" skipped="0" tests="21" time="0.179" timestamp="2018-03-26T22:40:48">
   <properties>
     <property name="libs.jsp-compiler.javadoc" value="" />
     <property name="netbeans.autoupdate.country" value="US" />
@@ -55,7 +55,7 @@
     <property name="copylibs.rebase" value="true" />
     <property name="libs.spring-webmvc3.0.maven-pom" value="" />
     <property name="libs.swing-layout.maven-pom" value="" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner objects.PartyTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,F:\School\WIU\Fall 2017\Software Engineering I\FEKO_WIU\build\test\results\TEST-objects.PartyTest.xml crashfile=F:\School\WIU\Fall 2017\Software Engineering I\FEKO_WIU\build\junitvmwatcher4040867253406369183.properties propsfile=F:\School\WIU\Fall 2017\Software Engineering I\FEKO_WIU\build\junit2930865558225563791.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner objects.PartyTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,F:\School\WIU\Fall 2017\Software Engineering I\FEKO_WIU\build\test\results\TEST-objects.PartyTest.xml crashfile=F:\School\WIU\Fall 2017\Software Engineering I\FEKO_WIU\build\junitvmwatcher2921012291331214337.properties propsfile=F:\School\WIU\Fall 2017\Software Engineering I\FEKO_WIU\build\junit5122716078412568326.properties" />
     <property name="build.classes.dir" value="build/classes" />
     <property name="netbeans.accept_license_class" value="org.netbeans.license.AcceptLicense" />
     <property name="build.sysclasspath" value="ignore" />
@@ -97,7 +97,7 @@
     <property name="javadoc.splitindex" value="true" />
     <property name="file.separator" value="\" />
     <property name="libs.Java-EE-GlassFish-v3-Prelude.maven-pom" value="" />
-    <property name="javac.includesfile.binary" value="F:\School\WIU\Fall 2017\Software Engineering I\FEKO_WIU\null1476284130" />
+    <property name="javac.includesfile.binary" value="F:\School\WIU\Fall 2017\Software Engineering I\FEKO_WIU\null502281717" />
     <property name="libs.junit_4.maven-pom" value="" />
     <property name="mkdist.disabled" value="false" />
     <property name="javac.test.processorpath" value="C:\Program Files\NetBeans 8.0.2\java\modules\ext\AbsoluteLayout.jar:C:\Program Files\NetBeans 8.0.2\java\modules\ext\beansbinding-1.2.1.jar:build/classes:C:\Program Files\NetBeans 8.0.2\platform\modules\ext\junit-4.10.jar:${libs.hamcrest.classpath}" />
@@ -396,27 +396,27 @@
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
     <property name="libs.javaee-web-api-7.0.javadoc" value="C:\Program Files\NetBeans 8.0.2\enterprise\docs\javaee-doc-api.jar" />
   </properties>
-  <testcase classname="objects.PartyTest" name="testRemoveFromParty_0" time="0.016" />
-  <testcase classname="objects.PartyTest" name="testAddToArmy_New" time="0.0" />
-  <testcase classname="objects.PartyTest" name="testAddToArmy_Old" time="0.0" />
-  <testcase classname="objects.PartyTest" name="testAddToParty_AlreadyIn" time="0.0" />
-  <testcase classname="objects.PartyTest" name="testAddToParty_Fail" time="0.0" />
+  <testcase classname="objects.PartyTest" name="testAddToParty_Fail" time="0.046" />
+  <testcase classname="objects.PartyTest" name="testRemoveFromParty_Fail" time="0.001" />
   <testcase classname="objects.PartyTest" name="testGetPartySize" time="0.0" />
-  <testcase classname="objects.PartyTest" name="testAddToParty_0" time="0.0" />
+  <testcase classname="objects.PartyTest" name="testAddToParty_0" time="0.001" />
   <testcase classname="objects.PartyTest" name="testAddToParty_1" time="0.0" />
-  <testcase classname="objects.PartyTest" name="testAddToParty_2" time="0.0" />
+  <testcase classname="objects.PartyTest" name="testAddToParty_2" time="0.001" />
   <testcase classname="objects.PartyTest" name="testAddToParty_3" time="0.0" />
   <testcase classname="objects.PartyTest" name="testGetParty" time="0.0" />
   <testcase classname="objects.PartyTest" name="testGetArmy" time="0.0" />
-  <testcase classname="objects.PartyTest" name="testRemoveFromParty_Fail" time="0.0" />
-  <testcase classname="objects.PartyTest" name="testRemoveFromParty_All" time="0.0" />
-  <testcase classname="objects.PartyTest" name="testGetArmyChar_NoSuccess" time="0.0" />
-  <testcase classname="objects.PartyTest" name="testGetArmyChar_NoFail" time="0.016" />
+  <testcase classname="objects.PartyTest" name="testRemoveFromParty_All" time="0.002" />
+  <testcase classname="objects.PartyTest" name="testGetArmyChar_NoSuccess" time="0.001" />
+  <testcase classname="objects.PartyTest" name="testGetArmyChar_NoFail" time="0.0" />
   <testcase classname="objects.PartyTest" name="testGetArmyChar_NameSuccess" time="0.0" />
   <testcase classname="objects.PartyTest" name="testGetArmyChar_NameFail" time="0.0" />
-  <testcase classname="objects.PartyTest" name="testGetPartyChar_Success" time="0.0" />
+  <testcase classname="objects.PartyTest" name="testGetPartyChar_Success" time="0.001" />
   <testcase classname="objects.PartyTest" name="testGetPartyChar_Fail" time="0.0" />
   <testcase classname="objects.PartyTest" name="testGetPartyChar_Null" time="0.0" />
+  <testcase classname="objects.PartyTest" name="testRemoveFromParty_0" time="0.0" />
+  <testcase classname="objects.PartyTest" name="testAddToArmy_New" time="0.001" />
+  <testcase classname="objects.PartyTest" name="testAddToParty_AlreadyIn" time="0.0" />
+  <testcase classname="objects.PartyTest" name="testAddToArmy_Old" time="0.0" />
   <system-out><![CDATA[Array out of bounds. Character could not be added.
 Array out of bounds. Character couldn't be removed.
 ]]></system-out>

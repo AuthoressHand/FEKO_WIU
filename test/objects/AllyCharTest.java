@@ -153,7 +153,7 @@ public class AllyCharTest {
     //Tests getCharImg of class Character which AllyChar comes from.
     @Test
     public void testGetCharImg() {
-        assertEquals(charImage, ally.getCharImg());
+        assertEquals(charImage, ally.getImg());
     }
     
     //Tests getActive of class Character which AllyChar comes from.

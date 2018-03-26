@@ -16,8 +16,8 @@ import java.util.ArrayList;
  * @updated 3/25/2018 - debugging, updating so that multiples of the same character won't be in the army or the party
  */
 public class Party {
-    private Character[] party;
-    private ArrayList<Character> army;
+    private Char[] party;
+    private ArrayList<Char> army;
     
     public Party() {
         this.setClass(4);
@@ -27,15 +27,15 @@ public class Party {
         this.setClass(x);
     }
     
-    public Party(ArrayList<Character> army, Character[] party) {
+    public Party(ArrayList<Char> army, Char[] party) {
         this.setClass(party.length);
         this.setParty(party);
         this.setArmy(army);
     }
     
     private void setClass(int x) {
-        army = new ArrayList<>();
-        party = new Character[x];
+        this.army = new ArrayList<>();
+        this.party = new Char[x];
     }
     
     //returns the size of the party
@@ -43,14 +43,18 @@ public class Party {
         return this.party.length;
     }
     
+    public int getArmySize() {
+        return this.army.size();
+    }
+    
     //sets the initial party
-    private void setParty(Character[] party) {
+    private void setParty(Char[] party) {
         for (int i = 0; i < party.length; i++)
             this.addToParty(party[i], i);
     }
     
     //adds a character to a specific slot in the party
-    public void addToParty(Character character, int x) {
+    public void addToParty(Char character, int x) {
         try {
             for (int i = 0; i < this.party.length; i++)
                 if (this.party[i] == character)
@@ -63,13 +67,14 @@ public class Party {
     }
     
     //sets the initial army
-    private void setArmy(ArrayList<Character> army) {
-        for (Character character : army)
+    private void setArmy(ArrayList<Char> army) {
+        army.forEach((character) -> {
             this.addToArmy(character);
+        });
     }
     
     //adds a character to the army
-    public void addToArmy(Character character) {
+    public void addToArmy(Char character) {
         if (!this.army.contains(character))
             this.army.add(character);
     }
@@ -84,8 +89,13 @@ public class Party {
         }
     }
     
+    //removes a character from the party
+    public void removeFromArmy(int x) {
+        this.army.remove(x);
+    }
+    
     //gets a character from the army
-    public Character getArmyChar(int x) {
+    public Char getArmyChar(int x) {
         try {
             return army.get(x);
         }
@@ -95,8 +105,8 @@ public class Party {
     }
     
     //gets a character from the army
-    public Character getArmyChar(String name) {
-        for (Character character : army) {
+    public Char getArmyChar(String name) {
+        for (Char character : army) {
             if (character.getName().compareTo(name) == 0) {
                 return character;
             }
@@ -106,7 +116,7 @@ public class Party {
     }
     
     //returns a character from the party
-    public Character getPartyChar(int x) {
+    public Char getPartyChar(int x) {
         try {
             return party[x];
         }
@@ -116,12 +126,12 @@ public class Party {
     }
     
     //returns entire party
-    public Character[] getParty() {
+    public Char[] getParty() {
         return this.party;
     }
     
     //returns entire army
-    public ArrayList<Character> getArmy() {
+    public ArrayList<Char> getArmy() {
         return this.army;
     }
 }

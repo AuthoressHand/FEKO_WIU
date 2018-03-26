@@ -5,7 +5,13 @@
  */
 package feko_steffensmeierdoty;
 
-import javax.swing.JButton;
+import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javax.swing.*;
+import objects.*;
 
 /**
  *
@@ -13,14 +19,28 @@ import javax.swing.JButton;
  */
 public class CharacterModGUI extends javax.swing.JFrame {
 
-    private JButton[] teamSlots = new JButton[4];
+    private Media songFile;
+    private MediaPlayer mediaPlayer;
+    private MediaPlayer selectPlayer;
+    private MediaPlayer mapPickPlayer;
+    private final JButton[] teamSlots = new JButton[4];
+    private final JButton[] characterOptions = new JButton[5];
+    private final JLabel[] charsHomeLayer = new JLabel[4];
+    private final AllyChar[] allyOptions = new AllyChar[5];
+    private static Party team = new Party();
     
     /**
      * Creates new form CharacterModGUI
      */
     public CharacterModGUI() {
         initComponents();
-        initEditTeamSlots();
+        initSong();
+        initCharacterModGUI();
+    }
+    
+    public CharacterModGUI(Party team) {
+        initComponents();
+        initCharacterModGUI();
     }
     
     /**
@@ -42,9 +62,17 @@ public class CharacterModGUI extends javax.swing.JFrame {
         MainStatsLayer = new javax.swing.JLayeredPane();
         TopBorder = new javax.swing.JLabel();
         AlliesLayer = new javax.swing.JLayeredPane();
-        EditStatsLayer = new javax.swing.JLayeredPane();
+        StatsLayer = new javax.swing.JLayeredPane();
+        LevelText = new javax.swing.JTextField();
+        WeaponNameText = new javax.swing.JTextField();
+        LevelProgresBar = new javax.swing.JProgressBar();
         CharacterPortrait = new javax.swing.JLabel();
-        NamePlateText = new javax.swing.JLabel();
+        AttackLevel1 = new javax.swing.JTextField();
+        AttackLevel = new javax.swing.JTextField();
+        MaxHP = new javax.swing.JTextField();
+        CurrentHP = new javax.swing.JTextField();
+        NamePlateText = new javax.swing.JTextField();
+        NamePlateDecor = new javax.swing.JLabel();
         NamePlate = new javax.swing.JLabel();
         StatsInterface = new javax.swing.JLabel();
         TopBorderStats = new javax.swing.JLabel();
@@ -64,11 +92,11 @@ public class CharacterModGUI extends javax.swing.JFrame {
         Slot2 = new javax.swing.JButton();
         Slot3 = new javax.swing.JButton();
         Slot4 = new javax.swing.JButton();
-        CharacterButton5 = new javax.swing.JButton();
-        CharacterButton4 = new javax.swing.JButton();
-        CharacterButton3 = new javax.swing.JButton();
-        CharacterButton2 = new javax.swing.JButton();
-        CharacterButton1 = new javax.swing.JButton();
+        SelenaButton = new javax.swing.JButton();
+        RoyButton = new javax.swing.JButton();
+        SoleilButton = new javax.swing.JButton();
+        AlfonseButton = new javax.swing.JButton();
+        AnnaButton = new javax.swing.JButton();
         TeamPickerUI = new javax.swing.JLabel();
         TeamLoadoutUI = new javax.swing.JLabel();
         EditTeamsBackButton = new javax.swing.JButton();
@@ -86,9 +114,15 @@ public class CharacterModGUI extends javax.swing.JFrame {
         Character4 = new javax.swing.JLabel();
         CastleBackground = new javax.swing.JLabel();
         BattleLayer = new javax.swing.JLayeredPane();
-        StoryMapsText = new javax.swing.JLabel();
-        StoryMapsButton = new javax.swing.JButton();
-        StoryMapsPNG = new javax.swing.JLabel();
+        Stage3Text = new javax.swing.JLabel();
+        Stage3Button = new javax.swing.JButton();
+        Stage3PNG = new javax.swing.JLabel();
+        Stage2Text = new javax.swing.JLabel();
+        Stage2Button = new javax.swing.JButton();
+        Stage2PNG = new javax.swing.JLabel();
+        Stage1Text = new javax.swing.JLabel();
+        Stage1Button = new javax.swing.JButton();
+        Stage1PNG = new javax.swing.JLabel();
         WorldMapBackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -216,38 +250,104 @@ public class CharacterModGUI extends javax.swing.JFrame {
         MainStatsLayer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         TopBorder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/char_mod_border_top.png"))); // NOI18N
-        MainStatsLayer.add(TopBorder, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        MainStatsLayer.add(TopBorder, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -30, -1, 130));
 
         MainContainer.add(MainStatsLayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 80));
 
         AlliesLayer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         AlliesLayer.setVisible(false);
 
-        EditStatsLayer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        EditStatsLayer.add(CharacterPortrait, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        StatsLayer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        LevelText.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        LevelText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        LevelText.setBorder(null);
+        LevelText.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        LevelText.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        LevelText.setEnabled(false);
+        LevelText.setOpaque(false);
+        StatsLayer.add(LevelText, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, 20, 40));
+
+        WeaponNameText.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        WeaponNameText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        WeaponNameText.setBorder(null);
+        WeaponNameText.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        WeaponNameText.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        WeaponNameText.setEnabled(false);
+        WeaponNameText.setOpaque(false);
+        StatsLayer.add(WeaponNameText, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 35, 140, 30));
+
+        LevelProgresBar.setMaximumSize(new java.awt.Dimension(148, 35));
+        LevelProgresBar.setMinimumSize(new java.awt.Dimension(148, 35));
+        LevelProgresBar.setPreferredSize(new java.awt.Dimension(148, 35));
+        StatsLayer.add(LevelProgresBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, 120, 10));
+        StatsLayer.add(CharacterPortrait, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 1, -1, -1));
+
+        AttackLevel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        AttackLevel1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        AttackLevel1.setBorder(null);
+        AttackLevel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        AttackLevel1.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        AttackLevel1.setEnabled(false);
+        AttackLevel1.setOpaque(false);
+        StatsLayer.add(AttackLevel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 40, 30));
+
+        AttackLevel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        AttackLevel.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        AttackLevel.setBorder(null);
+        AttackLevel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        AttackLevel.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        AttackLevel.setEnabled(false);
+        AttackLevel.setOpaque(false);
+        StatsLayer.add(AttackLevel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 40, 30));
+
+        MaxHP.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        MaxHP.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        MaxHP.setBorder(null);
+        MaxHP.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        MaxHP.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        MaxHP.setEnabled(false);
+        MaxHP.setOpaque(false);
+        StatsLayer.add(MaxHP, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 40, 40, 25));
+
+        CurrentHP.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        CurrentHP.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        CurrentHP.setBorder(null);
+        CurrentHP.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        CurrentHP.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        CurrentHP.setEnabled(false);
+        CurrentHP.setOpaque(false);
+        StatsLayer.add(CurrentHP, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 40, 25));
 
         NamePlateText.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        NamePlateText.setForeground(new java.awt.Color(255, 255, 255));
-        NamePlateText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        NamePlateText.setFocusable(false);
-        NamePlateText.setRequestFocusEnabled(false);
-        EditStatsLayer.add(NamePlateText, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 140, 30));
+        NamePlateText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        NamePlateText.setBorder(null);
+        NamePlateText.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        NamePlateText.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        NamePlateText.setEnabled(false);
+        NamePlateText.setOpaque(false);
+        StatsLayer.add(NamePlateText, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 140, 25));
+
+        NamePlateDecor.setForeground(new java.awt.Color(255, 255, 255));
+        NamePlateDecor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        NamePlateDecor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/name_plate_decor.png"))); // NOI18N
+        StatsLayer.add(NamePlateDecor, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, -1));
 
         NamePlate.setForeground(new java.awt.Color(255, 255, 255));
         NamePlate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         NamePlate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/name_plate.png"))); // NOI18N
-        EditStatsLayer.add(NamePlate, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, -1));
+        StatsLayer.add(NamePlate, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, -1));
 
-        StatsInterface.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/stats_border.png"))); // NOI18N
-        EditStatsLayer.add(StatsInterface, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, -1, -1));
+        StatsInterface.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/stats_border_1.png"))); // NOI18N
+        StatsLayer.add(StatsInterface, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, -1, -1));
 
         TopBorderStats.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         TopBorderStats.setForeground(new java.awt.Color(255, 255, 255));
         TopBorderStats.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/top_border_stats.png"))); // NOI18N
-        EditStatsLayer.add(TopBorderStats, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 120));
+        StatsLayer.add(TopBorderStats, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 120));
 
-        AlliesLayer.add(EditStatsLayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 120));
-        EditStatsLayer.setVisible(false);
+        AlliesLayer.add(StatsLayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 120));
+        StatsLayer.setVisible(false);
 
         AlliesOptionsLayer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -347,94 +447,129 @@ public class CharacterModGUI extends javax.swing.JFrame {
         Slot1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/empty_portrait.png"))); // NOI18N
         Slot1.setBorder(null);
         Slot1.setContentAreaFilled(false);
+        Slot1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                Slot1MouseEntered(evt);
+            }
+        });
         TeamLoadout.add(Slot1);
 
         Slot2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/empty_portrait.png"))); // NOI18N
         Slot2.setBorder(null);
         Slot2.setContentAreaFilled(false);
+        Slot2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                Slot2MouseEntered(evt);
+            }
+        });
         TeamLoadout.add(Slot2);
 
         Slot3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/empty_portrait.png"))); // NOI18N
         Slot3.setBorder(null);
         Slot3.setContentAreaFilled(false);
+        Slot3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                Slot3MouseEntered(evt);
+            }
+        });
         TeamLoadout.add(Slot3);
 
         Slot4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/empty_portrait.png"))); // NOI18N
         Slot4.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         Slot4.setContentAreaFilled(false);
+        Slot4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                Slot4MouseEntered(evt);
+            }
+        });
         TeamLoadout.add(Slot4);
 
         EditTeamsLayer.add(TeamLoadout, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 390, 90));
 
-        CharacterButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/selena_silver_portrait_idle.png"))); // NOI18N
-        CharacterButton5.setBorderPainted(false);
-        CharacterButton5.setContentAreaFilled(false);
-        CharacterButton5.setFocusPainted(false);
-        CharacterButton5.setMaximumSize(new java.awt.Dimension(90, 90));
-        CharacterButton5.setMinimumSize(new java.awt.Dimension(90, 90));
-        CharacterButton5.setPreferredSize(new java.awt.Dimension(90, 90));
-        CharacterButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+        SelenaButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/selena_silver_portrait_idle.png"))); // NOI18N
+        SelenaButton.setBorderPainted(false);
+        SelenaButton.setContentAreaFilled(false);
+        SelenaButton.setFocusPainted(false);
+        SelenaButton.setMaximumSize(new java.awt.Dimension(90, 90));
+        SelenaButton.setMinimumSize(new java.awt.Dimension(90, 90));
+        SelenaButton.setPreferredSize(new java.awt.Dimension(90, 90));
+        SelenaButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CharacterButton5MouseClicked(evt);
+                SelenaButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                SelenaButtonMouseEntered(evt);
             }
         });
-        EditTeamsLayer.add(CharacterButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 460, 90, 90));
+        EditTeamsLayer.add(SelenaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 460, 90, 90));
 
-        CharacterButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/roy_silver_portrait_idle.png"))); // NOI18N
-        CharacterButton4.setBorderPainted(false);
-        CharacterButton4.setContentAreaFilled(false);
-        CharacterButton4.setFocusPainted(false);
-        CharacterButton4.setMaximumSize(new java.awt.Dimension(90, 90));
-        CharacterButton4.setMinimumSize(new java.awt.Dimension(90, 90));
-        CharacterButton4.setPreferredSize(new java.awt.Dimension(90, 90));
-        CharacterButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+        RoyButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/roy_silver_portrait_idle.png"))); // NOI18N
+        RoyButton.setBorderPainted(false);
+        RoyButton.setContentAreaFilled(false);
+        RoyButton.setFocusPainted(false);
+        RoyButton.setMaximumSize(new java.awt.Dimension(90, 90));
+        RoyButton.setMinimumSize(new java.awt.Dimension(90, 90));
+        RoyButton.setPreferredSize(new java.awt.Dimension(90, 90));
+        RoyButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CharacterButton4MouseClicked(evt);
+                RoyButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                RoyButtonMouseEntered(evt);
             }
         });
-        EditTeamsLayer.add(CharacterButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 340, 90, 90));
+        EditTeamsLayer.add(RoyButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 340, 90, 90));
 
-        CharacterButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/soleil_silver_portrait_idle.png"))); // NOI18N
-        CharacterButton3.setBorderPainted(false);
-        CharacterButton3.setContentAreaFilled(false);
-        CharacterButton3.setFocusPainted(false);
-        CharacterButton3.setMaximumSize(new java.awt.Dimension(90, 90));
-        CharacterButton3.setMinimumSize(new java.awt.Dimension(90, 90));
-        CharacterButton3.setPreferredSize(new java.awt.Dimension(90, 90));
-        CharacterButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+        SoleilButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/soleil_silver_portrait_idle.png"))); // NOI18N
+        SoleilButton.setBorderPainted(false);
+        SoleilButton.setContentAreaFilled(false);
+        SoleilButton.setFocusPainted(false);
+        SoleilButton.setMaximumSize(new java.awt.Dimension(90, 90));
+        SoleilButton.setMinimumSize(new java.awt.Dimension(90, 90));
+        SoleilButton.setPreferredSize(new java.awt.Dimension(90, 90));
+        SoleilButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CharacterButton3MouseClicked(evt);
+                SoleilButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                SoleilButtonMouseEntered(evt);
             }
         });
-        EditTeamsLayer.add(CharacterButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 340, 90, 90));
+        EditTeamsLayer.add(SoleilButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 340, 90, 90));
 
-        CharacterButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/alfonse_silver_portrait_idle.png"))); // NOI18N
-        CharacterButton2.setBorderPainted(false);
-        CharacterButton2.setContentAreaFilled(false);
-        CharacterButton2.setFocusPainted(false);
-        CharacterButton2.setMaximumSize(new java.awt.Dimension(90, 90));
-        CharacterButton2.setMinimumSize(new java.awt.Dimension(90, 90));
-        CharacterButton2.setPreferredSize(new java.awt.Dimension(90, 90));
-        CharacterButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        AlfonseButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/alfonse_silver_portrait_idle.png"))); // NOI18N
+        AlfonseButton.setBorderPainted(false);
+        AlfonseButton.setContentAreaFilled(false);
+        AlfonseButton.setFocusPainted(false);
+        AlfonseButton.setMaximumSize(new java.awt.Dimension(90, 90));
+        AlfonseButton.setMinimumSize(new java.awt.Dimension(90, 90));
+        AlfonseButton.setPreferredSize(new java.awt.Dimension(90, 90));
+        AlfonseButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CharacterButton2MouseClicked(evt);
+                AlfonseButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                AlfonseButtonMouseEntered(evt);
             }
         });
-        EditTeamsLayer.add(CharacterButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 340, 90, 90));
+        EditTeamsLayer.add(AlfonseButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 340, 90, 90));
 
-        CharacterButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/anna_silver_portrait_idle.png"))); // NOI18N
-        CharacterButton1.setBorderPainted(false);
-        CharacterButton1.setContentAreaFilled(false);
-        CharacterButton1.setFocusPainted(false);
-        CharacterButton1.setMaximumSize(new java.awt.Dimension(90, 90));
-        CharacterButton1.setMinimumSize(new java.awt.Dimension(90, 90));
-        CharacterButton1.setPreferredSize(new java.awt.Dimension(90, 90));
-        CharacterButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        AnnaButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/anna_silver_portrait_idle.png"))); // NOI18N
+        AnnaButton.setBorderPainted(false);
+        AnnaButton.setContentAreaFilled(false);
+        AnnaButton.setFocusPainted(false);
+        AnnaButton.setMaximumSize(new java.awt.Dimension(90, 90));
+        AnnaButton.setMinimumSize(new java.awt.Dimension(90, 90));
+        AnnaButton.setPreferredSize(new java.awt.Dimension(90, 90));
+        AnnaButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CharacterButton1MouseClicked(evt);
+                AnnaButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                AnnaButtonMouseEntered(evt);
             }
         });
-        EditTeamsLayer.add(CharacterButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 90, 90));
+        EditTeamsLayer.add(AnnaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 90, 90));
 
         TeamPickerUI.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/team_picker_UI.png"))); // NOI18N
         EditTeamsLayer.add(TeamPickerUI, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 310, 600, 400));
@@ -496,8 +631,6 @@ public class CharacterModGUI extends javax.swing.JFrame {
 
         Owl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/owl.png"))); // NOI18N
         HomeLayer.add(Owl, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 240, -1, -1));
-
-        Character1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/characters/anna.png"))); // NOI18N
         HomeLayer.add(Character1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, -1, -1));
         HomeLayer.add(Character2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 390, -1, -1));
         HomeLayer.add(Character3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 410, -1, -1));
@@ -511,34 +644,95 @@ public class CharacterModGUI extends javax.swing.JFrame {
         BattleLayer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         BattleLayer.setVisible(false);
 
-        StoryMapsText.setFont(new java.awt.Font("Franklin Gothic Book", 1, 24)); // NOI18N
-        StoryMapsText.setForeground(new java.awt.Color(51, 51, 51));
-        StoryMapsText.setText("Story Maps");
-        BattleLayer.add(StoryMapsText, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 470, 130, 40));
+        Stage3Text.setFont(new java.awt.Font("Franklin Gothic Book", 1, 24)); // NOI18N
+        Stage3Text.setForeground(new java.awt.Color(51, 51, 51));
+        Stage3Text.setText("Stage 3");
+        Stage3Text.setToolTipText("");
+        BattleLayer.add(Stage3Text, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 650, 100, 50));
 
-        StoryMapsButton.setBorderPainted(false);
-        StoryMapsButton.setContentAreaFilled(false);
-        StoryMapsButton.setFocusPainted(false);
-        StoryMapsButton.setMaximumSize(new java.awt.Dimension(90, 90));
-        StoryMapsButton.setMinimumSize(new java.awt.Dimension(90, 90));
-        StoryMapsButton.setPreferredSize(new java.awt.Dimension(90, 90));
-        StoryMapsButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        Stage3Button.setBorderPainted(false);
+        Stage3Button.setContentAreaFilled(false);
+        Stage3Button.setFocusPainted(false);
+        Stage3Button.setMaximumSize(new java.awt.Dimension(90, 90));
+        Stage3Button.setMinimumSize(new java.awt.Dimension(90, 90));
+        Stage3Button.setPreferredSize(new java.awt.Dimension(90, 90));
+        Stage3Button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                StoryMapsButtonMouseEntered(evt);
+                Stage3ButtonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                StoryMapsButtonMouseExited(evt);
+                Stage3ButtonMouseExited(evt);
             }
         });
-        StoryMapsButton.addActionListener(new java.awt.event.ActionListener() {
+        Stage3Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                StoryMapsButtonActionPerformed(evt);
+                Stage3ButtonActionPerformed(evt);
             }
         });
-        BattleLayer.add(StoryMapsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 310, 140, 170));
+        BattleLayer.add(Stage3Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 520, 140, 170));
 
-        StoryMapsPNG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/main_story_button_idle.png"))); // NOI18N
-        BattleLayer.add(StoryMapsPNG, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, -1));
+        Stage3PNG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/stage3_button_idle.png"))); // NOI18N
+        BattleLayer.add(Stage3PNG, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 510, -1, -1));
+
+        Stage2Text.setFont(new java.awt.Font("Franklin Gothic Book", 1, 24)); // NOI18N
+        Stage2Text.setForeground(new java.awt.Color(51, 51, 51));
+        Stage2Text.setText("Stage 2");
+        Stage2Text.setToolTipText("");
+        BattleLayer.add(Stage2Text, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 270, 100, 50));
+
+        Stage2Button.setBorderPainted(false);
+        Stage2Button.setContentAreaFilled(false);
+        Stage2Button.setFocusPainted(false);
+        Stage2Button.setMaximumSize(new java.awt.Dimension(90, 90));
+        Stage2Button.setMinimumSize(new java.awt.Dimension(90, 90));
+        Stage2Button.setPreferredSize(new java.awt.Dimension(90, 90));
+        Stage2Button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                Stage2ButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                Stage2ButtonMouseExited(evt);
+            }
+        });
+        Stage2Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Stage2ButtonActionPerformed(evt);
+            }
+        });
+        BattleLayer.add(Stage2Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, 140, 170));
+
+        Stage2PNG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/stage2_button_idle.png"))); // NOI18N
+        BattleLayer.add(Stage2PNG, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, -1, -1));
+
+        Stage1Text.setFont(new java.awt.Font("Franklin Gothic Book", 1, 24)); // NOI18N
+        Stage1Text.setForeground(new java.awt.Color(51, 51, 51));
+        Stage1Text.setText("Stage 1");
+        Stage1Text.setToolTipText("");
+        BattleLayer.add(Stage1Text, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 470, 100, 40));
+
+        Stage1Button.setBorderPainted(false);
+        Stage1Button.setContentAreaFilled(false);
+        Stage1Button.setFocusPainted(false);
+        Stage1Button.setMaximumSize(new java.awt.Dimension(90, 90));
+        Stage1Button.setMinimumSize(new java.awt.Dimension(90, 90));
+        Stage1Button.setPreferredSize(new java.awt.Dimension(90, 90));
+        Stage1Button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                Stage1ButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                Stage1ButtonMouseExited(evt);
+            }
+        });
+        Stage1Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Stage1ButtonActionPerformed(evt);
+            }
+        });
+        BattleLayer.add(Stage1Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 310, 140, 170));
+
+        Stage1PNG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/main_story_button_idle.png"))); // NOI18N
+        BattleLayer.add(Stage1PNG, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, -1));
 
         WorldMapBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/backgrounds/world_map.png"))); // NOI18N
         BattleLayer.add(WorldMapBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(-90, 0, 630, 930));
@@ -559,188 +753,356 @@ public class CharacterModGUI extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    //Sets hover picture for Misc Button
     private void MiscButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MiscButtonMouseEntered
         MiscButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/misc_button_hover.png")));
     }//GEN-LAST:event_MiscButtonMouseEntered
-
+   
+    //Sets idle picture for Misc Button
     private void MiscButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MiscButtonMouseExited
         MiscButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/misc_button_idle.png")));
     }//GEN-LAST:event_MiscButtonMouseExited
 
     private void MiscButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MiscButtonMouseClicked
         //TODO
+        selectSound();
     }//GEN-LAST:event_MiscButtonMouseClicked
 
+    //Sets click picture for Misc Button
     private void MiscButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MiscButtonMousePressed
         MiscButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/misc_button_click.png")));
     }//GEN-LAST:event_MiscButtonMousePressed
 
+    //Enables only the Battle Layer to be seen
     private void BattleButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BattleButtonMouseClicked
+        selectSound();
         HomeLayer.setVisible(false);
         AlliesLayer.setVisible(false);
-        EditStatsLayer.setVisible(false);
+        StatsLayer.setVisible(false);
         AlliesOptionsLayer.setVisible(true);
         MainStatsLayer.setVisible(true);
         BattleLayer.setVisible(true);
     }//GEN-LAST:event_BattleButtonMouseClicked
 
+    //Sets hover picture for Battle Button
     private void BattleButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BattleButtonMouseEntered
         BattleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/battle_button_hover.png")));
     }//GEN-LAST:event_BattleButtonMouseEntered
 
+    //Sets idle picture for Battle Button
     private void BattleButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BattleButtonMouseExited
         BattleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/battle_button_idle.png")));
     }//GEN-LAST:event_BattleButtonMouseExited
 
+    //Sets click picture for Battle Button
     private void BattleButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BattleButtonMousePressed
         BattleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/battle_button_click.png")));
     }//GEN-LAST:event_BattleButtonMousePressed
 
+    //Enables only the Allies Layer to be seen
     private void AlliesButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlliesButtonMouseClicked
+        selectSound();
         BattleLayer.setVisible(false);
         HomeLayer.setVisible(false);
-        EditStatsLayer.setVisible(false);
+        StatsLayer.setVisible(false);
+        EditTeamsLayer.setVisible(false);
         AlliesOptionsLayer.setVisible(true);
         MainStatsLayer.setVisible(true);
         AlliesLayer.setVisible(true);
     }//GEN-LAST:event_AlliesButtonMouseClicked
 
+    //Sets hover picture for Allies Button
     private void AlliesButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlliesButtonMouseEntered
         AlliesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/allies_button_hover.png")));
     }//GEN-LAST:event_AlliesButtonMouseEntered
 
+    //Sets idle picture for Allies Button
     private void AlliesButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlliesButtonMouseExited
         AlliesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/allies_button_idle.png")));
     }//GEN-LAST:event_AlliesButtonMouseExited
 
+    //Sets click picture for Allies Button
     private void AlliesButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlliesButtonMousePressed
         AlliesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/allies_button_click.png")));
     }//GEN-LAST:event_AlliesButtonMousePressed
 
+    //Sets hover picture for Misc Button
     private void MiscButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MiscButtonMouseReleased
+        selectSound();
         MiscButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/misc_button_hover.png")));
     }//GEN-LAST:event_MiscButtonMouseReleased
 
+    //Sets hover picture for Allies Button
     private void AlliesButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlliesButtonMouseReleased
+        selectSound();
         AlliesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/allies_button_hover.png")));
     }//GEN-LAST:event_AlliesButtonMouseReleased
 
+    //Sets hover picture for Battle Button
     private void BattleButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BattleButtonMouseReleased
         BattleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/battle_button_hover.png")));
     }//GEN-LAST:event_BattleButtonMouseReleased
 
+    //Sets hover picture for Home Button
     private void HomeButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HomeButtonMouseEntered
         HomeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/home_button_hover.png")));
     }//GEN-LAST:event_HomeButtonMouseEntered
 
+    //Sets idle picture for Home Button
     private void HomeButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HomeButtonMouseExited
         HomeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/home_button_idle.png")));
     }//GEN-LAST:event_HomeButtonMouseExited
 
+    //Sets click picture for Home Button
     private void HomeButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HomeButtonMousePressed
         HomeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/home_button_click.png")));
     }//GEN-LAST:event_HomeButtonMousePressed
 
+    //Sets idle picture for Home Button
     private void HomeButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HomeButtonMouseReleased
+        selectSound();
         HomeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/home_button_idle.png")));
     }//GEN-LAST:event_HomeButtonMouseReleased
 
-    private void StoryMapsButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StoryMapsButtonMouseEntered
-        StoryMapsPNG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/main_story_button_hover.png")));
-    }//GEN-LAST:event_StoryMapsButtonMouseEntered
+    //Sets hover picture for Story Maps Button
+    private void Stage1ButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Stage1ButtonMouseEntered
+        Stage1PNG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/main_story_button_hover.png")));
+    }//GEN-LAST:event_Stage1ButtonMouseEntered
 
-    private void StoryMapsButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StoryMapsButtonMouseExited
-        StoryMapsPNG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/main_story_button_idle.png")));
-    }//GEN-LAST:event_StoryMapsButtonMouseExited
+    //Sets idle picture for Story Maps Button
+    private void Stage1ButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Stage1ButtonMouseExited
+        Stage1PNG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/main_story_button_idle.png")));
+    }//GEN-LAST:event_Stage1ButtonMouseExited
 
-    private void StoryMapsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StoryMapsButtonActionPerformed
-        MapGUI mapGUI = new MapGUI();
-        mapGUI.setVisible(true);
-        setVisible(false);
-    }//GEN-LAST:event_StoryMapsButtonActionPerformed
+    //Sets the CharacterModGUI frame to inivisible, and creates and displays the MapGUI (level)
+    private void Stage1ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Stage1ButtonActionPerformed
+        if(getTeamSize() > 0) { 
+            mapPickSound();
+            LevelTransitionGUI ltGUI = new LevelTransitionGUI(1,team,this);
+            ltGUI.setVisible(true);
+            setVisible(false);
+            mediaPlayer.stop();
+        }
+    }//GEN-LAST:event_Stage1ButtonActionPerformed
 
+    //Enables only the Edit Teams Layer to be seen
     private void EditTeamsButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditTeamsButtonMouseClicked
+        selectSound();
         MainStatsLayer.setVisible(false);
         AlliesOptionsLayer.setVisible(false);
-        EditStatsLayer.setVisible(true);
+        StatsLayer.setVisible(true);
         EditTeamsLayer.setVisible(true);
+        updateCharacterStats(0);
     }//GEN-LAST:event_EditTeamsButtonMouseClicked
 
+    //Sets hover picture for Edit Teams Button
     private void EditTeamsButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditTeamsButtonMouseEntered
         EditTeamsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/allies_option_button_hover.png")));
     }//GEN-LAST:event_EditTeamsButtonMouseEntered
 
+    //Sets idle picture for Edit Teams Button
     private void EditTeamsButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditTeamsButtonMouseExited
         EditTeamsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/allies_option_button_idle.png")));
     }//GEN-LAST:event_EditTeamsButtonMouseExited
 
+    //Sets hover picture for Learn Skills Button
     private void LearnSkillsButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LearnSkillsButtonMouseEntered
         LearnSkillsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/allies_option_button_hover.png")));
     }//GEN-LAST:event_LearnSkillsButtonMouseEntered
 
+    //Sets idle picture for Learn Skills Button
     private void LearnSkillsButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LearnSkillsButtonMouseExited
         LearnSkillsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/allies_option_button_idle.png")));
     }//GEN-LAST:event_LearnSkillsButtonMouseExited
 
+    //Sets hover picture for Equip Skills Button
     private void EquipSkillsButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EquipSkillsButtonMouseEntered
         EquipSkillsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/allies_option_button_hover.png")));
     }//GEN-LAST:event_EquipSkillsButtonMouseEntered
 
+    //Sets idle picture for Equip Skills Button
     private void EquipSkillsButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EquipSkillsButtonMouseExited
         EquipSkillsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/allies_option_button_idle.png")));
     }//GEN-LAST:event_EquipSkillsButtonMouseExited
 
+    //Enables only the Edit Teams Layer to be visible
     private void EditTeamsBackButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditTeamsBackButtonMouseClicked
+        selectSound();
         EditTeamsLayer.setVisible(false);
-        EditStatsLayer.setVisible(false);
+        StatsLayer.setVisible(false);
         AlliesOptionsLayer.setVisible(true);
         MainStatsLayer.setVisible(true);
     }//GEN-LAST:event_EditTeamsBackButtonMouseClicked
 
+    //Sets hover picture for Edit Teams Button
     private void EditTeamsBackButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditTeamsBackButtonMouseEntered
         EditTeamsBackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/back_button_hover.png")));
     }//GEN-LAST:event_EditTeamsBackButtonMouseEntered
 
+    //Sets idle picture for Edit Teams Button
     private void EditTeamsBackButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditTeamsBackButtonMouseExited
         EditTeamsBackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/back_button_idle.png")));
     }//GEN-LAST:event_EditTeamsBackButtonMouseExited
 
-    private void CharacterButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton1MouseClicked
-        editTeam(CharacterButton1,"/img/portraits/anna_silver_portrait_idle.png","/img/portraits/anna_silver_portrait_clicked.png");
-    }//GEN-LAST:event_CharacterButton1MouseClicked
+    //Sets clicked picture for Character Button1 in Edit Teams Layer
+    private void AnnaButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AnnaButtonMouseClicked
+        selectSound();
+        editTeam(AnnaButton,"/img/portraits/anna_silver_portrait_idle.png","/img/portraits/anna_silver_portrait_clicked.png");
+    }//GEN-LAST:event_AnnaButtonMouseClicked
 
-    private void CharacterButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton2MouseClicked
-        editTeam(CharacterButton2,"/img/portraits/alfonse_silver_portrait_idle.png","/img/portraits/alfonse_silver_portrait_clicked.png");
-    }//GEN-LAST:event_CharacterButton2MouseClicked
+    //Sets clicked picture for Character Button2 in Edit Teams Layer
+    private void AlfonseButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlfonseButtonMouseClicked
+        selectSound();
+        editTeam(AlfonseButton,"/img/portraits/alfonse_silver_portrait_idle.png","/img/portraits/alfonse_silver_portrait_clicked.png");
+    }//GEN-LAST:event_AlfonseButtonMouseClicked
 
-    private void CharacterButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton3MouseClicked
-        editTeam(CharacterButton3,"/img/portraits/soleil_silver_portrait_idle.png","/img/portraits/soleil_silver_portrait_clicked.png");
-    }//GEN-LAST:event_CharacterButton3MouseClicked
+    //Sets clicked picture for Character Button3 in Edit Teams Layer
+    private void SoleilButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SoleilButtonMouseClicked
+        selectSound();
+        editTeam(SoleilButton,"/img/portraits/soleil_silver_portrait_idle.png","/img/portraits/soleil_silver_portrait_clicked.png");  
+    }//GEN-LAST:event_SoleilButtonMouseClicked
 
-    private void CharacterButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton4MouseClicked
-        editTeam(CharacterButton4,"/img/portraits/roy_silver_portrait_idle.png","/img/portraits/roy_silver_portrait_clicked.png");
-    }//GEN-LAST:event_CharacterButton4MouseClicked
+    //Sets clicked picture for Character Button4 in Edit Teams Layer
+    private void RoyButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RoyButtonMouseClicked
+        selectSound();
+        editTeam(RoyButton,"/img/portraits/roy_silver_portrait_idle.png","/img/portraits/roy_silver_portrait_clicked.png");
+    }//GEN-LAST:event_RoyButtonMouseClicked
 
-    private void CharacterButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CharacterButton5MouseClicked
-        editTeam(CharacterButton5,"/img/portraits/selena_silver_portrait_idle.png","/img/portraits/selena_silver_portrait_clicked.png");
-    }//GEN-LAST:event_CharacterButton5MouseClicked
+    //Sets clicked picture for Character Button5 in Edit Teams Layer
+    private void SelenaButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SelenaButtonMouseClicked
+        selectSound();
+        editTeam(SelenaButton,"/img/portraits/selena_silver_portrait_idle.png","/img/portraits/selena_silver_portrait_clicked.png");
+    }//GEN-LAST:event_SelenaButtonMouseClicked
 
+    //Enables only the Home Layer is seen
     private void HomeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HomeButtonMouseClicked
-        
+        selectSound();
+        populateHomeLayerTeam();
         AlliesOptionsLayer.setVisible(false);
         AlliesLayer.setVisible(false);
-        EditStatsLayer.setVisible(false);
+        StatsLayer.setVisible(false);
+        BattleLayer.setVisible(false);
         MainStatsLayer.setVisible(true);
         HomeLayer.setVisible(true);
     }//GEN-LAST:event_HomeButtonMouseClicked
 
+    private void Slot1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Slot1MouseEntered
+        if(!Slot1.getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/empty_portrait.png")))) {
+            int i = 0;
+            for(AllyChar ac: allyOptions) {
+                if(Slot1.getIcon().toString().equals(ac.getPortaitImageIdle().toString())) {
+                    StatsLayer.setVisible(true);
+                    updateCharacterStats(i);
+                }
+                i++;
+            }
+        }
+    }//GEN-LAST:event_Slot1MouseEntered
+
+    private void Slot2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Slot2MouseEntered
+        if(!Slot2.getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/empty_portrait.png")))) {
+            int i = 0;
+            for(AllyChar ac: allyOptions) {
+                if(Slot2.getIcon().toString().equals(ac.getPortaitImageIdle().toString())) {
+                    StatsLayer.setVisible(true);
+                    updateCharacterStats(i);
+                }
+                i++;
+            }
+        }
+    }//GEN-LAST:event_Slot2MouseEntered
+
+    private void Slot3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Slot3MouseEntered
+        if(!Slot3.getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/empty_portrait.png")))) {
+            int i = 0;
+            for(AllyChar ac: allyOptions) {
+                if(Slot3.getIcon().toString().equals(ac.getPortaitImageIdle().toString())) {
+                    StatsLayer.setVisible(true);
+                    updateCharacterStats(i);
+                }
+                i++;
+            }
+        }
+    }//GEN-LAST:event_Slot3MouseEntered
+
+    private void Slot4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Slot4MouseEntered
+        if(!Slot4.getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/empty_portrait.png")))) {
+            int i = 0;
+            for(AllyChar ac: allyOptions) {
+                if(Slot4.getIcon().toString().equals(ac.getPortaitImageIdle().toString())) {
+                    StatsLayer.setVisible(true);
+                    updateCharacterStats(i);
+                }
+                i++;
+            }
+        }
+    }//GEN-LAST:event_Slot4MouseEntered
+
+    private void AnnaButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AnnaButtonMouseEntered
+        updateCharacterStats(0);
+    }//GEN-LAST:event_AnnaButtonMouseEntered
+
+    private void AlfonseButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlfonseButtonMouseEntered
+        updateCharacterStats(1);
+    }//GEN-LAST:event_AlfonseButtonMouseEntered
+
+    private void SoleilButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SoleilButtonMouseEntered
+        updateCharacterStats(2);
+    }//GEN-LAST:event_SoleilButtonMouseEntered
+
+    private void RoyButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RoyButtonMouseEntered
+        updateCharacterStats(3);
+    }//GEN-LAST:event_RoyButtonMouseEntered
+
+    private void SelenaButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SelenaButtonMouseEntered
+        updateCharacterStats(4);
+    }//GEN-LAST:event_SelenaButtonMouseEntered
+
+    private void Stage2ButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Stage2ButtonMouseEntered
+        Stage2PNG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/stage2_button_hover.png")));
+    }//GEN-LAST:event_Stage2ButtonMouseEntered
+
+    private void Stage2ButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Stage2ButtonMouseExited
+        Stage2PNG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/stage2_button_idle.png")));
+    }//GEN-LAST:event_Stage2ButtonMouseExited
+
+    private void Stage2ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Stage2ButtonActionPerformed
+        if(getTeamSize() > 0) {
+            mapPickSound();
+            LevelTransitionGUI ltGUI = new LevelTransitionGUI(2,team,this);
+            ltGUI.setVisible(true);
+            setVisible(false);
+            mediaPlayer.stop();
+        }
+    }//GEN-LAST:event_Stage2ButtonActionPerformed
+
+    private void Stage3ButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Stage3ButtonMouseEntered
+        Stage3PNG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/stage3_button_hover.png")));
+    }//GEN-LAST:event_Stage3ButtonMouseEntered
+
+    private void Stage3ButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Stage3ButtonMouseExited
+        Stage3PNG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/stage3_button_idle.png")));
+    }//GEN-LAST:event_Stage3ButtonMouseExited
+
+    private void Stage3ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Stage3ButtonActionPerformed
+        if(getTeamSize() > 0) {  
+            mapPickSound();
+            LevelTransitionGUI ltGUI = new LevelTransitionGUI(3,team,this);
+            ltGUI.setVisible(true);
+            setVisible(false);
+            mediaPlayer.stop();
+        }
+    }//GEN-LAST:event_Stage3ButtonActionPerformed
+
+    //Removes or adds character to the team. It also updates the GUI to show current team
     private void editTeam(JButton characterButton, String idleImg, String clickImg) {
         if(characterButton.getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource(clickImg)).toString())){
             characterButton.setIcon(new javax.swing.ImageIcon(getClass().getResource(idleImg)));
 
             for(int i = 0; i < teamSlots.length; i++){
                 if(teamSlots[i].getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource(idleImg)).toString())) {
+                    team.removeFromArmy(i);
                     if(i == teamSlots.length-1){
                         teamSlots[i].setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/empty_portrait.png")));
                         return;
@@ -757,15 +1119,21 @@ public class CharacterModGUI extends javax.swing.JFrame {
             if(isTeamFull())
                 return;
             characterButton.setIcon(new javax.swing.ImageIcon(getClass().getResource(clickImg)));
-            for(JButton jb: teamSlots){
-                if(jb.getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/empty_portrait.png")).toString())) {
-                    jb.setIcon(new javax.swing.ImageIcon(getClass().getResource(idleImg)));
+            for (JButton teamSlot : teamSlots) {
+                if (teamSlot.getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/empty_portrait.png")).toString())) {
+                    for(AllyChar ac: allyOptions){
+                        if(ac.getPortaitImageIdle().toString().equals(characterButton.getIcon().toString())||ac.getPortaitImageClicked().toString().equals(characterButton.getIcon().toString())) {
+                            team.addToArmy(ac);
+                        }
+                    }
+                    teamSlot.setIcon(new javax.swing.ImageIcon(getClass().getResource(idleImg)));
                     return;
                 }
             }
         }
     }
     
+    //Checks to see if the 4 slots of a player's team is full
     private boolean isTeamFull() {
         for(JButton jb: teamSlots){
             if(jb.getIcon().toString().equals(new javax.swing.ImageIcon(getClass().getResource("/img/portraits/empty_portrait.png")).toString()))
@@ -774,6 +1142,7 @@ public class CharacterModGUI extends javax.swing.JFrame {
         return true;
     }
     
+    //Returns the amount of characters in a player's current team
     private int getTeamSize() {
         int counter = 0;
         for(JButton jb: teamSlots){
@@ -783,11 +1152,87 @@ public class CharacterModGUI extends javax.swing.JFrame {
         return counter;
     }
     
-    private void initEditTeamSlots() {
+    //Updates the character in the Home Layer to current team loadout
+    private void populateHomeLayerTeam() {
+        for(int i = 0; i < charsHomeLayer.length; i++) {
+            if(i < team.getArmySize())
+                charsHomeLayer[i].setIcon(team.getArmyChar(i).getImg());
+            else 
+                charsHomeLayer[i].setIcon(null);
+        }
+    }
+    
+    //Initializes variables that must be set before user input
+    private void initCharacterModGUI() {
+        
         teamSlots[0] = Slot1;
         teamSlots[1] = Slot2;
         teamSlots[2] = Slot3;
         teamSlots[3] = Slot4;
+        
+        allyOptions[0] = new AllyChar("Anna", 1);
+        allyOptions[1] = new AllyChar("Alfonse", 1);
+        allyOptions[2] = new AllyChar("Soleil", 1);
+        allyOptions[3] = new AllyChar("Roy", 1);
+        allyOptions[4] = new AllyChar("Selena", 1);
+        
+        characterOptions[0] = AnnaButton;
+        characterOptions[1] = AlfonseButton;
+        characterOptions[2] = SoleilButton;
+        characterOptions[3] = RoyButton;
+        characterOptions[4] = SelenaButton;
+        
+        charsHomeLayer[0] = Character1;
+        charsHomeLayer[1] = Character2;
+        charsHomeLayer[2] = Character3;
+        charsHomeLayer[3] = Character4;
+        
+        editTeam(AnnaButton,"/img/portraits/anna_silver_portrait_idle.png","/img/portraits/anna_silver_portrait_clicked.png");
+        
+        populateHomeLayerTeam();
+    }
+    
+    private void updateCharacterStats(int partyPosition) {
+        CharacterPortrait.setIcon(allyOptions[partyPosition].getBattlePortrait());
+        WeaponNameText.setText(allyOptions[partyPosition].getWeapon().getName() + "");
+        LevelText.setText(allyOptions[partyPosition].getLevel() + "");
+        NamePlateText.setText(allyOptions[partyPosition].getName());
+        CurrentHP.setText(allyOptions[partyPosition].getCurrentHP() + "");
+        MaxHP.setText(allyOptions[partyPosition].getMaxHP() + "");
+        AttackLevel.setText(allyOptions[partyPosition].getTotalAtk()+ "");
+        AttackLevel1.setText(allyOptions[partyPosition].getTotalDef()+ "");
+    }
+    
+    protected void initSong() {
+        songFile = new Media(new File("src\\audio\\charModBackground.mp3").toURI().toString());
+        mediaPlayer = new MediaPlayer(songFile);
+        mediaPlayer.setVolume(.4);
+        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        mediaPlayer.play();
+    }
+    
+    private void selectSound() {
+        Thread selectSound = new Thread(){
+        @Override
+        public void run() {
+            songFile = new Media(new File("src\\audio\\select.mp3").toURI().toString());
+            selectPlayer = new MediaPlayer(songFile);
+            selectPlayer.setVolume(.4);
+            selectPlayer.play();
+        }};
+        selectSound.start();
+    }
+    
+    private void mapPickSound() {
+        Thread mapPickSound = new Thread(){
+        @Override
+        public void run() {
+            songFile = new Media(new File("src\\audio\\mapPick.mp3").toURI().toString());
+            mapPickPlayer = new MediaPlayer(songFile);
+            mapPickPlayer.setVolume(.7);
+            mapPickPlayer.play();
+        }};
+        mapPickSound.start();
     }
     
     /**
@@ -826,12 +1271,16 @@ public class CharacterModGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AlfonseButton;
     private javax.swing.JButton AlliesBanner;
     private javax.swing.JLabel AlliesBannerText;
     private javax.swing.JButton AlliesButton;
     private javax.swing.JLayeredPane AlliesLayer;
     private javax.swing.JLabel AlliesOptionsBackground;
     private javax.swing.JLayeredPane AlliesOptionsLayer;
+    private javax.swing.JButton AnnaButton;
+    private javax.swing.JTextField AttackLevel;
+    private javax.swing.JTextField AttackLevel1;
     private javax.swing.JButton BattleButton;
     private javax.swing.JLayeredPane BattleLayer;
     private javax.swing.JLabel BottomBorder;
@@ -840,13 +1289,8 @@ public class CharacterModGUI extends javax.swing.JFrame {
     private javax.swing.JLabel Character2;
     private javax.swing.JLabel Character3;
     private javax.swing.JLabel Character4;
-    private javax.swing.JButton CharacterButton1;
-    private javax.swing.JButton CharacterButton2;
-    private javax.swing.JButton CharacterButton3;
-    private javax.swing.JButton CharacterButton4;
-    private javax.swing.JButton CharacterButton5;
     private javax.swing.JLabel CharacterPortrait;
-    private javax.swing.JLayeredPane EditStatsLayer;
+    private javax.swing.JTextField CurrentHP;
     private javax.swing.JButton EditTeamBanner;
     private javax.swing.JButton EditTeamsBackButton;
     private javax.swing.JLabel EditTeamsBackground;
@@ -861,28 +1305,43 @@ public class CharacterModGUI extends javax.swing.JFrame {
     private javax.swing.JLayeredPane HomeLayer;
     private javax.swing.JButton LearnSkillsButton;
     private javax.swing.JLabel LearnSkillsText;
+    private javax.swing.JProgressBar LevelProgresBar;
+    private javax.swing.JTextField LevelText;
     private javax.swing.JLayeredPane MainContainer;
     private javax.swing.JLayeredPane MainStatsLayer;
+    private javax.swing.JTextField MaxHP;
     private javax.swing.JLayeredPane MenuButtonLayer;
     private javax.swing.JButton MiscButton;
     private javax.swing.JLabel NamePlate;
-    private javax.swing.JLabel NamePlateText;
+    private javax.swing.JLabel NamePlateDecor;
+    private javax.swing.JTextField NamePlateText;
     private javax.swing.JLabel NewsBoard;
     private javax.swing.JLabel Owl;
+    private javax.swing.JButton RoyButton;
+    private javax.swing.JButton SelenaButton;
     private javax.swing.JButton Slot1;
     private javax.swing.JButton Slot2;
     private javax.swing.JButton Slot3;
     private javax.swing.JButton Slot4;
+    private javax.swing.JButton SoleilButton;
+    private javax.swing.JButton Stage1Button;
+    private javax.swing.JLabel Stage1PNG;
+    private javax.swing.JLabel Stage1Text;
+    private javax.swing.JButton Stage2Button;
+    private javax.swing.JLabel Stage2PNG;
+    private javax.swing.JLabel Stage2Text;
+    private javax.swing.JButton Stage3Button;
+    private javax.swing.JLabel Stage3PNG;
+    private javax.swing.JLabel Stage3Text;
     private javax.swing.JLabel StatsInterface;
+    private javax.swing.JLayeredPane StatsLayer;
     private javax.swing.JLabel Stone;
-    private javax.swing.JButton StoryMapsButton;
-    private javax.swing.JLabel StoryMapsPNG;
-    private javax.swing.JLabel StoryMapsText;
     private javax.swing.JLayeredPane TeamLoadout;
     private javax.swing.JLabel TeamLoadoutUI;
     private javax.swing.JLabel TeamPickerUI;
     private javax.swing.JLabel TopBorder;
     private javax.swing.JLabel TopBorderStats;
+    private javax.swing.JTextField WeaponNameText;
     private javax.swing.JLabel WorldMapBackground;
     // End of variables declaration//GEN-END:variables
 }

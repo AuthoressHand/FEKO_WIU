@@ -21,7 +21,7 @@ import javax.swing.ImageIcon;
  * @updated 3/18/2018 - updated constructors to match change to Character class - Rose
  * @updated 3/23/2018 - debugging, removed unequipWeapon method - Rose
  */
-public class AllyChar extends Character {
+public class AllyChar extends Char {
     private int specialPoints;
     private int experience;
     private int hpIncrease;
@@ -31,7 +31,7 @@ public class AllyChar extends Character {
     private int spdIncrease;
     private ArrayList<Skill> unlockSkills;
     private ArrayList<Skill> lockSkills;
-    private Random generator;
+    private Random generator = new Random();
     
     public AllyChar(String name, int maxHP, Weapon weapon, int level, int attack, int defense, int resistance, int speed, int walkRange, Skill[] skills, Rally rally, ImageIcon charImg, CharType charType, int specialPoints, int experience, int hpIncrease, int atkIncrease, int defIncrease, int resIncrease, int spdIncrease, ArrayList<Skill> unlockSkills, ArrayList<Skill> lockSkills) {
         super(name, maxHP, weapon, level, attack, defense, resistance, speed, walkRange, skills, rally, charImg, charType);
@@ -41,6 +41,15 @@ public class AllyChar extends Character {
     public AllyChar(String name, int maxHP, int currentHP, Weapon weapon, int level, int attack, int defense, int resistance, int speed, int tempAttack, int tempDefense, int tempResistance, int tempSpeed, int walkRange, Skill[] skills, Rally rally, ImageIcon charImg, boolean active, CharType charType, int specialPoints, int experience, int hpIncrease, int atkIncrease, int defIncrease, int resIncrease, int spdIncrease, ArrayList<Skill> unlockSkills, ArrayList<Skill> lockSkills) {
         super(name, maxHP, currentHP, weapon, level, attack, defense, resistance, speed, tempAttack, tempDefense, tempResistance, tempSpeed, walkRange, skills, rally, charImg, active, charType);
         setAlly(specialPoints, experience, hpIncrease, atkIncrease, defIncrease, resIncrease, spdIncrease, unlockSkills, lockSkills);
+    }
+
+    public AllyChar(String name, int level) {
+        super(name,level);
+        this.experience = 0;
+        this.specialPoints = 0;
+        this.hpIncrease = 100;
+        this.atkIncrease = 100;
+        this.defIncrease = 100;
     }
     
     //sets ally information
@@ -58,7 +67,6 @@ public class AllyChar extends Character {
         this.lockSkills = new ArrayList<>();
         for (Skill locked : lockSkills)
             this.lockSkills.add(locked);
-        generator = new Random();
     }
     
     //returns special points
@@ -107,7 +115,7 @@ public class AllyChar extends Character {
     
     //unlocks skills and moves them to unlocked skills list
     public void purchaseSkill(Skill skill) {
-        if (this.lockSkills.contains(skill) && skill.getSPCost() <= this.specialPoints) {
+        if(this.lockSkills.contains(skill) && skill.getSPCost() <= this.specialPoints) {
             this.unlockSkills.add(skill);
             this.lockSkills.remove(skill);
             this.specialPoints -= skill.getSPCost();
@@ -145,4 +153,6 @@ public class AllyChar extends Character {
             this.givePermBoost(this.getWeapon().getStat(), -(this.getWeapon().getEffect()));
         this.setWeapon(weapon);
     }
+    
+    
 }
