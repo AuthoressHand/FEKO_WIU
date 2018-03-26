@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="Programming-PC" name="objects.PartyTest" skipped="0" tests="21" time="0.171" timestamp="2018-03-26T16:02:00">
+<testsuite errors="0" failures="0" hostname="Programming-PC" name="objects.SkillTest" skipped="0" tests="5" time="0.078" timestamp="2018-03-26T16:02:17">
   <properties>
     <property name="libs.jsp-compiler.javadoc" value="" />
     <property name="netbeans.autoupdate.country" value="US" />
@@ -7,7 +7,7 @@
     <property name="libs.jsf20.maven-pom" value="" />
     <property name="libs.junit.javadoc" value="C:\Program Files\NetBeans 8.0.2\java\docs\junit-3.8.2-api.zip" />
     <property name="libs.spring-webmvc4.0.src" value="" />
-    <property name="javac.includes" value="objects/PartyTest.java" />
+    <property name="javac.includes" value="objects/SkillTest.java" />
     <property name="ant.core.lib" value="C:\Program Files\NetBeans 8.0.2\extide\ant\lib\ant.jar" />
     <property name="javadoc.windowtitle" value="" />
     <property name="libs.jsp-compilation.javadoc" value="" />
@@ -55,7 +55,7 @@
     <property name="copylibs.rebase" value="true" />
     <property name="libs.spring-webmvc3.0.maven-pom" value="" />
     <property name="libs.swing-layout.maven-pom" value="" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner objects.PartyTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,F:\School\WIU\Fall 2017\Software Engineering I\FEKO_WIU\build\test\results\TEST-objects.PartyTest.xml crashfile=F:\School\WIU\Fall 2017\Software Engineering I\FEKO_WIU\build\junitvmwatcher4040867253406369183.properties propsfile=F:\School\WIU\Fall 2017\Software Engineering I\FEKO_WIU\build\junit2930865558225563791.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner objects.SkillTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,F:\School\WIU\Fall 2017\Software Engineering I\FEKO_WIU\build\test\results\TEST-objects.SkillTest.xml crashfile=F:\School\WIU\Fall 2017\Software Engineering I\FEKO_WIU\build\junitvmwatcher7269064058404902170.properties propsfile=F:\School\WIU\Fall 2017\Software Engineering I\FEKO_WIU\build\junit5688214451485065760.properties" />
     <property name="build.classes.dir" value="build/classes" />
     <property name="netbeans.accept_license_class" value="org.netbeans.license.AcceptLicense" />
     <property name="build.sysclasspath" value="ignore" />
@@ -80,7 +80,7 @@
     <property name="libs.jsp-compilation-syscp.classpath" value="C:\Program Files\NetBeans 8.0.2\extide\ant\lib\ant.jar;C:\Program Files\NetBeans 8.0.2\enterprise\modules\ext\servlet3.1-jsp2.3-api.jar;C:\Program Files\NetBeans 8.0.2\enterprise\modules\ext\glassfish-jspparser-4.0.jar;C:\Program Files\NetBeans 8.0.2\enterprise\modules\ext\jstl-impl.jar;C:\Program Files\NetBeans 8.0.2\enterprise\modules\ext\jsf-2_2\javax.faces.jar" />
     <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_31\jre\lib\endorsed" />
     <property name="libs.Comet-GlassFish-v3.maven-pom" value="" />
-    <property name="test.includes" value="objects/PartyTest.java" />
+    <property name="test.includes" value="objects/SkillTest.java" />
     <property name="netbeans.dynamic.classpath" value="C:\Program Files\NetBeans 8.0.2\platform\core\core.jar;C:\Program Files\NetBeans 8.0.2\platform\core\org-openide-filesystems.jar;C:\Program Files\NetBeans 8.0.2\platform\core\locale\core_ja.jar;C:\Program Files\NetBeans 8.0.2\platform\core\locale\core_pt_BR.jar;C:\Program Files\NetBeans 8.0.2\platform\core\locale\core_ru.jar;C:\Program Files\NetBeans 8.0.2\platform\core\locale\core_zh_CN.jar;C:\Program Files\NetBeans 8.0.2\platform\core\locale\org-openide-filesystems_ja.jar;C:\Program Files\NetBeans 8.0.2\platform\core\locale\org-openide-filesystems_pt_BR.jar;C:\Program Files\NetBeans 8.0.2\platform\core\locale\org-openide-filesystems_ru.jar;C:\Program Files\NetBeans 8.0.2\platform\core\locale\org-openide-filesystems_zh_CN.jar;C:\Program Files\NetBeans 8.0.2\nb\core\org-netbeans-upgrader.jar;C:\Program Files\NetBeans 8.0.2\nb\core\locale\core_nb.jar;C:\Program Files\NetBeans 8.0.2\nb\core\locale\core_nb_ja.jar;C:\Program Files\NetBeans 8.0.2\nb\core\locale\core_nb_pt_BR.jar;C:\Program Files\NetBeans 8.0.2\nb\core\locale\core_nb_ru.jar;C:\Program Files\NetBeans 8.0.2\nb\core\locale\core_nb_zh_CN.jar;C:\Program Files\NetBeans 8.0.2\nb\core\locale\org-netbeans-upgrader_ja.jar;C:\Program Files\NetBeans 8.0.2\nb\core\locale\org-netbeans-upgrader_pt_BR.jar;C:\Program Files\NetBeans 8.0.2\nb\core\locale\org-netbeans-upgrader_ru.jar;C:\Program Files\NetBeans 8.0.2\nb\core\locale\org-netbeans-upgrader_zh_CN.jar" />
     <property name="java.vm.specification.version" value="1.8" />
     <property name="libs.hibernate4-support.src" value="" />
@@ -97,7 +97,7 @@
     <property name="javadoc.splitindex" value="true" />
     <property name="file.separator" value="\" />
     <property name="libs.Java-EE-GlassFish-v3-Prelude.maven-pom" value="" />
-    <property name="javac.includesfile.binary" value="F:\School\WIU\Fall 2017\Software Engineering I\FEKO_WIU\null1476284130" />
+    <property name="javac.includesfile.binary" value="F:\School\WIU\Fall 2017\Software Engineering I\FEKO_WIU\null1016137220" />
     <property name="libs.junit_4.maven-pom" value="" />
     <property name="mkdist.disabled" value="false" />
     <property name="javac.test.processorpath" value="C:\Program Files\NetBeans 8.0.2\java\modules\ext\AbsoluteLayout.jar:C:\Program Files\NetBeans 8.0.2\java\modules\ext\beansbinding-1.2.1.jar:build/classes:C:\Program Files\NetBeans 8.0.2\platform\modules\ext\junit-4.10.jar:${libs.hamcrest.classpath}" />
@@ -112,7 +112,7 @@
     <property name="libs.hibernate4-persistencemodelgen.javadoc" value="" />
     <property name="libs.jaxb.javadoc" value="C:\Program Files\NetBeans 8.0.2\ide\docs\jaxb-api-doc.zip" />
     <property name="libs.struts.classpath" value="C:\Program Files\NetBeans 8.0.2\enterprise\modules\ext\struts\antlr-2.7.2.jar;C:\Program Files\NetBeans 8.0.2\enterprise\modules\ext\struts\bsf-2.3.0.jar;C:\Program Files\NetBeans 8.0.2\enterprise\modules\ext\struts\commons-beanutils-1.8.0.jar;C:\Program Files\NetBeans 8.0.2\enterprise\modules\ext\struts\commons-chain-1.2.jar;C:\Program Files\NetBeans 8.0.2\enterprise\modules\ext\struts\commons-digester-1.8.jar;C:\Program Files\NetBeans 8.0.2\enterprise\modules\ext\struts\commons-fileupload-1.1.1.jar;C:\Program Files\NetBeans 8.0.2\enterprise\modules\ext\struts\commons-io-1.1.jar;C:\Program Files\NetBeans 8.0.2\enterprise\modules\ext\struts\commons-logging-1.0.4.jar;C:\Program Files\NetBeans 8.0.2\enterprise\modules\ext\struts\commons-validator-1.3.1.jar;C:\Program Files\NetBeans 8.0.2\enterprise\modules\ext\struts\jstl-1.0.2.jar;C:\Program Files\NetBeans 8.0.2\enterprise\modules\ext\struts\oro-2.0.8.jar;C:\Program Files\NetBeans 8.0.2\enterprise\modules\ext\struts\standard-1.0.6.jar;C:\Program Files\NetBeans 8.0.2\enterprise\modules\ext\struts\struts-core-1.3.10.jar;C:\Program Files\NetBeans 8.0.2\enterprise\modules\ext\struts\struts-el-1.3.10.jar;C:\Program Files\NetBeans 8.0.2\enterprise\modules\ext\struts\struts-extras-1.3.10.jar;C:\Program Files\NetBeans 8.0.2\enterprise\modules\ext\struts\struts-faces-1.3.10.jar;C:\Program Files\NetBeans 8.0.2\enterprise\modules\ext\struts\struts-mailreader-dao-1.3.10.jar;C:\Program Files\NetBeans 8.0.2\enterprise\modules\ext\struts\struts-scripting-1.3.10.jar;C:\Program Files\NetBeans 8.0.2\enterprise\modules\ext\struts\struts-taglib-1.3.10.jar;C:\Program Files\NetBeans 8.0.2\enterprise\modules\ext\struts\struts-tiles-1.3.10.jar" />
-    <property name="javac.includes.binary" value="F:\School\WIU\Fall 2017\Software Engineering I\FEKO_WIU\build\test\classes\objects\PartyTest.class" />
+    <property name="javac.includes.binary" value="F:\School\WIU\Fall 2017\Software Engineering I\FEKO_WIU\build\test\classes\objects\SkillTest.class" />
     <property name="ant.home" value="C:\Program Files\NetBeans 8.0.2\extide\ant" />
     <property name="libs.junit_4.src" value="C:\Program Files\NetBeans 8.0.2\java\docs\junit-4.10-sources.jar" />
     <property name="libs.testng.classpath" value="C:\Program Files\NetBeans 8.0.2\platform\modules\ext\testng-6.8.1-dist.jar" />
@@ -396,29 +396,11 @@
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
     <property name="libs.javaee-web-api-7.0.javadoc" value="C:\Program Files\NetBeans 8.0.2\enterprise\docs\javaee-doc-api.jar" />
   </properties>
-  <testcase classname="objects.PartyTest" name="testRemoveFromParty_0" time="0.016" />
-  <testcase classname="objects.PartyTest" name="testAddToArmy_New" time="0.0" />
-  <testcase classname="objects.PartyTest" name="testAddToArmy_Old" time="0.0" />
-  <testcase classname="objects.PartyTest" name="testAddToParty_AlreadyIn" time="0.0" />
-  <testcase classname="objects.PartyTest" name="testAddToParty_Fail" time="0.0" />
-  <testcase classname="objects.PartyTest" name="testGetPartySize" time="0.0" />
-  <testcase classname="objects.PartyTest" name="testAddToParty_0" time="0.0" />
-  <testcase classname="objects.PartyTest" name="testAddToParty_1" time="0.0" />
-  <testcase classname="objects.PartyTest" name="testAddToParty_2" time="0.0" />
-  <testcase classname="objects.PartyTest" name="testAddToParty_3" time="0.0" />
-  <testcase classname="objects.PartyTest" name="testGetParty" time="0.0" />
-  <testcase classname="objects.PartyTest" name="testGetArmy" time="0.0" />
-  <testcase classname="objects.PartyTest" name="testRemoveFromParty_Fail" time="0.0" />
-  <testcase classname="objects.PartyTest" name="testRemoveFromParty_All" time="0.0" />
-  <testcase classname="objects.PartyTest" name="testGetArmyChar_NoSuccess" time="0.0" />
-  <testcase classname="objects.PartyTest" name="testGetArmyChar_NoFail" time="0.016" />
-  <testcase classname="objects.PartyTest" name="testGetArmyChar_NameSuccess" time="0.0" />
-  <testcase classname="objects.PartyTest" name="testGetArmyChar_NameFail" time="0.0" />
-  <testcase classname="objects.PartyTest" name="testGetPartyChar_Success" time="0.0" />
-  <testcase classname="objects.PartyTest" name="testGetPartyChar_Fail" time="0.0" />
-  <testcase classname="objects.PartyTest" name="testGetPartyChar_Null" time="0.0" />
-  <system-out><![CDATA[Array out of bounds. Character could not be added.
-Array out of bounds. Character couldn't be removed.
-]]></system-out>
+  <testcase classname="objects.SkillTest" name="testGetDescription" time="0.0" />
+  <testcase classname="objects.SkillTest" name="testGetEffect" time="0.0" />
+  <testcase classname="objects.SkillTest" name="testGetStat" time="0.0" />
+  <testcase classname="objects.SkillTest" name="testGetSPCost" time="0.0" />
+  <testcase classname="objects.SkillTest" name="testGetName" time="0.0" />
+  <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
