@@ -162,7 +162,7 @@ public class LevelTransitionGUI extends javax.swing.JFrame {
                     mediaPlayer.stop();
                     dispose();
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(MapGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(LevelGUITestingDoubleMatrix.class.getName()).log(Level.SEVERE, null, ex);
                 }
         }};
         levelTransitionThread.start();

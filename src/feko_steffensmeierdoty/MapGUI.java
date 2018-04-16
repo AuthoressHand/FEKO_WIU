@@ -14,6 +14,7 @@ import objects.*;
 /**
  *
  * @author rms130
+ * @dateUpdated - 4/1/2018 - adding AI to map, calculating distance to nearest ally character - Rose
  */
 public class MapGUI extends javax.swing.JFrame {
 
@@ -1589,12 +1590,8 @@ public class MapGUI extends javax.swing.JFrame {
 
     private void EndTurnButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EndTurnButtonMouseClicked
 
-        for(JToggleButton jtb: characters) {
-            jtb.setEnabled(true);
-        }
-        turn = turn != true;
-        resetPositionMarkers();
-        startPhaseAnimation();
+        this.endTurn();
+        this.enemyAI();
     }//GEN-LAST:event_EndTurnButtonMouseClicked
 
     private void SettingsButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SettingsButtonMouseExited
@@ -1798,6 +1795,237 @@ public class MapGUI extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_StageClearOrbMouseClicked
        
+    //ends the current turn
+    private void endTurn() {
+        for(JToggleButton jtb: characters) {
+            jtb.setEnabled(true);
+        }
+        turn = turn != true;
+        resetPositionMarkers();
+        //startPhaseAnimation();
+    }
+
+    //AI for the EnemyChar
+    private void enemyAI() {
+        //loop through all of the characters and find their buttons
+        System.out.println("Starting AI");
+        for (int h = 4; h < 8; h++) {
+            //get current character and current button
+            JToggleButton currentButton = characters[h];
+            Char currentChar = enemyParty.getArmyChar(h - 4);
+            
+            //if the current enemy character is null, then go to the next one
+            if (currentChar == null || currentChar.getCurrentHP() <= 0)
+                continue;
+            
+            System.out.println("Got one!");
+            
+            //get the GridTile that the character will move to
+            int square = -1;
+            int currentSpace = 0;
+            
+            for (int i = 0; i < lowerGrid.length; i++)
+                if (lowerGrid[i].getCharacter() == currentChar) {
+                    currentSpace = i;
+                    square = this.calculateNewPlace(currentChar, currentSpace);
+                    System.out.println("Going to: " + square);
+                    System.out.println("The distance is " + lowerGrid[square].getDistance());
+                }
+            
+            //if the number returned is equal to the current space, the character will not move
+            if (square == currentSpace)
+                continue;
+            
+            //attack if the distance = 0
+            if (lowerGrid[square].getDistance() == 0) {
+                //attack the closest character, then update everything
+                this.checkCharacterDamage(enemyParty, lowerGrid[square], characters[h], charactersHP[h], h-4);
+                this.resetPositionMarkers();
+                this.checkCharacterDeath(square, enemyParty, currentChar, h-4);
+                
+                //check to see if there is a game over
+                this.checkStageOver();
+                
+                //update the lables of the characters' stats
+                this.updateCharactersHP();
+                
+                //update location of ally characters if it died
+                this.recalculateLocationOfAllyChars();
+            }
+            else {
+                //get the right coordinate
+                Point goToHere = new Point();
+                JButton goHere = lowerGrid[square].getTile();
+                goToHere.x = goHere.getX();
+                goToHere.y = goHere.getY() + 120;
+                //System.out.println("The coordinates are: " + goToHere.toString());
+                
+                //move the character
+                currentButton.setLocation(goToHere);
+                charactersHP[h].setLocation(new Point(goToHere.x, goToHere.y + 70));
+                
+                //reset to the closest square
+                lowerGrid[square].addCharacter(currentChar, enemyParty);
+                lowerGrid[currentSpace].removeCharacter();
+                
+                //just to be on the safe side, clean up the enemy trace
+                this.cleanUpEnemyTrace(currentSpace);
+            }
+        }
+        
+        this.endTurn();
+    }
+    
+    //used to calculate which square the character will move to
+    private int calculateNewPlace(Char currentChar, int currentSpace) {
+        int closestPlace = currentSpace;
+        int i = currentSpace;
+
+        //find the closest character by checking up, down, left, and right
+        for (int j = 0; j < currentChar.getWalkRange(); j++) {
+            //left
+            //check to see if there is anywhere to go to the left
+            if (i % 6 != 0) {
+                //check to see if someone is already there and is a 
+                if (lowerGrid[i-1].getDistance() == 0 && lowerGrid[i-1].getCharacter() instanceof AllyChar) {
+                    closestPlace = i-1;
+                    return closestPlace;
+                }
+                //check to see if it is accessible
+                if (lowerGrid[i-1].isAccessible()) {
+                    //check to see if someone is already there and is a 
+                    if (lowerGrid[i-1].getDistance() == 0 && lowerGrid[i-1].getCharacter() instanceof AllyChar) {
+                        closestPlace = i-1;
+                        return closestPlace;
+                    }
+                    if (!lowerGrid[i-1].isOccupied() && lowerGrid[i-1].getDistance() <= lowerGrid[i].getDistance() && 
+                            lowerGrid[i-1].getDistance() <= lowerGrid[closestPlace].getDistance()) {
+                        closestPlace = i-1;
+                    }
+                }
+            }
+
+            //right
+            if (i % 6 != 5) {
+                //check to see if someone is already there and is a 
+                if (lowerGrid[i+1].getDistance() == 0 && lowerGrid[i+1].getCharacter() instanceof AllyChar) {
+                    closestPlace = i+1;
+                    return closestPlace;
+                }
+                //check to see if it is accessible
+                if (lowerGrid[i+1].isAccessible()) {
+                    if (!lowerGrid[i+1].isOccupied() && lowerGrid[i+1].getDistance() <= lowerGrid[i].getDistance() && 
+                            lowerGrid[i+1].getDistance() <= lowerGrid[closestPlace].getDistance()) {
+                        closestPlace = i+1;
+                    }
+                }
+            }
+
+            //up
+            if (i - 6 >= 0) {
+                //check to see if someone is already there and is a 
+                if (lowerGrid[i-6].getDistance() == 0 && lowerGrid[i-6].getCharacter() instanceof AllyChar) {
+                    closestPlace = i-6;
+                    return closestPlace;
+                }
+                //check to see if it is accessible
+                if (lowerGrid[i-6].isAccessible()) {
+                    if (!lowerGrid[i-6].isOccupied() && lowerGrid[i-6].getDistance() <= lowerGrid[i].getDistance() && 
+                            lowerGrid[i-6].getDistance() <= lowerGrid[closestPlace].getDistance()) {
+                        closestPlace = i-6;
+                    }
+                }
+            }
+
+            //down
+            if (i + 6 < lowerGrid.length) {
+                //check to see if someone is already there and is a 
+                if (lowerGrid[i+6].getDistance() == 0 && lowerGrid[i+6].getCharacter() instanceof AllyChar) {
+                    closestPlace = i+6;
+                    return closestPlace;
+                }
+                //check to see if it is accessible
+                if (lowerGrid[i+6].isAccessible()) {
+                    if (!lowerGrid[i+6].isOccupied() && lowerGrid[i+6].getDistance() <= lowerGrid[i].getDistance() && 
+                            lowerGrid[i+6].getDistance() <= lowerGrid[closestPlace].getDistance()) {
+                        closestPlace = i+6;
+                    }
+                }
+            }
+        }
+        
+        return closestPlace;
+    }
+    
+    //Recalculates the GridTiles based on where the 
+    private void recalculateLocationOfAllyChars() {
+        //resets all of the distances starting at the newest location and working around from there if the character inside a GridTile is a 
+        int changes = 0;
+        int original = 0;
+        
+        for (int i = 0; i < lowerGrid.length - 1; i++) {
+            if (lowerGrid[i].getCharacter() != null && lowerGrid[i].getCharacter() instanceof AllyChar) {                
+                //left - will always run - subtraction
+                for (int j = 0; j <= i % 6; j++) {
+                    //set up the first square
+                    original = i - j;
+                    lowerGrid[original].setDistance(j); //done so that the distance will automatically be set for the first
+                    //System.out.println("GridTile[" + original + "]: " + lowerGrid[original].getDistance());
+                    
+                    //up - subtraction
+                    while (original - 6 >= 0) {
+                        if (changes == 0 || (lowerGrid[original].getDistance() + 1) < lowerGrid[original - 6].getDistance()) {
+                            lowerGrid[original - 6].setDistance(lowerGrid[original].getDistance() + 1);
+                            //System.out.println("GridTile[" + original + "]: " + lowerGrid[original].getDistance());
+                        }
+                        original -= 6;
+                    }
+                    
+                    //down - addition
+                    original = i - j; //resets it back at the original square
+                    while (original + 6 <= lowerGrid.length - 1) {
+                        if (changes == 0 || (lowerGrid[original].getDistance() + 1) < lowerGrid[original + 6].getDistance()) {
+                            lowerGrid[original + 6].setDistance(lowerGrid[original].getDistance() + 1);
+                            //System.out.println("GridTile[" + original + "]: " + lowerGrid[original].getDistance());
+                        }
+                        original += 6;
+                    }
+                }
+                
+                //right - will only run if it is not on the absolute edge - addition
+                if ((i+1) % 6 != 0) {
+                    for (int j = 1; (j + i) % 6 > 0; j++) {
+                        original = i + j;
+                        lowerGrid[original].setDistance(j);
+                        //up - subtraction
+                        while (original - 6 >= 0) {
+                            if (changes == 0 || (lowerGrid[original].getDistance() + 1) < lowerGrid[original - 6].getDistance()) {
+                                lowerGrid[original - 6].setDistance(lowerGrid[original].getDistance() + 1);
+                                //System.out.println("GridTile[" + original + "]: " + lowerGrid[original].getDistance());
+                            }
+                            original -= 6;
+                        }
+
+                        //down - addition
+                        original = i + j; //resets it back at the original square
+                        while (original + 6 <= lowerGrid.length - 1) {
+                            if (changes == 0 || (lowerGrid[original].getDistance() + 1) < lowerGrid[original + 6].getDistance()) {
+                                lowerGrid[original + 6].setDistance(lowerGrid[original].getDistance() + 1);
+                                //System.out.println("GridTile[" + original + "]: " + lowerGrid[original].getDistance());
+                            }
+                            original += 6;
+                        }
+                    }
+                }
+                changes += 1;
+            }
+        }
+        
+        //set all values to upperGrid as well
+        for (int i = 0; i < lowerGrid.length; i++)
+            upperGrid[i].setDistance(lowerGrid[i].getDistance());
+    }
+    
     //Checks to see whether the current mouse position is inside a specific component
     private boolean isMouseWithinComponent(Component c) {
         try {    
@@ -1907,6 +2135,7 @@ public class MapGUI extends javax.swing.JFrame {
                 gt1.getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png")));
             }
         }
+        this.recalculateLocationOfAllyChars();
     }
     
     //Changes the position of the character button relative to the mouse position
@@ -2056,6 +2285,7 @@ public class MapGUI extends javax.swing.JFrame {
                     lowerGrid[gridPos].getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png")));
                     upperGrid[gridPos].getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/empty.png")));
                     lowerGrid[gridPos].removeCharacter();
+                    this.recalculateLocationOfAllyChars();
                 }
             }
         }
@@ -2076,7 +2306,7 @@ public class MapGUI extends javax.swing.JFrame {
         if(!grid1.getCharacter().equals(party.getArmyChar(armyPos))) {
             //Apply damage and disable damage-dealer character
             applyDamageAnimation(party.getArmyChar(armyPos), grid1);
-            grid1.getCharacter().changeHP(party.getArmyChar(armyPos).getTotalAtk());
+            grid1.getCharacter().changeHP(party.getArmyChar(armyPos).getTotalAtk() - grid1.getCharacter().getTotalDef());
             character.setEnabled(false);
         }
     }
@@ -2106,7 +2336,8 @@ public class MapGUI extends javax.swing.JFrame {
             }
             turn = turn != true;
             resetPositionMarkers();
-            startPhaseAnimation();
+            //startPhaseAnimation();
+            enemyAI();
         }
     }
     
@@ -2364,6 +2595,7 @@ public class MapGUI extends javax.swing.JFrame {
                     if(i < 4) {
                         upperGrid[j].getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/allyPositionMarker.png")));
                         lowerGrid[j].addCharacter(allyParty.getArmyChar(i), allyParty);
+                        this.recalculateLocationOfAllyChars();
                     }else {
                         lowerGrid[j].addCharacter(enemyParty.getArmyChar(i-4), enemyParty);
                     }

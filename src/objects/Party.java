@@ -14,6 +14,7 @@ import java.util.ArrayList;
  * Has all of the characters together in a single list, the party is for those fighting and the army is for those that are on the back burner
  * @updated 2/27/2018 - created new constructor, made sure all methods have comments
  * @updated 3/25/2018 - debugging, updating so that multiples of the same character won't be in the army or the party
+ * @updated 4/15/2018 - added new method for adding to party while adding to army
  */
 public class Party {
     private Char[] party;
@@ -91,6 +92,13 @@ public class Party {
     
     //removes a character from the party
     public void removeFromArmy(int x) {
+        for (int i = 0; i < this.party.length; i++) {
+            if (this.army.get(x) == party[i]) {
+                this.removeFromParty(i);
+                break;
+            }
+        }
+        
         this.army.remove(x);
     }
     

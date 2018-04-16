@@ -11,6 +11,7 @@ import objects.*;
 /**
  *
  * @author Justin
+ * @dateUpdated - 4/1/2018 - added a distance integer for calculating the distance for AllyChars
  */
 public class GridTile {
     
@@ -19,11 +20,15 @@ public class GridTile {
     private Char character;
     private boolean isAccessible;
     private boolean isOccupied;
+    private int distance;
     
     public GridTile(JButton tile, boolean isAccessible) {
         this.tile = tile;
         this.isAccessible = isAccessible;
         this.isOccupied = false;
+        this.distance = 100;
+        this.party = null;
+        this.character = null;
     }
     
     public JButton getTile() {
@@ -38,6 +43,10 @@ public class GridTile {
         return character != null;
     }
     
+    public int getDistance() {
+        return this.distance;
+    }
+    
     private void setAccessible(boolean isAccessible) {
         this.isAccessible = isAccessible;
     }
@@ -46,10 +55,15 @@ public class GridTile {
         this.character = character;
     }
     
+    public void setDistance(int distance) {
+        this.distance = distance;
+    }
+    
     public void removeCharacter() {
         setAccessible(true);
         setOccupied(null);
         this.party = null;
+        this.distance = 100;
     }
     
     public Party getParty() {
@@ -60,6 +74,9 @@ public class GridTile {
         setAccessible(false);
         setOccupied(character);
         this.party = party;
+        if (character instanceof AllyChar) {
+            this.distance = 0;
+        }
     }
     
     public Char getCharacter() {

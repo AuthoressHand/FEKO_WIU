@@ -7,7 +7,9 @@ package business;
 
 /**
  *
- * @author Programming
+ * @author Rose Steffensmeier
+ * @dateCreated - 4/15/2018
+ * Used in conjuction with the MapGUI to retrieve values and do calculations
  */
 public class ActionManager {
     

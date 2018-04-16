@@ -92,7 +92,7 @@ public class GameOverGUI extends javax.swing.JFrame {
                     GameOverText.setVisible(false);
                     dispose();
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(MapGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(LevelGUITestingDoubleMatrix.class.getName()).log(Level.SEVERE, null, ex);
                 }
         }};
         gameOverTransitionThread.start();
