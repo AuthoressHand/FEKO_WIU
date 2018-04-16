@@ -10,6 +10,7 @@ import common.CharType;
 import common.DamageType;
 import common.Stat;
 import common.WeaponType;
+import java.util.Random;
 import javax.swing.ImageIcon;
 
 /**
@@ -19,6 +20,7 @@ import javax.swing.ImageIcon;
  * @updated 2/23/2018 - added new methods (getName), made edits to existing classes (givePermBoost), and comments for existing ones - Rose
  * @updated 3/18/2018 - forgot to include walkRange in constructors and getRally method - Rose
  * @updated 3/21/2018 - added error testing to methods involving arrays, added no skill to constructor to avoid NullPointerException, general debugging - Rose
+ * @updated 4/16/2018 - created new, smaller constructor that uses random number generator to create the other stats
  * The main object that the player controls and fights against during the game, lists out everything the character needs
  */
 public abstract class Char {
@@ -111,11 +113,29 @@ public abstract class Char {
         
     }
     
-    public Char(String name, int maxHP, Weapon weapon, int level, int attack, int defense, int resistance, int speed, int walkRange, Skill[] skills, Rally rally, ImageIcon charImg, CharType charType) {
+    public Char(String name, int level, int walkRange, Weapon weapon) {
+        Random random = new Random();
+        
+        this.name = name;
+        this.level = level;
+        this.maxHP = 9 + level;
+        this.currentHP = this.maxHP;
+        this.weapon = weapon;
+        this.attack = random.nextInt(3) + level;
+        this.defense = random.nextInt(2) + level/2;
+        this.resistance = random.nextInt(2) + level/2;
+        this.speed = random.nextInt(2) + level/2;
+        this.walkRange = walkRange;
+        this.img = new ImageIcon(getClass().getResource("/img/characters/" + name.toLowerCase() + ".png"));
+        this.portraitBattle = new ImageIcon(getClass().getResource("/img/portraits/" + name.toLowerCase() + "_battle_portrait.png"));
+    }
+    
+    //the next two constructors are for testing purposes only
+    protected Char(String name, int maxHP, Weapon weapon, int level, int attack, int defense, int resistance, int speed, int walkRange, Skill[] skills, Rally rally, ImageIcon charImg, CharType charType) {
         this.setCharacter(name, maxHP, maxHP, weapon, level, attack, defense, resistance, speed, walkRange, skills, rally, charImg, charType);
     }
     
-    public Char(String name, int maxHP, int currentHP, Weapon weapon, int level, int attack, int defense, int resistance, int speed, int tempAttack, int tempDefense, int tempResistance, int tempSpeed, int walkRange, Skill[] skills, Rally rally, ImageIcon charImg, boolean active, CharType charType) {
+    protected Char(String name, int maxHP, int currentHP, Weapon weapon, int level, int attack, int defense, int resistance, int speed, int tempAttack, int tempDefense, int tempResistance, int tempSpeed, int walkRange, Skill[] skills, Rally rally, ImageIcon charImg, boolean active, CharType charType) {
         this.setCharacter(name, maxHP, currentHP, weapon, level, attack, defense, resistance, speed, walkRange, skills, rally, charImg, charType);
         this.tempAttack = tempAttack;
         this.tempDefense = tempDefense;
@@ -124,7 +144,7 @@ public abstract class Char {
         this.active = active;
     }
     
-    //sets the character's information
+    //sets the character's information, used for testing purposes only
     private void setCharacter(String name, int maxHP, int currentHP, Weapon weapon, int level, int attack, int defense, int resistance, int speed, int walkRange, Skill[] skills, Rally rally, ImageIcon charImg, CharType charType) {
         this.name = name;
         this.maxHP = maxHP;
@@ -148,6 +168,11 @@ public abstract class Char {
         this.img = charImg;
         this.active = true;
         this.charType = charType;
+    }
+    
+    protected void setImages() {
+        this.portraitImageIdle = new ImageIcon(getClass().getResource("/img/portraits/" + this.name.toLowerCase() + "_silver_portrait_idle.png"));
+        this.portraitImageClicked = new ImageIcon(getClass().getResource("/img/portraits/" + this.name.toLowerCase() + "_silver_portrait_clicked.png"));
     }
     
     //used to return information about the character

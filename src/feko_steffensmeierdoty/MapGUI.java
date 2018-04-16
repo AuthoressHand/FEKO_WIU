@@ -13,8 +13,8 @@ import objects.*;
 
 /**
  *
- * @author rms130
- * @dateUpdated - 4/1/2018 - adding AI to map, calculating distance to nearest ally character - Rose
+ * @author Justin Doty
+ * @dateUpdated - 4/1/2018 - adding AI to map, calculating distance to nearest ally character, modified other methods so that it would run - Rose
  */
 public class MapGUI extends javax.swing.JFrame {
 
@@ -1808,7 +1808,7 @@ public class MapGUI extends javax.swing.JFrame {
     //AI for the EnemyChar
     private void enemyAI() {
         //loop through all of the characters and find their buttons
-        System.out.println("Starting AI");
+        //System.out.println("Starting AI");
         for (int h = 4; h < 8; h++) {
             //get current character and current button
             JToggleButton currentButton = characters[h];
@@ -1818,7 +1818,7 @@ public class MapGUI extends javax.swing.JFrame {
             if (currentChar == null || currentChar.getCurrentHP() <= 0)
                 continue;
             
-            System.out.println("Got one!");
+            //System.out.println("Got one!");
             
             //get the GridTile that the character will move to
             int square = -1;
@@ -1828,8 +1828,8 @@ public class MapGUI extends javax.swing.JFrame {
                 if (lowerGrid[i].getCharacter() == currentChar) {
                     currentSpace = i;
                     square = this.calculateNewPlace(currentChar, currentSpace);
-                    System.out.println("Going to: " + square);
-                    System.out.println("The distance is " + lowerGrid[square].getDistance());
+                    //System.out.println("Going to: " + square);
+                    //System.out.println("The distance is " + lowerGrid[square].getDistance());
                 }
             
             //if the number returned is equal to the current space, the character will not move
@@ -1858,7 +1858,6 @@ public class MapGUI extends javax.swing.JFrame {
                 JButton goHere = lowerGrid[square].getTile();
                 goToHere.x = goHere.getX();
                 goToHere.y = goHere.getY() + 120;
-                //System.out.println("The coordinates are: " + goToHere.toString());
                 
                 //move the character
                 currentButton.setLocation(goToHere);
@@ -1952,6 +1951,9 @@ public class MapGUI extends javax.swing.JFrame {
                     }
                 }
             }
+            
+            //have i = cloesetPlace so that it will continue to check the closest areas
+            i = closestPlace;
         }
         
         return closestPlace;

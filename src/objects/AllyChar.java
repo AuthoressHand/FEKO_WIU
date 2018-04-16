@@ -20,6 +20,7 @@ import javax.swing.ImageIcon;
  * @updated 2/27/2018 - updated methods with comments, added new methods - Rose
  * @updated 3/18/2018 - updated constructors to match change to Character class - Rose
  * @updated 3/23/2018 - debugging, removed unequipWeapon method - Rose
+ * @updated 4/16/2018 - created new constructor that will use random numbers
  */
 public class AllyChar extends Char {
     private int specialPoints;
@@ -33,12 +34,14 @@ public class AllyChar extends Char {
     private ArrayList<Skill> lockSkills;
     private Random generator = new Random();
     
-    public AllyChar(String name, int maxHP, Weapon weapon, int level, int attack, int defense, int resistance, int speed, int walkRange, Skill[] skills, Rally rally, ImageIcon charImg, CharType charType, int specialPoints, int experience, int hpIncrease, int atkIncrease, int defIncrease, int resIncrease, int spdIncrease, ArrayList<Skill> unlockSkills, ArrayList<Skill> lockSkills) {
+    //used for testing purposes only
+    protected AllyChar(String name, int maxHP, Weapon weapon, int level, int attack, int defense, int resistance, int speed, int walkRange, Skill[] skills, Rally rally, ImageIcon charImg, CharType charType, int specialPoints, int experience, int hpIncrease, int atkIncrease, int defIncrease, int resIncrease, int spdIncrease, ArrayList<Skill> unlockSkills, ArrayList<Skill> lockSkills) {
         super(name, maxHP, weapon, level, attack, defense, resistance, speed, walkRange, skills, rally, charImg, charType);
         setAlly(specialPoints, experience, hpIncrease, atkIncrease, defIncrease, resIncrease, spdIncrease, unlockSkills, lockSkills);
     }
     
-    public AllyChar(String name, int maxHP, int currentHP, Weapon weapon, int level, int attack, int defense, int resistance, int speed, int tempAttack, int tempDefense, int tempResistance, int tempSpeed, int walkRange, Skill[] skills, Rally rally, ImageIcon charImg, boolean active, CharType charType, int specialPoints, int experience, int hpIncrease, int atkIncrease, int defIncrease, int resIncrease, int spdIncrease, ArrayList<Skill> unlockSkills, ArrayList<Skill> lockSkills) {
+    //used for testing purposes only
+    protected AllyChar(String name, int maxHP, int currentHP, Weapon weapon, int level, int attack, int defense, int resistance, int speed, int tempAttack, int tempDefense, int tempResistance, int tempSpeed, int walkRange, Skill[] skills, Rally rally, ImageIcon charImg, boolean active, CharType charType, int specialPoints, int experience, int hpIncrease, int atkIncrease, int defIncrease, int resIncrease, int spdIncrease, ArrayList<Skill> unlockSkills, ArrayList<Skill> lockSkills) {
         super(name, maxHP, currentHP, weapon, level, attack, defense, resistance, speed, tempAttack, tempDefense, tempResistance, tempSpeed, walkRange, skills, rally, charImg, active, charType);
         setAlly(specialPoints, experience, hpIncrease, atkIncrease, defIncrease, resIncrease, spdIncrease, unlockSkills, lockSkills);
     }
@@ -52,7 +55,19 @@ public class AllyChar extends Char {
         this.defIncrease = 100;
     }
     
-    //sets ally information
+    public AllyChar(String name, int level, int walkRange, Weapon weapon) {
+        super(name, level, walkRange, weapon);
+        this.experience = 0;
+        this.specialPoints = 20 * level - 20;
+        this.hpIncrease = generator.nextInt(35) + 65;
+        this.atkIncrease = generator.nextInt(35) + 55;
+        this.defIncrease = generator.nextInt(35) + 40;
+        this.resIncrease = generator.nextInt(35) + 40;
+        this.spdIncrease = generator.nextInt(35) + 40;
+        super.setImages();
+    }
+    
+    //sets ally information, used for testing purposes only
     private void setAlly(int specialPoints, int experience, int hpIncrease, int atkIncrease, int defIncrease, int resIncrease, int spdIncrease, ArrayList<Skill> unlockSkills, ArrayList<Skill> lockSkills) {
         this.specialPoints = specialPoints;
         this.experience = experience;
@@ -101,7 +116,7 @@ public class AllyChar extends Char {
             this.givePermBoost(Stat.Resistance, 1);
         if (this.generator.nextInt(100) < this.spdIncrease)
             this.givePermBoost(Stat.Speed, 1);
-        this.specialPoints += 12;
+        this.specialPoints += 20;
         this.increaseLevel();
         this.experience -= 100;
     }
