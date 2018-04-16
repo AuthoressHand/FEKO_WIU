@@ -16,6 +16,7 @@ import javax.swing.ImageIcon;
  * The main object that the player controls and fights against during the game, lists out everything the character needs
  * @updated 2/27/2018 - made sure all methods had comment
  * @updated 3/18/2018 - updated constructors to match changes to Character class
+ * @updated 4/16/2018 - created new constructor
  */
 public class EnemyChar extends Char {
     private MoveType moveType;
@@ -27,14 +28,21 @@ public class EnemyChar extends Char {
         super(name, level);
     }
     
-    public EnemyChar(String name, int maxHP, Weapon weapon, int level, int attack, int defense, int resistance, int speed, int walkRange, Skill[] skills, Rally rally, ImageIcon charImg, CharType charType, MoveType moveType) {
+    //used for testing purposes only
+    protected EnemyChar(String name, int maxHP, Weapon weapon, int level, int attack, int defense, int resistance, int speed, int walkRange, Skill[] skills, Rally rally, ImageIcon charImg, CharType charType, MoveType moveType) {
         super(name, maxHP, weapon, level, attack, defense, resistance, speed, walkRange, skills, rally, charImg, charType);
         this.moveType = moveType;
     }
     
-    public EnemyChar(String name, int maxHP, int currentHP, Weapon weapon, int level, int attack, int defense, int resistance, int speed, int tempAttack, int tempDefense, int tempResistance, int tempSpeed, int walkRange, Skill[] skills, Rally rally, ImageIcon charImg, boolean active, CharType charType, MoveType moveType) {
+    //used for testing purposes only
+    protected EnemyChar(String name, int maxHP, int currentHP, Weapon weapon, int level, int attack, int defense, int resistance, int speed, int tempAttack, int tempDefense, int tempResistance, int tempSpeed, int walkRange, Skill[] skills, Rally rally, ImageIcon charImg, boolean active, CharType charType, MoveType moveType) {
         super(name, maxHP, currentHP, weapon, level, attack, defense, resistance, speed, tempAttack, tempDefense, tempResistance, tempSpeed, walkRange, skills, rally, charImg, active, charType);
         this.moveType = moveType;
+    }
+    
+    public EnemyChar(String name, int level, int walkRange, Weapon weapon) {
+        super(name, level, walkRange, weapon);
+        this.moveType = MoveType.Go;
     }
     
     //returns the movetype of the enemy
