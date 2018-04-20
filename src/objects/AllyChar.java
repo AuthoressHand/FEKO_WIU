@@ -20,7 +20,7 @@ import javax.swing.ImageIcon;
  * @updated 2/27/2018 - updated methods with comments, added new methods - Rose
  * @updated 3/18/2018 - updated constructors to match change to Character class - Rose
  * @updated 3/23/2018 - debugging, removed unequipWeapon method - Rose
- * @updated 4/16/2018 - created new constructor that will use random numbers
+ * @updated 4/16/2018 - created new constructor that will use random numbers, when leveling up, add hp to current hp - Rose
  */
 public class AllyChar extends Char {
     private int specialPoints;
@@ -106,8 +106,10 @@ public class AllyChar extends Char {
     
     //increases the ally's stats, add special points, and takes away experience
     protected void levelUp() {
-        if (this.generator.nextInt(100) < this.hpIncrease)
+        if (this.generator.nextInt(100) < this.hpIncrease) {
             this.givePermBoost(Stat.HP, 1);
+            super.changeHP(-1);
+        }
         if (this.generator.nextInt(100) < this.atkIncrease)
             this.givePermBoost(Stat.Attack, 1);
         if (this.generator.nextInt(100) < this.defIncrease)
