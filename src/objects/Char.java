@@ -372,6 +372,7 @@ public abstract class Char {
             switch (stat) {
                 case HP:
                     this.maxHP += effect;
+                    this.currentHP += effect;
                     break;
                 case Attack:
                     this.attack += effect;
