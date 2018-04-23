@@ -20,7 +20,8 @@ import javax.swing.ImageIcon;
  * @updated 2/23/2018 - added new methods (getName), made edits to existing classes (givePermBoost), and comments for existing ones - Rose
  * @updated 3/18/2018 - forgot to include walkRange in constructors and getRally method - Rose
  * @updated 3/21/2018 - added error testing to methods involving arrays, added no skill to constructor to avoid NullPointerException, general debugging - Rose
- * @updated 4/16/2018 - created new, smaller constructor that uses random number generator to create the other stats
+ * @updated 4/16/2018 - created new, smaller constructor that uses random number generator to create the other stats - Rose
+ * @updated 4/22/2018 - rebalanced stats - Rose
  * The main object that the player controls and fights against during the game, lists out everything the character needs
  */
 public abstract class Char {
@@ -66,12 +67,12 @@ public abstract class Char {
                 this.portraitImageClicked = new ImageIcon(getClass().getResource("/img/portraits/anna_silver_portrait_clicked.png"));
                 break;
             case "Zephiel":
-                this.img = new ImageIcon(getClass().getResource("/img/characters/zeph.png"));
-                this.portraitBattle = new ImageIcon(getClass().getResource("/img/portraits/zeph_battle_portrait.png"));
+                this.img = new ImageIcon(getClass().getResource("/img/characters/zephiel.png"));
+                this.portraitBattle = new ImageIcon(getClass().getResource("/img/portraits/zephiel_battle_portrait.png"));
                 break;
             case "Axe Man":
-                this.img = new ImageIcon(getClass().getResource("/img/characters/axeMan.png"));
-                this.portraitBattle = new ImageIcon(getClass().getResource("/img/portraits/axeMan_battle_portrait.png"));
+                this.img = new ImageIcon(getClass().getResource("/img/characters/axeman.png"));
+                this.portraitBattle = new ImageIcon(getClass().getResource("/img/portraits/axeman_battle_portrait.png"));
                 break;
             case "Surtr":
                 this.img = new ImageIcon(getClass().getResource("/img/characters/surtr.png"));
@@ -118,16 +119,16 @@ public abstract class Char {
         
         this.name = name;
         this.level = level;
-        this.maxHP = 9 + level;
+        this.maxHP = random.nextInt(3) + 9 + level;
         this.currentHP = this.maxHP;
         this.weapon = weapon;
-        this.attack = random.nextInt(3) + level;
-        this.defense = random.nextInt(2) + level/2;
-        this.resistance = random.nextInt(2) + level/2;
-        this.speed = random.nextInt(2) + level/2;
+        this.attack = random.nextInt(3) + 1 + level/2;
+        this.defense = random.nextInt(2) + 1 + level/2;
+        this.resistance = random.nextInt(2) + 1 + level/2;
+        this.speed = random.nextInt(2) + 1 + level/2;
         this.walkRange = walkRange;
-        this.img = new ImageIcon(getClass().getResource("/img/characters/" + name.toLowerCase() + ".png"));
-        this.portraitBattle = new ImageIcon(getClass().getResource("/img/portraits/" + name.toLowerCase() + "_battle_portrait.png"));
+        this.img = new ImageIcon(getClass().getResource("/img/characters/" + name.toLowerCase().replace(" ", "") + ".png"));
+        this.portraitBattle = new ImageIcon(getClass().getResource("/img/portraits/" + name.toLowerCase().replace(" ", "") + "_battle_portrait.png"));
     }
     
     //the next two constructors are for testing purposes only

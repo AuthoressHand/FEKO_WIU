@@ -5,6 +5,8 @@
  */
 package feko_steffensmeierdoty;
 
+import common.DamageType;
+import common.WeaponType;
 import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,6 +18,7 @@ import objects.*;
 /**
  *
  * @author rms130
+ * @dateUpdated - 4/22/2018 - modified ally characters slightly - Rose
  */
 public class CharacterModGUI extends javax.swing.JFrame {
 
@@ -1170,11 +1173,18 @@ public class CharacterModGUI extends javax.swing.JFrame {
         teamSlots[2] = Slot3;
         teamSlots[3] = Slot4;
         
-        allyOptions[0] = new AllyChar("Anna", 1);
+        /*allyOptions[0] = new AllyChar("Anna", 1);
         allyOptions[1] = new AllyChar("Alfonse", 1);
         allyOptions[2] = new AllyChar("Soleil", 1);
         allyOptions[3] = new AllyChar("Roy", 1);
-        allyOptions[4] = new AllyChar("Selena", 1);
+        allyOptions[4] = new AllyChar("Selena", 1);*/
+        
+        Weapon weapon = new Weapon(null, 0, "Bronze Sword", 0, "Basic Sword, starting equipment", WeaponType.Sword, 5, 1, DamageType.Physical);
+        allyOptions[0] = new AllyChar("Anna", 1, 2, weapon);
+        allyOptions[1] = new AllyChar("Alfonse", 1, 2, weapon);
+        allyOptions[2] = new AllyChar("Soleil", 1, 2, weapon);
+        allyOptions[3] = new AllyChar("Roy", 1, 2, weapon);
+        allyOptions[4] = new AllyChar("Selena", 1, 2, weapon);
         
         characterOptions[0] = AnnaButton;
         characterOptions[1] = AlfonseButton;
