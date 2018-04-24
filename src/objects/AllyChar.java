@@ -21,6 +21,7 @@ import javax.swing.ImageIcon;
  * @updated 3/18/2018 - updated constructors to match change to Character class - Rose
  * @updated 3/23/2018 - debugging, removed unequipWeapon method - Rose
  * @updated 4/16/2018 - created new constructor that will use random numbers, when leveling up, add hp to current hp - Rose
+ * @updated 4/22/2018 - made stat adjustments - Rose
  */
 public class AllyChar extends Char {
     private int specialPoints;
@@ -46,14 +47,14 @@ public class AllyChar extends Char {
         setAlly(specialPoints, experience, hpIncrease, atkIncrease, defIncrease, resIncrease, spdIncrease, unlockSkills, lockSkills);
     }
 
-    public AllyChar(String name, int level) {
+    /*public AllyChar(String name, int level) {
         super(name,level);
         this.experience = 0;
         this.specialPoints = 0;
         this.hpIncrease = 100;
         this.atkIncrease = 100;
         this.defIncrease = 100;
-    }
+    }*/
     
     public AllyChar(String name, int level, int walkRange, Weapon weapon) {
         super(name, level, walkRange, weapon);
@@ -61,9 +62,9 @@ public class AllyChar extends Char {
         this.specialPoints = 20 * level - 20;
         this.hpIncrease = generator.nextInt(35) + 65;
         this.atkIncrease = generator.nextInt(35) + 55;
-        this.defIncrease = generator.nextInt(35) + 40;
-        this.resIncrease = generator.nextInt(35) + 40;
-        this.spdIncrease = generator.nextInt(35) + 40;
+        this.defIncrease = generator.nextInt(35) + 45;
+        this.resIncrease = generator.nextInt(35) + 45;
+        this.spdIncrease = generator.nextInt(35) + 45;
         super.setImages();
     }
     

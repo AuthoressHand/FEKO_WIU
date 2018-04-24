@@ -48,6 +48,7 @@ public class MapGUI extends javax.swing.JFrame {
     private String[] enemyHPFonts;
     private String[] allyHPFonts;
     private int level;
+    private ActionManager manager;
     private Media songFile;
     private MediaPlayer mediaPlayer;
     private MediaPlayer damagePlayer;
@@ -70,6 +71,7 @@ public class MapGUI extends javax.swing.JFrame {
         this.level = level;
         this.cmGUI = cmGUI;
         this.allyParty = party;
+        this.manager = new ActionManager();
         initSong();
         initComponents();
         initMapGUI();
@@ -1556,7 +1558,6 @@ public class MapGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_EndTurnButtonMouseEntered
 
     private void EndTurnButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EndTurnButtonMouseClicked
-
         this.endTurn();
         this.enemyAI();
     }//GEN-LAST:event_EndTurnButtonMouseClicked
@@ -1591,68 +1592,42 @@ public class MapGUI extends javax.swing.JFrame {
 
     private void AllyCharacter3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter3MouseReleased
         mouseReleased(AllyCharacter3, AllyChar3HP, 2);
-        /*if(turn == true && AllyCharacter3.isEnabled())
-            performAction(LowerGrid,AllyCharacter3, AllyChar3HP, allyParty, 2);*/
     }//GEN-LAST:event_AllyCharacter3MouseReleased
 
     private void AllyCharacter3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter3MousePressed
         mousePressed(AllyCharacter3, allyParty, 2);
-        /*charInitialPoint = AllyCharacter3.getLocation();
-        updateCharacterStats(allyParty, 2);
-        showPossibleMoves(allyParty, 2, true);*/
     }//GEN-LAST:event_AllyCharacter3MousePressed
 
     private void AllyCharacter3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter3MouseDragged
         mouseDragged(AllyCharacter3, AllyChar3HP, 2);
-        /*if(turn == true && AllyCharacter3.isEnabled())
-            moveCharacter(AllyCharacter3, AllyChar3HP,  allyParty, 2);*/
     }//GEN-LAST:event_AllyCharacter3MouseDragged
 
     private void AllyCharacter4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter4MouseReleased
         mouseReleased(AllyCharacter4, AllyChar4HP, 3);
-        /*if(turn == true && AllyCharacter4.isEnabled())
-            performAction(LowerGrid,AllyCharacter4, AllyChar4HP, allyParty, 3);*/
     }//GEN-LAST:event_AllyCharacter4MouseReleased
 
     private void AllyCharacter4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter4MousePressed
         mousePressed(AllyCharacter4, allyParty, 3);
-        /*charInitialPoint = AllyCharacter4.getLocation();
-        updateCharacterStats(allyParty, 3);
-        showPossibleMoves(allyParty, 3, true);*/
     }//GEN-LAST:event_AllyCharacter4MousePressed
 
     private void AllyCharacter4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter4MouseDragged
         mouseDragged(AllyCharacter4, AllyChar4HP, 3);
-        /*if(turn == true && AllyCharacter4.isEnabled())
-        moveCharacter(AllyCharacter4, AllyChar4HP,  allyParty, 3);*/
     }//GEN-LAST:event_AllyCharacter4MouseDragged
 
     private void EnemyCharacter1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter1MousePressed
         mousePressed(EnemyCharacter1, enemyParty, 0);
-        /*charInitialPoint = EnemyCharacter1.getLocation();
-        updateCharacterStats(enemyParty, 0);
-        showPossibleMoves(enemyParty, 0, true);*/
     }//GEN-LAST:event_EnemyCharacter1MousePressed
 
     private void EnemyCharacter2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter2MousePressed
         mousePressed(EnemyCharacter2, enemyParty, 1);
-        /*charInitialPoint = EnemyCharacter2.getLocation();
-        updateCharacterStats(enemyParty, 1);
-        showPossibleMoves(enemyParty, 1, true);*/
     }//GEN-LAST:event_EnemyCharacter2MousePressed
 
     private void EnemyCharacter3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter3MousePressed
         mousePressed(EnemyCharacter3, enemyParty, 2);
-        /*charInitialPoint = EnemyCharacter3.getLocation();
-        updateCharacterStats(enemyParty, 2);
-        showPossibleMoves(enemyParty, 2, true);*/
     }//GEN-LAST:event_EnemyCharacter3MousePressed
 
     private void EnemyCharacter4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter4MousePressed
         mousePressed(EnemyCharacter4, enemyParty, 3);
-        /*charInitialPoint = EnemyCharacter4.getLocation();
-        updateCharacterStats(enemyParty, 3);
-        showPossibleMoves(enemyParty, 3, true);*/
     }//GEN-LAST:event_EnemyCharacter4MousePressed
 
     private void StageClearButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StageClearButtonMouseClicked
@@ -1695,21 +1670,14 @@ public class MapGUI extends javax.swing.JFrame {
 
     private void AllyCharacter2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter2MouseReleased
         mouseReleased(AllyCharacter2, AllyChar2HP, 1);
-        /*if(turn == true && AllyCharacter2.isEnabled())
-        performAction(LowerGrid,AllyCharacter2,  AllyChar2HP, allyParty, 1);*/
     }//GEN-LAST:event_AllyCharacter2MouseReleased
 
     private void AllyCharacter2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter2MousePressed
         mousePressed(AllyCharacter2, allyParty, 1);
-        /*charInitialPoint = AllyCharacter2.getLocation();
-        updateCharacterStats(allyParty, 1);
-        showPossibleMoves(allyParty, 1, true);*/
     }//GEN-LAST:event_AllyCharacter2MousePressed
 
     private void AllyCharacter2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter2MouseDragged
         mouseDragged(AllyCharacter2, AllyChar2HP, 1);
-        /*if(turn == true && AllyCharacter2.isEnabled())
-        moveCharacter(AllyCharacter2,  AllyChar2HP, allyParty, 1);*/
     }//GEN-LAST:event_AllyCharacter2MouseDragged
 
     private void PhaseSeperatorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PhaseSeperatorMouseClicked
@@ -1739,7 +1707,6 @@ public class MapGUI extends javax.swing.JFrame {
     //AI for the EnemyChar
     private void enemyAI() {
         //loop through all of the characters and find their buttons
-        //System.out.println("Starting AI");
         for (int h = 4; h < 8; h++) {
             //get current character and current button
             JToggleButton currentButton = characters[h];
@@ -1749,8 +1716,6 @@ public class MapGUI extends javax.swing.JFrame {
             if (currentChar == null || currentChar.getCurrentHP() <= 0)
                 continue;
             
-            //System.out.println("Got one!");
-            
             //get the GridTile that the character will move to
             int square = -1;
             int currentSpace = 0;
@@ -1759,8 +1724,6 @@ public class MapGUI extends javax.swing.JFrame {
                 if (lowerGrid[i].getCharacter() == currentChar) {
                     currentSpace = i;
                     square = this.calculateNewPlace(currentChar, currentSpace);
-                    //System.out.println("Going to: " + square);
-                    //System.out.println("The distance is " + lowerGrid[square].getDistance());
                 }
             
             //if the number returned is equal to the current space, the character will not move
@@ -1808,153 +1771,13 @@ public class MapGUI extends javax.swing.JFrame {
     
     //used to calculate which square the character will move to
     private int calculateNewPlace(Char currentChar, int currentSpace) {
-        int closestPlace = currentSpace;
-        int i = currentSpace;
-
-        //find the closest character by checking up, down, left, and right
-        for (int j = 0; j < currentChar.getWalkRange(); j++) {
-            //left
-            //check to see if there is anywhere to go to the left
-            if (i % 6 != 0) {
-                //check to see if someone is already there and is a 
-                if (lowerGrid[i-1].getDistance() == 0 && lowerGrid[i-1].getCharacter() instanceof AllyChar) {
-                    closestPlace = i-1;
-                    return closestPlace;
-                }
-                //check to see if it is accessible
-                if (lowerGrid[i-1].isAccessible()) {
-                    //check to see if someone is already there and is a 
-                    if (lowerGrid[i-1].getDistance() == 0 && lowerGrid[i-1].getCharacter() instanceof AllyChar) {
-                        closestPlace = i-1;
-                        return closestPlace;
-                    }
-                    if (!lowerGrid[i-1].isOccupied() && lowerGrid[i-1].getDistance() <= lowerGrid[i].getDistance() && 
-                            lowerGrid[i-1].getDistance() <= lowerGrid[closestPlace].getDistance()) {
-                        closestPlace = i-1;
-                    }
-                }
-            }
-
-            //right
-            if (i % 6 != 5) {
-                //check to see if someone is already there and is a 
-                if (lowerGrid[i+1].getDistance() == 0 && lowerGrid[i+1].getCharacter() instanceof AllyChar) {
-                    closestPlace = i+1;
-                    return closestPlace;
-                }
-                //check to see if it is accessible
-                if (lowerGrid[i+1].isAccessible()) {
-                    if (!lowerGrid[i+1].isOccupied() && lowerGrid[i+1].getDistance() <= lowerGrid[i].getDistance() && 
-                            lowerGrid[i+1].getDistance() <= lowerGrid[closestPlace].getDistance()) {
-                        closestPlace = i+1;
-                    }
-                }
-            }
-
-            //up
-            if (i - 6 >= 0) {
-                //check to see if someone is already there and is a 
-                if (lowerGrid[i-6].getDistance() == 0 && lowerGrid[i-6].getCharacter() instanceof AllyChar) {
-                    closestPlace = i-6;
-                    return closestPlace;
-                }
-                //check to see if it is accessible
-                if (lowerGrid[i-6].isAccessible()) {
-                    if (!lowerGrid[i-6].isOccupied() && lowerGrid[i-6].getDistance() <= lowerGrid[i].getDistance() && 
-                            lowerGrid[i-6].getDistance() <= lowerGrid[closestPlace].getDistance()) {
-                        closestPlace = i-6;
-                    }
-                }
-            }
-
-            //down
-            if (i + 6 < lowerGrid.length) {
-                //check to see if someone is already there and is a 
-                if (lowerGrid[i+6].getDistance() == 0 && lowerGrid[i+6].getCharacter() instanceof AllyChar) {
-                    closestPlace = i+6;
-                    return closestPlace;
-                }
-                //check to see if it is accessible
-                if (lowerGrid[i+6].isAccessible()) {
-                    if (!lowerGrid[i+6].isOccupied() && lowerGrid[i+6].getDistance() <= lowerGrid[i].getDistance() && 
-                            lowerGrid[i+6].getDistance() <= lowerGrid[closestPlace].getDistance()) {
-                        closestPlace = i+6;
-                    }
-                }
-            }
-            
-            //have i = cloesetPlace so that it will continue to check the closest areas
-            i = closestPlace;
-        }
-        
-        return closestPlace;
+        return manager.calculateNewPlace(lowerGrid, currentChar, currentSpace);
     }
     
     //Recalculates the GridTiles based on where the 
     private void recalculateLocationOfAllyChars() {
         //resets all of the distances starting at the newest location and working around from there if the character inside a GridTile is a 
-        int changes = 0;
-        int original = 0;
-        
-        for (int i = 0; i < lowerGrid.length - 1; i++) {
-            if (lowerGrid[i].getCharacter() != null && lowerGrid[i].getCharacter() instanceof AllyChar) {                
-                //left - will always run - subtraction
-                for (int j = 0; j <= i % 6; j++) {
-                    //set up the first square
-                    original = i - j;
-                    lowerGrid[original].setDistance(j); //done so that the distance will automatically be set for the first
-                    //System.out.println("GridTile[" + original + "]: " + lowerGrid[original].getDistance());
-                    
-                    //up - subtraction
-                    while (original - 6 >= 0) {
-                        if (changes == 0 || (lowerGrid[original].getDistance() + 1) < lowerGrid[original - 6].getDistance()) {
-                            lowerGrid[original - 6].setDistance(lowerGrid[original].getDistance() + 1);
-                            //System.out.println("GridTile[" + original + "]: " + lowerGrid[original].getDistance());
-                        }
-                        original -= 6;
-                    }
-                    
-                    //down - addition
-                    original = i - j; //resets it back at the original square
-                    while (original + 6 <= lowerGrid.length - 1) {
-                        if (changes == 0 || (lowerGrid[original].getDistance() + 1) < lowerGrid[original + 6].getDistance()) {
-                            lowerGrid[original + 6].setDistance(lowerGrid[original].getDistance() + 1);
-                            //System.out.println("GridTile[" + original + "]: " + lowerGrid[original].getDistance());
-                        }
-                        original += 6;
-                    }
-                }
-                
-                //right - will only run if it is not on the absolute edge - addition
-                if ((i+1) % 6 != 0) {
-                    for (int j = 1; (j + i) % 6 > 0; j++) {
-                        original = i + j;
-                        lowerGrid[original].setDistance(j);
-                        //up - subtraction
-                        while (original - 6 >= 0) {
-                            if (changes == 0 || (lowerGrid[original].getDistance() + 1) < lowerGrid[original - 6].getDistance()) {
-                                lowerGrid[original - 6].setDistance(lowerGrid[original].getDistance() + 1);
-                                //System.out.println("GridTile[" + original + "]: " + lowerGrid[original].getDistance());
-                            }
-                            original -= 6;
-                        }
-
-                        //down - addition
-                        original = i + j; //resets it back at the original square
-                        while (original + 6 <= lowerGrid.length - 1) {
-                            if (changes == 0 || (lowerGrid[original].getDistance() + 1) < lowerGrid[original + 6].getDistance()) {
-                                lowerGrid[original + 6].setDistance(lowerGrid[original].getDistance() + 1);
-                                //System.out.println("GridTile[" + original + "]: " + lowerGrid[original].getDistance());
-                            }
-                            original += 6;
-                        }
-                    }
-                }
-                changes += 1;
-            }
-        }
-        
-        //manager.recalculateLocationOfAllyChars(lowerGrid);
+        manager.recalculateLocationOfAllyChars(lowerGrid);
         
         //set all values to upperGrid as well
         for (int i = 0; i < lowerGrid.length; i++)
@@ -2565,13 +2388,15 @@ public class MapGUI extends javax.swing.JFrame {
     private void setLevelValues() {
         //finds the highest level among the allies that have been brought into the level
         int add = 0;
+        int characters = 0;
         for (Char ally : allyParty.getArmy()) {
             if (ally == null)
                 continue;
-            int currentStr = ally.getLevel();
-            if (currentStr > (add + 1))
-                add = currentStr - 1;
+            add += ally.getLevel();
+            characters += 1;
         }
+        
+        add /= characters;
         
         if(level == 1) {
             Map.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/backgrounds/level1_map.png")));
@@ -2607,9 +2432,9 @@ public class MapGUI extends javax.swing.JFrame {
 
             //Adds Level 1 enemies into enemy party
             Weapon weapon = new Weapon(null, 0, "Bronze Sword", 0, "Basic Sword, starting equipment", WeaponType.Sword, 5, 1, DamageType.Physical);
-            enemyParty.addToArmy(new EnemyChar("Zephiel", 1 + add, 2, weapon));
-            enemyParty.addToArmy(new EnemyChar("Black Knight", 1 + add, 2, weapon));
-            enemyParty.addToArmy(new EnemyChar("Hawkeye", 1 + add, 2, weapon));
+            enemyParty.addToArmy(new EnemyChar("Zephiel", add, 2, weapon));
+            enemyParty.addToArmy(new EnemyChar("Black Knight", add, 2, weapon));
+            enemyParty.addToArmy(new EnemyChar("Hawkeye", add, 2, weapon));
         }
         
         if(level == 2) {
@@ -2645,9 +2470,9 @@ public class MapGUI extends javax.swing.JFrame {
 
             //Adds Level 2 enemies into enemy party
             Weapon weapon = new Weapon(null, 0, "Iron Sword", 0, "Stronger Sword", WeaponType.Sword, 6, 1, DamageType.Physical);
-            enemyParty.addToArmy(new EnemyChar("Hawkeye", 2 + add, 2, weapon));
-            enemyParty.addToArmy(new EnemyChar("Black Knight", 2 + add, 2, weapon));
-            enemyParty.addToArmy(new EnemyChar("Zephiel", 2 + add, 2, weapon));
+            enemyParty.addToArmy(new EnemyChar("Hawkeye", 1 + add, 2, weapon));
+            enemyParty.addToArmy(new EnemyChar("Black Knight", 1 + add, 2, weapon));
+            enemyParty.addToArmy(new EnemyChar("Zephiel", 1 + add, 2, weapon));
         }
         
         if(level == 3) {
@@ -2684,9 +2509,9 @@ public class MapGUI extends javax.swing.JFrame {
 
             //Adds Level 3 enemies into enemy party
             Weapon weapon = new Weapon(null, 0, "Silver Sword", 0, "Strongest Sword", WeaponType.Sword, 7, 1, DamageType.Physical);
-            enemyParty.addToArmy(new EnemyChar("Surtr", 5 + add, 2, weapon));
-            enemyParty.addToArmy(new EnemyChar("Black Knight", 3 + add, 2, weapon));
-            enemyParty.addToArmy(new EnemyChar("Axe Man", 4 + add, 2, weapon));
+            enemyParty.addToArmy(new EnemyChar("Surtr", 4 + add, 2, weapon));
+            enemyParty.addToArmy(new EnemyChar("Black Knight", 2 + add, 2, weapon));
+            enemyParty.addToArmy(new EnemyChar("Axe Man", 3 + add, 2, weapon));
         }
     }
     

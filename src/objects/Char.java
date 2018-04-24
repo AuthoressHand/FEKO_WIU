@@ -49,7 +49,7 @@ public abstract class Char {
     private CharType charType;
     private Skill defaultSkill;
     
-    public Char(String name, int level) {
+    /*public Char(String name, int level) {
         this.name = name;
         this.level = level;
         this.maxHP = 1;
@@ -112,7 +112,7 @@ public abstract class Char {
                 break;
         }
         
-    }
+    }*/
     
     public Char(String name, int level, int walkRange, Weapon weapon) {
         Random random = new Random();
