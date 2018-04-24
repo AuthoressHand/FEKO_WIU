@@ -2110,12 +2110,6 @@ public class MapGUI extends javax.swing.JFrame {
         //If no characters in party have a turn left, the turn is given over automically. 
         if(i != -1) {
             this.endTurn();
-            /*for(JToggleButton jtbs: characters) {
-                jtbs.setEnabled(true);
-            }
-            turn = turn != true;
-            resetPositionMarkers();
-            //startPhaseAnimation();*/
             enemyAI();
         }
     }
