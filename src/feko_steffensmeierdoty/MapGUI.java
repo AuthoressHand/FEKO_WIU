@@ -19,6 +19,7 @@ import objects.*;
  * @author Justin Doty
  * @dateUpdated - 4/1/2018 - adding AI to map, calculating distance to nearest ally character, modified other methods so that it would run - Rose
  * @dateUpdated - 4/20/2018 - optimizing the code for readability, removing methods from Enemy buttons, adding extra difficulty to levels by grabbing ally level - Rose
+ * @dateUpdated - 4/24/2018 - moving some of the code to ActionManager for optimization purposes - Rose
  */
 public class MapGUI extends javax.swing.JFrame {
 
