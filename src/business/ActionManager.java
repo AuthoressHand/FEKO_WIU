@@ -83,14 +83,6 @@ public class ActionManager {
                 changes += 1;
             }
         }
-        boolean ifAlly = true;
-        for (int j = 0; j < lowerGrid.length; j++) {
-            if (lowerGrid[j].isOccupied() && lowerGrid[j].getCharacter() instanceof AllyChar)
-                ifAlly = true;
-            else
-                ifAlly = false;
-            System.out.println("Grid[" + j + "]: " + lowerGrid[j].getDistance() + ", " + ifAlly);
-        }
     }
     
     //used to calculate which square the character will move to
