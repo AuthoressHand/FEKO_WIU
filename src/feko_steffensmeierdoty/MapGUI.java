@@ -2,6 +2,9 @@
  * This class is the Map GUI.
  */
 package feko_steffensmeierdoty;
+import business.ActionManager;
+import common.DamageType;
+import common.WeaponType;
 import java.awt.*;
 import java.io.File;
 import java.util.logging.Level;
@@ -15,6 +18,8 @@ import objects.*;
  *
  * @author Justin Doty
  * @dateUpdated - 4/1/2018 - adding AI to map, calculating distance to nearest ally character, modified other methods so that it would run - Rose
+ * @dateUpdated - 4/20/2018 - optimizing the code for readability, removing methods from Enemy buttons, adding extra difficulty to levels by grabbing ally level - Rose
+ * @dateUpdated - 4/24/2018 - moving some of the code to ActionManager for optimization purposes - Rose
  */
 public class MapGUI extends javax.swing.JFrame {
 
@@ -44,6 +49,7 @@ public class MapGUI extends javax.swing.JFrame {
     private String[] enemyHPFonts;
     private String[] allyHPFonts;
     private int level;
+    private ActionManager manager;
     private Media songFile;
     private MediaPlayer mediaPlayer;
     private MediaPlayer damagePlayer;
@@ -66,6 +72,7 @@ public class MapGUI extends javax.swing.JFrame {
         this.level = level;
         this.cmGUI = cmGUI;
         this.allyParty = party;
+        this.manager = new ActionManager();
         initSong();
         initComponents();
         initMapGUI();
@@ -411,17 +418,9 @@ public class MapGUI extends javax.swing.JFrame {
         EnemyCharacter4.setMinimumSize(new java.awt.Dimension(90, 90));
         EnemyCharacter4.setPreferredSize(new java.awt.Dimension(90, 90));
         EnemyCharacter4.setRequestFocusEnabled(false);
-        EnemyCharacter4.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                EnemyCharacter4MouseDragged(evt);
-            }
-        });
         EnemyCharacter4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 EnemyCharacter4MousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                EnemyCharacter4MouseReleased(evt);
             }
         });
         MapLayer.add(EnemyCharacter4);
@@ -461,17 +460,9 @@ public class MapGUI extends javax.swing.JFrame {
         EnemyCharacter3.setMinimumSize(new java.awt.Dimension(90, 90));
         EnemyCharacter3.setPreferredSize(new java.awt.Dimension(90, 90));
         EnemyCharacter3.setRequestFocusEnabled(false);
-        EnemyCharacter3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                EnemyCharacter3MouseDragged(evt);
-            }
-        });
         EnemyCharacter3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 EnemyCharacter3MousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                EnemyCharacter3MouseReleased(evt);
             }
         });
         MapLayer.add(EnemyCharacter3);
@@ -511,17 +502,9 @@ public class MapGUI extends javax.swing.JFrame {
         EnemyCharacter2.setMinimumSize(new java.awt.Dimension(90, 90));
         EnemyCharacter2.setPreferredSize(new java.awt.Dimension(90, 90));
         EnemyCharacter2.setRequestFocusEnabled(false);
-        EnemyCharacter2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                EnemyCharacter2MouseDragged(evt);
-            }
-        });
         EnemyCharacter2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 EnemyCharacter2MousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                EnemyCharacter2MouseReleased(evt);
             }
         });
         MapLayer.add(EnemyCharacter2);
@@ -561,17 +544,9 @@ public class MapGUI extends javax.swing.JFrame {
         EnemyCharacter1.setMinimumSize(new java.awt.Dimension(90, 90));
         EnemyCharacter1.setPreferredSize(new java.awt.Dimension(90, 90));
         EnemyCharacter1.setRequestFocusEnabled(false);
-        EnemyCharacter1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                EnemyCharacter1MouseDragged(evt);
-            }
-        });
         EnemyCharacter1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 EnemyCharacter1MousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                EnemyCharacter1MouseReleased(evt);
             }
         });
         MapLayer.add(EnemyCharacter1);
@@ -771,11 +746,6 @@ public class MapGUI extends javax.swing.JFrame {
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 AllyCharacter1MouseReleased(evt);
-            }
-        });
-        AllyCharacter1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AllyCharacter1ActionPerformed(evt);
             }
         });
         MapLayer.add(AllyCharacter1);
@@ -1589,7 +1559,6 @@ public class MapGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_EndTurnButtonMouseEntered
 
     private void EndTurnButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EndTurnButtonMouseClicked
-
         this.endTurn();
         this.enemyAI();
     }//GEN-LAST:event_EndTurnButtonMouseClicked
@@ -1611,117 +1580,56 @@ public class MapGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_DangerAreaButtonMouseEntered
 
     private void AllyCharacter1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter1MouseReleased
-        if(turn == true && AllyCharacter1.isEnabled())
-            performAction(LowerGrid,AllyCharacter1, AllyChar1HP, allyParty, 0);
+        mouseReleased(AllyCharacter1, AllyChar1HP, 0);
     }//GEN-LAST:event_AllyCharacter1MouseReleased
 
     private void AllyCharacter1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter1MousePressed
-        charInitialPoint = AllyCharacter1.getLocation();
-        updateCharacterStats(allyParty, 0);
-        showPossibleMoves(allyParty, 0, true);
+        mousePressed(AllyCharacter1, allyParty, 0);
     }//GEN-LAST:event_AllyCharacter1MousePressed
 
     private void AllyCharacter1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter1MouseDragged
-        if(turn == true && AllyCharacter1.isEnabled())
-            moveCharacter(AllyCharacter1, AllyChar1HP, allyParty, 0);
+        mouseDragged(AllyCharacter1, AllyChar1HP, 0);
     }//GEN-LAST:event_AllyCharacter1MouseDragged
 
     private void AllyCharacter3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter3MouseReleased
-        if(turn == true && AllyCharacter3.isEnabled())
-            performAction(LowerGrid,AllyCharacter3, AllyChar3HP, allyParty, 2);
+        mouseReleased(AllyCharacter3, AllyChar3HP, 2);
     }//GEN-LAST:event_AllyCharacter3MouseReleased
 
     private void AllyCharacter3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter3MousePressed
-        charInitialPoint = AllyCharacter3.getLocation();
-        updateCharacterStats(allyParty, 2);
-        showPossibleMoves(allyParty, 2, true);
+        mousePressed(AllyCharacter3, allyParty, 2);
     }//GEN-LAST:event_AllyCharacter3MousePressed
 
     private void AllyCharacter3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter3MouseDragged
-        if(turn == true && AllyCharacter3.isEnabled())
-            moveCharacter(AllyCharacter3, AllyChar3HP,  allyParty, 2);
+        mouseDragged(AllyCharacter3, AllyChar3HP, 2);
     }//GEN-LAST:event_AllyCharacter3MouseDragged
 
     private void AllyCharacter4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter4MouseReleased
-        if(turn == true && AllyCharacter4.isEnabled())
-            performAction(LowerGrid,AllyCharacter4, AllyChar4HP, allyParty, 3);
+        mouseReleased(AllyCharacter4, AllyChar4HP, 3);
     }//GEN-LAST:event_AllyCharacter4MouseReleased
 
     private void AllyCharacter4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter4MousePressed
-        charInitialPoint = AllyCharacter4.getLocation();
-        updateCharacterStats(allyParty, 3);
-        showPossibleMoves(allyParty, 3, true);
+        mousePressed(AllyCharacter4, allyParty, 3);
     }//GEN-LAST:event_AllyCharacter4MousePressed
 
     private void AllyCharacter4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter4MouseDragged
-        if(turn == true && AllyCharacter4.isEnabled())
-        moveCharacter(AllyCharacter4, AllyChar4HP,  allyParty, 3);
+        mouseDragged(AllyCharacter4, AllyChar4HP, 3);
     }//GEN-LAST:event_AllyCharacter4MouseDragged
 
-    private void EnemyCharacter1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter1MouseReleased
-        if(turn == false && EnemyCharacter1.isEnabled())
-            performAction(LowerGrid,EnemyCharacter1,  EnemyChar1HP, enemyParty, 0);
-    }//GEN-LAST:event_EnemyCharacter1MouseReleased
-
     private void EnemyCharacter1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter1MousePressed
-        charInitialPoint = EnemyCharacter1.getLocation();
-        updateCharacterStats(enemyParty, 0);
-        showPossibleMoves(enemyParty, 0, true);
+        mousePressed(EnemyCharacter1, enemyParty, 0);
     }//GEN-LAST:event_EnemyCharacter1MousePressed
 
-    private void EnemyCharacter1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter1MouseDragged
-        if(turn == false && EnemyCharacter1.isEnabled()) {
-            moveCharacter(EnemyCharacter1, EnemyChar1HP, enemyParty, 0);
-        }
-    }//GEN-LAST:event_EnemyCharacter1MouseDragged
-
-    private void EnemyCharacter2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter2MouseReleased
-        if(turn == false && EnemyCharacter2.isEnabled())
-            performAction(LowerGrid,EnemyCharacter2,  EnemyChar2HP, enemyParty, 1);
-    }//GEN-LAST:event_EnemyCharacter2MouseReleased
-
     private void EnemyCharacter2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter2MousePressed
-        charInitialPoint = EnemyCharacter2.getLocation();
-        updateCharacterStats(enemyParty, 1);
-        showPossibleMoves(enemyParty, 1, true);
+        mousePressed(EnemyCharacter2, enemyParty, 1);
     }//GEN-LAST:event_EnemyCharacter2MousePressed
 
-    private void EnemyCharacter2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter2MouseDragged
-        if(turn == false && EnemyCharacter2.isEnabled())
-            moveCharacter(EnemyCharacter2, EnemyChar2HP, enemyParty, 1);
-    }//GEN-LAST:event_EnemyCharacter2MouseDragged
-
-    private void EnemyCharacter3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter3MouseReleased
-        if(turn == false && EnemyCharacter3.isEnabled())
-            performAction(LowerGrid,EnemyCharacter3,  EnemyChar3HP,enemyParty, 2);
-    }//GEN-LAST:event_EnemyCharacter3MouseReleased
-
     private void EnemyCharacter3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter3MousePressed
-        charInitialPoint = EnemyCharacter3.getLocation();
-        updateCharacterStats(enemyParty, 2);
-        showPossibleMoves(enemyParty, 2, true);
+        mousePressed(EnemyCharacter3, enemyParty, 2);
     }//GEN-LAST:event_EnemyCharacter3MousePressed
 
-    private void EnemyCharacter3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter3MouseDragged
-        if(turn == false && EnemyCharacter3.isEnabled())
-            moveCharacter(EnemyCharacter3, EnemyChar3HP, enemyParty, 2);
-    }//GEN-LAST:event_EnemyCharacter3MouseDragged
-
-    private void EnemyCharacter4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter4MouseReleased
-        if(turn == false && EnemyCharacter4.isEnabled())
-            performAction(LowerGrid,EnemyCharacter4,  EnemyChar4HP, enemyParty, 3);
-    }//GEN-LAST:event_EnemyCharacter4MouseReleased
-
     private void EnemyCharacter4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter4MousePressed
-        charInitialPoint = EnemyCharacter4.getLocation();
-        updateCharacterStats(enemyParty, 3);
-        showPossibleMoves(enemyParty, 3, true);
+        mousePressed(EnemyCharacter4, enemyParty, 3);
     }//GEN-LAST:event_EnemyCharacter4MousePressed
-
-    private void EnemyCharacter4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnemyCharacter4MouseDragged
-        if(turn == false && EnemyCharacter4.isEnabled())
-            moveCharacter(EnemyCharacter4, EnemyChar4HP,  enemyParty, 3);
-    }//GEN-LAST:event_EnemyCharacter4MouseDragged
 
     private void StageClearButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StageClearButtonMouseClicked
         cmGUI.initSong();
@@ -1762,24 +1670,16 @@ public class MapGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_DangerAreaButtonMouseClicked
 
     private void AllyCharacter2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter2MouseReleased
-        if(turn == true && AllyCharacter2.isEnabled())
-        performAction(LowerGrid,AllyCharacter2,  AllyChar2HP, allyParty, 1);
+        mouseReleased(AllyCharacter2, AllyChar2HP, 1);
     }//GEN-LAST:event_AllyCharacter2MouseReleased
 
     private void AllyCharacter2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter2MousePressed
-        charInitialPoint = AllyCharacter2.getLocation();
-        updateCharacterStats(allyParty, 1);
-        showPossibleMoves(allyParty, 1, true);
+        mousePressed(AllyCharacter2, allyParty, 1);
     }//GEN-LAST:event_AllyCharacter2MousePressed
 
     private void AllyCharacter2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllyCharacter2MouseDragged
-        if(turn == true && AllyCharacter2.isEnabled())
-        moveCharacter(AllyCharacter2,  AllyChar2HP, allyParty, 1);
+        mouseDragged(AllyCharacter2, AllyChar2HP, 1);
     }//GEN-LAST:event_AllyCharacter2MouseDragged
-
-    private void AllyCharacter1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AllyCharacter1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AllyCharacter1ActionPerformed
 
     private void PhaseSeperatorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PhaseSeperatorMouseClicked
         // TODO add your handling code here:
@@ -1808,7 +1708,6 @@ public class MapGUI extends javax.swing.JFrame {
     //AI for the EnemyChar
     private void enemyAI() {
         //loop through all of the characters and find their buttons
-        //System.out.println("Starting AI");
         for (int h = 4; h < 8; h++) {
             //get current character and current button
             JToggleButton currentButton = characters[h];
@@ -1818,8 +1717,6 @@ public class MapGUI extends javax.swing.JFrame {
             if (currentChar == null || currentChar.getCurrentHP() <= 0)
                 continue;
             
-            //System.out.println("Got one!");
-            
             //get the GridTile that the character will move to
             int square = -1;
             int currentSpace = 0;
@@ -1828,8 +1725,6 @@ public class MapGUI extends javax.swing.JFrame {
                 if (lowerGrid[i].getCharacter() == currentChar) {
                     currentSpace = i;
                     square = this.calculateNewPlace(currentChar, currentSpace);
-                    //System.out.println("Going to: " + square);
-                    //System.out.println("The distance is " + lowerGrid[square].getDistance());
                 }
             
             //if the number returned is equal to the current space, the character will not move
@@ -1877,155 +1772,36 @@ public class MapGUI extends javax.swing.JFrame {
     
     //used to calculate which square the character will move to
     private int calculateNewPlace(Char currentChar, int currentSpace) {
-        int closestPlace = currentSpace;
-        int i = currentSpace;
-
-        //find the closest character by checking up, down, left, and right
-        for (int j = 0; j < currentChar.getWalkRange(); j++) {
-            //left
-            //check to see if there is anywhere to go to the left
-            if (i % 6 != 0) {
-                //check to see if someone is already there and is a 
-                if (lowerGrid[i-1].getDistance() == 0 && lowerGrid[i-1].getCharacter() instanceof AllyChar) {
-                    closestPlace = i-1;
-                    return closestPlace;
-                }
-                //check to see if it is accessible
-                if (lowerGrid[i-1].isAccessible()) {
-                    //check to see if someone is already there and is a 
-                    if (lowerGrid[i-1].getDistance() == 0 && lowerGrid[i-1].getCharacter() instanceof AllyChar) {
-                        closestPlace = i-1;
-                        return closestPlace;
-                    }
-                    if (!lowerGrid[i-1].isOccupied() && lowerGrid[i-1].getDistance() <= lowerGrid[i].getDistance() && 
-                            lowerGrid[i-1].getDistance() <= lowerGrid[closestPlace].getDistance()) {
-                        closestPlace = i-1;
-                    }
-                }
-            }
-
-            //right
-            if (i % 6 != 5) {
-                //check to see if someone is already there and is a 
-                if (lowerGrid[i+1].getDistance() == 0 && lowerGrid[i+1].getCharacter() instanceof AllyChar) {
-                    closestPlace = i+1;
-                    return closestPlace;
-                }
-                //check to see if it is accessible
-                if (lowerGrid[i+1].isAccessible()) {
-                    if (!lowerGrid[i+1].isOccupied() && lowerGrid[i+1].getDistance() <= lowerGrid[i].getDistance() && 
-                            lowerGrid[i+1].getDistance() <= lowerGrid[closestPlace].getDistance()) {
-                        closestPlace = i+1;
-                    }
-                }
-            }
-
-            //up
-            if (i - 6 >= 0) {
-                //check to see if someone is already there and is a 
-                if (lowerGrid[i-6].getDistance() == 0 && lowerGrid[i-6].getCharacter() instanceof AllyChar) {
-                    closestPlace = i-6;
-                    return closestPlace;
-                }
-                //check to see if it is accessible
-                if (lowerGrid[i-6].isAccessible()) {
-                    if (!lowerGrid[i-6].isOccupied() && lowerGrid[i-6].getDistance() <= lowerGrid[i].getDistance() && 
-                            lowerGrid[i-6].getDistance() <= lowerGrid[closestPlace].getDistance()) {
-                        closestPlace = i-6;
-                    }
-                }
-            }
-
-            //down
-            if (i + 6 < lowerGrid.length) {
-                //check to see if someone is already there and is a 
-                if (lowerGrid[i+6].getDistance() == 0 && lowerGrid[i+6].getCharacter() instanceof AllyChar) {
-                    closestPlace = i+6;
-                    return closestPlace;
-                }
-                //check to see if it is accessible
-                if (lowerGrid[i+6].isAccessible()) {
-                    if (!lowerGrid[i+6].isOccupied() && lowerGrid[i+6].getDistance() <= lowerGrid[i].getDistance() && 
-                            lowerGrid[i+6].getDistance() <= lowerGrid[closestPlace].getDistance()) {
-                        closestPlace = i+6;
-                    }
-                }
-            }
-            
-            //have i = cloesetPlace so that it will continue to check the closest areas
-            i = closestPlace;
-        }
-        
-        return closestPlace;
+        return manager.calculateNewPlace(lowerGrid, currentChar, currentSpace);
     }
     
     //Recalculates the GridTiles based on where the 
     private void recalculateLocationOfAllyChars() {
         //resets all of the distances starting at the newest location and working around from there if the character inside a GridTile is a 
-        int changes = 0;
-        int original = 0;
-        
-        for (int i = 0; i < lowerGrid.length - 1; i++) {
-            if (lowerGrid[i].getCharacter() != null && lowerGrid[i].getCharacter() instanceof AllyChar) {                
-                //left - will always run - subtraction
-                for (int j = 0; j <= i % 6; j++) {
-                    //set up the first square
-                    original = i - j;
-                    lowerGrid[original].setDistance(j); //done so that the distance will automatically be set for the first
-                    //System.out.println("GridTile[" + original + "]: " + lowerGrid[original].getDistance());
-                    
-                    //up - subtraction
-                    while (original - 6 >= 0) {
-                        if (changes == 0 || (lowerGrid[original].getDistance() + 1) < lowerGrid[original - 6].getDistance()) {
-                            lowerGrid[original - 6].setDistance(lowerGrid[original].getDistance() + 1);
-                            //System.out.println("GridTile[" + original + "]: " + lowerGrid[original].getDistance());
-                        }
-                        original -= 6;
-                    }
-                    
-                    //down - addition
-                    original = i - j; //resets it back at the original square
-                    while (original + 6 <= lowerGrid.length - 1) {
-                        if (changes == 0 || (lowerGrid[original].getDistance() + 1) < lowerGrid[original + 6].getDistance()) {
-                            lowerGrid[original + 6].setDistance(lowerGrid[original].getDistance() + 1);
-                            //System.out.println("GridTile[" + original + "]: " + lowerGrid[original].getDistance());
-                        }
-                        original += 6;
-                    }
-                }
-                
-                //right - will only run if it is not on the absolute edge - addition
-                if ((i+1) % 6 != 0) {
-                    for (int j = 1; (j + i) % 6 > 0; j++) {
-                        original = i + j;
-                        lowerGrid[original].setDistance(j);
-                        //up - subtraction
-                        while (original - 6 >= 0) {
-                            if (changes == 0 || (lowerGrid[original].getDistance() + 1) < lowerGrid[original - 6].getDistance()) {
-                                lowerGrid[original - 6].setDistance(lowerGrid[original].getDistance() + 1);
-                                //System.out.println("GridTile[" + original + "]: " + lowerGrid[original].getDistance());
-                            }
-                            original -= 6;
-                        }
-
-                        //down - addition
-                        original = i + j; //resets it back at the original square
-                        while (original + 6 <= lowerGrid.length - 1) {
-                            if (changes == 0 || (lowerGrid[original].getDistance() + 1) < lowerGrid[original + 6].getDistance()) {
-                                lowerGrid[original + 6].setDistance(lowerGrid[original].getDistance() + 1);
-                                //System.out.println("GridTile[" + original + "]: " + lowerGrid[original].getDistance());
-                            }
-                            original += 6;
-                        }
-                    }
-                }
-                changes += 1;
-            }
-        }
+        manager.recalculateLocationOfAllyChars(lowerGrid);
         
         //set all values to upperGrid as well
         for (int i = 0; i < lowerGrid.length; i++)
             upperGrid[i].setDistance(lowerGrid[i].getDistance());
+    }
+    
+    //shoots off code when mouse is pressed on any of the character buttons
+    private void mousePressed(JToggleButton currentButton, Party currentParty, int currentCharacter) {
+        charInitialPoint = currentButton.getLocation();
+        updateCharacterStats(currentParty, currentCharacter);
+        showPossibleMoves(currentParty, currentCharacter, true);
+    }
+    
+    //shoots off code when mouse draggs an ally character button
+    private void mouseDragged(JToggleButton currentButton, JLayeredPane currentPane, int currentCharacter) {
+        if(turn == true && currentButton.isEnabled())
+        moveCharacter(currentButton,  currentPane, allyParty, currentCharacter);
+    }
+    
+    //shoots off code when mouse releases an ally character button
+    private void mouseReleased(JToggleButton currentButton, JLayeredPane currentPane, int currentCharacter) {
+        if(turn == true && currentButton.isEnabled())
+        performAction(LowerGrid, currentButton, currentPane, allyParty, currentCharacter);
     }
     
     //Checks to see whether the current mouse position is inside a specific component
@@ -2230,7 +2006,7 @@ public class MapGUI extends javax.swing.JFrame {
         EnemyNamePlateText.setText(enemy.getName());
         EnemyCurrentHP.setText(enemy.getCurrentHP() + "");
         if(enemy.getCurrentHP() - ally.getTotalAtk() > 0)
-            EnemyEndHP.setText((enemy.getCurrentHP() - ally.getTotalAtk()) + "");
+            EnemyEndHP.setText((enemy.getCurrentHP() - ally.getTotalAtk()) + enemy.getTotalDef() + "");
         else
             EnemyEndHP.setText("0");
         EnemyAttack.setText("0");
@@ -2333,12 +2109,7 @@ public class MapGUI extends javax.swing.JFrame {
         }
         //If no characters in party have a turn left, the turn is given over automically. 
         if(i != -1) {
-            for(JToggleButton jtbs: characters) {
-                jtbs.setEnabled(true);
-            }
-            turn = turn != true;
-            resetPositionMarkers();
-            //startPhaseAnimation();
+            this.endTurn();
             enemyAI();
         }
     }
@@ -2440,12 +2211,12 @@ public class MapGUI extends javax.swing.JFrame {
         lowerGrid[initialGridTile].getTile().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UIMenu/bluePositionMarker.png")));
         
         if(walkRange == 1 || walkRange == 2) {
-            if(initialGridTile != 5 && initialGridTile != 11 && initialGridTile != 17 && initialGridTile != 23 && initialGridTile != 29 
-               && initialGridTile != 35 && initialGridTile != 41 && initialGridTile != 47 && initialGridTile + 1 > -1 && initialGridTile + 1 < 48) {
+            if(/*initialGridTile != 5 && initialGridTile != 11 && initialGridTile != 17 && initialGridTile != 23 && initialGridTile != 29 
+               && initialGridTile != 35 && initialGridTile != 41 && initialGridTile != 47*/ initialGridTile % 6 != 5 && initialGridTile + 1 > -1 && initialGridTile + 1 < 48) {
                 setPositionMarker(party, initialGridTile + 1, 0);
             }
-            if(initialGridTile != 0 && initialGridTile != 6 && initialGridTile != 12 && initialGridTile != 18 && initialGridTile != 24 
-               && initialGridTile != 30 && initialGridTile != 36 && initialGridTile != 42 && initialGridTile - 1 > -1 && initialGridTile - 1 < 48) {
+            if(/*initialGridTile != 0 && initialGridTile != 6 && initialGridTile != 12 && initialGridTile != 18 && initialGridTile != 24 
+               && initialGridTile != 30 && initialGridTile != 36 && initialGridTile != 42*/ initialGridTile % 6 != 0 && initialGridTile - 1 > -1 && initialGridTile - 1 < 48) {
                 setPositionMarker(party, initialGridTile - 1, 0);
             }
             if(initialGridTile - 6 > -1 && initialGridTile - 6 < 48) {
@@ -2458,32 +2229,32 @@ public class MapGUI extends javax.swing.JFrame {
         
         //Not very efficient (hard-coded)
         if(walkRange == 2) {
-            if(initialGridTile != 5 && initialGridTile != 11 && initialGridTile != 17 && initialGridTile != 23 && initialGridTile != 29 
+            if(/*initialGridTile != 5 && initialGridTile != 11 && initialGridTile != 17 && initialGridTile != 23 && initialGridTile != 29 
                && initialGridTile != 35 && initialGridTile != 41 && initialGridTile != 47 && initialGridTile != 4 && initialGridTile != 10 
                && initialGridTile != 16 && initialGridTile != 22 && initialGridTile != 28 && initialGridTile != 34 && initialGridTile != 40 
-               && initialGridTile != 46 && initialGridTile + 2 > -1 && initialGridTile + 2 < 48) {
+               && initialGridTile != 46*/ initialGridTile % 6 != 5 && initialGridTile % 6 != 4 && initialGridTile + 2 > -1 && initialGridTile + 2 < 48) {
                 setPositionMarker(party, initialGridTile + 2, -1);
             }
-            if(initialGridTile != 0 && initialGridTile != 6 && initialGridTile != 12 && initialGridTile != 18 && initialGridTile != 24 
+            if(/*initialGridTile != 0 && initialGridTile != 6 && initialGridTile != 12 && initialGridTile != 18 && initialGridTile != 24 
                && initialGridTile != 30 && initialGridTile != 36 && initialGridTile != 42 && initialGridTile != 1 && initialGridTile != 7 
                && initialGridTile != 13 && initialGridTile != 19 && initialGridTile != 25 && initialGridTile != 31 && initialGridTile != 37 
-               && initialGridTile != 43 && initialGridTile - 2 > -1 && initialGridTile - 2 < 48) {
+               && initialGridTile != 43*/ initialGridTile % 6 != 0 && initialGridTile % 6 != 1 && initialGridTile - 2 > -1 && initialGridTile - 2 < 48) {
                 setPositionMarker(party, initialGridTile - 2, 1);
             }
-            if(initialGridTile != 5 && initialGridTile != 11 && initialGridTile != 17 && initialGridTile != 23 && initialGridTile != 29 
-               && initialGridTile != 35 && initialGridTile != 41 && initialGridTile != 47 && initialGridTile + 7 > -1 && initialGridTile + 7 < 48) {
+            if(/*initialGridTile != 5 && initialGridTile != 11 && initialGridTile != 17 && initialGridTile != 23 && initialGridTile != 29 
+               && initialGridTile != 35 && initialGridTile != 41 && initialGridTile != 47*/ initialGridTile % 6 != 5 && initialGridTile + 7 > -1 && initialGridTile + 7 < 48) {
                 setPositionMarker(party, initialGridTile + 7, 0);
             }
-            if(initialGridTile != 0 && initialGridTile != 6 && initialGridTile != 12 && initialGridTile != 18 && initialGridTile != 24 
-               && initialGridTile != 30 && initialGridTile != 36 && initialGridTile != 42 && initialGridTile - 7 > -1 && initialGridTile - 7 < 48) {
+            if(/*initialGridTile != 0 && initialGridTile != 6 && initialGridTile != 12 && initialGridTile != 18 && initialGridTile != 24 
+               && initialGridTile != 30 && initialGridTile != 36 && initialGridTile != 42*/ initialGridTile % 6 != 0 && initialGridTile - 7 > -1 && initialGridTile - 7 < 48) {
                 setPositionMarker(party, initialGridTile - 7, 0);
             }
-            if(initialGridTile != 0 && initialGridTile != 6 && initialGridTile != 12 && initialGridTile != 18 && initialGridTile != 24 
-               && initialGridTile != 30 && initialGridTile != 36 && initialGridTile != 42 && initialGridTile + 5 > -1 && initialGridTile + 5 < 48) {
+            if(/*initialGridTile != 0 && initialGridTile != 6 && initialGridTile != 12 && initialGridTile != 18 && initialGridTile != 24 
+               && initialGridTile != 30 && initialGridTile != 36 && initialGridTile != 42 &&*/ initialGridTile % 6 != 0 && initialGridTile + 5 > -1 && initialGridTile + 5 < 48) {
                 setPositionMarker(party, initialGridTile + 5, 0);
             }
-            if(initialGridTile != 5 && initialGridTile != 11 && initialGridTile != 17 && initialGridTile != 23 && initialGridTile != 29 
-               && initialGridTile != 35 && initialGridTile != 41 && initialGridTile != 47 && initialGridTile - 5 > -1 && initialGridTile - 5 < 48) {
+            if(/*initialGridTile != 5 && initialGridTile != 11 && initialGridTile != 17 && initialGridTile != 23 && initialGridTile != 29 
+               && initialGridTile != 35 && initialGridTile != 41 && initialGridTile != 47*/ initialGridTile % 6 != 5 && initialGridTile - 5 > -1 && initialGridTile - 5 < 48) {
                 setPositionMarker(party, initialGridTile - 5, 0);
             }
             if(initialGridTile + 12 > -1 && initialGridTile + 12 < 48) {
@@ -2610,6 +2381,18 @@ public class MapGUI extends javax.swing.JFrame {
     }
     
     private void setLevelValues() {
+        //finds the highest level among the allies that have been brought into the level
+        int add = 0;
+        int characters = 0;
+        for (Char ally : allyParty.getArmy()) {
+            if (ally == null)
+                continue;
+            add += ally.getLevel();
+            characters += 1;
+        }
+        
+        add /= characters;
+        
         if(level == 1) {
             Map.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/backgrounds/level1_map.png")));
             
@@ -2643,9 +2426,10 @@ public class MapGUI extends javax.swing.JFrame {
                                          new GridTile(pos88,false), new GridTile(pos89,false), new GridTile(pos90,false), new GridTile(pos91,true), new GridTile(pos92,true), new GridTile(pos93,true)};
 
             //Adds Level 1 enemies into enemy party
-            enemyParty.addToArmy(new EnemyChar("Zephiel", 1));
-            enemyParty.addToArmy(new EnemyChar("Black Knight", 1));
-            enemyParty.addToArmy(new EnemyChar("Hawkeye", 1));
+            Weapon weapon = new Weapon(null, 0, "Bronze Sword", 0, "Basic Sword, starting equipment", WeaponType.Sword, 5, 1, DamageType.Physical);
+            enemyParty.addToArmy(new EnemyChar("Zephiel", add, 2, weapon));
+            enemyParty.addToArmy(new EnemyChar("Black Knight", add, 2, weapon));
+            enemyParty.addToArmy(new EnemyChar("Hawkeye", add, 2, weapon));
         }
         
         if(level == 2) {
@@ -2680,9 +2464,10 @@ public class MapGUI extends javax.swing.JFrame {
                                          new GridTile(pos88,false), new GridTile(pos89,false), new GridTile(pos90,true), new GridTile(pos91,false), new GridTile(pos92,false), new GridTile(pos93,false)};
 
             //Adds Level 2 enemies into enemy party
-            enemyParty.addToArmy(new EnemyChar("Hawkeye", 2));
-            enemyParty.addToArmy(new EnemyChar("Black Knight", 2));
-            enemyParty.addToArmy(new EnemyChar("Zephiel", 2));
+            Weapon weapon = new Weapon(null, 0, "Iron Sword", 0, "Stronger Sword", WeaponType.Sword, 6, 1, DamageType.Physical);
+            enemyParty.addToArmy(new EnemyChar("Hawkeye", 1 + add, 2, weapon));
+            enemyParty.addToArmy(new EnemyChar("Black Knight", 1 + add, 2, weapon));
+            enemyParty.addToArmy(new EnemyChar("Zephiel", 1 + add, 2, weapon));
         }
         
         if(level == 3) {
@@ -2718,9 +2503,10 @@ public class MapGUI extends javax.swing.JFrame {
                                          new GridTile(pos88,true), new GridTile(pos89,true), new GridTile(pos90,true), new GridTile(pos91,true), new GridTile(pos92,true), new GridTile(pos93,true)};
 
             //Adds Level 3 enemies into enemy party
-            enemyParty.addToArmy(new EnemyChar("Surtr", 5));
-            enemyParty.addToArmy(new EnemyChar("Black Knight", 3));
-            enemyParty.addToArmy(new EnemyChar("Axe Man", 4));
+            Weapon weapon = new Weapon(null, 0, "Silver Sword", 0, "Strongest Sword", WeaponType.Sword, 7, 1, DamageType.Physical);
+            enemyParty.addToArmy(new EnemyChar("Surtr", 4 + add, 2, weapon));
+            enemyParty.addToArmy(new EnemyChar("Black Knight", 2 + add, 2, weapon));
+            enemyParty.addToArmy(new EnemyChar("Axe Man", 3 + add, 2, weapon));
         }
     }
     
