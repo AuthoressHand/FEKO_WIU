@@ -8,8 +8,6 @@ package feko_steffensmeierdoty;
 import common.DamageType;
 import common.WeaponType;
 import java.io.File;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javax.swing.*;
